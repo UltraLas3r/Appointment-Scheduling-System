@@ -10,16 +10,16 @@ using System.Windows.Forms;
 
 namespace mschreiber_Software2_c969Project
 {
-    public partial class LoginForm : Form
+    public partial class CreateNewAppointment : Form
     {
-        public LoginForm()
+        public CreateNewAppointment()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
-            //needs to check if there is a valid entry in the DB for the user
+            //must have validation warning! "Are you sure you want to cancel?"
         }
     }
 }

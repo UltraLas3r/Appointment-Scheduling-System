@@ -10,16 +10,16 @@ using System.Windows.Forms;
 
 namespace mschreiber_Software2_c969Project
 {
-    public partial class LoginForm : Form
+    public partial class MainHomePage : Form
     {
-        public LoginForm()
+        public MainHomePage()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
-            //needs to check if there is a valid entry in the DB for the user
+           //this will change the DGV based on the radio button selection
         }
     }
 }
