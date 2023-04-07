@@ -21,5 +21,16 @@ namespace mschreiber_Software2_c969Project
         {
            //this will change the DGV based on the radio button selection
         }
+
+        private void btn_CreateAppointment_Click(object sender, EventArgs e)
+        {
+            //open the createnuewappointment screen
+            //perhaps add an "onmousedown" event that changes the buttoncolor
+        }
+
+        private void MainHomePageExit(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

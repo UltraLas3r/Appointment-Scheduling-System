@@ -17,9 +17,15 @@ namespace mschreiber_Software2_c969Project
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        MainHomePage mainHomePage = new MainHomePage();
+
+        private void LoginClick(object sender, EventArgs e)
         {
-            //needs to check if there is a valid entry in the DB for the user
+            //needs to check if there is a valid entry in the DB for the user.
+
+            //if a valid entry exists, complete the following query
+            this.Hide();
+            mainHomePage.Show();
         }
     }
 }
