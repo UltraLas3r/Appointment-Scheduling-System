@@ -36,8 +36,8 @@
             this.btn_CancelLogin = new System.Windows.Forms.Button();
             this.lbl_UserName = new System.Windows.Forms.Label();
             this.lbl_Password = new System.Windows.Forms.Label();
-            this.rb_LanguageEnglish = new System.Windows.Forms.RadioButton();
             this.rb_LanguageGerman = new System.Windows.Forms.RadioButton();
+            this.rb_LanguageEnglish = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // lbl_LoginHeader
@@ -115,18 +115,6 @@
             this.lbl_Password.TabIndex = 7;
             this.lbl_Password.Text = "Password";
             // 
-            // rb_LanguageEnglish
-            // 
-            this.rb_LanguageEnglish.AutoSize = true;
-            this.rb_LanguageEnglish.Location = new System.Drawing.Point(265, 148);
-            this.rb_LanguageEnglish.Name = "rb_LanguageEnglish";
-            this.rb_LanguageEnglish.Size = new System.Drawing.Size(72, 20);
-            this.rb_LanguageEnglish.TabIndex = 8;
-            this.rb_LanguageEnglish.TabStop = true;
-            this.rb_LanguageEnglish.Text = "English";
-            this.rb_LanguageEnglish.UseVisualStyleBackColor = true;
-            this.rb_LanguageEnglish.CheckedChanged += new System.EventHandler(this.rb_LanguageEnglish_CheckedChanged);
-            // 
             // rb_LanguageGerman
             // 
             this.rb_LanguageGerman.AutoSize = true;
@@ -138,6 +126,18 @@
             this.rb_LanguageGerman.Text = "Deutsch";
             this.rb_LanguageGerman.UseVisualStyleBackColor = true;
             this.rb_LanguageGerman.CheckedChanged += new System.EventHandler(this.rb_LanguageGerman_CheckedChanged);
+            // 
+            // rb_LanguageEnglish
+            // 
+            this.rb_LanguageEnglish.AutoSize = true;
+            this.rb_LanguageEnglish.Location = new System.Drawing.Point(265, 148);
+            this.rb_LanguageEnglish.Name = "rb_LanguageEnglish";
+            this.rb_LanguageEnglish.Size = new System.Drawing.Size(72, 20);
+            this.rb_LanguageEnglish.TabIndex = 8;
+            this.rb_LanguageEnglish.TabStop = true;
+            this.rb_LanguageEnglish.Text = "English";
+            this.rb_LanguageEnglish.UseVisualStyleBackColor = true;
+            this.rb_LanguageEnglish.CheckedChanged += new System.EventHandler(this.rb_LanguageEnglish_CheckedChanged);
             // 
             // LoginForm
             // 
@@ -171,8 +171,8 @@
         private System.Windows.Forms.Button btn_CancelLogin;
         private System.Windows.Forms.Label lbl_UserName;
         private System.Windows.Forms.Label lbl_Password;
-        private System.Windows.Forms.RadioButton rb_LanguageEnglish;
         private System.Windows.Forms.RadioButton rb_LanguageGerman;
+        private System.Windows.Forms.RadioButton rb_LanguageEnglish;
     }
 }
 

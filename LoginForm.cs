@@ -12,12 +12,11 @@ namespace mschreiber_Software2_c969Project
 {
     public partial class LoginForm : Form
     {
+        MainHomePage mainHomePage = new MainHomePage();
         public LoginForm()
         {
             InitializeComponent();
         }
-
-        MainHomePage mainHomePage = new MainHomePage();
 
         private void LoginClick(object sender, EventArgs e)
         {
@@ -28,8 +27,6 @@ namespace mschreiber_Software2_c969Project
             this.Hide();
             mainHomePage.Show();
         }
-
-       
 
         private void rb_LanguageGerman_CheckedChanged(object sender, EventArgs e)
         {
