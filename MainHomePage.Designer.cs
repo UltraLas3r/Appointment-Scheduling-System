@@ -53,6 +53,7 @@
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "View This week";
             this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.ViewThisWeekRadioButton);
             // 
             // radioButton2
             // 
@@ -65,6 +66,7 @@
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "View This Month";
             this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.ViewThisMonthRadioButton);
             // 
             // dataGridView1
             // 
@@ -95,7 +97,7 @@
             this.btn_CreateAppointment.TabIndex = 6;
             this.btn_CreateAppointment.Text = "Create New Appointment";
             this.btn_CreateAppointment.UseVisualStyleBackColor = true;
-            this.btn_CreateAppointment.Click += new System.EventHandler(this.btn_CreateAppointment_Click);
+            this.btn_CreateAppointment.Click += new System.EventHandler(this.CreateNewAppointment_Click);
             // 
             // button2
             // 
@@ -106,7 +108,7 @@
             this.button2.TabIndex = 7;
             this.button2.Text = "View Appointments";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.ViewAppointmentsButton_Click);
             // 
             // btn_ModifyAppointment
             // 
@@ -138,6 +140,7 @@
             this.btn_DeleteAppointment.TabIndex = 10;
             this.btn_DeleteAppointment.Text = "Delete Appointment";
             this.btn_DeleteAppointment.UseVisualStyleBackColor = true;
+            this.btn_DeleteAppointment.Click += new System.EventHandler(this.DeleteAppointment_Click);
             // 
             // btn_AddCustomer
             // 
@@ -148,6 +151,7 @@
             this.btn_AddCustomer.TabIndex = 11;
             this.btn_AddCustomer.Text = "Add Customer";
             this.btn_AddCustomer.UseVisualStyleBackColor = true;
+            this.btn_AddCustomer.Click += new System.EventHandler(this.AddCustomerButton_Click);
             // 
             // button3
             // 
@@ -158,6 +162,7 @@
             this.button3.TabIndex = 12;
             this.button3.Text = "Update Customer";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.UpdateCustomerButton_Click);
             // 
             // MainHomePage
             // 

@@ -21,11 +21,24 @@ namespace mschreiber_Software2_c969Project
 
         private void LoginClick(object sender, EventArgs e)
         {
+           
             //needs to check if there is a valid entry in the DB for the user.
 
             //if a valid entry exists, complete the following query
             this.Hide();
             mainHomePage.Show();
+        }
+
+       
+
+        private void rb_LanguageGerman_CheckedChanged(object sender, EventArgs e)
+        {
+            //if selected, change language on the LoginForm to German
+        }
+
+        private void rb_LanguageEnglish_CheckedChanged(object sender, EventArgs e)
+        {
+            //if selected, change the language on the LoginForm to English (this is default)
         }
     }
 }

@@ -36,13 +36,15 @@
             this.btn_CancelLogin = new System.Windows.Forms.Button();
             this.lbl_UserName = new System.Windows.Forms.Label();
             this.lbl_Password = new System.Windows.Forms.Label();
+            this.rb_LanguageEnglish = new System.Windows.Forms.RadioButton();
+            this.rb_LanguageGerman = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // lbl_LoginHeader
             // 
             this.lbl_LoginHeader.AutoSize = true;
             this.lbl_LoginHeader.Font = new System.Drawing.Font("OCR A Extended", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_LoginHeader.Location = new System.Drawing.Point(259, 52);
+            this.lbl_LoginHeader.Location = new System.Drawing.Point(258, 9);
             this.lbl_LoginHeader.Name = "lbl_LoginHeader";
             this.lbl_LoginHeader.Size = new System.Drawing.Size(210, 41);
             this.lbl_LoginHeader.TabIndex = 0;
@@ -52,7 +54,7 @@
             // 
             this.lbl_EnterYourCredentials.AutoSize = true;
             this.lbl_EnterYourCredentials.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.lbl_EnterYourCredentials.Location = new System.Drawing.Point(145, 128);
+            this.lbl_EnterYourCredentials.Location = new System.Drawing.Point(154, 78);
             this.lbl_EnterYourCredentials.Name = "lbl_EnterYourCredentials";
             this.lbl_EnterYourCredentials.Size = new System.Drawing.Size(430, 23);
             this.lbl_EnterYourCredentials.TabIndex = 1;
@@ -113,11 +115,37 @@
             this.lbl_Password.TabIndex = 7;
             this.lbl_Password.Text = "Password";
             // 
+            // rb_LanguageEnglish
+            // 
+            this.rb_LanguageEnglish.AutoSize = true;
+            this.rb_LanguageEnglish.Location = new System.Drawing.Point(265, 148);
+            this.rb_LanguageEnglish.Name = "rb_LanguageEnglish";
+            this.rb_LanguageEnglish.Size = new System.Drawing.Size(72, 20);
+            this.rb_LanguageEnglish.TabIndex = 8;
+            this.rb_LanguageEnglish.TabStop = true;
+            this.rb_LanguageEnglish.Text = "English";
+            this.rb_LanguageEnglish.UseVisualStyleBackColor = true;
+            this.rb_LanguageEnglish.CheckedChanged += new System.EventHandler(this.rb_LanguageEnglish_CheckedChanged);
+            // 
+            // rb_LanguageGerman
+            // 
+            this.rb_LanguageGerman.AutoSize = true;
+            this.rb_LanguageGerman.Location = new System.Drawing.Point(396, 148);
+            this.rb_LanguageGerman.Name = "rb_LanguageGerman";
+            this.rb_LanguageGerman.Size = new System.Drawing.Size(77, 20);
+            this.rb_LanguageGerman.TabIndex = 9;
+            this.rb_LanguageGerman.TabStop = true;
+            this.rb_LanguageGerman.Text = "Deutsch";
+            this.rb_LanguageGerman.UseVisualStyleBackColor = true;
+            this.rb_LanguageGerman.CheckedChanged += new System.EventHandler(this.rb_LanguageGerman_CheckedChanged);
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(720, 409);
+            this.ClientSize = new System.Drawing.Size(724, 442);
+            this.Controls.Add(this.rb_LanguageGerman);
+            this.Controls.Add(this.rb_LanguageEnglish);
             this.Controls.Add(this.lbl_Password);
             this.Controls.Add(this.lbl_UserName);
             this.Controls.Add(this.btn_CancelLogin);
@@ -143,6 +171,8 @@
         private System.Windows.Forms.Button btn_CancelLogin;
         private System.Windows.Forms.Label lbl_UserName;
         private System.Windows.Forms.Label lbl_Password;
+        private System.Windows.Forms.RadioButton rb_LanguageEnglish;
+        private System.Windows.Forms.RadioButton rb_LanguageGerman;
     }
 }
 

@@ -52,7 +52,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(224, 75);
             this.button1.TabIndex = 0;
-            this.button1.Text = "Save New Appointment";
+            this.button1.Text = "Create New Appointment";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // button2
@@ -64,7 +64,7 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "Cancel";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.CancelButtonClick);
             // 
             // lbl_PhoneNumber
             // 
@@ -112,7 +112,7 @@
             this.lbl_CustFirstName.Font = new System.Drawing.Font("OCR A Extended", 12F);
             this.lbl_CustFirstName.Location = new System.Drawing.Point(50, 35);
             this.lbl_CustFirstName.Name = "lbl_CustFirstName";
-            this.lbl_CustFirstName.Size = new System.Drawing.Size(163, 29);
+            this.lbl_CustFirstName.Size = new System.Drawing.Size(130, 23);
             this.lbl_CustFirstName.TabIndex = 6;
             this.lbl_CustFirstName.Text = "First Name";
             // 
@@ -173,7 +173,7 @@
             this.lbl_PhoneNumberValidation.AutoSize = true;
             this.lbl_PhoneNumberValidation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.lbl_PhoneNumberValidation.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lbl_PhoneNumberValidation.Location = new System.Drawing.Point(139, 315);
+            this.lbl_PhoneNumberValidation.Location = new System.Drawing.Point(151, 313);
             this.lbl_PhoneNumberValidation.Name = "lbl_PhoneNumberValidation";
             this.lbl_PhoneNumberValidation.Size = new System.Drawing.Size(507, 17);
             this.lbl_PhoneNumberValidation.TabIndex = 14;
@@ -200,7 +200,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Name = "CreateNewAppointment";
-            this.Text = "Create a New Appointment";
+            this.Text = "Create New Appointment";
             this.ResumeLayout(false);
             this.PerformLayout();
 

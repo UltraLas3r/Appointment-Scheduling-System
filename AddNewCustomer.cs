@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace mschreiber_Software2_c969Project
 {
-    public partial class CreateNewAppointment : Form
+    public partial class AddNewCustomer : Form
     {
-        public CreateNewAppointment()
+        public AddNewCustomer()
         {
             InitializeComponent();
-        }
-
-        private void CancelButtonClick(object sender, EventArgs e)
-        {
-            //must have validation warning! "Are you sure you want to cancel?"
         }
     }
 }
