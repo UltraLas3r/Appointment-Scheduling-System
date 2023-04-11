@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.btn_SaveAppointment = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.lbl_PhoneNumber = new System.Windows.Forms.Label();
             this.lbl_Address = new System.Windows.Forms.Label();
@@ -45,15 +45,16 @@
             this.lbl_PhoneNumberValidation = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // button1
+            // btn_SaveAppointment
             // 
-            this.button1.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.button1.Location = new System.Drawing.Point(142, 354);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(224, 75);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Create New Appointment";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btn_SaveAppointment.Font = new System.Drawing.Font("OCR A Extended", 12F);
+            this.btn_SaveAppointment.Location = new System.Drawing.Point(142, 354);
+            this.btn_SaveAppointment.Name = "btn_SaveAppointment";
+            this.btn_SaveAppointment.Size = new System.Drawing.Size(224, 75);
+            this.btn_SaveAppointment.TabIndex = 0;
+            this.btn_SaveAppointment.Text = "Save New Appointment";
+            this.btn_SaveAppointment.UseVisualStyleBackColor = true;
+            this.btn_SaveAppointment.Click += new System.EventHandler(this.SaveNewAppointment);
             // 
             // button2
             // 
@@ -198,7 +199,7 @@
             this.Controls.Add(this.lbl_Address);
             this.Controls.Add(this.lbl_PhoneNumber);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btn_SaveAppointment);
             this.Name = "CreateNewAppointment";
             this.Text = "Create New Appointment";
             this.ResumeLayout(false);
@@ -208,7 +209,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_SaveAppointment;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label lbl_PhoneNumber;
         private System.Windows.Forms.Label lbl_Address;
