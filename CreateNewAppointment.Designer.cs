@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.btn_SaveAppointment = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btn_Cancel = new System.Windows.Forms.Button();
             this.lbl_PhoneNumber = new System.Windows.Forms.Label();
             this.lbl_Address = new System.Windows.Forms.Label();
             this.lbl_City = new System.Windows.Forms.Label();
@@ -56,16 +56,16 @@
             this.btn_SaveAppointment.UseVisualStyleBackColor = true;
             this.btn_SaveAppointment.Click += new System.EventHandler(this.SaveNewAppointment);
             // 
-            // button2
+            // btn_Cancel
             // 
-            this.button2.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.button2.Location = new System.Drawing.Point(413, 354);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(224, 75);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Cancel";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.CancelButtonClick);
+            this.btn_Cancel.Font = new System.Drawing.Font("OCR A Extended", 12F);
+            this.btn_Cancel.Location = new System.Drawing.Point(413, 354);
+            this.btn_Cancel.Name = "btn_Cancel";
+            this.btn_Cancel.Size = new System.Drawing.Size(224, 75);
+            this.btn_Cancel.TabIndex = 1;
+            this.btn_Cancel.Text = "Cancel";
+            this.btn_Cancel.UseVisualStyleBackColor = true;
+            this.btn_Cancel.Click += new System.EventHandler(this.CancelButtonClick);
             // 
             // lbl_PhoneNumber
             // 
@@ -198,7 +198,7 @@
             this.Controls.Add(this.lbl_City);
             this.Controls.Add(this.lbl_Address);
             this.Controls.Add(this.lbl_PhoneNumber);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btn_Cancel);
             this.Controls.Add(this.btn_SaveAppointment);
             this.Name = "CreateNewAppointment";
             this.Text = "Create New Appointment";
@@ -210,7 +210,7 @@
         #endregion
 
         private System.Windows.Forms.Button btn_SaveAppointment;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btn_Cancel;
         private System.Windows.Forms.Label lbl_PhoneNumber;
         private System.Windows.Forms.Label lbl_Address;
         private System.Windows.Forms.Label lbl_City;

@@ -17,17 +17,13 @@ namespace mschreiber_Software2_c969Project
 
     public partial class LoginForm : Form
     {
-        
         MainHomePage mainHomePage = new MainHomePage();
-
-        
 
         public LoginForm()
         {
             InitializeComponent();
             ChangeColorofButtons();
             
-
             //get localization data
             string userLocation = CultureInfo.CurrentCulture.DisplayName;
             //get the current date and time 
@@ -35,8 +31,6 @@ namespace mschreiber_Software2_c969Project
             // Set the text of the label element
             lbl_UserLocationAndTime.Text = $"Location: {userLocation} ... {currentDateTime.ToString()}";
         }
-
-
 
         private void LoginClick(object sender, EventArgs e)
         {
@@ -90,6 +84,7 @@ namespace mschreiber_Software2_c969Project
 
         private void ChangeColorofButtons()
         {
+            //use to change the color of any button on hover
             var hoverColorChanger = new ButtonHoverColorChanger(Color.Black, Color.LimeGreen);
 
             hoverColorChanger.Attach(btn_Login);

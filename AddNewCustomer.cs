@@ -1,4 +1,5 @@
-﻿using System;
+﻿using mschreiber_Software2_c969Project.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,17 @@ namespace mschreiber_Software2_c969Project
         public AddNewCustomer()
         {
             InitializeComponent();
+            ChangeColorofButtons();
+        }
+
+        private void ChangeColorofButtons()
+        {
+            //use to change the color of any button on hover
+            var hoverColorChanger = new ButtonHoverColorChanger(Color.Black, Color.LimeGreen);
+
+            //hoverColorChanger.Attach();
+            //hoverColorChanger.Attach();
+
         }
     }
 }
