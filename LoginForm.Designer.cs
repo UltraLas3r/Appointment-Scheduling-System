@@ -95,6 +95,7 @@
             this.btn_CancelLogin.TabIndex = 5;
             this.btn_CancelLogin.Text = "Cancel";
             this.btn_CancelLogin.UseVisualStyleBackColor = true;
+            this.btn_CancelLogin.Click += new System.EventHandler(this.btn_CancelLogin_Click);
             // 
             // lbl_UserName
             // 

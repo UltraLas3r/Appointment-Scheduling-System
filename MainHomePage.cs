@@ -1,4 +1,5 @@
-﻿using System;
+﻿using mschreiber_Software2_c969Project.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,9 +15,19 @@ namespace mschreiber_Software2_c969Project
     public partial class MainHomePage : Form
     {
         CreateNewAppointment createNewAppointment = new CreateNewAppointment();
+
+      
         public MainHomePage()
         {
             InitializeComponent();
+            var hoverColorChanger = new ButtonHoverColorChanger(Color.Black, Color.LimeGreen);
+            //color change buttons
+            hoverColorChanger.Attach(btn_AddCustomer);
+            hoverColorChanger.Attach(btn_CreateAppointment);
+            hoverColorChanger.Attach(btn_DeleteAppointment);
+            hoverColorChanger.Attach(btn_ModifyAppointment);
+            hoverColorChanger.Attach(btn_Exit);
+                  
 
             //get localization data
             string userLocation = CultureInfo.CurrentCulture.DisplayName;
@@ -26,6 +37,7 @@ namespace mschreiber_Software2_c969Project
             lbl_UserLocationAndTime.Text = $"Location: {userLocation} ... {currentDateTime.ToString()}";
         }
 
+              
         private void ViewAppointmentsButton_Click(object sender, EventArgs e)
         {
            //this will change the DGV based on the radio button selection
@@ -46,11 +58,10 @@ namespace mschreiber_Software2_c969Project
 
         private void AddCustomerButton_Click(object sender, EventArgs e)
         {
-          
-            
             //open AddCustomer window, hide this window.
         }
 
+        
         private void UpdateCustomerButton_Click(object sender, EventArgs e)
         {
             //take a customer object and load it into a form that allows me to edit the info
@@ -71,11 +82,7 @@ namespace mschreiber_Software2_c969Project
 
         }
 
-        private void buttonClickColor(object sender, EventArgs e)
-        {
-            //might use this to create a click event handler for all buttons to listen to?
-        }
-
+       
 
     }
 }

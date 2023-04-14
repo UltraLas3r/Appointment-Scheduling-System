@@ -10,18 +10,25 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Globalization;
+using mschreiber_Software2_c969Project.Model;
 
 namespace mschreiber_Software2_c969Project
 {
+
     public partial class LoginForm : Form
     {
+        
         MainHomePage mainHomePage = new MainHomePage();
+
+        
+
         public LoginForm()
         {
             InitializeComponent();
-
-
-
+            var hoverColorChanger = new ButtonHoverColorChanger(Color.Black, Color.LimeGreen);
+            //color change buttons
+            hoverColorChanger.Attach(btn_Login);
+            hoverColorChanger.Attach(btn_CancelLogin);
 
             //get localization data
             string userLocation = CultureInfo.CurrentCulture.DisplayName;
@@ -80,5 +87,14 @@ namespace mschreiber_Software2_c969Project
         {
             //if selected, change the language on the LoginForm to English (this is default)
         }
+
+        private void btn_CancelLogin_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+      
+       
+
     }
 }
