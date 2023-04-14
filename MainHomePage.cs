@@ -23,6 +23,8 @@ namespace mschreiber_Software2_c969Project
             var hoverColorChanger = new ButtonHoverColorChanger(Color.Black, Color.LimeGreen);
             //color change buttons
             hoverColorChanger.Attach(btn_AddCustomer);
+            hoverColorChanger.Attach(btn_UpdateCustomer);
+            hoverColorChanger.Attach(btn_ViewAppointments);
             hoverColorChanger.Attach(btn_CreateAppointment);
             hoverColorChanger.Attach(btn_DeleteAppointment);
             hoverColorChanger.Attach(btn_ModifyAppointment);

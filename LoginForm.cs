@@ -25,6 +25,7 @@ namespace mschreiber_Software2_c969Project
         public LoginForm()
         {
             InitializeComponent();
+            //call the hover color change class on any button in the form
             var hoverColorChanger = new ButtonHoverColorChanger(Color.Black, Color.LimeGreen);
             //color change buttons
             hoverColorChanger.Attach(btn_Login);

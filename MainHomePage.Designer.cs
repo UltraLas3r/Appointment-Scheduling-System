@@ -33,12 +33,12 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.btn_CreateAppointment = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btn_ViewAppointments = new System.Windows.Forms.Button();
             this.btn_ModifyAppointment = new System.Windows.Forms.Button();
             this.btn_Exit = new System.Windows.Forms.Button();
             this.btn_DeleteAppointment = new System.Windows.Forms.Button();
             this.btn_AddCustomer = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btn_UpdateCustomer = new System.Windows.Forms.Button();
             this.lbl_UserLocationAndTime = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -100,16 +100,16 @@
             this.btn_CreateAppointment.UseVisualStyleBackColor = true;
             this.btn_CreateAppointment.Click += new System.EventHandler(this.CreateNewAppointment_Click);
             // 
-            // button2
+            // btn_ViewAppointments
             // 
-            this.button2.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.button2.Location = new System.Drawing.Point(1127, 192);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(238, 62);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "View Appointments";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.ViewAppointmentsButton_Click);
+            this.btn_ViewAppointments.Font = new System.Drawing.Font("OCR A Extended", 12F);
+            this.btn_ViewAppointments.Location = new System.Drawing.Point(1127, 192);
+            this.btn_ViewAppointments.Name = "btn_ViewAppointments";
+            this.btn_ViewAppointments.Size = new System.Drawing.Size(238, 62);
+            this.btn_ViewAppointments.TabIndex = 7;
+            this.btn_ViewAppointments.Text = "View Appointments";
+            this.btn_ViewAppointments.UseVisualStyleBackColor = true;
+            this.btn_ViewAppointments.Click += new System.EventHandler(this.ViewAppointmentsButton_Click);
             // 
             // btn_ModifyAppointment
             // 
@@ -154,16 +154,16 @@
             this.btn_AddCustomer.UseVisualStyleBackColor = true;
             this.btn_AddCustomer.Click += new System.EventHandler(this.AddCustomerButton_Click);
             // 
-            // button3
+            // btn_UpdateCustomer
             // 
-            this.button3.Font = new System.Drawing.Font("OCR A Extended", 11F);
-            this.button3.Location = new System.Drawing.Point(218, 767);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(139, 89);
-            this.button3.TabIndex = 12;
-            this.button3.Text = "Update Customer";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.UpdateCustomerButton_Click);
+            this.btn_UpdateCustomer.Font = new System.Drawing.Font("OCR A Extended", 11F);
+            this.btn_UpdateCustomer.Location = new System.Drawing.Point(218, 767);
+            this.btn_UpdateCustomer.Name = "btn_UpdateCustomer";
+            this.btn_UpdateCustomer.Size = new System.Drawing.Size(139, 89);
+            this.btn_UpdateCustomer.TabIndex = 12;
+            this.btn_UpdateCustomer.Text = "Update Customer";
+            this.btn_UpdateCustomer.UseVisualStyleBackColor = true;
+            this.btn_UpdateCustomer.Click += new System.EventHandler(this.UpdateCustomerButton_Click);
             // 
             // lbl_UserLocationAndTime
             // 
@@ -180,12 +180,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1392, 895);
             this.Controls.Add(this.lbl_UserLocationAndTime);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.btn_UpdateCustomer);
             this.Controls.Add(this.btn_AddCustomer);
             this.Controls.Add(this.btn_DeleteAppointment);
             this.Controls.Add(this.btn_Exit);
             this.Controls.Add(this.btn_ModifyAppointment);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btn_ViewAppointments);
             this.Controls.Add(this.btn_CreateAppointment);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
@@ -206,12 +206,12 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btn_CreateAppointment;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btn_ViewAppointments;
         private System.Windows.Forms.Button btn_ModifyAppointment;
         private System.Windows.Forms.Button btn_Exit;
         private System.Windows.Forms.Button btn_DeleteAppointment;
         private System.Windows.Forms.Button btn_AddCustomer;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btn_UpdateCustomer;
         private System.Windows.Forms.Label lbl_UserLocationAndTime;
     }
 }
