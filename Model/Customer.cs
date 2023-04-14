@@ -20,7 +20,20 @@ namespace mschreiber_Software2_c969Project.Model
 
         public int PhoneNumber { get; set; }
 
+        public Customer(string custFirstName, string custLastName, string custAddress, string custCity, string custCountry, int phoneNumber)
+        {
+            CustFirstName = custFirstName;
+            CustLastName = custLastName;
+            CustAddress = custAddress;
+            CustCity = custCity;
+            CustCountry = custCountry;
+            PhoneNumber = phoneNumber;
+
+        }
+
     }
+
+    
 
 
 
