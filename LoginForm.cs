@@ -25,11 +25,8 @@ namespace mschreiber_Software2_c969Project
         public LoginForm()
         {
             InitializeComponent();
-            //call the hover color change class on any button in the form
-            var hoverColorChanger = new ButtonHoverColorChanger(Color.Black, Color.LimeGreen);
-            //color change buttons
-            hoverColorChanger.Attach(btn_Login);
-            hoverColorChanger.Attach(btn_CancelLogin);
+            ChangeColorofButtons();
+            
 
             //get localization data
             string userLocation = CultureInfo.CurrentCulture.DisplayName;
@@ -38,6 +35,8 @@ namespace mschreiber_Software2_c969Project
             // Set the text of the label element
             lbl_UserLocationAndTime.Text = $"Location: {userLocation} ... {currentDateTime.ToString()}";
         }
+
+
 
         private void LoginClick(object sender, EventArgs e)
         {
@@ -89,13 +88,17 @@ namespace mschreiber_Software2_c969Project
             //if selected, change the language on the LoginForm to English (this is default)
         }
 
+        private void ChangeColorofButtons()
+        {
+            var hoverColorChanger = new ButtonHoverColorChanger(Color.Black, Color.LimeGreen);
+
+            hoverColorChanger.Attach(btn_Login);
+            hoverColorChanger.Attach(btn_CancelLogin);
+        }
+
         private void btn_CancelLogin_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
-
-      
-       
-
     }
 }

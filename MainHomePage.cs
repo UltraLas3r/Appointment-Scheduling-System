@@ -20,16 +20,9 @@ namespace mschreiber_Software2_c969Project
         public MainHomePage()
         {
             InitializeComponent();
-            var hoverColorChanger = new ButtonHoverColorChanger(Color.Black, Color.LimeGreen);
-            //color change buttons
-            hoverColorChanger.Attach(btn_AddCustomer);
-            hoverColorChanger.Attach(btn_UpdateCustomer);
-            hoverColorChanger.Attach(btn_ViewAppointments);
-            hoverColorChanger.Attach(btn_CreateAppointment);
-            hoverColorChanger.Attach(btn_DeleteAppointment);
-            hoverColorChanger.Attach(btn_ModifyAppointment);
-            hoverColorChanger.Attach(btn_Exit);
-                  
+            ChangeColorofButtons();
+
+
 
             //get localization data
             string userLocation = CultureInfo.CurrentCulture.DisplayName;
@@ -38,6 +31,8 @@ namespace mschreiber_Software2_c969Project
             // Set the text of the label element
             lbl_UserLocationAndTime.Text = $"Location: {userLocation} ... {currentDateTime.ToString()}";
         }
+
+        
 
               
         private void ViewAppointmentsButton_Click(object sender, EventArgs e)
@@ -84,7 +79,18 @@ namespace mschreiber_Software2_c969Project
 
         }
 
-       
+        public void ChangeColorofButtons()
+        {
+            var hoverColorChanger = new ButtonHoverColorChanger(Color.Black, Color.LimeGreen);
+            
+            hoverColorChanger.Attach(btn_AddCustomer);
+            hoverColorChanger.Attach(btn_UpdateCustomer);
+            hoverColorChanger.Attach(btn_ViewAppointments);
+            hoverColorChanger.Attach(btn_CreateAppointment);
+            hoverColorChanger.Attach(btn_DeleteAppointment);
+            hoverColorChanger.Attach(btn_ModifyAppointment);
+            hoverColorChanger.Attach(btn_Exit);
+        }
 
     }
 }
