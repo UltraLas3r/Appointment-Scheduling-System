@@ -1,12 +1,15 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace mschreiber_Software2_c969Project
 {
@@ -16,10 +19,44 @@ namespace mschreiber_Software2_c969Project
         public LoginForm()
         {
             InitializeComponent();
+
+
+
+
+            //get localization data
+            string userLocation = CultureInfo.CurrentCulture.DisplayName;
+            //get the current date and time 
+            DateTime currentDateTime = DateTime.Now;
+            // Set the text of the label element
+            lbl_UserLocationAndTime.Text = $"Location: {userLocation} ... {currentDateTime.ToString()}";
         }
 
         private void LoginClick(object sender, EventArgs e)
         {
+            //the following code sets up the connection to the DB lines 26-50. 
+            //get connection string
+            string constr = ConfigurationManager.ConnectionStrings["localdb"].ConnectionString;
+            //make the connection to mysql db
+            MySqlConnection conn = null;
+            try
+            {
+                conn = new MySqlConnection(constr);
+                //open the connection
+                conn.Open();
+                MessageBox.Show("Successful Connection to the Database");
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
 
             //needs to check if there is a valid entry in the DB for the user.
             if (true)
@@ -28,10 +65,7 @@ namespace mschreiber_Software2_c969Project
                 mainHomePage.Show();
             }
 
-            else
-            {
-                return;
-            }
+           
             //if a valid entry exists, complete the following query
             
         }

@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
+using System.Configuration;
 
 namespace mschreiber_Software2_c969Project
 {
@@ -52,15 +54,18 @@ namespace mschreiber_Software2_c969Project
             // Initialize a connection string to connect to your MySQL database
             string connectionString = "server=localhost;user id=root;database=mydatabase;password=mypassword";
 
-            // Initialize a MySqlConnection object with the connection string
-            //I NEED TO MAKE AN SQL CONNECTION???
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            // Initialize a MySqlConnection object with the connection string;
+            //  I NEED TO MAKE AN SQL CONNECTION???
+            //get connection string
+            
+
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 // Open the database connection
-                connection.Open();
+                conn.Open();
 
                 // Initialize a MySqlCommand object to execute a SQL query
-                MySqlCommand command = connection.CreateCommand();
+                MySqlCommand command = conn.CreateCommand();
                 //I NEED TO CHANGE THE INSERT INTO STATEMENT TO MATCH MY TABLE
                 command.CommandText = "INSERT INTO customers (first_name, last_name, email_address) VALUES (@firstName, @lastName, @email)";
                 command.Parameters.AddWithValue("@firstName", newAppoinmentData[0]);
@@ -74,7 +79,7 @@ namespace mschreiber_Software2_c969Project
                 command.ExecuteNonQuery();
 
                 // Close the database connection
-                connection.Close();
+                conn.Close();
             }
         }
     }

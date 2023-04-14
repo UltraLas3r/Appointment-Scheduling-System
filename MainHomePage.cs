@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,13 @@ namespace mschreiber_Software2_c969Project
         public MainHomePage()
         {
             InitializeComponent();
+
+            //get localization data
+            string userLocation = CultureInfo.CurrentCulture.DisplayName;
+            //get the current date and time 
+            DateTime currentDateTime = DateTime.Now;
+            // Set the text of the label element
+            lbl_UserLocationAndTime.Text = $"Location: {userLocation} ... {currentDateTime.ToString()}";
         }
 
         private void ViewAppointmentsButton_Click(object sender, EventArgs e)

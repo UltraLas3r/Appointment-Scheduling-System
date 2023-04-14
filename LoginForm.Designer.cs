@@ -38,6 +38,7 @@
             this.lbl_Password = new System.Windows.Forms.Label();
             this.rb_LanguageGerman = new System.Windows.Forms.RadioButton();
             this.rb_LanguageEnglish = new System.Windows.Forms.RadioButton();
+            this.lbl_UserLocationAndTime = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbl_LoginHeader
@@ -139,11 +140,21 @@
             this.rb_LanguageEnglish.UseVisualStyleBackColor = true;
             this.rb_LanguageEnglish.CheckedChanged += new System.EventHandler(this.rb_LanguageEnglish_CheckedChanged);
             // 
+            // lbl_UserLocationAndTime
+            // 
+            this.lbl_UserLocationAndTime.AutoSize = true;
+            this.lbl_UserLocationAndTime.Location = new System.Drawing.Point(25, 417);
+            this.lbl_UserLocationAndTime.Name = "lbl_UserLocationAndTime";
+            this.lbl_UserLocationAndTime.Size = new System.Drawing.Size(140, 16);
+            this.lbl_UserLocationAndTime.TabIndex = 10;
+            this.lbl_UserLocationAndTime.Text = "User location and time";
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(724, 442);
+            this.Controls.Add(this.lbl_UserLocationAndTime);
             this.Controls.Add(this.rb_LanguageGerman);
             this.Controls.Add(this.rb_LanguageEnglish);
             this.Controls.Add(this.lbl_Password);
@@ -173,6 +184,7 @@
         private System.Windows.Forms.Label lbl_Password;
         private System.Windows.Forms.RadioButton rb_LanguageGerman;
         private System.Windows.Forms.RadioButton rb_LanguageEnglish;
+        private System.Windows.Forms.Label lbl_UserLocationAndTime;
     }
 }
 
