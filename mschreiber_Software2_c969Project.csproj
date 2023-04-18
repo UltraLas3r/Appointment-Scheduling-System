@@ -115,6 +115,9 @@
     <Compile Include="UpdateCustomer.Designer.cs">
       <DependentUpon>UpdateCustomer.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddNewCustomer.resx">
+      <DependentUpon>AddNewCustomer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CreateNewAppointment.resx">
       <DependentUpon>CreateNewAppointment.cs</DependentUpon>
     </EmbeddedResource>
@@ -134,6 +137,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Resource.de.resx" />
+    <EmbeddedResource Include="UpdateCustomer.resx">
+      <DependentUpon>UpdateCustomer.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -63,7 +63,7 @@ namespace mschreiber_Software2_c969Project
             newAppoinmentData[4] = txt_Country.Text;
             newAppoinmentData[5] = txt_PhoneNumber.Text;
 
-            // Initialize a connection string to connect to your MySQL database
+            // Initialize a connection string to connect to my MySQL database
             string connectionString = "server=localhost;user id=root;database=mydatabase;password=mypassword";
 
             // Initialize a MySqlConnection object with the connection string;

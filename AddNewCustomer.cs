@@ -29,5 +29,10 @@ namespace mschreiber_Software2_c969Project
             //hoverColorChanger.Attach();
 
         }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
