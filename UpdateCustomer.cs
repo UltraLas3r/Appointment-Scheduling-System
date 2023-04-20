@@ -16,5 +16,19 @@ namespace mschreiber_Software2_c969Project
         {
             InitializeComponent();
         }
+
+        private void btn_Cancel_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you want to cancel? Entries will be lost", "Caption", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+
+                this.Hide();
+            }
+
+            else
+            {
+                return;
+            }
+        }
     }
 }

@@ -32,12 +32,10 @@ namespace mschreiber_Software2_c969Project
             hoverColorChanger.Attach(btn_Cancel);
         }
 
-
             private void CancelButtonClick(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are you sure you want to cancel? Entries will be lost", "Caption", MessageBoxButtons.OKCancel) == DialogResult.OK)
-            {
-                MainHomePage mainHomePage = new MainHomePage();
+            {  
                 this.Hide();       
             }
 
@@ -65,7 +63,6 @@ namespace mschreiber_Software2_c969Project
             // Initialize a MySqlConnection object with the connection string;
             //  I NEED TO MAKE AN SQL CONNECTION???
             //get connection string
-            
 
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {

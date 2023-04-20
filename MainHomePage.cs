@@ -54,13 +54,15 @@ namespace mschreiber_Software2_c969Project
 
         private void AddCustomerButton_Click(object sender, EventArgs e)
         {
-            //open AddCustomer window, hide this window.
+            AddNewCustomer addNewCustomer = new AddNewCustomer();
+            addNewCustomer.Show();
         }
 
         
         private void UpdateCustomerButton_Click(object sender, EventArgs e)
         {
-            //take a customer object and load it into a form that allows me to edit the info
+            UpdateCustomer updateCustomer = new UpdateCustomer();
+            updateCustomer.Show();
         }
 
         private void DeleteAppointment_Click(object sender, EventArgs e)
