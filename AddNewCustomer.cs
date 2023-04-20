@@ -17,7 +17,6 @@ namespace mschreiber_Software2_c969Project
         {
             InitializeComponent();
             ChangeColorofButtons();
-
         }
 
         private void ChangeColorofButtons()
