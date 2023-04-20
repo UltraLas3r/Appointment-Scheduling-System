@@ -52,7 +52,7 @@
             this.btn_SaveAppointment.Name = "btn_SaveAppointment";
             this.btn_SaveAppointment.Size = new System.Drawing.Size(224, 75);
             this.btn_SaveAppointment.TabIndex = 0;
-            this.btn_SaveAppointment.Text = "Save New Appointment";
+            this.btn_SaveAppointment.Text = "Create New Appointment";
             this.btn_SaveAppointment.UseVisualStyleBackColor = true;
             this.btn_SaveAppointment.Click += new System.EventHandler(this.SaveNewAppointment);
             // 
@@ -179,7 +179,6 @@
             this.lbl_PhoneNumberValidation.Size = new System.Drawing.Size(334, 34);
             this.lbl_PhoneNumberValidation.TabIndex = 14;
             this.lbl_PhoneNumberValidation.Text = "Phone number format shoul must be numbers only. \r\nFor example, 555 555 5555";
-            this.lbl_PhoneNumberValidation.Click += new System.EventHandler(this.lbl_PhoneNumberValidation_Click);
             // 
             // CreateNewAppointment
             // 

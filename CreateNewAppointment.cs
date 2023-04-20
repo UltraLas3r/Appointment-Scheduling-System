@@ -38,7 +38,6 @@ namespace mschreiber_Software2_c969Project
             if (MessageBox.Show("Are you sure you want to cancel? Entries will be lost", "Caption", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 MainHomePage mainHomePage = new MainHomePage();
-                mainHomePage.Visible = true;
                 this.Hide();       
             }
 
@@ -46,9 +45,6 @@ namespace mschreiber_Software2_c969Project
             {
                 return;
             }
-
-
-            
         }
 
         private void SaveNewAppointment(object sender, EventArgs e)
@@ -93,11 +89,6 @@ namespace mschreiber_Software2_c969Project
                 // Close the database connection
                 conn.Close();
             }
-        }
-
-        private void lbl_PhoneNumberValidation_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace mschreiber_Software2_c969Project
 {
-    partial class AddNewCustomer
+    partial class ModifyAppointment
     {
         /// <summary>
         /// Required designer variable.
@@ -50,17 +50,18 @@
             this.lbl_PhoneNumberValidation.AutoSize = true;
             this.lbl_PhoneNumberValidation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.lbl_PhoneNumberValidation.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lbl_PhoneNumberValidation.Location = new System.Drawing.Point(126, 293);
+            this.lbl_PhoneNumberValidation.Location = new System.Drawing.Point(122, 279);
             this.lbl_PhoneNumberValidation.Name = "lbl_PhoneNumberValidation";
             this.lbl_PhoneNumberValidation.Size = new System.Drawing.Size(334, 34);
             this.lbl_PhoneNumberValidation.TabIndex = 29;
             this.lbl_PhoneNumberValidation.Text = "Phone number format shoul must be numbers only. \r\nFor example, 555 555 5555";
+            this.lbl_PhoneNumberValidation.Visible = false;
             // 
             // lbl_CustLastName
             // 
             this.lbl_CustLastName.AutoSize = true;
             this.lbl_CustLastName.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.lbl_CustLastName.Location = new System.Drawing.Point(13, 55);
+            this.lbl_CustLastName.Location = new System.Drawing.Point(9, 41);
             this.lbl_CustLastName.Name = "lbl_CustLastName";
             this.lbl_CustLastName.Size = new System.Drawing.Size(118, 23);
             this.lbl_CustLastName.TabIndex = 28;
@@ -68,42 +69,42 @@
             // 
             // txt_CustLastName
             // 
-            this.txt_CustLastName.Location = new System.Drawing.Point(184, 58);
+            this.txt_CustLastName.Location = new System.Drawing.Point(180, 44);
             this.txt_CustLastName.Name = "txt_CustLastName";
             this.txt_CustLastName.Size = new System.Drawing.Size(313, 22);
             this.txt_CustLastName.TabIndex = 27;
             // 
             // txt_PhoneNumber
             // 
-            this.txt_PhoneNumber.Location = new System.Drawing.Point(184, 268);
+            this.txt_PhoneNumber.Location = new System.Drawing.Point(180, 254);
             this.txt_PhoneNumber.Name = "txt_PhoneNumber";
             this.txt_PhoneNumber.Size = new System.Drawing.Size(313, 22);
             this.txt_PhoneNumber.TabIndex = 26;
             // 
             // txt_Country
             // 
-            this.txt_Country.Location = new System.Drawing.Point(184, 222);
+            this.txt_Country.Location = new System.Drawing.Point(180, 208);
             this.txt_Country.Name = "txt_Country";
             this.txt_Country.Size = new System.Drawing.Size(313, 22);
             this.txt_Country.TabIndex = 25;
             // 
             // txt_City
             // 
-            this.txt_City.Location = new System.Drawing.Point(184, 168);
+            this.txt_City.Location = new System.Drawing.Point(180, 154);
             this.txt_City.Name = "txt_City";
             this.txt_City.Size = new System.Drawing.Size(313, 22);
             this.txt_City.TabIndex = 24;
             // 
             // txt_Address
             // 
-            this.txt_Address.Location = new System.Drawing.Point(184, 115);
+            this.txt_Address.Location = new System.Drawing.Point(180, 101);
             this.txt_Address.Name = "txt_Address";
             this.txt_Address.Size = new System.Drawing.Size(313, 22);
             this.txt_Address.TabIndex = 23;
             // 
             // txt_CustFirstName
             // 
-            this.txt_CustFirstName.Location = new System.Drawing.Point(184, 26);
+            this.txt_CustFirstName.Location = new System.Drawing.Point(180, 12);
             this.txt_CustFirstName.Name = "txt_CustFirstName";
             this.txt_CustFirstName.Size = new System.Drawing.Size(313, 22);
             this.txt_CustFirstName.TabIndex = 22;
@@ -112,7 +113,7 @@
             // 
             this.lbl_CustFirstName.AutoSize = true;
             this.lbl_CustFirstName.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.lbl_CustFirstName.Location = new System.Drawing.Point(13, 23);
+            this.lbl_CustFirstName.Location = new System.Drawing.Point(9, 9);
             this.lbl_CustFirstName.Name = "lbl_CustFirstName";
             this.lbl_CustFirstName.Size = new System.Drawing.Size(130, 23);
             this.lbl_CustFirstName.TabIndex = 21;
@@ -122,7 +123,7 @@
             // 
             this.lbl_Country.AutoSize = true;
             this.lbl_Country.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.lbl_Country.Location = new System.Drawing.Point(15, 219);
+            this.lbl_Country.Location = new System.Drawing.Point(11, 205);
             this.lbl_Country.Name = "lbl_Country";
             this.lbl_Country.Size = new System.Drawing.Size(94, 23);
             this.lbl_Country.TabIndex = 20;
@@ -132,7 +133,7 @@
             // 
             this.lbl_City.AutoSize = true;
             this.lbl_City.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.lbl_City.Location = new System.Drawing.Point(15, 165);
+            this.lbl_City.Location = new System.Drawing.Point(11, 151);
             this.lbl_City.Name = "lbl_City";
             this.lbl_City.Size = new System.Drawing.Size(58, 23);
             this.lbl_City.TabIndex = 19;
@@ -142,7 +143,7 @@
             // 
             this.lbl_Address.AutoSize = true;
             this.lbl_Address.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.lbl_Address.Location = new System.Drawing.Point(15, 112);
+            this.lbl_Address.Location = new System.Drawing.Point(11, 98);
             this.lbl_Address.Name = "lbl_Address";
             this.lbl_Address.Size = new System.Drawing.Size(94, 23);
             this.lbl_Address.TabIndex = 18;
@@ -152,7 +153,7 @@
             // 
             this.lbl_PhoneNumber.AutoSize = true;
             this.lbl_PhoneNumber.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.lbl_PhoneNumber.Location = new System.Drawing.Point(15, 265);
+            this.lbl_PhoneNumber.Location = new System.Drawing.Point(11, 251);
             this.lbl_PhoneNumber.Name = "lbl_PhoneNumber";
             this.lbl_PhoneNumber.Size = new System.Drawing.Size(154, 23);
             this.lbl_PhoneNumber.TabIndex = 17;
@@ -161,29 +162,31 @@
             // btn_Cancel
             // 
             this.btn_Cancel.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.btn_Cancel.Location = new System.Drawing.Point(273, 345);
+            this.btn_Cancel.Location = new System.Drawing.Point(269, 344);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.Size = new System.Drawing.Size(224, 75);
             this.btn_Cancel.TabIndex = 16;
             this.btn_Cancel.Text = "Cancel";
             this.btn_Cancel.UseVisualStyleBackColor = true;
+            this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
             // 
             // btn_SaveAppointment
             // 
             this.btn_SaveAppointment.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.btn_SaveAppointment.Location = new System.Drawing.Point(19, 345);
+            this.btn_SaveAppointment.Location = new System.Drawing.Point(13, 344);
             this.btn_SaveAppointment.Name = "btn_SaveAppointment";
             this.btn_SaveAppointment.Size = new System.Drawing.Size(224, 75);
             this.btn_SaveAppointment.TabIndex = 15;
-            this.btn_SaveAppointment.Text = "Add New Customer";
+            this.btn_SaveAppointment.Text = "Create New Appointment";
             this.btn_SaveAppointment.UseVisualStyleBackColor = true;
+            this.btn_SaveAppointment.Click += new System.EventHandler(this.btn_SaveAppointment_Click);
             // 
-            // AddNewCustomer
+            // ModifyAppointment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ClientSize = new System.Drawing.Size(511, 442);
+            this.ClientSize = new System.Drawing.Size(507, 443);
             this.Controls.Add(this.lbl_PhoneNumberValidation);
             this.Controls.Add(this.lbl_CustLastName);
             this.Controls.Add(this.txt_CustLastName);
@@ -199,9 +202,9 @@
             this.Controls.Add(this.lbl_PhoneNumber);
             this.Controls.Add(this.btn_Cancel);
             this.Controls.Add(this.btn_SaveAppointment);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "AddNewCustomer";
-            this.Text = "Add New Customer";
+            this.Name = "ModifyAppointment";
+            this.Text = "ModifyAppointment";
+            this.Load += new System.EventHandler(this.ModifyAppointment_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

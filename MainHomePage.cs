@@ -14,10 +14,6 @@ namespace mschreiber_Software2_c969Project
 {
     public partial class MainHomePage : Form
     {
-        CreateNewAppointment createNewAppointment = new CreateNewAppointment();
-        
-
-      
         public MainHomePage()
         {
             InitializeComponent();
@@ -29,9 +25,6 @@ namespace mschreiber_Software2_c969Project
             // Set the text of the label element
             lbl_UserLocationAndTime.Text = $"Location: {userLocation} ... {currentDateTime.ToString()}";
         }
-
-        
-
               
         private void ViewAppointmentsButton_Click(object sender, EventArgs e)
         {
@@ -41,10 +34,17 @@ namespace mschreiber_Software2_c969Project
         private void CreateNewAppointment_Click(object sender, EventArgs e)
         {
             //open the createnewappointment screen
-            
+            CreateNewAppointment createNewAppointment = new CreateNewAppointment();
             createNewAppointment.Show();
             createNewAppointment.Location = new Point(btn_CreateAppointment.Right, btn_CreateAppointment.Top);
             
+        }
+        private void btn_ModifyAppointment_Click(object sender, EventArgs e)
+        {
+            ModifyAppointment modifyAppointment = new ModifyAppointment();       
+            modifyAppointment.Show();
+            modifyAppointment.Location = new Point(btn_ModifyAppointment.Right, btn_ModifyAppointment.Top);
+
         }
 
         private void MainHomePageExit(object sender, EventArgs e)
@@ -91,5 +91,6 @@ namespace mschreiber_Software2_c969Project
             hoverColorChanger.Attach(btn_Exit);
         }
 
+        
     }
 }
