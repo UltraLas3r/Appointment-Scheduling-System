@@ -9,15 +9,10 @@ namespace mschreiber_Software2_c969Project.Model
     public class Customer
     {
         public string CustFirstName { get; set; }
-
         public string CustLastName { get; set; }
-
         public string CustAddress { get; set; }
-
         public string CustCity { get; set; }
-
         public string CustCountry { get; set; }
-
         public int PhoneNumber { get; set; }
 
         public Customer(string custFirstName, string custLastName, string custAddress, string custCity, string custCountry, int phoneNumber)
@@ -28,9 +23,7 @@ namespace mschreiber_Software2_c969Project.Model
             CustCity = custCity;
             CustCountry = custCountry;
             PhoneNumber = phoneNumber;
-
         }
-
     }
 
     

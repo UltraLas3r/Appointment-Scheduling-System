@@ -23,9 +23,24 @@ namespace mschreiber_Software2_c969Project
             //get the current date and time 
             DateTime currentDateTime = DateTime.Now;
             // Set the text of the label element
-            lbl_UserLocationAndTime.Text = $"Location: {userLocation} ... {currentDateTime.ToString()}";
+            lbl_UserLocationAndTime.Text = $"Location: {userLocation} \nDate and Time: {currentDateTime.ToString()}";
         }
-              
+
+        DataTable appointmentList = new DataTable();
+        bool isEditing = false;
+
+        private void MainHomePage_Load(object sender, EventArgs e)
+        {
+            //create columns 
+            //concatenate first+last name
+            appointmentList.Columns.Add("Name");
+            appointmentList.Columns.Add("Date");
+            appointmentList.Columns.Add("Time");
+            appointmentList.Columns.Add("Extra Column?");
+
+            //point datagridview to the data source
+            dgv_AppointmentGrid.DataSource = appointmentList;
+        }
         private void ViewAppointmentsButton_Click(object sender, EventArgs e)
         {
            //this will change the DGV based on the radio button selection
@@ -34,9 +49,9 @@ namespace mschreiber_Software2_c969Project
         private void CreateNewAppointment_Click(object sender, EventArgs e)
         {
             //open the createnewappointment screen
-            CreateNewAppointment createNewAppointment = new CreateNewAppointment();
+            AddNewAppointment createNewAppointment = new AddNewAppointment();
             createNewAppointment.Show();
-            createNewAppointment.Location = new Point(btn_CreateAppointment.Right, btn_CreateAppointment.Top);
+            createNewAppointment.Location = new Point(btn_AddNewAppointment.Right, btn_AddNewAppointment.Top);
             
         }
         private void btn_ModifyAppointment_Click(object sender, EventArgs e)
@@ -87,7 +102,7 @@ namespace mschreiber_Software2_c969Project
             hoverColorChanger.Attach(btn_AddCustomer);
             hoverColorChanger.Attach(btn_UpdateCustomer);
             hoverColorChanger.Attach(btn_ViewAppointments);
-            hoverColorChanger.Attach(btn_CreateAppointment);
+            hoverColorChanger.Attach(btn_AddNewAppointment);
             hoverColorChanger.Attach(btn_DeleteAppointment);
             hoverColorChanger.Attach(btn_ModifyAppointment);
             hoverColorChanger.Attach(btn_Exit);

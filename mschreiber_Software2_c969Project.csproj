@@ -87,11 +87,11 @@
     <Compile Include="AddNewCustomer.Designer.cs">
       <DependentUpon>AddNewCustomer.cs</DependentUpon>
     </Compile>
-    <Compile Include="CreateNewAppointment.cs">
+    <Compile Include="AddNewAppointment.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CreateNewAppointment.Designer.cs">
-      <DependentUpon>CreateNewAppointment.cs</DependentUpon>
+    <Compile Include="AddNewAppointment.Designer.cs">
+      <DependentUpon>AddNewAppointment.cs</DependentUpon>
     </Compile>
     <Compile Include="MainHomePage.cs">
       <SubType>Form</SubType>
@@ -124,8 +124,8 @@
     <EmbeddedResource Include="AddNewCustomer.resx">
       <DependentUpon>AddNewCustomer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CreateNewAppointment.resx">
-      <DependentUpon>CreateNewAppointment.cs</DependentUpon>
+    <EmbeddedResource Include="AddNewAppointment.resx">
+      <DependentUpon>AddNewAppointment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

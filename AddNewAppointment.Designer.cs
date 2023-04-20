@@ -1,6 +1,6 @@
 ﻿namespace mschreiber_Software2_c969Project
 {
-    partial class CreateNewAppointment
+    partial class AddNewAppointment
     {
         /// <summary>
         /// Required designer variable.
@@ -180,6 +180,7 @@
             this.lbl_PhoneNumberValidation.Size = new System.Drawing.Size(334, 34);
             this.lbl_PhoneNumberValidation.TabIndex = 14;
             this.lbl_PhoneNumberValidation.Text = "Phone number format shoul must be numbers only. \r\nFor example, 555 555 5555";
+            this.lbl_PhoneNumberValidation.Visible = false;
             // 
             // label1
             // 
@@ -187,11 +188,11 @@
             this.label1.Font = new System.Drawing.Font("OCR A Extended", 24F);
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(563, 51);
+            this.label1.Size = new System.Drawing.Size(450, 41);
             this.label1.TabIndex = 32;
             this.label1.Text = "Create Appointment";
             // 
-            // CreateNewAppointment
+            // AddNewAppointment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -213,7 +214,7 @@
             this.Controls.Add(this.lbl_PhoneNumber);
             this.Controls.Add(this.btn_Cancel);
             this.Controls.Add(this.btn_SaveAppointment);
-            this.Name = "CreateNewAppointment";
+            this.Name = "AddNewAppointment";
             this.Text = "Create New Appointment";
             this.ResumeLayout(false);
             this.PerformLayout();
