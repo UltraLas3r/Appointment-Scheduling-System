@@ -15,15 +15,13 @@ namespace mschreiber_Software2_c969Project
     public partial class MainHomePage : Form
     {
         CreateNewAppointment createNewAppointment = new CreateNewAppointment();
+        
 
       
         public MainHomePage()
         {
             InitializeComponent();
             ChangeColorofButtons();
-
-
-
             //get localization data
             string userLocation = CultureInfo.CurrentCulture.DisplayName;
             //get the current date and time 
@@ -43,9 +41,10 @@ namespace mschreiber_Software2_c969Project
         private void CreateNewAppointment_Click(object sender, EventArgs e)
         {
             //open the createnewappointment screen
-            //perhaps add an "onmousedown" event that changes the buttoncolor
+            
             createNewAppointment.Show();
-            this.Hide();
+            createNewAppointment.Location = new Point(btn_CreateAppointment.Right, btn_CreateAppointment.Top);
+            
         }
 
         private void MainHomePageExit(object sender, EventArgs e)

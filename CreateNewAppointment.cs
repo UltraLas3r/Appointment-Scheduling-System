@@ -39,7 +39,7 @@ namespace mschreiber_Software2_c969Project
             {
                 MainHomePage mainHomePage = new MainHomePage();
                 mainHomePage.Visible = true;
-                this.Hide();
+                this.Hide();       
             }
 
             else
@@ -93,6 +93,11 @@ namespace mschreiber_Software2_c969Project
                 // Close the database connection
                 conn.Close();
             }
+        }
+
+        private void lbl_PhoneNumberValidation_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
