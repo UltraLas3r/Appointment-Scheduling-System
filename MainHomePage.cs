@@ -31,6 +31,10 @@ namespace mschreiber_Software2_c969Project
 
         private void MainHomePage_Load(object sender, EventArgs e)
         {
+            //if there is an appointment that exists within 15 minutes of the user's 
+            //computer time, display a warning popup that has the appointment info
+
+
             //create columns 
             //concatenate first+last name
             appointmentList.Columns.Add("Name");
