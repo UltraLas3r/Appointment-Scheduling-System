@@ -49,45 +49,45 @@ namespace mschreiber_Software2_c969Project
         private void SaveNewAppointment(object sender, EventArgs e)
         {
             CheckForValidPhoneNumber();
-            ////initialize an array of strings to gather textbox values
-            //string[] newAppoinmentData = new string[6];
+            //initialize an array of strings to gather textbox values
+            string[] newAppoinmentData = new string[6];
 
-            //newAppoinmentData[0] = txt_CustFirstName.Text;
-            //newAppoinmentData[1] = txt_CustLastName.Text;
-            //newAppoinmentData[2] = txt_Address.Text;
-            //newAppoinmentData[3] = txt_City.Text;
-            //newAppoinmentData[4] = txt_Country.Text;
-            //newAppoinmentData[5] = txt_PhoneNumber.Text;
+            newAppoinmentData[0] = txt_CustFirstName.Text;
+            newAppoinmentData[1] = txt_CustLastName.Text;
+            newAppoinmentData[2] = txt_Address.Text;
+            newAppoinmentData[3] = txt_City.Text;
+            newAppoinmentData[4] = txt_Country.Text;
+            newAppoinmentData[5] = txt_PhoneNumber.Text;
 
-            //// Initialize a connection string to connect to my MySQL database
-            //string connectionString = "server=localhost;user id=root;database=mydatabase;password=mypassword";
+            // Initialize a connection string to connect to my MySQL database
+            string connectionString = "server=localhost;user id=root;database=mydatabase;password=mypassword";
 
-            //// Initialize a MySqlConnection object with the connection string;
-            ////  I NEED TO MAKE AN SQL CONNECTION???
-            ////get connection string
+            // Initialize a MySqlConnection object with the connection string;
+            //  I NEED TO MAKE AN SQL CONNECTION???
+            //get connection string
 
-            //using (MySqlConnection conn = new MySqlConnection(connectionString))
-            //{
-            //    // Open the database connection
-            //    conn.Open();
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                // Open the database connection
+                conn.Open();
 
-            //    // Initialize a MySqlCommand object to execute a SQL query
-            //    MySqlCommand command = conn.CreateCommand();
-            //    //I NEED TO CHANGE THE INSERT INTO STATEMENT TO MATCH MY TABLE
-            //    command.CommandText = "INSERT INTO customers (first_name, last_name, email_address) VALUES (@firstName, @lastName, @email)";
-            //    command.Parameters.AddWithValue("@firstName", newAppoinmentData[0]);
-            //    command.Parameters.AddWithValue("@lastName", newAppoinmentData[1]);
-            //    command.Parameters.AddWithValue("@address", newAppoinmentData[2]);
-            //    command.Parameters.AddWithValue("@city", newAppoinmentData[3]);
-            //    command.Parameters.AddWithValue("@country", newAppoinmentData[4]);
-            //    command.Parameters.AddWithValue("@phone", newAppoinmentData[5]);
+                // Initialize a MySqlCommand object to execute a SQL query
+                MySqlCommand command = conn.CreateCommand();
+                //I NEED TO CHANGE THE INSERT INTO STATEMENT TO MATCH MY TABLE
+                command.CommandText = "INSERT INTO customers (first_name, last_name, email_address) VALUES (@firstName, @lastName, @email)";
+                command.Parameters.AddWithValue("@firstName", newAppoinmentData[0]);
+                command.Parameters.AddWithValue("@lastName", newAppoinmentData[1]);
+                command.Parameters.AddWithValue("@address", newAppoinmentData[2]);
+                command.Parameters.AddWithValue("@city", newAppoinmentData[3]);
+                command.Parameters.AddWithValue("@country", newAppoinmentData[4]);
+                command.Parameters.AddWithValue("@phone", newAppoinmentData[5]);
 
-            //    // Execute the SQL query
-            //    command.ExecuteNonQuery();
+                // Execute the SQL query
+                command.ExecuteNonQuery();
 
-            //    // Close the database connection
-            //    conn.Close();
-            //}
+                // Close the database connection
+                conn.Close();
+            }
         }
         public void CheckForValidPhoneNumber()
         {

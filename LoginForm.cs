@@ -34,15 +34,13 @@ namespace mschreiber_Software2_c969Project
 
         private void LoginClick(object sender, EventArgs e)
         {
-            //the following code sets up the connection to the DB lines 26-50. 
-            //get connection string
+            //get connection string and connect 
             string constr = ConfigurationManager.ConnectionStrings["localdb"].ConnectionString;
-            //make the connection to mysql db
             MySqlConnection conn = null;
             try
             {
                 conn = new MySqlConnection(constr);
-                //open the connection
+                
                 conn.Open();
                 MessageBox.Show("Successful Connection to the Database");
             }
@@ -65,16 +63,17 @@ namespace mschreiber_Software2_c969Project
                 this.Hide();
                 mainHomePage.Show();
             }
-
-           
+                 
             //if a valid entry exists, complete the following query
-            
+            else
+            {
+
+            }
         }
 
         private void rb_LanguageGerman_CheckedChanged(object sender, EventArgs e)
         {
-            //if selected, change language on the LoginForm to German
-            
+            //if selected, change language on the LoginForm to German 
         }
 
         private void rb_LanguageEnglish_CheckedChanged(object sender, EventArgs e)
@@ -84,9 +83,7 @@ namespace mschreiber_Software2_c969Project
 
         private void ChangeColorofButtons()
         {
-            //use to change the color of any button on hover
             var hoverColorChanger = new ButtonHoverColorChanger(Color.Black, Color.LimeGreen);
-
             hoverColorChanger.Attach(btn_Login);
             hoverColorChanger.Attach(btn_CancelLogin);
         }

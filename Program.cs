@@ -1,4 +1,5 @@
-﻿using System;
+﻿using mschreiber_Software2_c969Project.Database;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,10 @@ namespace mschreiber_Software2_c969Project
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            DBConnection.StartConnection();
             Application.Run(new LoginForm());
+            DBConnection.CloseConnection();
         }
     }
 }

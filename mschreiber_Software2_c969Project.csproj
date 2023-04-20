@@ -93,6 +93,7 @@
     <Compile Include="AddNewAppointment.Designer.cs">
       <DependentUpon>AddNewAppointment.cs</DependentUpon>
     </Compile>
+    <Compile Include="Database\DBConnection.cs" />
     <Compile Include="MainHomePage.cs">
       <SubType>Form</SubType>
     </Compile>
