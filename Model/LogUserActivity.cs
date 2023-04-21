@@ -17,7 +17,7 @@ namespace mschreiber_Software2_c969Project.Model
             DateTime currentTime = DateTime.Now;
 
             // Construct the log message
-            string logMessage = $"User {userName} logged in at {currentTime}";
+            string logMessage = $"The User {userName} logged in at {currentTime}";
 
             // Define the file path for the log file
             string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
@@ -32,7 +32,7 @@ namespace mschreiber_Software2_c969Project.Model
             {
                 File.AppendAllText(logFilePath, logMessage + Environment.NewLine);
             }
-            // If the log file doesn't exist, create it and write the log message to it
+            // otherwise...
             else
             {
                 File.WriteAllText(logFilePath, logMessage + Environment.NewLine);
