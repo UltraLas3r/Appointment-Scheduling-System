@@ -1,7 +1,9 @@
 ﻿using mschreiber_Software2_c969Project.Model;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
@@ -24,6 +26,11 @@ namespace mschreiber_Software2_c969Project
             DateTime currentDateTime = DateTime.Now;
             // Set the text of the label element
             lbl_UserLocationAndTime.Text = $"Location: {userLocation} \nDate and Time: {currentDateTime.ToString()}";
+
+            string constr = ConfigurationManager.ConnectionStrings["localdb"].ConnectionString;
+
+
+
         }
 
         DataTable appointmentList = new DataTable();
@@ -32,7 +39,23 @@ namespace mschreiber_Software2_c969Project
         private void MainHomePage_Load(object sender, EventArgs e)
         {
             //if there is an appointment that exists within 15 minutes of the user's 
+
             //computer time, display a warning popup that has the appointment info
+
+            //take data from the database and display in dgv
+            MySqlConnection conn = new MySqlConnection();
+
+            string sqlString = "SELECT * FROM xxxxx"; //I NEED THE TABLE NAME FOR THIS!!
+            MySqlCommand cmd = new MySqlCommand(sqlString, conn);
+
+            //finally, create a copy of the datatable form MySQL to put into the DGV
+            MySqlDataAdapter adpt = new MySqlDataAdapter(cmd);
+
+            DataTable AppointmentsMainGrid = new DataTable();
+            adpt.Fill(AppointmentsMainGrid);
+
+
+
 
 
             //create columns 
