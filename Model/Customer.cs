@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace mschreiber_Software2_c969Project.Model
 {
-    public class Customer
+    public abstract class Customer<T>
     {
         public string CustFirstName { get; set; }
         public string CustLastName { get; set; }

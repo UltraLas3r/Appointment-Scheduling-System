@@ -38,27 +38,22 @@ namespace mschreiber_Software2_c969Project
 
         private void MainHomePage_Load(object sender, EventArgs e)
         {
-            //if there is an appointment that exists within 15 minutes of the user's 
-
+            //if there is an appointment that exists within 15 minutes of the user's
             //computer time, display a warning popup that has the appointment info
+            ////take data from the database and display in dgv
+            //MySqlConnection conn = new MySqlConnection();
 
-            //take data from the database and display in dgv
-            MySqlConnection conn = new MySqlConnection();
+            //string sqlString = "SELECT * FROM xxxxx"; //I NEED THE TABLE NAME FOR THIS!!
+            //MySqlCommand cmd = new MySqlCommand(sqlString, conn);
 
-            string sqlString = "SELECT * FROM xxxxx"; //I NEED THE TABLE NAME FOR THIS!!
-            MySqlCommand cmd = new MySqlCommand(sqlString, conn);
+            ////finally, create a copy of the datatable form MySQL to put into the DGV
+            //MySqlDataAdapter adpt = new MySqlDataAdapter(cmd);
 
-            //finally, create a copy of the datatable form MySQL to put into the DGV
-            MySqlDataAdapter adpt = new MySqlDataAdapter(cmd);
-
-            DataTable AppointmentsMainGrid = new DataTable();
-            adpt.Fill(AppointmentsMainGrid);
-
-
-
-
+            //DataTable AppointmentsMainGrid = new DataTable();
+            //adpt.Fill(AppointmentsMainGrid);
 
             //create columns 
+            //-----------------------------------THIS MIGHT NOT BE NECESSARY!!! -------
             //concatenate first+last name
             appointmentList.Columns.Add("Name");
             appointmentList.Columns.Add("Date");

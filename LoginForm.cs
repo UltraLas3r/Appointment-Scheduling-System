@@ -35,6 +35,7 @@ namespace mschreiber_Software2_c969Project
         private void LoginClick(object sender, EventArgs e)
         {
             //get connection string and connect 
+            bool connectionMade = false;
             string constr = ConfigurationManager.ConnectionStrings["localdb"].ConnectionString;
             MySqlConnection conn = null;
             try
@@ -43,6 +44,7 @@ namespace mschreiber_Software2_c969Project
                 
                 conn.Open();
                 MessageBox.Show("Successful Connection to the Database");
+                connectionMade= true;
             }
             catch (MySqlException ex)
             {
@@ -64,10 +66,12 @@ namespace mschreiber_Software2_c969Project
                 mainHomePage.Show();
             }
                  
-            //if a valid entry exists, complete the following query
-            else
+          
+            if (txt_LoginName.Text.Length > 0)
             {
+                string userName = txt_LoginName.Text.Trim();
 
+                LogUserActivity.ActivateLog(userName);
             }
         }
 
