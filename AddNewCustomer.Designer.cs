@@ -32,18 +32,18 @@
             this.lbl_CustLastName = new System.Windows.Forms.Label();
             this.txt_CustLastName = new System.Windows.Forms.TextBox();
             this.txt_PhoneNumber = new System.Windows.Forms.TextBox();
-            this.txt_Country = new System.Windows.Forms.TextBox();
-            this.txt_City = new System.Windows.Forms.TextBox();
             this.txt_Address = new System.Windows.Forms.TextBox();
             this.txt_CustFirstName = new System.Windows.Forms.TextBox();
             this.lbl_CustFirstName = new System.Windows.Forms.Label();
-            this.lbl_Country = new System.Windows.Forms.Label();
-            this.lbl_City = new System.Windows.Forms.Label();
             this.lbl_Address = new System.Windows.Forms.Label();
             this.lbl_PhoneNumber = new System.Windows.Forms.Label();
             this.btn_Cancel = new System.Windows.Forms.Button();
             this.btn_SaveAppointment = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.txt_Country = new System.Windows.Forms.TextBox();
+            this.lbl_Country = new System.Windows.Forms.Label();
+            this.lbl_City = new System.Windows.Forms.Label();
+            this.txt_City = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lbl_PhoneNumberValidation
@@ -81,20 +81,6 @@
             this.txt_PhoneNumber.Size = new System.Drawing.Size(313, 22);
             this.txt_PhoneNumber.TabIndex = 26;
             // 
-            // txt_Country
-            // 
-            this.txt_Country.Location = new System.Drawing.Point(183, 277);
-            this.txt_Country.Name = "txt_Country";
-            this.txt_Country.Size = new System.Drawing.Size(313, 22);
-            this.txt_Country.TabIndex = 25;
-            // 
-            // txt_City
-            // 
-            this.txt_City.Location = new System.Drawing.Point(183, 223);
-            this.txt_City.Name = "txt_City";
-            this.txt_City.Size = new System.Drawing.Size(313, 22);
-            this.txt_City.TabIndex = 24;
-            // 
             // txt_Address
             // 
             this.txt_Address.Location = new System.Drawing.Point(183, 170);
@@ -118,26 +104,6 @@
             this.lbl_CustFirstName.Size = new System.Drawing.Size(130, 23);
             this.lbl_CustFirstName.TabIndex = 21;
             this.lbl_CustFirstName.Text = "First Name";
-            // 
-            // lbl_Country
-            // 
-            this.lbl_Country.AutoSize = true;
-            this.lbl_Country.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.lbl_Country.Location = new System.Drawing.Point(14, 274);
-            this.lbl_Country.Name = "lbl_Country";
-            this.lbl_Country.Size = new System.Drawing.Size(94, 23);
-            this.lbl_Country.TabIndex = 20;
-            this.lbl_Country.Text = "Country";
-            // 
-            // lbl_City
-            // 
-            this.lbl_City.AutoSize = true;
-            this.lbl_City.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.lbl_City.Location = new System.Drawing.Point(14, 220);
-            this.lbl_City.Name = "lbl_City";
-            this.lbl_City.Size = new System.Drawing.Size(58, 23);
-            this.lbl_City.TabIndex = 19;
-            this.lbl_City.Text = "City";
             // 
             // lbl_Address
             // 
@@ -179,6 +145,7 @@
             this.btn_SaveAppointment.TabIndex = 15;
             this.btn_SaveAppointment.Text = "Add New Customer";
             this.btn_SaveAppointment.UseVisualStyleBackColor = true;
+            this.btn_SaveAppointment.Click += new System.EventHandler(this.btn_SaveAppointment_Click);
             // 
             // label1
             // 
@@ -189,6 +156,40 @@
             this.label1.Size = new System.Drawing.Size(402, 41);
             this.label1.TabIndex = 30;
             this.label1.Text = "Add New Customer";
+            // 
+            // txt_Country
+            // 
+            this.txt_Country.Location = new System.Drawing.Point(183, 277);
+            this.txt_Country.Name = "txt_Country";
+            this.txt_Country.Size = new System.Drawing.Size(313, 22);
+            this.txt_Country.TabIndex = 25;
+            // 
+            // lbl_Country
+            // 
+            this.lbl_Country.AutoSize = true;
+            this.lbl_Country.Font = new System.Drawing.Font("OCR A Extended", 12F);
+            this.lbl_Country.Location = new System.Drawing.Point(14, 274);
+            this.lbl_Country.Name = "lbl_Country";
+            this.lbl_Country.Size = new System.Drawing.Size(94, 23);
+            this.lbl_Country.TabIndex = 20;
+            this.lbl_Country.Text = "Country";
+            // 
+            // lbl_City
+            // 
+            this.lbl_City.AutoSize = true;
+            this.lbl_City.Font = new System.Drawing.Font("OCR A Extended", 12F);
+            this.lbl_City.Location = new System.Drawing.Point(14, 220);
+            this.lbl_City.Name = "lbl_City";
+            this.lbl_City.Size = new System.Drawing.Size(58, 23);
+            this.lbl_City.TabIndex = 19;
+            this.lbl_City.Text = "City";
+            // 
+            // txt_City
+            // 
+            this.txt_City.Location = new System.Drawing.Point(183, 223);
+            this.txt_City.Name = "txt_City";
+            this.txt_City.Size = new System.Drawing.Size(313, 22);
+            this.txt_City.TabIndex = 24;
             // 
             // AddNewCustomer
             // 
@@ -226,17 +227,17 @@
         private System.Windows.Forms.Label lbl_CustLastName;
         private System.Windows.Forms.TextBox txt_CustLastName;
         private System.Windows.Forms.TextBox txt_PhoneNumber;
-        private System.Windows.Forms.TextBox txt_Country;
-        private System.Windows.Forms.TextBox txt_City;
         private System.Windows.Forms.TextBox txt_Address;
         private System.Windows.Forms.TextBox txt_CustFirstName;
         private System.Windows.Forms.Label lbl_CustFirstName;
-        private System.Windows.Forms.Label lbl_Country;
-        private System.Windows.Forms.Label lbl_City;
         private System.Windows.Forms.Label lbl_Address;
         private System.Windows.Forms.Label lbl_PhoneNumber;
         private System.Windows.Forms.Button btn_Cancel;
         private System.Windows.Forms.Button btn_SaveAppointment;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txt_Country;
+        private System.Windows.Forms.Label lbl_Country;
+        private System.Windows.Forms.Label lbl_City;
+        private System.Windows.Forms.TextBox txt_City;
     }
 }

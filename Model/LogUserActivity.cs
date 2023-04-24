@@ -10,7 +10,6 @@ namespace mschreiber_Software2_c969Project.Model
 {
     internal class LogUserActivity
     {
-
         public static void ActivateLog(string userName)
         {
             // Get the current date and time

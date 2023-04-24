@@ -35,7 +35,7 @@ namespace mschreiber_Software2_c969Project
         private void LoginClick(object sender, EventArgs e)
         {
             //get connection string and connect 
-            bool connectionMade = false;
+            bool connectionMade;
             string constr = ConfigurationManager.ConnectionStrings["localdb"].ConnectionString;
             MySqlConnection conn = null;
             try
@@ -44,7 +44,7 @@ namespace mschreiber_Software2_c969Project
                 
                 conn.Open();
                 MessageBox.Show("Successful Connection to the Database");
-                connectionMade= true;
+                connectionMade = true;
             }
             catch (MySqlException ex)
             {

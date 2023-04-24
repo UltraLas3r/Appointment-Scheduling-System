@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,11 @@ namespace mschreiber_Software2_c969Project.Model
         public string CustCity { get; set; }
         public string CustCountry { get; set; }
         public int PhoneNumber { get; set; }
+
+        public BindingList<Appointment> CustomerAndAppointment = new BindingList<Appointment>();
+
+
+
 
         public Customer(string custFirstName, string custLastName, string custAddress, string custCity, string custCountry, int phoneNumber)
         {
