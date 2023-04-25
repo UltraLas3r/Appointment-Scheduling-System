@@ -20,6 +20,7 @@ namespace mschreiber_Software2_c969Project
         {
             InitializeComponent();
             ChangeColorofButtons();
+            CheckForUpcoming();
             //get localization data
             string userLocation = CultureInfo.CurrentCulture.DisplayName;
             //get the current date and time 
@@ -62,6 +63,15 @@ namespace mschreiber_Software2_c969Project
 
             //point datagridview to the data source
             dgv_AppointmentGrid.DataSource = appointmentList;
+        }
+
+        private void CheckForUpcoming()
+        {
+            //check for upcoming appointments in the database, if they exist within 15 minutes of the current time
+            // open the UpcomingAlert window
+
+
+
         }
         private void ViewAppointmentsButton_Click(object sender, EventArgs e)
         {
@@ -123,13 +133,12 @@ namespace mschreiber_Software2_c969Project
             
             hoverColorChanger.Attach(btn_AddCustomer);
             hoverColorChanger.Attach(btn_UpdateCustomer);
-            hoverColorChanger.Attach(btn_ViewAppointments);
             hoverColorChanger.Attach(btn_AddNewAppointment);
             hoverColorChanger.Attach(btn_DeleteAppointment);
             hoverColorChanger.Attach(btn_ModifyAppointment);
             hoverColorChanger.Attach(btn_Exit);
         }
 
-        
+      
     }
 }

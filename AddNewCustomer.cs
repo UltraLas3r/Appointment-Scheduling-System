@@ -16,6 +16,7 @@ namespace mschreiber_Software2_c969Project
     public partial class AddNewCustomer : Form
     {
         Customer customer = new Customer();
+        bool CheckForInput = false;
 
         public AddNewCustomer()
         {
@@ -52,11 +53,11 @@ namespace mschreiber_Software2_c969Project
 
         private void btn_SaveAppointment_Click(object sender, EventArgs e)
         {
-            bool checkForInput;
+            
 
             if (txt_CustFirstName.Text.Length >= 1)
             {
-                checkForInput = true;
+                CheckForInput = true;
                 int customerID = 3333;
                 string firstName = txt_CustFirstName.Text;
                 string lastName = txt_CustLastName.Text;

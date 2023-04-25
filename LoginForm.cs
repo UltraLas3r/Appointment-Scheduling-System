@@ -18,6 +18,8 @@ namespace mschreiber_Software2_c969Project
     public partial class LoginForm : Form
     {
         MainHomePage mainHomePage = new MainHomePage();
+        private string currentCulture;  
+        bool LoginSuccess = false;
 
         public LoginForm()
         {
@@ -25,11 +27,33 @@ namespace mschreiber_Software2_c969Project
             ChangeColorofButtons();
             
             //get localization data
-            string userLocation = CultureInfo.CurrentCulture.DisplayName;
+            currentCulture = CultureInfo.CurrentCulture.DisplayName;
             //get the current date and time 
             DateTime currentDateTime = DateTime.Now;
             // Set the text of the label element
-            lbl_UserLocationAndTime.Text = $"Location: {userLocation} ... {currentDateTime.ToString()}";
+            lbl_UserLocationAndTime.Text = $"Location: {currentCulture} ... {currentDateTime.ToString()}";
+
+            //the following text handles language changing on this form
+            if (currentCulture == "en-US")
+            {
+                lbl_LoginHeader.Text = "Welcome!";
+                lbl_UserName.Text = "User Name";
+                lbl_Password.Text = "Password";
+                lbl_InvalidCredentials.Text = "Please Enter Valid Credentials";
+                btn_Login.Text = "Login";
+                btn_CancelLogin.Text = "Cancel";
+                lbl_UserLocationAndTime.Text = $"Location: {currentCulture} ... {currentDateTime.ToString()}";
+            }
+            else if (currentCulture == "es-US") 
+            {
+                lbl_LoginHeader.Text = "¡Bienvenido!";
+                lbl_UserName.Text = "Nombre";
+                lbl_Password.Text = "Contraseña";
+                lbl_InvalidCredentials.Text = "Por favor, Introduzca credenciales válidas";
+                btn_Login.Text = "Iniciar sesión";
+                btn_CancelLogin.Text = "Cancelar";
+                lbl_UserLocationAndTime.Text = $"Ubicación: {currentCulture} ... {currentDateTime.ToString()}";
+            }
         }
 
         private void LoginClick(object sender, EventArgs e)
@@ -41,9 +65,16 @@ namespace mschreiber_Software2_c969Project
             try
             {
                 conn = new MySqlConnection(constr);
-                
+
                 conn.Open();
+                if (currentCulture == "en-US") 
+                {
                 MessageBox.Show("Successful Connection to the Database");
+                }
+                else if (currentCulture == "es-US")
+                {
+                MessageBox.Show("Conexión correcta a la base de datos");
+                }
                 connectionMade = true;
             }
             catch (MySqlException ex)
@@ -60,12 +91,18 @@ namespace mschreiber_Software2_c969Project
             }
 
             //needs to check if there is a valid entry in the DB for the user.
-            if (true)
+            //run a select statement to check the DB if the userID and the password match 
+
+            if (LoginSuccess == true)
             {
                 this.Hide();
                 mainHomePage.Show();
             }
-                 
+            
+            else if (LoginSuccess == false)
+            {
+
+            }
           
             if (txt_LoginName.Text.Length > 0)
             {
@@ -73,16 +110,6 @@ namespace mschreiber_Software2_c969Project
 
                 LogUserActivity.ActivateLog(userName);
             }
-        }
-
-        private void rb_LanguageGerman_CheckedChanged(object sender, EventArgs e)
-        {
-            //if selected, change language on the LoginForm to German 
-        }
-
-        private void rb_LanguageEnglish_CheckedChanged(object sender, EventArgs e)
-        {
-            //if selected, change the language on the LoginForm to English (this is default)
         }
 
         private void ChangeColorofButtons()
