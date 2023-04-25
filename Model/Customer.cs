@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace mschreiber_Software2_c969Project.Model
 {
-    public abstract class Customer<T>
+    public class Customer
     {
+        public int CustomerIDCount = 0;
+
+        int CustomerID { get; set; }
         public string CustFirstName { get; set; }
         public string CustLastName { get; set; }
         public string CustAddress { get; set; }
@@ -19,17 +22,25 @@ namespace mschreiber_Software2_c969Project.Model
         public BindingList<Appointment> CustomerAndAppointment = new BindingList<Appointment>();
 
 
+        //public int GetCustomerID()
+        //{
+        //    CustomerIDCount++;
+        //    CustomerID = CustomerIDCount;
 
+        //    //add new customerID to sql db?
+            
+        //}
 
-        public Customer(string custFirstName, string custLastName, string custAddress, string custCity, string custCountry, int phoneNumber)
-        {
-            CustFirstName = custFirstName;
-            CustLastName = custLastName;
-            CustAddress = custAddress;
-            CustCity = custCity;
-            CustCountry = custCountry;
-            PhoneNumber = phoneNumber;
-        }
+        //public Customer(int customerId, string custFirstName, string custLastName, string custAddress, string custCity, string custCountry, int phoneNumber)
+        //{
+        //    CustomerID = customerId;
+        //    CustFirstName = custFirstName;
+        //    CustLastName = custLastName;
+        //    CustAddress = custAddress;
+        //    CustCity = custCity;
+        //    CustCountry = custCountry;
+        //    PhoneNumber = phoneNumber;
+        //}
     }
 
     

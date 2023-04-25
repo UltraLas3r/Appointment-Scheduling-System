@@ -1,4 +1,5 @@
 ﻿using mschreiber_Software2_c969Project.Model;
+using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI.Common;
 using System;
 using System.Collections.Generic;
@@ -14,10 +15,16 @@ namespace mschreiber_Software2_c969Project
 {
     public partial class AddNewCustomer : Form
     {
+        Customer customer = new Customer();
+
         public AddNewCustomer()
         {
+            //I AM HAVING ISSUES WITH THE CUSTOMER ID. I CANT AUTO INCREMENT IN THE DB SO WHAT SHOULD I DO?
+            //int customerID = customer.GetCustomerID();
             InitializeComponent();
             ChangeColorofButtons();
+
+            lbl_custID.Text = customer.ToString();
         }
 
         private void ChangeColorofButtons()
@@ -46,11 +53,11 @@ namespace mschreiber_Software2_c969Project
         private void btn_SaveAppointment_Click(object sender, EventArgs e)
         {
             bool checkForInput;
-            
+
             if (txt_CustFirstName.Text.Length >= 1)
             {
                 checkForInput = true;
-
+                int customerID = 3333;
                 string firstName = txt_CustFirstName.Text;
                 string lastName = txt_CustLastName.Text;
                 string address =  txt_Address.Text;
@@ -69,14 +76,24 @@ namespace mschreiber_Software2_c969Project
                 
                 if (result == DialogResult.Yes)
                 {
-                    //update database with new data first need an SQL statement, then the commands that will take the text and insert.
-                    //string sql = "INSERT INTO "
-                    // command.Parameters.AddWithValue("@name", txt_customerName);
-                    //command.ExecuteNonQuery();
+                    string connectionString = "server=localhost;user id=sqlUser;password=Passw0rd!;database=client_schedule";
+                    MySqlConnection connection = new MySqlConnection(connectionString);
+                    connection.Open();
 
-                    //connection.Close();
+                    string sql = "INSERT INTO customer (customerName) VALUES (@name)";
+                    MySqlCommand command = new MySqlCommand(sql, connection);
+                   // command.Parameters.Add("@customerId", (MySqlDbType)customerID);
+                    command.Parameters.AddWithValue("@name", txt_CustFirstName.Text.Trim() + txt_CustLastName.Text.Trim());
 
-                    //MessageBox.Show("Customer saved successfully.");
+                    //address information needs to go into the address table
+                    //command.Parameters.AddWithValue("@address", txt_CustLastName.Text);
+                    //command.Parameters.AddWithValue("@address", txt_Address.Text);
+
+                    command.ExecuteNonQuery();
+
+                    connection.Close();
+
+                    MessageBox.Show("Customer saved successfully.");
                     this.Hide();
                 }
 
