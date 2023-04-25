@@ -118,6 +118,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UpcomingAlert.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpcomingAlert.Designer.cs">
+      <DependentUpon>UpcomingAlert.cs</DependentUpon>
+    </Compile>
     <Compile Include="UpdateCustomer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -149,6 +155,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Resource.de.resx" />
+    <EmbeddedResource Include="UpcomingAlert.resx">
+      <DependentUpon>UpcomingAlert.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UpdateCustomer.resx">
       <DependentUpon>UpdateCustomer.cs</DependentUpon>
     </EmbeddedResource>

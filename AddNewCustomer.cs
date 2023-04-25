@@ -103,5 +103,10 @@ namespace mschreiber_Software2_c969Project
                 }
             }
         }
+
+        private void AddNewCustomer_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
