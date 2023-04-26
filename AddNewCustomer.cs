@@ -17,7 +17,6 @@ namespace mschreiber_Software2_c969Project
     {
         Customer customer = new Customer();
         bool CheckForInput = false;
-
         public AddNewCustomer()
         {
             //I AM HAVING ISSUES WITH THE CUSTOMER ID. I CANT AUTO INCREMENT IN THE DB SO WHAT SHOULD I DO?

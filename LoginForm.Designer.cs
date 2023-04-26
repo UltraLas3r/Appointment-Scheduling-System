@@ -78,7 +78,7 @@
             // btn_Login
             // 
             this.btn_Login.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.btn_Login.Location = new System.Drawing.Point(158, 268);
+            this.btn_Login.Location = new System.Drawing.Point(162, 284);
             this.btn_Login.Name = "btn_Login";
             this.btn_Login.Size = new System.Drawing.Size(172, 48);
             this.btn_Login.TabIndex = 4;
@@ -131,7 +131,7 @@
             this.rb_ChangeLocation.AutoSize = true;
             this.rb_ChangeLocation.Location = new System.Drawing.Point(32, 78);
             this.rb_ChangeLocation.Name = "rb_ChangeLocation";
-            this.rb_ChangeLocation.Size = new System.Drawing.Size(161, 25);
+            this.rb_ChangeLocation.Size = new System.Drawing.Size(129, 20);
             this.rb_ChangeLocation.TabIndex = 11;
             this.rb_ChangeLocation.TabStop = true;
             this.rb_ChangeLocation.Text = "Change Location";
