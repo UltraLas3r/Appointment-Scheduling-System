@@ -38,15 +38,16 @@
             this.lbl_Password = new System.Windows.Forms.Label();
             this.lbl_UserLocationAndTime = new System.Windows.Forms.Label();
             this.rb_ChangeLocation = new System.Windows.Forms.RadioButton();
+            this.lbl_ValidCredentialSpanish = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbl_LoginHeader
             // 
             this.lbl_LoginHeader.AutoSize = true;
             this.lbl_LoginHeader.Font = new System.Drawing.Font("OCR A Extended", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_LoginHeader.Location = new System.Drawing.Point(258, 9);
+            this.lbl_LoginHeader.Location = new System.Drawing.Point(290, 11);
             this.lbl_LoginHeader.Name = "lbl_LoginHeader";
-            this.lbl_LoginHeader.Size = new System.Drawing.Size(210, 41);
+            this.lbl_LoginHeader.Size = new System.Drawing.Size(254, 50);
             this.lbl_LoginHeader.TabIndex = 0;
             this.lbl_LoginHeader.Text = "Welcome!";
             // 
@@ -55,32 +56,37 @@
             this.lbl_InvalidCredentials.AutoSize = true;
             this.lbl_InvalidCredentials.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.lbl_InvalidCredentials.Font = new System.Drawing.Font("OCR A Extended", 11F);
-            this.lbl_InvalidCredentials.Location = new System.Drawing.Point(75, 245);
+            this.lbl_InvalidCredentials.Location = new System.Drawing.Point(84, 295);
             this.lbl_InvalidCredentials.Name = "lbl_InvalidCredentials";
-            this.lbl_InvalidCredentials.Size = new System.Drawing.Size(339, 20);
+            this.lbl_InvalidCredentials.Size = new System.Drawing.Size(400, 24);
             this.lbl_InvalidCredentials.TabIndex = 1;
             this.lbl_InvalidCredentials.Text = "Please Enter Valid Credentials";
+            this.lbl_InvalidCredentials.Visible = false;
+           
             // 
             // txt_LoginName
             // 
-            this.txt_LoginName.Location = new System.Drawing.Point(190, 134);
+            this.txt_LoginName.Location = new System.Drawing.Point(214, 168);
+            this.txt_LoginName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txt_LoginName.Name = "txt_LoginName";
-            this.txt_LoginName.Size = new System.Drawing.Size(504, 22);
+            this.txt_LoginName.Size = new System.Drawing.Size(566, 26);
             this.txt_LoginName.TabIndex = 2;
             // 
             // txt_LoginPass
             // 
-            this.txt_LoginPass.Location = new System.Drawing.Point(190, 204);
+            this.txt_LoginPass.Location = new System.Drawing.Point(214, 255);
+            this.txt_LoginPass.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txt_LoginPass.Name = "txt_LoginPass";
-            this.txt_LoginPass.Size = new System.Drawing.Size(504, 22);
+            this.txt_LoginPass.Size = new System.Drawing.Size(566, 26);
             this.txt_LoginPass.TabIndex = 3;
             // 
             // btn_Login
             // 
             this.btn_Login.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.btn_Login.Location = new System.Drawing.Point(158, 268);
+            this.btn_Login.Location = new System.Drawing.Point(178, 335);
+            this.btn_Login.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_Login.Name = "btn_Login";
-            this.btn_Login.Size = new System.Drawing.Size(172, 48);
+            this.btn_Login.Size = new System.Drawing.Size(194, 60);
             this.btn_Login.TabIndex = 4;
             this.btn_Login.Text = "Login";
             this.btn_Login.UseVisualStyleBackColor = true;
@@ -89,9 +95,10 @@
             // btn_CancelLogin
             // 
             this.btn_CancelLogin.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.btn_CancelLogin.Location = new System.Drawing.Point(371, 268);
+            this.btn_CancelLogin.Location = new System.Drawing.Point(417, 335);
+            this.btn_CancelLogin.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_CancelLogin.Name = "btn_CancelLogin";
-            this.btn_CancelLogin.Size = new System.Drawing.Size(172, 48);
+            this.btn_CancelLogin.Size = new System.Drawing.Size(194, 60);
             this.btn_CancelLogin.TabIndex = 5;
             this.btn_CancelLogin.Text = "Cancel";
             this.btn_CancelLogin.UseVisualStyleBackColor = true;
@@ -101,9 +108,9 @@
             // 
             this.lbl_UserName.AutoSize = true;
             this.lbl_UserName.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.lbl_UserName.Location = new System.Drawing.Point(24, 131);
+            this.lbl_UserName.Location = new System.Drawing.Point(27, 164);
             this.lbl_UserName.Name = "lbl_UserName";
-            this.lbl_UserName.Size = new System.Drawing.Size(118, 23);
+            this.lbl_UserName.Size = new System.Drawing.Size(138, 25);
             this.lbl_UserName.TabIndex = 6;
             this.lbl_UserName.Text = "User Name";
             // 
@@ -111,38 +118,52 @@
             // 
             this.lbl_Password.AutoSize = true;
             this.lbl_Password.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.lbl_Password.Location = new System.Drawing.Point(36, 201);
+            this.lbl_Password.Location = new System.Drawing.Point(40, 251);
             this.lbl_Password.Name = "lbl_Password";
-            this.lbl_Password.Size = new System.Drawing.Size(106, 23);
+            this.lbl_Password.Size = new System.Drawing.Size(124, 25);
             this.lbl_Password.TabIndex = 7;
             this.lbl_Password.Text = "Password";
             // 
             // lbl_UserLocationAndTime
             // 
             this.lbl_UserLocationAndTime.AutoSize = true;
-            this.lbl_UserLocationAndTime.Location = new System.Drawing.Point(25, 335);
+            this.lbl_UserLocationAndTime.Location = new System.Drawing.Point(28, 419);
             this.lbl_UserLocationAndTime.Name = "lbl_UserLocationAndTime";
-            this.lbl_UserLocationAndTime.Size = new System.Drawing.Size(140, 16);
+            this.lbl_UserLocationAndTime.Size = new System.Drawing.Size(167, 20);
             this.lbl_UserLocationAndTime.TabIndex = 10;
             this.lbl_UserLocationAndTime.Text = "User location and time";
             // 
             // rb_ChangeLocation
             // 
             this.rb_ChangeLocation.AutoSize = true;
-            this.rb_ChangeLocation.Location = new System.Drawing.Point(32, 78);
+            this.rb_ChangeLocation.Location = new System.Drawing.Point(36, 98);
+            this.rb_ChangeLocation.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rb_ChangeLocation.Name = "rb_ChangeLocation";
-            this.rb_ChangeLocation.Size = new System.Drawing.Size(161, 25);
+            this.rb_ChangeLocation.Size = new System.Drawing.Size(155, 24);
             this.rb_ChangeLocation.TabIndex = 11;
             this.rb_ChangeLocation.TabStop = true;
             this.rb_ChangeLocation.Text = "Change Location";
             this.rb_ChangeLocation.UseVisualStyleBackColor = true;
             // 
+            // lbl_ValidCredentialSpanish
+            // 
+            this.lbl_ValidCredentialSpanish.AutoSize = true;
+            this.lbl_ValidCredentialSpanish.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.lbl_ValidCredentialSpanish.Font = new System.Drawing.Font("OCR A Extended", 11F);
+            this.lbl_ValidCredentialSpanish.Location = new System.Drawing.Point(84, 295);
+            this.lbl_ValidCredentialSpanish.Name = "lbl_ValidCredentialSpanish";
+            this.lbl_ValidCredentialSpanish.Size = new System.Drawing.Size(504, 24);
+            this.lbl_ValidCredentialSpanish.TabIndex = 12;
+            this.lbl_ValidCredentialSpanish.Text = "Por favor ingrese credenciales válidas";
+            this.lbl_ValidCredentialSpanish.Visible = false;
+            // 
             // LoginForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ClientSize = new System.Drawing.Size(724, 369);
+            this.ClientSize = new System.Drawing.Size(814, 461);
+            this.Controls.Add(this.lbl_ValidCredentialSpanish);
             this.Controls.Add(this.rb_ChangeLocation);
             this.Controls.Add(this.lbl_UserLocationAndTime);
             this.Controls.Add(this.lbl_Password);
@@ -153,6 +174,7 @@
             this.Controls.Add(this.txt_LoginName);
             this.Controls.Add(this.lbl_InvalidCredentials);
             this.Controls.Add(this.lbl_LoginHeader);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "LoginForm";
             this.Text = "Login Page";
             this.ResumeLayout(false);
@@ -172,6 +194,7 @@
         private System.Windows.Forms.Label lbl_Password;
         private System.Windows.Forms.Label lbl_UserLocationAndTime;
         private System.Windows.Forms.RadioButton rb_ChangeLocation;
+        private System.Windows.Forms.Label lbl_ValidCredentialSpanish;
     }
 }
 

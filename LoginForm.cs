@@ -20,6 +20,7 @@ namespace mschreiber_Software2_c969Project
         MainHomePage mainHomePage = new MainHomePage();
         private string currentCulture;  
         bool LoginSuccess = false;
+        bool ConnectionMade = false;
 
         public LoginForm()
         {
@@ -33,8 +34,11 @@ namespace mschreiber_Software2_c969Project
             // Set the text of the label element
             lbl_UserLocationAndTime.Text = $"Location: {currentCulture} ... {currentDateTime.ToString()}";
 
+           // CultureInfo.CurrentCulture = new CultureInfo("es"); //TODO >> for testing purposes only, REMOVE before submission!!!!!!!
+           //TODO change login form header text to spanish when language is spanish!
+
             //the following text handles language changing on this form
-            if (currentCulture == "en-US")
+            if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName == "en")
             {
                 lbl_LoginHeader.Text = "Welcome!";
                 lbl_UserName.Text = "User Name";
@@ -44,7 +48,7 @@ namespace mschreiber_Software2_c969Project
                 btn_CancelLogin.Text = "Cancel";
                 lbl_UserLocationAndTime.Text = $"Location: {currentCulture} ... {currentDateTime.ToString()}";
             }
-            else if (currentCulture == "es-US") 
+            else 
             {
                 lbl_LoginHeader.Text = "¡Bienvenido!";
                 lbl_UserName.Text = "Nombre";
@@ -59,7 +63,7 @@ namespace mschreiber_Software2_c969Project
         private void LoginClick(object sender, EventArgs e)
         {
             //get connection string and connect 
-            bool connectionMade;
+            
             string constr = ConfigurationManager.ConnectionStrings["localdb"].ConnectionString;
             MySqlConnection conn = null;
             try
@@ -71,12 +75,14 @@ namespace mschreiber_Software2_c969Project
                 {
                 MessageBox.Show("Successful Connection to the Database");
                 }
-                else if (currentCulture == "es-US")
-                {
-                MessageBox.Show("Conexión correcta a la base de datos");
-                }
-                connectionMade = true;
+                //else if (currentCulture == "es-US")
+                //{
+                //MessageBox.Show("Conexión correcta a la base de datos");
+                //}
+                ConnectionMade = true;
+                LoginSuccess = true;
             }
+
             catch (MySqlException ex)
             {
                 MessageBox.Show(ex.Message);
@@ -101,13 +107,19 @@ namespace mschreiber_Software2_c969Project
             
             else if (LoginSuccess == false)
             {
-
+                if (currentCulture == "en-US") 
+                    {
+                        lbl_InvalidCredentials.Show();
+                    }
+                if (currentCulture == "es-US")
+                    {
+                    lbl_ValidCredentialSpanish.Show();
+                    }
             }
           
             if (txt_LoginName.Text.Length > 0)
             {
                 string userName = txt_LoginName.Text.Trim();
-
                 LogUserActivity.ActivateLog(userName);
             }
         }
@@ -123,5 +135,7 @@ namespace mschreiber_Software2_c969Project
         {
             Application.Exit();
         }
+
+     
     }
 }
