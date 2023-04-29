@@ -154,7 +154,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Resource.de.resx" />
     <EmbeddedResource Include="UpcomingAlert.resx">
       <DependentUpon>UpcomingAlert.cs</DependentUpon>
     </EmbeddedResource>

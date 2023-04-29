@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace mschreiber_Software2_c969Project
             InitializeComponent();
             ChangeColorofButtons();
             CheckForUpcoming();
+            DGV_CustomerContentLoad();
             //get localization data
             string userLocation = CultureInfo.CurrentCulture.DisplayName;
             //get the current date and time 
@@ -139,6 +141,31 @@ namespace mschreiber_Software2_c969Project
             hoverColorChanger.Attach(btn_Exit);
         }
 
+        public void DGV_CustomerContentLoad()
+        {
+            string connString = "Host=localhost;port=3306;Database=client_schedule;Username=sqlUser;Password=Passw0rd!";
+
+            MySqlConnection conn = new MySqlConnection(connString);
+
+            string query = "SELECT * FROM customer";
+
+
+            using (MySqlCommand cmd = new MySqlCommand(query, conn))
+            {
+                // Create a new MySQL data adapter
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                {
+                    // Create a new DataTable to store the results of the query
+                    DataTable dataTable = new DataTable();
+
+                    // Fill the DataTable with the results of the query
+                    adapter.Fill(dataTable);
+
+                    // Bind the DataTable to the DataGridView
+                    DGV_Customers.DataSource = dataTable;
+                }
+            }
+        }
       
     }
 }

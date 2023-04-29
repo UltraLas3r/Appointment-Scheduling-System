@@ -29,11 +29,7 @@ namespace mschreiber_Software2_c969Project.Database
             catch (MySqlException ex)
             {
                 MessageBox.Show("No Connection made");
-
-
             }
-
-
         }
 
         public static void CloseConnection()
