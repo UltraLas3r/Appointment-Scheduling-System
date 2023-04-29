@@ -121,11 +121,54 @@ namespace mschreiber_Software2_c969Project
 
         private void ViewThisWeekRadioButton(object sender, EventArgs e)
         {
+            string connString = "Host=localhost;port=3306;Database=client_schedule;Username=sqlUser;Password=Passw0rd!";
 
+            MySqlConnection conn = new MySqlConnection(connString);
+
+            string query = "SELECT title, location, type, start, end FROM appointment WHERE start BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)";
+
+
+            using (MySqlCommand cmd = new MySqlCommand(query, conn))
+            {
+                // Create a new MySQL data adapter
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                {
+                    // Create a new DataTable to store the results of the query
+                    DataTable dataTable = new DataTable();
+
+                    // Fill the DataTable with the results of the query
+                    adapter.Fill(dataTable);
+
+                    // Bind the DataTable to the DataGridView
+                    dgv_AppointmentGrid.DataSource = dataTable;
+                }
+            }
         }
 
         private void ViewThisMonthRadioButton(object sender, EventArgs e)
         {
+            string connString = "Host=localhost;port=3306;Database=client_schedule;Username=sqlUser;Password=Passw0rd!";
+
+            MySqlConnection conn = new MySqlConnection(connString);
+
+            string query = "SELECT title, location, type, start, end FROM appointment WHERE start < UTC_TIMESTAMP()-30";
+
+
+            using (MySqlCommand cmd = new MySqlCommand(query, conn))
+            {
+                // Create a new MySQL data adapter
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                {
+                    // Create a new DataTable to store the results of the query
+                    DataTable dataTable = new DataTable();
+
+                    // Fill the DataTable with the results of the query
+                    adapter.Fill(dataTable);
+
+                    // Bind the DataTable to the DataGridView
+                    dgv_AppointmentGrid.DataSource = dataTable;
+                }
+            }
 
         }
 
