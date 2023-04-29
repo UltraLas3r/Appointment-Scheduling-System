@@ -169,7 +169,6 @@ namespace mschreiber_Software2_c969Project
                     dgv_AppointmentGrid.DataSource = dataTable;
                 }
             }
-
         }
 
         public void ChangeColorofButtons()
