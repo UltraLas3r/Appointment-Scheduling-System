@@ -40,6 +40,7 @@
             this.btn_UpdateCustomer = new System.Windows.Forms.Button();
             this.tab_Appointment = new System.Windows.Forms.TabControl();
             this.Appointments = new System.Windows.Forms.TabPage();
+            this.rb_ViewAll = new System.Windows.Forms.RadioButton();
             this.Customers = new System.Windows.Forms.TabPage();
             this.DGV_Customers = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
@@ -49,7 +50,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.rb_ViewAll = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_AppointmentGrid)).BeginInit();
             this.tab_Appointment.SuspendLayout();
             this.Appointments.SuspendLayout();
@@ -213,6 +213,19 @@
             this.Appointments.TabIndex = 0;
             this.Appointments.Text = "Appointments";
             // 
+            // rb_ViewAll
+            // 
+            this.rb_ViewAll.AutoSize = true;
+            this.rb_ViewAll.Font = new System.Drawing.Font("OCR A Extended", 12F);
+            this.rb_ViewAll.Location = new System.Drawing.Point(726, 92);
+            this.rb_ViewAll.Name = "rb_ViewAll";
+            this.rb_ViewAll.Size = new System.Drawing.Size(331, 29);
+            this.rb_ViewAll.TabIndex = 11;
+            this.rb_ViewAll.TabStop = true;
+            this.rb_ViewAll.Text = "View All Appointments";
+            this.rb_ViewAll.UseVisualStyleBackColor = true;
+            this.rb_ViewAll.CheckedChanged += new System.EventHandler(this.rb_ViewAll_CheckedChanged);
+            // 
             // Customers
             // 
             this.Customers.BackColor = System.Drawing.Color.Gray;
@@ -230,6 +243,7 @@
             // 
             // DGV_Customers
             // 
+            this.DGV_Customers.BackgroundColor = System.Drawing.Color.White;
             this.DGV_Customers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGV_Customers.Location = new System.Drawing.Point(228, 194);
             this.DGV_Customers.Name = "DGV_Customers";
@@ -315,19 +329,6 @@
             this.button1.TabIndex = 16;
             this.button1.Text = "Monthly Appoinments";
             this.button1.UseVisualStyleBackColor = true;
-            // 
-            // rb_ViewAll
-            // 
-            this.rb_ViewAll.AutoSize = true;
-            this.rb_ViewAll.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.rb_ViewAll.Location = new System.Drawing.Point(726, 92);
-            this.rb_ViewAll.Name = "rb_ViewAll";
-            this.rb_ViewAll.Size = new System.Drawing.Size(331, 29);
-            this.rb_ViewAll.TabIndex = 11;
-            this.rb_ViewAll.TabStop = true;
-            this.rb_ViewAll.Text = "View All Appointments";
-            this.rb_ViewAll.UseVisualStyleBackColor = true;
-            this.rb_ViewAll.CheckedChanged += new System.EventHandler(this.rb_ViewAll_CheckedChanged);
             // 
             // MainHomePage
             // 

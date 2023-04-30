@@ -40,6 +40,7 @@ namespace mschreiber_Software2_c969Project
 
         public void FirstAppointmentView()
         {
+            //todo this isnt loading right?
             string getAppointment = "SELECT title, location, type, start, end FROM appointment";
             
             MySqlConnection conn = new MySqlConnection(connString);
@@ -60,23 +61,26 @@ namespace mschreiber_Software2_c969Project
 
         private void MainHomePage_Load(object sender, EventArgs e)
         {
+            //todo possibly turn this into a try/catch 
+            bool upcomingMeeting = false;
+
+            if (upcomingMeeting = true)
+            {
+                UpcomingAlert upcoming = new UpcomingAlert();
+                upcoming.Show();
+            }
+
+            else
+            {
+                return;
+            }
+
             //if there is an appointment that exists within 15 minutes of the user's
             //computer time, display a warning popup that has the appointment info
-            ////take data from the database and display in dgv
             MySqlConnection conn = new MySqlConnection(connString);
-
-            string getAppointment = "SELECT title, location, type, start, end FROM appointment"; 
+            string getAppointment = "SELECT * FROM appointment WHERE start BETWEEN NOW() AND DATE_ADD(NOW(), INTERVAL 15 MINUTE);"; 
             MySqlCommand cmd = new MySqlCommand(getAppointment, conn);
 
-            //finally, create a copy of the datatable form MySQL to put into the DGV
-            MySqlDataAdapter adpt = new MySqlDataAdapter(cmd);
-
-            DataTable AppointmentsMainGrid = new DataTable();
-            adpt.Fill(AppointmentsMainGrid);
-
-           
-            //point datagridview to the data source
-            dgv_AppointmentGrid.DataSource = appointmentList;
         }
 
         private void CheckForUpcoming()
@@ -209,6 +213,5 @@ namespace mschreiber_Software2_c969Project
             hoverColorChanger.Attach(btn_Exit);
         }
 
-      
     }
 }
