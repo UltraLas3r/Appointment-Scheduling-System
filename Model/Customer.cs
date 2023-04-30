@@ -9,9 +9,9 @@ namespace mschreiber_Software2_c969Project.Model
 {
     public class Customer
     {
-        public int CustomerIDCount = 0;
+        public int IDCount = 9;
 
-        int CustomerID { get; set; }
+        int CustomerID = IDCount++;
         public string CustFirstName { get; set; }
         public string CustLastName { get; set; }
         public string CustAddress { get; set; }
@@ -22,14 +22,7 @@ namespace mschreiber_Software2_c969Project.Model
         public BindingList<Appointment> CustomerAndAppointment = new BindingList<Appointment>();
 
 
-        //public int GetCustomerID()
-        //{
-        //    CustomerIDCount++;
-        //    CustomerID = CustomerIDCount;
 
-        //    //add new customerID to sql db?
-            
-        //}
 
         //public Customer(int customerId, string custFirstName, string custLastName, string custAddress, string custCity, string custCountry, int phoneNumber)
         //{

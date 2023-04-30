@@ -53,12 +53,11 @@ namespace mschreiber_Software2_c969Project
 
         private void btn_SaveAppointment_Click(object sender, EventArgs e)
         {
-            
-
+       
             if (txt_CustFirstName.Text.Length >= 1)
             {
                 CheckForInput = true;
-                int customerID = 3333;
+                int customerID;
                 string firstName = txt_CustFirstName.Text;
                 string lastName = txt_CustLastName.Text;
                 string address =  txt_Address.Text;
