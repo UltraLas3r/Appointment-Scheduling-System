@@ -38,25 +38,24 @@
             this.btn_DeleteAppointment = new System.Windows.Forms.Button();
             this.btn_AddCustomer = new System.Windows.Forms.Button();
             this.btn_UpdateCustomer = new System.Windows.Forms.Button();
-            this.lbl_UserLocationAndTime = new System.Windows.Forms.Label();
-            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.tab_Appointment = new System.Windows.Forms.TabControl();
             this.Appointments = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.Customers = new System.Windows.Forms.TabPage();
+            this.DGV_Customers = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.Reports = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button3 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.DGV_Customers = new System.Windows.Forms.DataGridView();
+            this.rb_ViewAll = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_AppointmentGrid)).BeginInit();
             this.tab_Appointment.SuspendLayout();
             this.Appointments.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.Customers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Customers)).BeginInit();
+            this.Reports.SuspendLayout();
             this.SuspendLayout();
             // 
             // radioButton1
@@ -64,7 +63,7 @@
             this.radioButton1.AutoSize = true;
             this.radioButton1.Checked = true;
             this.radioButton1.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.radioButton1.Location = new System.Drawing.Point(1051, 92);
+            this.radioButton1.Location = new System.Drawing.Point(724, 135);
             this.radioButton1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(233, 29);
@@ -78,7 +77,7 @@
             // 
             this.radioButton2.AutoSize = true;
             this.radioButton2.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.radioButton2.Location = new System.Drawing.Point(1051, 134);
+            this.radioButton2.Location = new System.Drawing.Point(724, 177);
             this.radioButton2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(247, 29);
@@ -98,7 +97,7 @@
             this.dgv_AppointmentGrid.ReadOnly = true;
             this.dgv_AppointmentGrid.RowHeadersWidth = 51;
             this.dgv_AppointmentGrid.RowTemplate.Height = 24;
-            this.dgv_AppointmentGrid.Size = new System.Drawing.Size(966, 314);
+            this.dgv_AppointmentGrid.Size = new System.Drawing.Size(1200, 366);
             this.dgv_AppointmentGrid.TabIndex = 4;
             // 
             // lbl_Appointments
@@ -138,7 +137,7 @@
             // btn_Exit
             // 
             this.btn_Exit.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.btn_Exit.Location = new System.Drawing.Point(1174, 768);
+            this.btn_Exit.Location = new System.Drawing.Point(1034, 753);
             this.btn_Exit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_Exit.Name = "btn_Exit";
             this.btn_Exit.Size = new System.Drawing.Size(199, 65);
@@ -162,7 +161,7 @@
             // btn_AddCustomer
             // 
             this.btn_AddCustomer.Font = new System.Drawing.Font("OCR A Extended", 11F);
-            this.btn_AddCustomer.Location = new System.Drawing.Point(35, 119);
+            this.btn_AddCustomer.Location = new System.Drawing.Point(326, 95);
             this.btn_AddCustomer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_AddCustomer.Name = "btn_AddCustomer";
             this.btn_AddCustomer.Size = new System.Drawing.Size(219, 68);
@@ -174,7 +173,7 @@
             // btn_UpdateCustomer
             // 
             this.btn_UpdateCustomer.Font = new System.Drawing.Font("OCR A Extended", 11F);
-            this.btn_UpdateCustomer.Location = new System.Drawing.Point(273, 119);
+            this.btn_UpdateCustomer.Location = new System.Drawing.Point(574, 95);
             this.btn_UpdateCustomer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_UpdateCustomer.Name = "btn_UpdateCustomer";
             this.btn_UpdateCustomer.Size = new System.Drawing.Size(219, 68);
@@ -183,39 +182,23 @@
             this.btn_UpdateCustomer.UseVisualStyleBackColor = true;
             this.btn_UpdateCustomer.Click += new System.EventHandler(this.UpdateCustomerButton_Click);
             // 
-            // lbl_UserLocationAndTime
-            // 
-            this.lbl_UserLocationAndTime.AutoSize = true;
-            this.lbl_UserLocationAndTime.Location = new System.Drawing.Point(1149, 11);
-            this.lbl_UserLocationAndTime.Name = "lbl_UserLocationAndTime";
-            this.lbl_UserLocationAndTime.Size = new System.Drawing.Size(220, 20);
-            this.lbl_UserLocationAndTime.TabIndex = 13;
-            this.lbl_UserLocationAndTime.Text = "User Location, Date and Time";
-            // 
-            // monthCalendar1
-            // 
-            this.monthCalendar1.Location = new System.Drawing.Point(1023, 224);
-            this.monthCalendar1.Margin = new System.Windows.Forms.Padding(10, 11, 10, 11);
-            this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.TabIndex = 14;
-            // 
             // tab_Appointment
             // 
             this.tab_Appointment.Controls.Add(this.Appointments);
-            this.tab_Appointment.Controls.Add(this.tabPage2);
-            this.tab_Appointment.Controls.Add(this.tabPage1);
+            this.tab_Appointment.Controls.Add(this.Customers);
+            this.tab_Appointment.Controls.Add(this.Reports);
             this.tab_Appointment.Location = new System.Drawing.Point(14, 35);
             this.tab_Appointment.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tab_Appointment.Name = "tab_Appointment";
             this.tab_Appointment.SelectedIndex = 0;
-            this.tab_Appointment.Size = new System.Drawing.Size(1343, 686);
+            this.tab_Appointment.Size = new System.Drawing.Size(1242, 686);
             this.tab_Appointment.TabIndex = 15;
             // 
             // Appointments
             // 
             this.Appointments.BackColor = System.Drawing.Color.Gray;
+            this.Appointments.Controls.Add(this.rb_ViewAll);
             this.Appointments.Controls.Add(this.lbl_Appointments);
-            this.Appointments.Controls.Add(this.monthCalendar1);
             this.Appointments.Controls.Add(this.btn_AddNewAppointment);
             this.Appointments.Controls.Add(this.btn_ModifyAppointment);
             this.Appointments.Controls.Add(this.btn_DeleteAppointment);
@@ -226,53 +209,64 @@
             this.Appointments.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Appointments.Name = "Appointments";
             this.Appointments.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Appointments.Size = new System.Drawing.Size(1335, 653);
+            this.Appointments.Size = new System.Drawing.Size(1234, 653);
             this.Appointments.TabIndex = 0;
             this.Appointments.Text = "Appointments";
             // 
-            // tabPage2
+            // Customers
             // 
-            this.tabPage2.BackColor = System.Drawing.Color.Gray;
-            this.tabPage2.Controls.Add(this.DGV_Customers);
-            this.tabPage2.Controls.Add(this.label2);
-            this.tabPage2.Controls.Add(this.btn_AddCustomer);
-            this.tabPage2.Controls.Add(this.btn_UpdateCustomer);
-            this.tabPage2.Location = new System.Drawing.Point(4, 29);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabPage2.Size = new System.Drawing.Size(1335, 653);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Customers";
+            this.Customers.BackColor = System.Drawing.Color.Gray;
+            this.Customers.Controls.Add(this.DGV_Customers);
+            this.Customers.Controls.Add(this.label2);
+            this.Customers.Controls.Add(this.btn_AddCustomer);
+            this.Customers.Controls.Add(this.btn_UpdateCustomer);
+            this.Customers.Location = new System.Drawing.Point(4, 29);
+            this.Customers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Customers.Name = "Customers";
+            this.Customers.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Customers.Size = new System.Drawing.Size(1234, 653);
+            this.Customers.TabIndex = 1;
+            this.Customers.Text = "Customers";
+            // 
+            // DGV_Customers
+            // 
+            this.DGV_Customers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGV_Customers.Location = new System.Drawing.Point(228, 194);
+            this.DGV_Customers.Name = "DGV_Customers";
+            this.DGV_Customers.RowHeadersWidth = 62;
+            this.DGV_Customers.RowTemplate.Height = 28;
+            this.DGV_Customers.Size = new System.Drawing.Size(730, 423);
+            this.DGV_Customers.TabIndex = 14;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("OCR A Extended", 24F);
-            this.label2.Location = new System.Drawing.Point(27, 25);
+            this.label2.Location = new System.Drawing.Point(31, 29);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(283, 50);
             this.label2.TabIndex = 13;
             this.label2.Text = "Customers";
             // 
-            // tabPage1
+            // Reports
             // 
-            this.tabPage1.Controls.Add(this.panel1);
-            this.tabPage1.Controls.Add(this.button3);
-            this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Controls.Add(this.button2);
-            this.tabPage1.Controls.Add(this.button1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 29);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabPage1.Size = new System.Drawing.Size(1335, 653);
-            this.tabPage1.TabIndex = 2;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.Reports.BackColor = System.Drawing.Color.Gray;
+            this.Reports.Controls.Add(this.panel1);
+            this.Reports.Controls.Add(this.button3);
+            this.Reports.Controls.Add(this.label1);
+            this.Reports.Controls.Add(this.button2);
+            this.Reports.Controls.Add(this.button1);
+            this.Reports.Location = new System.Drawing.Point(4, 29);
+            this.Reports.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Reports.Name = "Reports";
+            this.Reports.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Reports.Size = new System.Drawing.Size(1234, 653);
+            this.Reports.TabIndex = 2;
+            this.Reports.Text = "Reports";
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Location = new System.Drawing.Point(395, 108);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
@@ -293,10 +287,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.label1.Location = new System.Drawing.Point(71, 41);
+            this.label1.Font = new System.Drawing.Font("OCR A Extended", 24F);
+            this.label1.Location = new System.Drawing.Point(26, 27);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(222, 25);
+            this.label1.Size = new System.Drawing.Size(457, 50);
             this.label1.TabIndex = 19;
             this.label1.Text = "Generate Report";
             // 
@@ -322,24 +316,26 @@
             this.button1.Text = "Monthly Appoinments";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // DGV_Customers
+            // rb_ViewAll
             // 
-            this.DGV_Customers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGV_Customers.Location = new System.Drawing.Point(533, 107);
-            this.DGV_Customers.Name = "DGV_Customers";
-            this.DGV_Customers.RowHeadersWidth = 62;
-            this.DGV_Customers.RowTemplate.Height = 28;
-            this.DGV_Customers.Size = new System.Drawing.Size(730, 423);
-            this.DGV_Customers.TabIndex = 14;
+            this.rb_ViewAll.AutoSize = true;
+            this.rb_ViewAll.Font = new System.Drawing.Font("OCR A Extended", 12F);
+            this.rb_ViewAll.Location = new System.Drawing.Point(726, 92);
+            this.rb_ViewAll.Name = "rb_ViewAll";
+            this.rb_ViewAll.Size = new System.Drawing.Size(331, 29);
+            this.rb_ViewAll.TabIndex = 11;
+            this.rb_ViewAll.TabStop = true;
+            this.rb_ViewAll.Text = "View All Appointments";
+            this.rb_ViewAll.UseVisualStyleBackColor = true;
+            this.rb_ViewAll.CheckedChanged += new System.EventHandler(this.rb_ViewAll_CheckedChanged);
             // 
             // MainHomePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ClientSize = new System.Drawing.Size(1372, 841);
+            this.ClientSize = new System.Drawing.Size(1271, 841);
             this.Controls.Add(this.tab_Appointment);
-            this.Controls.Add(this.lbl_UserLocationAndTime);
             this.Controls.Add(this.btn_Exit);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "MainHomePage";
@@ -349,13 +345,12 @@
             this.tab_Appointment.ResumeLayout(false);
             this.Appointments.ResumeLayout(false);
             this.Appointments.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
+            this.Customers.ResumeLayout(false);
+            this.Customers.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Customers)).EndInit();
+            this.Reports.ResumeLayout(false);
+            this.Reports.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -371,18 +366,17 @@
         private System.Windows.Forms.Button btn_DeleteAppointment;
         private System.Windows.Forms.Button btn_AddCustomer;
         private System.Windows.Forms.Button btn_UpdateCustomer;
-        private System.Windows.Forms.Label lbl_UserLocationAndTime;
-        private System.Windows.Forms.MonthCalendar monthCalendar1;
         private System.Windows.Forms.TabControl tab_Appointment;
         private System.Windows.Forms.TabPage Appointments;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage Customers;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage Reports;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView DGV_Customers;
+        private System.Windows.Forms.RadioButton rb_ViewAll;
     }
 }
