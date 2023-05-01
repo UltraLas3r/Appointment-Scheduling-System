@@ -149,10 +149,10 @@
             // btn_DeleteAppointment
             // 
             this.btn_DeleteAppointment.Font = new System.Drawing.Font("OCR A Extended", 11F);
-            this.btn_DeleteAppointment.Location = new System.Drawing.Point(456, 96);
+            this.btn_DeleteAppointment.Location = new System.Drawing.Point(456, 135);
             this.btn_DeleteAppointment.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_DeleteAppointment.Name = "btn_DeleteAppointment";
-            this.btn_DeleteAppointment.Size = new System.Drawing.Size(214, 110);
+            this.btn_DeleteAppointment.Size = new System.Drawing.Size(214, 71);
             this.btn_DeleteAppointment.TabIndex = 10;
             this.btn_DeleteAppointment.Text = "Delete Appointment";
             this.btn_DeleteAppointment.UseVisualStyleBackColor = true;

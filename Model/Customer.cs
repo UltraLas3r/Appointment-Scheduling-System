@@ -11,7 +11,6 @@ namespace mschreiber_Software2_c969Project.Model
     {
         public int IDCount = 9;
 
-        int CustomerID = IDCount++;
         public string CustFirstName { get; set; }
         public string CustLastName { get; set; }
         public string CustAddress { get; set; }

@@ -25,7 +25,7 @@ namespace mschreiber_Software2_c969Project
             InitializeComponent();
             ChangeColorofButtons();
 
-            lbl_custID.Text = customer.ToString();
+           // lbl_custID.Text = customer.ToString();
         }
 
         private void ChangeColorofButtons()

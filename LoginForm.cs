@@ -18,9 +18,11 @@ namespace mschreiber_Software2_c969Project
     public partial class LoginForm : Form
     {
         MainHomePage mainHomePage = new MainHomePage();
+        string connString = "Host=localhost;port=3306;Database=client_schedule;Username=sqlUser;Password=Passw0rd!";
         private string currentCulture;  
         bool LoginSuccess = false;
         bool ConnectionMade = false;
+        private object isLoginTrue;
 
         public LoginForm()
         {
@@ -63,7 +65,9 @@ namespace mschreiber_Software2_c969Project
         private void LoginClick(object sender, EventArgs e)
         {
             //get connection string and connect 
-            
+            string loginName = txt_LoginName.Text.Trim();
+            string loginPassword = txt_LoginPass.Text;
+
             string constr = ConfigurationManager.ConnectionStrings["localdb"].ConnectionString;
             MySqlConnection conn = null;
             try
@@ -71,14 +75,15 @@ namespace mschreiber_Software2_c969Project
                 conn = new MySqlConnection(constr);
 
                 conn.Open();
-                if (currentCulture == "en-US") 
+                if (currentCulture == "en") 
                 {
                 MessageBox.Show("Successful Connection to the Database");
                 }
-                //else if (currentCulture == "es-US")
-                //{
-                //MessageBox.Show("Conexión correcta a la base de datos");
-                //}
+                else if (currentCulture == "es")
+                {
+                MessageBox.Show("Conexión correcta a la base de datos");
+                }
+
                 ConnectionMade = true;
                 LoginSuccess = true;
             }
@@ -97,7 +102,16 @@ namespace mschreiber_Software2_c969Project
             }
 
             //needs to check if there is a valid entry in the DB for the user.
-            //run a select statement to check the DB if the userID and the password match 
+            //run a select statement to check the DB if the userID and the password match an entry in the database 
+
+            //set LoginSuccess to true IF there is a match in the DB
+            CheckUserName();
+
+            if (loginName == isLoginTrue)
+            {
+                LoginSuccess = true;
+            }
+
 
             if (LoginSuccess == true)
             {
@@ -107,11 +121,11 @@ namespace mschreiber_Software2_c969Project
             
             else if (LoginSuccess == false)
             {
-                if (currentCulture == "en-US") 
+                if (currentCulture == "en") 
                     {
                         lbl_InvalidCredentials.Show();
                     }
-                if (currentCulture == "es-US")
+                if (currentCulture == "es")
                     {
                     lbl_ValidCredentialSpanish.Show();
                     }
@@ -122,6 +136,26 @@ namespace mschreiber_Software2_c969Project
                 string userName = txt_LoginName.Text.Trim();
                 LogUserActivity.ActivateLog(userName);
             }
+        }
+
+        private object CheckUserName()
+        {
+            MySqlConnection conn = new MySqlConnection(connString);
+
+            string query = "SELECT username FROM user WHERE userID = 1";
+
+            using (MySqlCommand cmd = new MySqlCommand(query, conn))
+            {
+                //Create a new MySQL data adapter
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                {
+                   var db_NameQueryResult = adapter;
+                    //take this value and use it in the LOGINCLICK method
+                   var isLoginTrue = db_NameQueryResult;
+                }
+            }
+
+            return isLoginTrue;
         }
 
         private void ChangeColorofButtons()
@@ -136,6 +170,5 @@ namespace mschreiber_Software2_c969Project
             Application.Exit();
         }
 
-     
     }
 }
