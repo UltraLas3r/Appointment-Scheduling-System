@@ -61,18 +61,69 @@ namespace mschreiber_Software2_c969Project
         private void LoginClick(object sender, EventArgs e)
         {
             CheckUserName();
+            CheckPassword();
             //get connection string and connect 
             string loginName = txt_LoginName.Text.Trim();
             string loginPassword = txt_LoginPass.Text;
 
-
             //todo add passfound to this ifstatement
-            if (nameFound == true)
+            if (nameFound == true && passFound == true)
             {
                 MessageBox.Show("Successful Connection to the Database");
                 string userName = txt_LoginName.Text.Trim();
                 LogUserActivity.ActivateLog(userName);
+
                 this.Hide();
+            }
+        }
+
+        private void CheckPassword()
+        {
+            MySqlConnection conn = new MySqlConnection(connString);
+            //create command to get the usernames from the table
+            string query = "SELECT password FROM user";
+            MySqlCommand executeCommand = new MySqlCommand(query, conn);
+
+            //open connection and execute the query 
+            conn.Open();
+            MySqlDataReader reader = executeCommand.ExecuteReader();
+
+            List<string> passwords = new List<string>();
+
+            while (reader.Read())
+            {
+                string password = reader["password"].ToString();
+                passwords.Add(password);
+            }
+
+            foreach (string password in passwords)
+            {
+                if (txt_LoginPass.Text.Trim() == password)
+                {
+                    passFound = true;
+                    lbl_InvalidCredentials.Hide();
+                    lbl_ValidCredentialSpanish.Hide();
+                }
+                else
+                {
+                    if (currentCulture == "en")
+                    {
+                        lbl_InvalidCredentials.Text = "Invalid Password";
+                        lbl_InvalidCredentials.Show();
+                    }
+                    else
+                    {
+                        lbl_InvalidCredentials.Text = "Invalido Passwordo";
+                        lbl_ValidCredentialSpanish.Show();
+                    }
+                }
+
+                if (currentCulture == "es")
+                {
+                    MessageBox.Show("Conexión correcta a la base de datos");
+                    string userName = txt_LoginName.Text.Trim();
+                    LogUserActivity.ActivateLog(userName);
+                }
             }
         }
 
