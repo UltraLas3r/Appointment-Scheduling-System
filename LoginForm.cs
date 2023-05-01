@@ -19,20 +19,24 @@ namespace mschreiber_Software2_c969Project
     {
         MainHomePage mainHomePage = new MainHomePage();
         string connString = "Host=localhost;port=3306;Database=client_schedule;Username=sqlUser;Password=Passw0rd!";
-        private string currentCulture;      
-        private object isLoginTrue;
+
+        bool nameFound;
+        bool passFound;
+
+        public string currentCulture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+       
 
         public LoginForm()
         {
             InitializeComponent();
             ChangeColorofButtons();
-            
-            //get localization data
-            currentCulture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
-        
 
-            //CultureInfo.CurrentCulture = new CultureInfo("es"); //TODO >> for testing purposes only, REMOVE before submission!!!!!!!
-           //TODO change login form header text to spanish when language is spanish!
+            //get localization data
+            
+
+
+            // CultureInfo.CurrentCulture = new CultureInfo("es"); //TODO >> for testing purposes only, REMOVE before submission!!!!!!!
+            //TODO change login form header text to spanish when language is spanish!
 
             //the following text handles language changing on this form
             if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName == "en")
@@ -40,82 +44,83 @@ namespace mschreiber_Software2_c969Project
                 lbl_LoginHeader.Text = "Welcome!";
                 lbl_UserName.Text = "User Name";
                 lbl_Password.Text = "Password";
-                lbl_InvalidCredentials.Text = "Please Enter Valid Credentials";
                 btn_Login.Text = "Login";
                 btn_CancelLogin.Text = "Cancel";
-                ;
             }
-            else 
+            else
             {
+                this.Text = "Página de inicio de sesión";
                 lbl_LoginHeader.Text = "¡Bienvenido!";
                 lbl_UserName.Text = "Nombre";
                 lbl_Password.Text = "Contraseña";
-                lbl_InvalidCredentials.Text = "Por favor, Introduzca credenciales válidas";
                 btn_Login.Text = "Iniciar sesión";
-                btn_CancelLogin.Text = "Cancelar";  
+                btn_CancelLogin.Text = "Cancelar";
             }
         }
 
         private void LoginClick(object sender, EventArgs e)
         {
-            // CheckUserName();
+            CheckUserName();
             //get connection string and connect 
             string loginName = txt_LoginName.Text.Trim();
             string loginPassword = txt_LoginPass.Text;
 
-            if (loginName.Length > 0 && currentCulture == "en")
+
+            //todo add passfound to this ifstatement
+            if (nameFound == true)
             {
                 MessageBox.Show("Successful Connection to the Database");
-
                 string userName = txt_LoginName.Text.Trim();
                 LogUserActivity.ActivateLog(userName);
-
                 this.Hide();
-                mainHomePage.Show();
             }
-
-            else
-            {
-                lbl_InvalidCredentials.Show();
-            }
-
-            if (txt_LoginName.Text.Length > 0 && currentCulture == "es")
-            {
-                MessageBox.Show("Conexión correcta a la base de datos");
-
-                string userName = txt_LoginName.Text.Trim();
-                LogUserActivity.ActivateLog(userName);
-
-                
-            }
-
-            else
-            {
-                lbl_ValidCredentialSpanish.Show();
-            }
-
-
         }
- 
-        //private object CheckUserName()
-        //{
-        //    //MySqlConnection conn = new MySqlConnection(connString);
 
-        //    //string query = "SELECT username FROM user WHERE userID = 1";
+        private void CheckUserName()
+        {
+            MySqlConnection conn = new MySqlConnection(connString);
+            //create command to get the usernames from the table
+            string query = "SELECT username FROM user";
+            MySqlCommand executeCommand = new MySqlCommand(query, conn);
 
-        //    //using (MySqlCommand cmd = new MySqlCommand(query, conn))
-        //    //{
-        //    //    Create a new MySQL data adapter
-        //    //    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
-        //    //    {
-        //    //        var db_NameQueryResult = adapter;
-        //    //        take this value and use it in the LOGINCLICK method
-        //    //       var isLoginTrue = db_NameQueryResult;
-        //    //    }
-        //    //}
+            //open connection and execute the query 
+            conn.Open();
+            MySqlDataReader reader = executeCommand.ExecuteReader();
 
-        //    //return isLoginTrue;
-        //}
+            List<string> userNames = new List<string>();
+            while (reader.Read())
+            {
+                string name = reader["username"].ToString();
+                userNames.Add(name);
+            }
+
+            foreach (string name in userNames)
+            {
+                if (txt_LoginName.Text.Trim() == name)
+                { 
+                    nameFound = true; 
+                }
+                else 
+                {
+                    if (currentCulture == "en")
+                    {
+                        lbl_InvalidCredentials.Show();
+                    }
+                    else
+                    {
+                        lbl_ValidCredentialSpanish.Show();
+                    }
+                }
+
+                if (currentCulture == "es")
+                {
+                    MessageBox.Show("Conexión correcta a la base de datos");
+                    string userName = txt_LoginName.Text.Trim();
+                    LogUserActivity.ActivateLog(userName);
+                }
+            }
+        }
+    
 
         private void ChangeColorofButtons()
         {

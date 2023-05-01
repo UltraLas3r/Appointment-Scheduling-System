@@ -37,7 +37,6 @@
             this.lbl_UserName = new System.Windows.Forms.Label();
             this.lbl_Password = new System.Windows.Forms.Label();
             this.lbl_UserLocationAndTime = new System.Windows.Forms.Label();
-            this.rb_ChangeLocation = new System.Windows.Forms.RadioButton();
             this.lbl_ValidCredentialSpanish = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -62,7 +61,6 @@
             this.lbl_InvalidCredentials.TabIndex = 1;
             this.lbl_InvalidCredentials.Text = "Please Enter Valid Credentials";
             this.lbl_InvalidCredentials.Visible = false;
-           
             // 
             // txt_LoginName
             // 
@@ -133,24 +131,12 @@
             this.lbl_UserLocationAndTime.TabIndex = 10;
             this.lbl_UserLocationAndTime.Text = "User location and time";
             // 
-            // rb_ChangeLocation
-            // 
-            this.rb_ChangeLocation.AutoSize = true;
-            this.rb_ChangeLocation.Location = new System.Drawing.Point(36, 98);
-            this.rb_ChangeLocation.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.rb_ChangeLocation.Name = "rb_ChangeLocation";
-            this.rb_ChangeLocation.Size = new System.Drawing.Size(155, 24);
-            this.rb_ChangeLocation.TabIndex = 11;
-            this.rb_ChangeLocation.TabStop = true;
-            this.rb_ChangeLocation.Text = "Change Location";
-            this.rb_ChangeLocation.UseVisualStyleBackColor = true;
-            // 
             // lbl_ValidCredentialSpanish
             // 
             this.lbl_ValidCredentialSpanish.AutoSize = true;
             this.lbl_ValidCredentialSpanish.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.lbl_ValidCredentialSpanish.Font = new System.Drawing.Font("OCR A Extended", 11F);
-            this.lbl_ValidCredentialSpanish.Location = new System.Drawing.Point(84, 295);
+            this.lbl_ValidCredentialSpanish.Location = new System.Drawing.Point(84, 120);
             this.lbl_ValidCredentialSpanish.Name = "lbl_ValidCredentialSpanish";
             this.lbl_ValidCredentialSpanish.Size = new System.Drawing.Size(504, 24);
             this.lbl_ValidCredentialSpanish.TabIndex = 12;
@@ -164,7 +150,6 @@
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(814, 461);
             this.Controls.Add(this.lbl_ValidCredentialSpanish);
-            this.Controls.Add(this.rb_ChangeLocation);
             this.Controls.Add(this.lbl_UserLocationAndTime);
             this.Controls.Add(this.lbl_Password);
             this.Controls.Add(this.lbl_UserName);
@@ -193,7 +178,6 @@
         private System.Windows.Forms.Label lbl_UserName;
         private System.Windows.Forms.Label lbl_Password;
         private System.Windows.Forms.Label lbl_UserLocationAndTime;
-        private System.Windows.Forms.RadioButton rb_ChangeLocation;
         private System.Windows.Forms.Label lbl_ValidCredentialSpanish;
     }
 }
