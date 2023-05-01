@@ -64,7 +64,7 @@ namespace mschreiber_Software2_c969Project
             //todo possibly turn this into a try/catch 
             bool upcomingMeeting = false;
 
-            if (upcomingMeeting = true)
+            if (upcomingMeeting == true)
             {
                 UpcomingAlert upcoming = new UpcomingAlert();
                 upcoming.Show();

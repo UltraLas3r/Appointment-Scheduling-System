@@ -19,9 +19,7 @@ namespace mschreiber_Software2_c969Project
     {
         MainHomePage mainHomePage = new MainHomePage();
         string connString = "Host=localhost;port=3306;Database=client_schedule;Username=sqlUser;Password=Passw0rd!";
-        private string currentCulture;  
-        bool LoginSuccess = false;
-        bool ConnectionMade = false;
+        private string currentCulture;      
         private object isLoginTrue;
 
         public LoginForm()
@@ -30,13 +28,10 @@ namespace mschreiber_Software2_c969Project
             ChangeColorofButtons();
             
             //get localization data
-            currentCulture = CultureInfo.CurrentCulture.DisplayName;
-            //get the current date and time 
-            DateTime currentDateTime = DateTime.Now;
-            // Set the text of the label element
-            lbl_UserLocationAndTime.Text = $"Location: {currentCulture} ... {currentDateTime.ToString()}";
+            currentCulture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+        
 
-           // CultureInfo.CurrentCulture = new CultureInfo("es"); //TODO >> for testing purposes only, REMOVE before submission!!!!!!!
+            //CultureInfo.CurrentCulture = new CultureInfo("es"); //TODO >> for testing purposes only, REMOVE before submission!!!!!!!
            //TODO change login form header text to spanish when language is spanish!
 
             //the following text handles language changing on this form
@@ -48,7 +43,7 @@ namespace mschreiber_Software2_c969Project
                 lbl_InvalidCredentials.Text = "Please Enter Valid Credentials";
                 btn_Login.Text = "Login";
                 btn_CancelLogin.Text = "Cancel";
-                lbl_UserLocationAndTime.Text = $"Location: {currentCulture} ... {currentDateTime.ToString()}";
+                ;
             }
             else 
             {
@@ -57,106 +52,70 @@ namespace mschreiber_Software2_c969Project
                 lbl_Password.Text = "Contraseña";
                 lbl_InvalidCredentials.Text = "Por favor, Introduzca credenciales válidas";
                 btn_Login.Text = "Iniciar sesión";
-                btn_CancelLogin.Text = "Cancelar";
-                lbl_UserLocationAndTime.Text = $"Ubicación: {currentCulture} ... {currentDateTime.ToString()}";
+                btn_CancelLogin.Text = "Cancelar";  
             }
         }
 
         private void LoginClick(object sender, EventArgs e)
         {
+            // CheckUserName();
             //get connection string and connect 
             string loginName = txt_LoginName.Text.Trim();
             string loginPassword = txt_LoginPass.Text;
 
-            string constr = ConfigurationManager.ConnectionStrings["localdb"].ConnectionString;
-            MySqlConnection conn = null;
-            try
+            if (loginName.Length > 0 && currentCulture == "en")
             {
-                conn = new MySqlConnection(constr);
-
-                conn.Open();
-                if (currentCulture == "en") 
-                {
                 MessageBox.Show("Successful Connection to the Database");
-                }
-                else if (currentCulture == "es")
-                {
-                MessageBox.Show("Conexión correcta a la base de datos");
-                }
 
-                ConnectionMade = true;
-                LoginSuccess = true;
-            }
+                string userName = txt_LoginName.Text.Trim();
+                LogUserActivity.ActivateLog(userName);
 
-            catch (MySqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-            finally
-            {
-                if (conn != null)
-                {
-                    conn.Close();
-                }
-            }
-
-            //needs to check if there is a valid entry in the DB for the user.
-            //run a select statement to check the DB if the userID and the password match an entry in the database 
-
-            //set LoginSuccess to true IF there is a match in the DB
-            CheckUserName();
-
-            if (loginName == isLoginTrue)
-            {
-                LoginSuccess = true;
-            }
-
-
-            if (LoginSuccess == true)
-            {
                 this.Hide();
                 mainHomePage.Show();
             }
-            
-            else if (LoginSuccess == false)
+
+            else
             {
-                if (currentCulture == "en") 
-                    {
-                        lbl_InvalidCredentials.Show();
-                    }
-                if (currentCulture == "es")
-                    {
-                    lbl_ValidCredentialSpanish.Show();
-                    }
+                lbl_InvalidCredentials.Show();
             }
-          
-            if (txt_LoginName.Text.Length > 0)
+
+            if (txt_LoginName.Text.Length > 0 && currentCulture == "es")
             {
+                MessageBox.Show("Conexión correcta a la base de datos");
+
                 string userName = txt_LoginName.Text.Trim();
                 LogUserActivity.ActivateLog(userName);
+
+                
             }
-        }
 
-        private object CheckUserName()
-        {
-            MySqlConnection conn = new MySqlConnection(connString);
-
-            string query = "SELECT username FROM user WHERE userID = 1";
-
-            using (MySqlCommand cmd = new MySqlCommand(query, conn))
+            else
             {
-                //Create a new MySQL data adapter
-                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
-                {
-                   var db_NameQueryResult = adapter;
-                    //take this value and use it in the LOGINCLICK method
-                   var isLoginTrue = db_NameQueryResult;
-                }
+                lbl_ValidCredentialSpanish.Show();
             }
 
-            return isLoginTrue;
+
         }
+ 
+        //private object CheckUserName()
+        //{
+        //    //MySqlConnection conn = new MySqlConnection(connString);
+
+        //    //string query = "SELECT username FROM user WHERE userID = 1";
+
+        //    //using (MySqlCommand cmd = new MySqlCommand(query, conn))
+        //    //{
+        //    //    Create a new MySQL data adapter
+        //    //    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+        //    //    {
+        //    //        var db_NameQueryResult = adapter;
+        //    //        take this value and use it in the LOGINCLICK method
+        //    //       var isLoginTrue = db_NameQueryResult;
+        //    //    }
+        //    //}
+
+        //    //return isLoginTrue;
+        //}
 
         private void ChangeColorofButtons()
         {
