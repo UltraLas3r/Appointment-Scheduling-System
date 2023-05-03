@@ -114,7 +114,7 @@ namespace mschreiber_Software2_c969Project
                     }
                     else
                     {
-                        lbl_InvalidCredentials.Text = "Invalido Passwordo";
+                        lbl_InvalidCredentials.Text = "Contraseña no válida";
                         lbl_ValidCredentialSpanish.Show();
                     }
                 }
