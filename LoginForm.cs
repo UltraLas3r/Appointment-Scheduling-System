@@ -74,6 +74,7 @@ namespace mschreiber_Software2_c969Project
                 LogUserActivity.ActivateLog(userName);
 
                 this.Hide();
+                mainHomePage.Show();
             }
         }
 

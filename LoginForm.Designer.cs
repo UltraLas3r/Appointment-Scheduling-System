@@ -136,7 +136,7 @@
             this.lbl_ValidCredentialSpanish.AutoSize = true;
             this.lbl_ValidCredentialSpanish.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.lbl_ValidCredentialSpanish.Font = new System.Drawing.Font("OCR A Extended", 11F);
-            this.lbl_ValidCredentialSpanish.Location = new System.Drawing.Point(84, 120);
+            this.lbl_ValidCredentialSpanish.Location = new System.Drawing.Point(84, 121);
             this.lbl_ValidCredentialSpanish.Name = "lbl_ValidCredentialSpanish";
             this.lbl_ValidCredentialSpanish.Size = new System.Drawing.Size(504, 24);
             this.lbl_ValidCredentialSpanish.TabIndex = 12;
