@@ -34,7 +34,7 @@ namespace mschreiber_Software2_c969Project
             var hoverColorChanger = new ButtonHoverColorChanger(Color.Black, Color.LimeGreen);
 
             hoverColorChanger.Attach(btn_Cancel);
-            hoverColorChanger.Attach(btn_SaveAppointment);
+            hoverColorChanger.Attach(btn_SaveCustomer);
         }
 
         private void btn_Cancel_Click(object sender, EventArgs e)
@@ -54,19 +54,18 @@ namespace mschreiber_Software2_c969Project
         private void btn_SaveAppointment_Click(object sender, EventArgs e)
         {
        
-            if (txt_CustFirstName.Text.Length >= 1)
+            if (txt_CustomerName.Text.Length >= 1)
             {
                 CheckForInput = true;
                 int customerID;
-                string firstName = txt_CustFirstName.Text;
-                string lastName = txt_CustLastName.Text;
+                string Name = txt_CustomerName.Text;
                 string address =  txt_Address.Text;
                 string city = txt_City.Text;
                 string country = txt_Country.Text;
                 string phoneNumber = txt_PhoneNumber.Text.ToString();
 
                 string message = "\nPlease Verify that the following information is accurate: "
-                    + "\nName: " + firstName + " " + lastName 
+                    + "\nName: " + Name 
                     + "\nAddress: " + address 
                     + "\nCity: " + city 
                     + "\nCountry: " + country 
@@ -80,16 +79,38 @@ namespace mschreiber_Software2_c969Project
                     MySqlConnection connection = new MySqlConnection(connectionString);
                     connection.Open();
 
-                    string sql = "INSERT INTO customer (customerName) VALUES (@name)";
-                    MySqlCommand command = new MySqlCommand(sql, connection);
-                   // command.Parameters.Add("@customerId", (MySqlDbType)customerID);
-                    command.Parameters.AddWithValue("@name", txt_CustFirstName.Text.Trim() + txt_CustLastName.Text.Trim());
+                    string insertCountry = "INSERT INTO country VALUES (null, @country, NOW(), 'user', NOW(), 'user')";
+                    MySqlCommand insertCountryToTable = new MySqlCommand(insertCountry, connection);
 
-                    //address information needs to go into the address table
-                    //command.Parameters.AddWithValue("@address", txt_CustLastName.Text);
-                    //command.Parameters.AddWithValue("@address", txt_Address.Text);
+                    insertCountryToTable.Parameters.AddWithValue("@country", country);
 
-                    command.ExecuteNonQuery();
+                    insertCountryToTable.ExecuteNonQuery();
+
+                    //Get new countryId from the country command
+
+                    int countryID = (int)insertCountryToTable.LastInsertedId; //use this as a foreign key
+
+                    string insertCity = "INSERT INTO city VALUES (null, @city, @countryID, NOW(), 'user', NOW(), 'user')";
+                    MySqlCommand insertCityToTable = new MySqlCommand(insertCity, connection);
+                    insertCountryToTable.Parameters.AddWithValue("@city", city);
+                    insertCountryToTable.Parameters.AddWithValue("@countryID", countryID);
+
+                    insertCityToTable.ExecuteNonQuery();
+
+
+                    int cityID = (int)insertCityToTable.LastInsertedId;
+
+                    //add address
+
+
+                    //add customer
+
+
+
+
+                   
+
+                   
 
                     connection.Close();
 
@@ -99,6 +120,7 @@ namespace mschreiber_Software2_c969Project
 
                 else
                 {
+                    MessageBox.Show("Unverified Data");
                     return;
                 }
             }

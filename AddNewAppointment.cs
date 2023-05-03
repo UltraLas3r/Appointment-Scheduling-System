@@ -94,8 +94,8 @@ namespace mschreiber_Software2_c969Project
 
             if (!Regex.IsMatch(phoneNumber, pattern))
             {
-                lbl_PhoneNumberValidation.Text = "Please enter a valid 10-digit phone number.";
-                lbl_PhoneNumberValidation.Visible = true;
+                //lbl_PhoneNumberValidation.Text = "Please enter a valid 10-digit phone number.";
+                //lbl_PhoneNumberValidation.Visible = true;
             }
             else
             {

@@ -97,6 +97,8 @@ namespace mschreiber_Software2_c969Project
                 passwords.Add(password);
             }
 
+
+
             foreach (string password in passwords)
             {
                 if (txt_LoginPass.Text.Trim() == password)
@@ -146,13 +148,25 @@ namespace mschreiber_Software2_c969Project
                 userNames.Add(name);
             }
 
+            //bool sortedUserNames = userNames.Any(name => name == txt_LoginName.Text);
+
+            //if (sortedUserNames != true && currentCulture == "en")
+            //{
+            //    lbl_InvalidCredentials.Show();
+            //}
+            //else
+            //{
+            //    lbl_ValidCredentialSpanish.Show();
+            //}
+
+
             foreach (string name in userNames)
             {
                 if (txt_LoginName.Text.Trim() == name)
-                { 
-                    nameFound = true; 
+                {
+                    nameFound = true;
                 }
-                else 
+                else
                 {
                     if (currentCulture == "en")
                     {
