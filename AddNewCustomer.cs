@@ -55,22 +55,21 @@ namespace mschreiber_Software2_c969Project
         {
        
             if (txt_CustomerName.Text.Length >= 1)
-            {
-                CheckForInput = true;
-                int customerID;
-                string Name = txt_CustomerName.Text;
+            {                   
+                string name = txt_CustomerName.Text;
                 string address =  txt_Address.Text;
                 string city = txt_City.Text;
                 string country = txt_Country.Text;
                 string phoneNumber = txt_PhoneNumber.Text.ToString();
 
                 string message = "\nPlease Verify that the following information is accurate: "
-                    + "\nName: " + Name 
+                    + "\nName: " + name 
                     + "\nAddress: " + address 
                     + "\nCity: " + city 
                     + "\nCountry: " + country 
                     + "\nPhone Number: " + phoneNumber;
 
+                //have user verify the customer information is accurate
                 DialogResult result = MessageBox.Show (message, "Verify Information", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
                 
                 if (result == DialogResult.Yes)
@@ -79,41 +78,42 @@ namespace mschreiber_Software2_c969Project
                     MySqlConnection connection = new MySqlConnection(connectionString);
                     connection.Open();
 
+                    //Create query for country
+                   
+                    //I think I need to get an initial start countryID and insert it into the sql statement
                     string insertCountry = "INSERT INTO country VALUES (null, @country, NOW(), 'user', NOW(), 'user')";
+
                     MySqlCommand insertCountryToTable = new MySqlCommand(insertCountry, connection);
-
                     insertCountryToTable.Parameters.AddWithValue("@country", country);
-
                     insertCountryToTable.ExecuteNonQuery();
 
-                    //Get new countryId from the country command
-
-                    int countryID = (int)insertCountryToTable.LastInsertedId; //use this as a foreign key
-
+                    //Create query for city
+                    int countryID = (int)insertCountryToTable.LastInsertedId;
                     string insertCity = "INSERT INTO city VALUES (null, @city, @countryID, NOW(), 'user', NOW(), 'user')";
-                    MySqlCommand insertCityToTable = new MySqlCommand(insertCity, connection);
-                    insertCountryToTable.Parameters.AddWithValue("@city", city);
-                    insertCountryToTable.Parameters.AddWithValue("@countryID", countryID);
 
+                    MySqlCommand insertCityToTable = new MySqlCommand(insertCity, connection);
+                    insertCityToTable.Parameters.AddWithValue("@city", city);
+                    insertCityToTable.Parameters.AddWithValue("@countryID", countryID);
                     insertCityToTable.ExecuteNonQuery();
 
-
+                    //Create query for address
                     int cityID = (int)insertCityToTable.LastInsertedId;
+                    string insertAddress = "INSERT INTO address VALUES (null, @address, null, @cityId, null, NOW(), 'user', NOW(), 'user')";
 
-                    //add address
-
-
-                    //add customer
-
-
+                    MySqlCommand insertAddressToTable = new MySqlCommand(insertAddress, connection);
+                    insertAddressToTable.Parameters.AddWithValue("@address", address);
+                    insertAddressToTable.Parameters.AddWithValue("@cityId", cityID);
 
 
-                   
+                    ////Create query for adding customer
+                    int addressID = (int)insertAddressToTable.LastInsertedId;
+                    string insertCustomer = "INSERT INTO customer VALUES (null, @name, @address, '1', NOW(), 'user', NOW(), 'user')";
 
-                   
+                    MySqlCommand insertCustomerToTable = new MySqlCommand(insertCustomer, connection);
+                    insertCustomerToTable.Parameters.AddWithValue("@name", name);
+                    insertCustomerToTable.Parameters.AddWithValue("@address", address);
 
                     connection.Close();
-
                     MessageBox.Show("Customer saved successfully.");
                     this.Hide();
                 }

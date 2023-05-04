@@ -36,7 +36,6 @@
             this.lbl_Location = new System.Windows.Forms.Label();
             this.lbl_CustFirstName = new System.Windows.Forms.Label();
             this.txt_CustFirstName = new System.Windows.Forms.TextBox();
-            this.txt_Address = new System.Windows.Forms.TextBox();
             this.txt_Date = new System.Windows.Forms.TextBox();
             this.txt_Country = new System.Windows.Forms.TextBox();
             this.txt_Time = new System.Windows.Forms.TextBox();
@@ -128,14 +127,6 @@
             this.txt_CustFirstName.Size = new System.Drawing.Size(352, 26);
             this.txt_CustFirstName.TabIndex = 7;
             // 
-            // txt_Address
-            // 
-            this.txt_Address.Location = new System.Drawing.Point(35, 356);
-            this.txt_Address.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txt_Address.Name = "txt_Address";
-            this.txt_Address.Size = new System.Drawing.Size(352, 26);
-            this.txt_Address.TabIndex = 8;
-            // 
             // txt_Date
             // 
             this.txt_Date.Location = new System.Drawing.Point(35, 525);
@@ -211,7 +202,6 @@
             this.Controls.Add(this.txt_Time);
             this.Controls.Add(this.txt_Country);
             this.Controls.Add(this.txt_Date);
-            this.Controls.Add(this.txt_Address);
             this.Controls.Add(this.txt_CustFirstName);
             this.Controls.Add(this.lbl_CustFirstName);
             this.Controls.Add(this.lbl_Location);
@@ -238,7 +228,6 @@
         private System.Windows.Forms.Label lbl_Location;
         private System.Windows.Forms.Label lbl_CustFirstName;
         private System.Windows.Forms.TextBox txt_CustFirstName;
-        private System.Windows.Forms.TextBox txt_Address;
         private System.Windows.Forms.TextBox txt_Date;
         private System.Windows.Forms.TextBox txt_Country;
         private System.Windows.Forms.TextBox txt_Time;
