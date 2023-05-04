@@ -36,7 +36,6 @@
             this.btn_CancelLogin = new System.Windows.Forms.Button();
             this.lbl_UserName = new System.Windows.Forms.Label();
             this.lbl_Password = new System.Windows.Forms.Label();
-            this.lbl_UserLocationAndTime = new System.Windows.Forms.Label();
             this.lbl_ValidCredentialSpanish = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -118,15 +117,6 @@
             this.lbl_Password.TabIndex = 7;
             this.lbl_Password.Text = "Password";
             // 
-            // lbl_UserLocationAndTime
-            // 
-            this.lbl_UserLocationAndTime.AutoSize = true;
-            this.lbl_UserLocationAndTime.Location = new System.Drawing.Point(25, 335);
-            this.lbl_UserLocationAndTime.Name = "lbl_UserLocationAndTime";
-            this.lbl_UserLocationAndTime.Size = new System.Drawing.Size(140, 16);
-            this.lbl_UserLocationAndTime.TabIndex = 10;
-            this.lbl_UserLocationAndTime.Text = "User location and time";
-            // 
             // lbl_ValidCredentialSpanish
             // 
             this.lbl_ValidCredentialSpanish.AutoSize = true;
@@ -144,9 +134,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ClientSize = new System.Drawing.Size(724, 369);
+            this.ClientSize = new System.Drawing.Size(724, 335);
             this.Controls.Add(this.lbl_ValidCredentialSpanish);
-            this.Controls.Add(this.lbl_UserLocationAndTime);
             this.Controls.Add(this.lbl_Password);
             this.Controls.Add(this.lbl_UserName);
             this.Controls.Add(this.btn_CancelLogin);
@@ -172,7 +161,6 @@
         private System.Windows.Forms.Button btn_CancelLogin;
         private System.Windows.Forms.Label lbl_UserName;
         private System.Windows.Forms.Label lbl_Password;
-        private System.Windows.Forms.Label lbl_UserLocationAndTime;
         private System.Windows.Forms.Label lbl_ValidCredentialSpanish;
     }
 }

@@ -17,7 +17,7 @@ namespace mschreiber_Software2_c969Project
 {
     public partial class MainHomePage : Form
     {
-        
+        private int appointmentID = 0; //TODO create a select query for this? to grab from the db?
         DataTable appointmentList = new DataTable();
         string connString = "Host=localhost;port=3306;Database=client_schedule;Username=sqlUser;Password=Passw0rd!";
         public MainHomePage()
@@ -100,17 +100,30 @@ namespace mschreiber_Software2_c969Project
             //open the createnewappointment screen
             AddNewAppointment createNewAppointment = new AddNewAppointment();
             createNewAppointment.Show();
-            createNewAppointment.Location = new Point(btn_AddNewAppointment.Right, btn_AddNewAppointment.Top);
+            
             
         }
         private void btn_ModifyAppointment_Click(object sender, EventArgs e)
         {
-            ModifyAppointment modifyAppointment = new ModifyAppointment();       
-            modifyAppointment.Show();
-            modifyAppointment.Location = new Point(btn_ModifyAppointment.Right, btn_ModifyAppointment.Top);
-        }
+            ModifyAppointment modifyAppointment = new ModifyAppointment();
 
-      
+
+            if (!dgv_AppointmentGrid.CurrentRow.Selected)
+            {
+                MessageBox.Show("Nothing selected. Please select an item to modify.");
+                return;
+            }
+
+            else
+            {
+                var tempSelectedPart = (Appointment)dgv_AppointmentGrid.CurrentRow.DataBoundItem;
+
+                modifyAppointment modifyAppointment = new modifyAppointment(tempSelectedPart, appointmentID);
+                modifyAppointment.Show();
+
+                this.Visible = false;
+            } 
+        }
 
         private void AddCustomerButton_Click(object sender, EventArgs e)
         {
@@ -124,9 +137,38 @@ namespace mschreiber_Software2_c969Project
             updateCustomer.Show();
         }
 
+        private void btn_SearchAppointments_Click(object sender, EventArgs e)
+        {
+            string searchContent = txt_AppointmentSearch.Text.Trim();
+            if (string.IsNullOrEmpty(txt_AppointmentSearch.Text))
+            {
+                MessageBox.Show("Enter a valid search term");
+                return;
+            }
+            else
+            {
+                dgv_AppointmentGrid.Rows.Cast<DataGridViewRow>()
+                    .SelectMany(row => row.Cells.Cast<DataGridViewCell>())
+                    .Where(cell => cell.Value != null && cell.Value.ToString().Contains(searchContent))
+                    .ToList()
+                    .ForEach(cell => cell.Selected = true);
+            }
+            //The use of lambdas in this expression simplify the code from a
+            //clumsy foreach loop to an elegant if-else statement. 
+            //This code is easily read and much simpler in structure.
+        }
+
         private void DeleteAppointment_Click(object sender, EventArgs e)
         {
             //Remove entry from the appointment DGV
+            DialogResult result = MessageBox.Show("Are you sure you want to delete this item?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                foreach (DataGridViewRow row in dgv_AppointmentGrid.SelectedRows)
+                {
+                    dgv_AppointmentGrid.Rows.RemoveAt(row.Index);
+                }
+            }
         }
         private void rb_ViewAll_CheckedChanged(object sender, EventArgs e)
         {
@@ -212,27 +254,6 @@ namespace mschreiber_Software2_c969Project
             hoverColorChanger.Attach(btn_DeleteAppointment);
             hoverColorChanger.Attach(btn_ModifyAppointment);
             hoverColorChanger.Attach(btn_Exit);
-        }
-
-        private void btn_SearchAppointments_Click(object sender, EventArgs e)
-        {
-            string searchContent = txt_AppointmentSearch.Text.Trim();
-            if (string.IsNullOrEmpty(txt_AppointmentSearch.Text))
-            {
-                MessageBox.Show("Enter a valid search term");
-                return;
-            }
-            else
-            {
-                dgv_AppointmentGrid.Rows.Cast<DataGridViewRow>()
-                    .SelectMany(row => row.Cells.Cast<DataGridViewCell>())
-                    .Where(cell => cell.Value != null && cell.Value.ToString().Contains(searchContent))
-                    .ToList()
-                    .ForEach(cell => cell.Selected = true);
-            }
-            //The use of lambdas in this expression simplify the code from a
-            //clumsy foreach loop to an elegant if-else statement. 
-            //This code is easily read and much simpler in structure.
         }
 
         private void btn_DeleteCustomer_Click(object sender, EventArgs e)
