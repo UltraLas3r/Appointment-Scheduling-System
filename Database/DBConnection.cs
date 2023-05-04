@@ -12,8 +12,7 @@ namespace mschreiber_Software2_c969Project.Database
     public class DBConnection
     {
         public static MySqlConnection conn { get; set;}
-
-
+        
         public static void StartConnection()
         {
             try

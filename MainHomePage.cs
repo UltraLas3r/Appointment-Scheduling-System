@@ -35,6 +35,7 @@ namespace mschreiber_Software2_c969Project
           
 
             string constr = ConfigurationManager.ConnectionStrings["localdb"].ConnectionString;
+            this.ActiveControl = txt_AppointmentSearch;
 
         }
 
@@ -42,9 +43,9 @@ namespace mschreiber_Software2_c969Project
         {
             //todo this isnt loading right?
             string getAppointment = "SELECT title, location, type, start, end FROM appointment";
-            
+
             MySqlConnection conn = new MySqlConnection(connString);
-           
+
             using (MySqlCommand cmd = new MySqlCommand(getAppointment, conn))
             {
                 //Create a new MySQL data adapter
@@ -57,7 +58,7 @@ namespace mschreiber_Software2_c969Project
             }
         }
 
-       
+
 
         private void MainHomePage_Load(object sender, EventArgs e)
         {
@@ -166,7 +167,7 @@ namespace mschreiber_Software2_c969Project
         {     
             MySqlConnection conn = new MySqlConnection(connString);
 
-            string query = "SELECT title, location, type, start, end FROM appointment WHERE start < UTC_TIMESTAMP()-30";
+            string query = "SELECT title, location, type, start, end FROM appointment WHERE start >= DATE_SUB(NOW(), UTC_TIMESTAMP()-30)";
 
             using (MySqlCommand cmd = new MySqlCommand(query, conn))
             {
@@ -206,12 +207,44 @@ namespace mschreiber_Software2_c969Project
             var hoverColorChanger = new ButtonHoverColorChanger(Color.Black, Color.LimeGreen);
 
             hoverColorChanger.Attach(btn_AddCustomer);
-            hoverColorChanger.Attach(btn_UpdateCustomer);
+            hoverColorChanger.Attach(btn_ModifyCustomer);
             hoverColorChanger.Attach(btn_AddNewAppointment);
             hoverColorChanger.Attach(btn_DeleteAppointment);
             hoverColorChanger.Attach(btn_ModifyAppointment);
             hoverColorChanger.Attach(btn_Exit);
         }
 
+        private void btn_SearchAppointments_Click(object sender, EventArgs e)
+        {
+            string searchContent = txt_AppointmentSearch.Text.Trim();
+            if (string.IsNullOrEmpty(txt_AppointmentSearch.Text))
+            {
+                MessageBox.Show("Enter a valid search term");
+                return;
+            }
+            else
+            {
+                dgv_AppointmentGrid.Rows.Cast<DataGridViewRow>()
+                    .SelectMany(row => row.Cells.Cast<DataGridViewCell>())
+                    .Where(cell => cell.Value != null && cell.Value.ToString().Contains(searchContent))
+                    .ToList()
+                    .ForEach(cell => cell.Selected = true);
+            }
+            //The use of lambdas in this expression simplify the code from a
+            //clumsy foreach loop to an elegant if-else statement. 
+            //This code is easily read and much simpler in structure.
+        }
+
+        private void btn_DeleteCustomer_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to delete this customer?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                foreach (DataGridViewRow row in DGV_Customers.SelectedRows)
+                {
+                    DGV_Customers.Rows.RemoveAt(row.Index);
+                }
+            }
+        }
     }
 }
