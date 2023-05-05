@@ -92,7 +92,6 @@ namespace mschreiber_Software2_c969Project
             MySqlDataReader reader = executeCommand.ExecuteReader();
 
             List<string> passwords = new List<string>();
-
             while (reader.Read())
             {
                 string password = reader["password"].ToString();
@@ -160,7 +159,7 @@ namespace mschreiber_Software2_c969Project
         private void CheckUserName()
         {
             MySqlConnection conn = new MySqlConnection(connString);
-            //create command to get the usernames from the table
+           
             string query = "SELECT username FROM user";
             MySqlCommand executeCommand = new MySqlCommand(query, conn);
 
@@ -179,6 +178,7 @@ namespace mschreiber_Software2_c969Project
 
             if (userNames.Any(name => name == txt_LoginName.Text) && currentCulture == "en")
             {
+                nameFound = true;
                 lbl_InvalidCredentials.Show();
             }
             else

@@ -118,8 +118,8 @@ namespace mschreiber_Software2_c969Project
             {
                 var tempSelectedPart = (Appointment)dgv_AppointmentGrid.CurrentRow.DataBoundItem;
 
-                modifyAppointment modifyAppointment = new modifyAppointment(tempSelectedPart, appointmentID);
-                modifyAppointment.Show();
+                //modifyAppointment modifyAppointment = new modifyAppointment(tempSelectedPart, appointmentID);
+                //modifyAppointment.Show();
 
                 this.Visible = false;
             } 
@@ -209,7 +209,7 @@ namespace mschreiber_Software2_c969Project
         {     
             MySqlConnection conn = new MySqlConnection(connString);
 
-            string query = "SELECT title, location, type, start, end FROM appointment WHERE start >= DATE_SUB(NOW(), UTC_TIMESTAMP()-30)";
+            string query = "SELECT title, description, location, type, start, end FROM appointment WHERE start >= DATE_SUB(NOW(), UTC_TIMESTAMP()-30)";
 
             using (MySqlCommand cmd = new MySqlCommand(query, conn))
             {
@@ -227,7 +227,8 @@ namespace mschreiber_Software2_c969Project
         {
             MySqlConnection conn = new MySqlConnection(connString);
 
-            string query = "SELECT * FROM customer";
+            string query = "SELECT customer.customerId, customer.customerName, appointment.title, appointment.description, appointment.type, appointment.start, appointment.end FROM appointment INNER JOIN customer ON customer.customerId = appointment.customerID";
+            
 
             using (MySqlCommand cmd = new MySqlCommand(query, conn))
             {

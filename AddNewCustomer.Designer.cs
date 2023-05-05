@@ -42,6 +42,7 @@
             this.lbl_Country = new System.Windows.Forms.Label();
             this.lbl_City = new System.Windows.Forms.Label();
             this.txt_City = new System.Windows.Forms.TextBox();
+            this.txt_PostalCode = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lbl_PhoneNumberValidation
@@ -65,7 +66,7 @@
             // 
             // txt_Address
             // 
-            this.txt_Address.Location = new System.Drawing.Point(206, 174);
+            this.txt_Address.Location = new System.Drawing.Point(206, 150);
             this.txt_Address.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txt_Address.Name = "txt_Address";
             this.txt_Address.Size = new System.Drawing.Size(352, 26);
@@ -93,7 +94,7 @@
             // 
             this.lbl_Address.AutoSize = true;
             this.lbl_Address.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.lbl_Address.Location = new System.Drawing.Point(16, 172);
+            this.lbl_Address.Location = new System.Drawing.Point(15, 151);
             this.lbl_Address.Name = "lbl_Address";
             this.lbl_Address.Size = new System.Drawing.Size(110, 25);
             this.lbl_Address.TabIndex = 18;
@@ -179,12 +180,21 @@
             this.txt_City.Size = new System.Drawing.Size(352, 26);
             this.txt_City.TabIndex = 24;
             // 
+            // txt_PostalCode
+            // 
+            this.txt_PostalCode.Location = new System.Drawing.Point(206, 196);
+            this.txt_PostalCode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txt_PostalCode.Name = "txt_PostalCode";
+            this.txt_PostalCode.Size = new System.Drawing.Size(352, 26);
+            this.txt_PostalCode.TabIndex = 31;
+            // 
             // AddNewCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(572, 606);
+            this.Controls.Add(this.txt_PostalCode);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lbl_PhoneNumberValidation);
             this.Controls.Add(this.txt_PhoneNumber);
@@ -224,5 +234,6 @@
         private System.Windows.Forms.Label lbl_Country;
         private System.Windows.Forms.Label lbl_City;
         private System.Windows.Forms.TextBox txt_City;
+        private System.Windows.Forms.TextBox txt_PostalCode;
     }
 }

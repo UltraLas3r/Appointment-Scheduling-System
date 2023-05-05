@@ -61,6 +61,7 @@ namespace mschreiber_Software2_c969Project
                 string city = txt_City.Text;
                 string country = txt_Country.Text;
                 string phoneNumber = txt_PhoneNumber.Text.ToString();
+                string postalCode = txt_PostalCode.Text.ToString();
 
                 string message = "\nPlease Verify that the following information is accurate: "
                     + "\nName: " + name 
@@ -78,9 +79,7 @@ namespace mschreiber_Software2_c969Project
                     MySqlConnection connection = new MySqlConnection(connectionString);
                     connection.Open();
 
-                    //Create query for country
-                   
-                    //I think I need to get an initial start countryID and insert it into the sql statement
+                    //Create query for country           
                     string insertCountry = "INSERT INTO country VALUES (null, @country, NOW(), 'user', NOW(), 'user')";
 
                     MySqlCommand insertCountryToTable = new MySqlCommand(insertCountry, connection);
@@ -98,20 +97,22 @@ namespace mschreiber_Software2_c969Project
 
                     //Create query for address
                     int cityID = (int)insertCityToTable.LastInsertedId;
-                    string insertAddress = "INSERT INTO address VALUES (null, @address, null, @cityId, null, NOW(), 'user', NOW(), 'user')";
+                    string insertAddress = "INSERT INTO address VALUES (null, @address, null, @cityID, @postalCode, @phone, NOW(), 'user', NOW(), 'user')";
 
                     MySqlCommand insertAddressToTable = new MySqlCommand(insertAddress, connection);
                     insertAddressToTable.Parameters.AddWithValue("@address", address);
-                    insertAddressToTable.Parameters.AddWithValue("@cityId", cityID);
-
+                    insertAddressToTable.Parameters.AddWithValue("@phone", phoneNumber);
+                    insertAddressToTable.Parameters.AddWithValue("@postalCode", postalCode);
+                    insertAddressToTable.Parameters.AddWithValue("@cityID", cityID);
 
                     ////Create query for adding customer
+                   
                     int addressID = (int)insertAddressToTable.LastInsertedId;
-                    string insertCustomer = "INSERT INTO customer VALUES (null, @name, @address, '1', NOW(), 'user', NOW(), 'user')";
+                    string insertCustomer = "INSERT INTO customer VALUES (null, @name, @addressId, '1', NOW(), 'user', NOW(), 'user')";
 
                     MySqlCommand insertCustomerToTable = new MySqlCommand(insertCustomer, connection);
                     insertCustomerToTable.Parameters.AddWithValue("@name", name);
-                    insertCustomerToTable.Parameters.AddWithValue("@address", address);
+                    insertCustomerToTable.Parameters.AddWithValue("@addressId", addressID);
 
                     connection.Close();
                     MessageBox.Show("Customer saved successfully.");
