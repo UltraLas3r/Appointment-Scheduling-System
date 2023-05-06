@@ -109,6 +109,9 @@
     <Compile Include="Model\Appointment.cs" />
     <Compile Include="Model\ButtonHoverClass.cs" />
     <Compile Include="Model\Customer.cs" />
+    <Compile Include="Model\DeleteCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Model\LogUserActivity.cs" />
     <Compile Include="ModifyAppointment.cs">
       <SubType>Form</SubType>

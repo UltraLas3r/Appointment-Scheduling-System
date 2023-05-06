@@ -17,7 +17,7 @@ namespace mschreiber_Software2_c969Project
 {
     public partial class MainHomePage : Form
     {
-        private int appointmentID = 0; //TODO create a select query for this? to grab from the db?
+        
         DataTable appointmentList = new DataTable();
         string connString = "Host=localhost;port=3306;Database=client_schedule;Username=sqlUser;Password=Passw0rd!";
         public MainHomePage()
@@ -27,6 +27,7 @@ namespace mschreiber_Software2_c969Project
             CheckForUpcoming();
             DGV_CustomerContentLoad();
             FirstAppointmentView();
+          
 
             //get localization data
             string userLocation = CultureInfo.CurrentCulture.DisplayName;
@@ -37,6 +38,12 @@ namespace mschreiber_Software2_c969Project
             string constr = ConfigurationManager.ConnectionStrings["localdb"].ConnectionString;
             this.ActiveControl = txt_AppointmentSearch;
 
+        }
+
+        public void RefreshCustomerDataGrid()
+        {
+            DGV_Customers.Update();
+            DGV_Customers.Refresh();
         }
 
         public void FirstAppointmentView()
@@ -116,9 +123,9 @@ namespace mschreiber_Software2_c969Project
 
             else
             {
-                var tempSelectedPart = (Appointment)dgv_AppointmentGrid.CurrentRow.DataBoundItem;
+                var tempAppointment = (Appointment)dgv_AppointmentGrid.CurrentRow.DataBoundItem;
 
-                //modifyAppointment modifyAppointment = new modifyAppointment(tempSelectedPart, appointmentID);
+                //modifyAppointment modifyAppointment = new modifyAppointment(tempAppointment, appointmentID);
                 //modifyAppointment.Show();
 
                 this.Visible = false;
@@ -129,6 +136,7 @@ namespace mschreiber_Software2_c969Project
         {
             AddNewCustomer addNewCustomer = new AddNewCustomer();
             addNewCustomer.Show();
+            this.Hide();
         }
     
         private void UpdateCustomerButton_Click(object sender, EventArgs e)
@@ -209,7 +217,7 @@ namespace mschreiber_Software2_c969Project
         {     
             MySqlConnection conn = new MySqlConnection(connString);
 
-            string query = "SELECT title, description, location, type, start, end FROM appointment WHERE start >= DATE_SUB(NOW(), UTC_TIMESTAMP()-30)";
+            string query = "SELECT title, description, location, type, start, end FROM appointment WHERE start >= DATE_SUB(NOW(), INTERVAL 30 DAY);";
 
             using (MySqlCommand cmd = new MySqlCommand(query, conn))
             {
@@ -227,10 +235,10 @@ namespace mschreiber_Software2_c969Project
         {
             MySqlConnection conn = new MySqlConnection(connString);
 
-            string query = "SELECT customer.customerId, customer.customerName, appointment.title, appointment.description, appointment.type, appointment.start, appointment.end FROM appointment INNER JOIN customer ON customer.customerId = appointment.customerID";
-            
+            //string query = "SELECT customer.customerId, customer.customerName, appointment.title, appointment.description, appointment.type, appointment.start, appointment.end FROM appointment INNER JOIN customer ON customer.customerId = appointment.customerID";
+            string queryForCustomerOnly = "SELECT customer.CustomerName, address.address, address.phone From address INNER JOIN customer on Customer.addressId = address.addressID;";
 
-            using (MySqlCommand cmd = new MySqlCommand(query, conn))
+            using (MySqlCommand cmd = new MySqlCommand(queryForCustomerOnly, conn))
             {
                 // Create a new MySQL data adapter
                 using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
@@ -259,6 +267,8 @@ namespace mschreiber_Software2_c969Project
 
         private void btn_DeleteCustomer_Click(object sender, EventArgs e)
         {
+            
+
             DialogResult result = MessageBox.Show("Are you sure you want to delete this customer?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
@@ -267,6 +277,29 @@ namespace mschreiber_Software2_c969Project
                     DGV_Customers.Rows.RemoveAt(row.Index);
                 }
             }
+        }
+
+        private void btn_ref_Click(object sender, EventArgs e)
+        {
+            MySqlConnection conn = new MySqlConnection(connString);
+
+            string query = "SELECT customer.customerId, customer.customerName, appointment.title, appointment.description, appointment.type, appointment.start, appointment.end FROM appointment INNER JOIN customer ON customer.customerId = appointment.customerID";
+            
+            using (MySqlCommand cmd = new MySqlCommand(query, conn))
+            {
+                // Create a new MySQL data adapter
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                {
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    DGV_Customers.DataSource = dataTable;
+                }
+            }
+        }
+
+        private void btn_AllCustomers_Click(object sender, EventArgs e)
+        {
+            DGV_CustomerContentLoad();
         }
     }
 }

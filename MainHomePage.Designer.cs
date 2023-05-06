@@ -53,6 +53,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.btn_ViewCustomersWithAppointments = new System.Windows.Forms.Button();
+            this.btn_AllCustomers = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_AppointmentGrid)).BeginInit();
             this.tab_Appointment.SuspendLayout();
             this.Appointments.SuspendLayout();
@@ -257,6 +259,8 @@
             // Customers
             // 
             this.Customers.BackColor = System.Drawing.Color.Gray;
+            this.Customers.Controls.Add(this.btn_AllCustomers);
+            this.Customers.Controls.Add(this.btn_ViewCustomersWithAppointments);
             this.Customers.Controls.Add(this.btn_DeleteCustomer);
             this.Customers.Controls.Add(this.DGV_Customers);
             this.Customers.Controls.Add(this.label2);
@@ -287,13 +291,14 @@
             this.DGV_Customers.AllowUserToResizeColumns = false;
             this.DGV_Customers.BackgroundColor = System.Drawing.Color.White;
             this.DGV_Customers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGV_Customers.Location = new System.Drawing.Point(131, 194);
+            this.DGV_Customers.Location = new System.Drawing.Point(176, 193);
             this.DGV_Customers.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DGV_Customers.Name = "DGV_Customers";
+            this.DGV_Customers.ReadOnly = true;
             this.DGV_Customers.RowHeadersWidth = 62;
             this.DGV_Customers.RowTemplate.Height = 28;
             this.DGV_Customers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGV_Customers.Size = new System.Drawing.Size(987, 422);
+            this.DGV_Customers.Size = new System.Drawing.Size(1039, 435);
             this.DGV_Customers.TabIndex = 14;
             // 
             // label2
@@ -374,6 +379,26 @@
             this.button1.Text = "Monthly Appoinments";
             this.button1.UseVisualStyleBackColor = true;
             // 
+            // btn_ViewCustomersWithAppointments
+            // 
+            this.btn_ViewCustomersWithAppointments.Location = new System.Drawing.Point(6, 211);
+            this.btn_ViewCustomersWithAppointments.Name = "btn_ViewCustomersWithAppointments";
+            this.btn_ViewCustomersWithAppointments.Size = new System.Drawing.Size(155, 56);
+            this.btn_ViewCustomersWithAppointments.TabIndex = 16;
+            this.btn_ViewCustomersWithAppointments.Text = "Customers With Appointments";
+            this.btn_ViewCustomersWithAppointments.UseVisualStyleBackColor = true;
+            this.btn_ViewCustomersWithAppointments.Click += new System.EventHandler(this.btn_ref_Click);
+            // 
+            // btn_AllCustomers
+            // 
+            this.btn_AllCustomers.Location = new System.Drawing.Point(15, 572);
+            this.btn_AllCustomers.Name = "btn_AllCustomers";
+            this.btn_AllCustomers.Size = new System.Drawing.Size(155, 56);
+            this.btn_AllCustomers.TabIndex = 17;
+            this.btn_AllCustomers.Text = "All Customers";
+            this.btn_AllCustomers.UseVisualStyleBackColor = true;
+            this.btn_AllCustomers.Click += new System.EventHandler(this.btn_AllCustomers_Click);
+            // 
             // MainHomePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -426,5 +451,7 @@
         private System.Windows.Forms.Button btn_DeleteCustomer;
         private System.Windows.Forms.Button btn_Search;
         private System.Windows.Forms.TextBox txt_AppointmentSearch;
+        private System.Windows.Forms.Button btn_ViewCustomersWithAppointments;
+        private System.Windows.Forms.Button btn_AllCustomers;
     }
 }

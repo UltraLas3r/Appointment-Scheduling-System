@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,17 +16,11 @@ namespace mschreiber_Software2_c969Project
 {
     public partial class AddNewCustomer : Form
     {
-        Customer customer = new Customer();
-        bool CheckForInput = false;
 
         public AddNewCustomer()
         {
-            //I AM HAVING ISSUES WITH THE CUSTOMER ID. I CANT AUTO INCREMENT IN THE DB SO WHAT SHOULD I DO?
-            //int customerID = customer.GetCustomerID();
             InitializeComponent();
             ChangeColorofButtons();
-
-           // lbl_custID.Text = customer.ToString();
         }
 
         private void ChangeColorofButtons()
@@ -51,23 +46,23 @@ namespace mschreiber_Software2_c969Project
             }
         }
 
-        private void btn_SaveAppointment_Click(object sender, EventArgs e)
+        private void btn_SaveNewCustomer_Click(object sender, EventArgs e)
         {
-       
             if (txt_CustomerName.Text.Length >= 1)
             {                   
                 string name = txt_CustomerName.Text;
                 string address =  txt_Address.Text;
+                string addressTwo = "null";
                 string city = txt_City.Text;
                 string country = txt_Country.Text;
                 string phoneNumber = txt_PhoneNumber.Text.ToString();
                 string postalCode = txt_PostalCode.Text.ToString();
 
                 string message = "\nPlease Verify that the following information is accurate: "
-                    + "\nName: " + name 
-                    + "\nAddress: " + address 
-                    + "\nCity: " + city 
-                    + "\nCountry: " + country 
+                    + "\nName: " + name
+                    + "\nAddress: " + address
+                    + "\nCity: " + city
+                    + "\nCountry: " + country
                     + "\nPhone Number: " + phoneNumber;
 
                 //have user verify the customer information is accurate
@@ -97,26 +92,32 @@ namespace mschreiber_Software2_c969Project
 
                     //Create query for address
                     int cityID = (int)insertCityToTable.LastInsertedId;
-                    string insertAddress = "INSERT INTO address VALUES (null, @address, null, @cityID, @postalCode, @phone, NOW(), 'user', NOW(), 'user')";
+                    string insertAddress = "INSERT INTO address VALUES (null, @address, @addressTwo, @cityID, @postal, @phone, NOW(), 'user', NOW(), 'user')";
 
                     MySqlCommand insertAddressToTable = new MySqlCommand(insertAddress, connection);
                     insertAddressToTable.Parameters.AddWithValue("@address", address);
+                    insertAddressToTable.Parameters.AddWithValue("@addressTwo", addressTwo);
                     insertAddressToTable.Parameters.AddWithValue("@phone", phoneNumber);
-                    insertAddressToTable.Parameters.AddWithValue("@postalCode", postalCode);
+                    insertAddressToTable.Parameters.AddWithValue("@postal", postalCode);
                     insertAddressToTable.Parameters.AddWithValue("@cityID", cityID);
+                    insertAddressToTable.ExecuteNonQuery();
+
+               
 
                     ////Create query for adding customer
-                   
+
                     int addressID = (int)insertAddressToTable.LastInsertedId;
                     string insertCustomer = "INSERT INTO customer VALUES (null, @name, @addressId, '1', NOW(), 'user', NOW(), 'user')";
 
                     MySqlCommand insertCustomerToTable = new MySqlCommand(insertCustomer, connection);
                     insertCustomerToTable.Parameters.AddWithValue("@name", name);
                     insertCustomerToTable.Parameters.AddWithValue("@addressId", addressID);
+                    insertCustomerToTable.ExecuteNonQuery();
+
 
                     connection.Close();
-                    MessageBox.Show("Customer saved successfully.");
                     this.Hide();
+                    
                 }
 
                 else
@@ -124,12 +125,19 @@ namespace mschreiber_Software2_c969Project
                     MessageBox.Show("Unverified Data");
                     return;
                 }
+
+
+                //refresh the datagrid
+                MainHomePage mainHomePage = new MainHomePage();
+                mainHomePage.RefreshCustomerDataGrid();
+                mainHomePage.Show();
+
+
             }
         }
 
-        private void AddNewCustomer_Load(object sender, EventArgs e)
-        {
 
-        }
+
+
     }
 }
