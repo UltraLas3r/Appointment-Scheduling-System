@@ -18,11 +18,103 @@ namespace mschreiber_Software2_c969Project
 {
     public partial class AddNewAppointment : Form
     {
-        string connString = "server=localhost;user id=root;database=mydatabase;password=mypassword";
+        string connString = "Host=localhost;port=3306;Database=client_schedule;Username=sqlUser;Password=Passw0rd!";
+
+        private int tempCustomerId;
         public AddNewAppointment()
         {
             InitializeComponent();
             ChangeColorofButtons();
+            LoadCustomerDataGrid();
+
+            string[] choices = { "Lunch Meeting", "Scrum", "Synch Up" };
+            cb_Choices.Items.AddRange(choices);
+
+
+            string[] locations = { "Cafteria", "Boardroom A", "Lobby", "Boardroom B", "War Room" };
+            cb_Location.Items.AddRange(locations);
+
+
+
+        }
+
+        private void LoadCustomerDataGrid()
+        {
+            //select a customer from a dgv with customer and customerID. When you click on a row, it will auto fill the customer ID choice. 
+            //that customer ID choice will be read only,
+
+            MySqlConnection conn = new MySqlConnection(connString);
+
+            //string query = "SELECT customer.customerId, customer.customerName, appointment.title, appointment.description, appointment.type, appointment.start, appointment.end FROM appointment INNER JOIN customer ON customer.customerId = appointment.customerID";
+            string queryForCustomerOnly = "SELECT customerID, customerName from customer";
+
+            using (MySqlCommand cmd = new MySqlCommand(queryForCustomerOnly, conn))
+            {
+                // Create a new MySQL data adapter
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                {
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    dgv_CustomerData.DataSource = dataTable;
+                }
+            }
+
+        
+
+
+        }
+
+        private void SaveNewAppointment(object sender, EventArgs e)
+        {
+
+
+
+            string title = txt_Title.Text;
+            string selectedChoice = cb_Choices.SelectedItem.ToString();
+            string selectedLocation = cb_Location.SelectedItem.ToString();
+            string inputDate = txt_Date.Text;
+            DateTime utcDate = ConvertToUtc(inputDate);
+
+            string connectionString = "server=localhost;user id=sqlUser;password=Passw0rd!;database=client_schedule";
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
+
+            try
+            {
+                //Create new Appointment          
+                string insertAppointment = "INSERT INTO appointment VALUES(null, @customerID, '1', @title, description, @location, @type, 'not needed', url, @dateTime, @dateTime + 10, NOW(), 'user', NOW(), 'user')";
+
+                //TODO for testing only, remove when functionality is complete.
+                int customerID = 1;
+
+                MySqlCommand insertAppointmentToTable = new MySqlCommand(insertAppointment, connection);
+                insertAppointmentToTable.Parameters.AddWithValue("@customerID", customerID);
+                insertAppointmentToTable.Parameters.AddWithValue("@title", title);
+                insertAppointmentToTable.Parameters.AddWithValue("@location", selectedLocation);
+                insertAppointmentToTable.Parameters.AddWithValue("@type", selectedChoice);
+                insertAppointmentToTable.Parameters.AddWithValue("@dateTime", utcDate);
+
+                insertAppointmentToTable.ExecuteNonQuery();
+            }
+
+            catch
+            {
+                MessageBox.Show("Unverified Data");
+                return;
+            }
+
+            finally
+            {
+                MainHomePage mainHomePage = new MainHomePage();
+                mainHomePage.RefreshCustomerDataGrid();
+                mainHomePage.Show();
+            }
+        }
+        public DateTime ConvertToUtc(string inputDate)
+        {
+            DateTime date = DateTime.Parse(inputDate);
+            DateTime utcDate = date.ToUniversalTime();
+            return utcDate;
         }
 
         private void ChangeColorofButtons()
@@ -34,11 +126,11 @@ namespace mschreiber_Software2_c969Project
             hoverColorChanger.Attach(btn_Cancel);
         }
 
-            private void CancelButtonClick(object sender, EventArgs e)
+        private void CancelButtonClick(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are you sure you want to cancel? Entries will be lost", "Caption", MessageBoxButtons.OKCancel) == DialogResult.OK)
-            {  
-                this.Hide();       
+            {
+                this.Hide();
             }
 
             else
@@ -47,45 +139,7 @@ namespace mschreiber_Software2_c969Project
             }
         }
 
-        private void SaveNewAppointment(object sender, EventArgs e)
-        {
-            CheckForValidPhoneNumber();
 
-            CheckForValidAppointmentDateTime();
-
-        
-            
-        }
-
-        private void CheckForValidAppointmentDateTime()
-        {
-            DateTime localDateTime = DateTime.Parse(txt_Date.Text + " " + txt_Time.Text);
-            DateTime utcDateTime = localDateTime.ToUniversalTime();
-
-            //need to change sql to query the right table
-            string insertQuery = "INSERT INTO appointments (appointmentDateTime) VALUES (@appointmentDateTime)";
-
-            using (SqlConnection connection = new SqlConnection(connString))
-            {
-                SqlCommand command = new SqlCommand(insertQuery, connection);
-                command.Parameters.AddWithValue("@appointmentDateTime", utcDateTime);
-
-                connection.Open();
-                int rowsAffected = command.ExecuteNonQuery();
-                connection.Close();
-
-                if (rowsAffected > 0)
-                {
-                    MessageBox.Show("Appointment created successfully.");
-                }
-                else
-                {
-                    MessageBox.Show("Appointment creation failed.");
-                }
-            }
-
-
-        }
 
         public void CheckForValidPhoneNumber()
         {
@@ -100,6 +154,20 @@ namespace mschreiber_Software2_c969Project
             else
             {
                 // Phone number is valid. Do something here.
+            }
+
+        }
+
+        private void dgv_CustomerData_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgv_CustomerData.SelectedRows.Count > 0)
+            {
+                string customerID = dgv_CustomerData.SelectedRows[0].Cells[0].Value.ToString();
+                string customerName = dgv_CustomerData.SelectedRows[0].Cells[1].Value.ToString();
+
+                lbl_customerID.Text = customerID;
+                txt_CustomerName.Text = customerName;
+
             }
 
         }

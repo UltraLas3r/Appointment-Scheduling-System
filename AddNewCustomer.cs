@@ -23,6 +23,7 @@ namespace mschreiber_Software2_c969Project
             ChangeColorofButtons();
         }
 
+       
         private void ChangeColorofButtons()
         {
             //use to change the color of any button on hover
@@ -102,7 +103,7 @@ namespace mschreiber_Software2_c969Project
                     insertAddressToTable.Parameters.AddWithValue("@cityID", cityID);
                     insertAddressToTable.ExecuteNonQuery();
 
-               
+
 
                     ////Create query for adding customer
 
@@ -117,7 +118,7 @@ namespace mschreiber_Software2_c969Project
 
                     connection.Close();
                     this.Hide();
-                    
+
                 }
 
                 else
@@ -131,7 +132,6 @@ namespace mschreiber_Software2_c969Project
                 MainHomePage mainHomePage = new MainHomePage();
                 mainHomePage.RefreshCustomerDataGrid();
                 mainHomePage.Show();
-
 
             }
         }
