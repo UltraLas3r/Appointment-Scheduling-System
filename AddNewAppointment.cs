@@ -25,7 +25,7 @@ namespace mschreiber_Software2_c969Project
         {
             InitializeComponent();
             ChangeColorofButtons();
-            LoadCustomerDataGrid();
+            LoadCustomerComboBox();
 
             string[] choices = { "Lunch Meeting", "Scrum", "Synch Up" };
             cb_Choices.Items.AddRange(choices);
@@ -38,7 +38,7 @@ namespace mschreiber_Software2_c969Project
 
         }
 
-        private void LoadCustomerDataGrid()
+        private void LoadCustomerComboBox()
         {
             //select a customer from a dgv with customer and customerID. When you click on a row, it will auto fill the customer ID choice. 
             //that customer ID choice will be read only,
@@ -46,7 +46,7 @@ namespace mschreiber_Software2_c969Project
             MySqlConnection conn = new MySqlConnection(connString);
 
             //string query = "SELECT customer.customerId, customer.customerName, appointment.title, appointment.description, appointment.type, appointment.start, appointment.end FROM appointment INNER JOIN customer ON customer.customerId = appointment.customerID";
-            string queryForCustomerOnly = "SELECT customerID, customerName from customer";
+            string queryForCustomerOnly = "SELECT customerID from customer";
 
             using (MySqlCommand cmd = new MySqlCommand(queryForCustomerOnly, conn))
             {
@@ -55,25 +55,21 @@ namespace mschreiber_Software2_c969Project
                 {
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
-                    dgv_CustomerData.DataSource = dataTable;
+                    cb_CustomerID.DataSource = dataTable;
                 }
             }
-
-        
-
-
         }
 
         private void SaveNewAppointment(object sender, EventArgs e)
         {
 
-
-
             string title = txt_Title.Text;
             string selectedChoice = cb_Choices.SelectedItem.ToString();
             string selectedLocation = cb_Location.SelectedItem.ToString();
-            string inputDate = txt_Date.Text;
-            DateTime utcDate = ConvertToUtc(inputDate);
+            DateTime inputDate = DT_ScheduleAppointment.Value;
+            DateTime utcDate = TimeZoneInfo.ConvertTimeToUtc(inputDate);
+
+            DateTime endDate = TimeZoneInfo.ConvertTimeToUtc(DT_ScheduleAppointment.Value.AddMinutes(30));
 
             string connectionString = "server=localhost;user id=sqlUser;password=Passw0rd!;database=client_schedule";
             MySqlConnection connection = new MySqlConnection(connectionString);
@@ -92,7 +88,7 @@ namespace mschreiber_Software2_c969Project
                 insertAppointmentToTable.Parameters.AddWithValue("@title", title);
                 insertAppointmentToTable.Parameters.AddWithValue("@location", selectedLocation);
                 insertAppointmentToTable.Parameters.AddWithValue("@type", selectedChoice);
-                insertAppointmentToTable.Parameters.AddWithValue("@dateTime", utcDate);
+                //insertAppointmentToTable.Parameters.AddWithValue("@dateTime", utcDate);
 
                 insertAppointmentToTable.ExecuteNonQuery();
             }
@@ -106,8 +102,10 @@ namespace mschreiber_Software2_c969Project
             finally
             {
                 MainHomePage mainHomePage = new MainHomePage();
+                
                 mainHomePage.RefreshCustomerDataGrid();
                 mainHomePage.Show();
+                this.Hide();
             }
         }
         public DateTime ConvertToUtc(string inputDate)
@@ -130,7 +128,10 @@ namespace mschreiber_Software2_c969Project
         {
             if (MessageBox.Show("Are you sure you want to cancel? Entries will be lost", "Caption", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
+                MainHomePage mainHomePage = new MainHomePage();
                 this.Hide();
+
+                mainHomePage.Show();
             }
 
             else
@@ -143,32 +144,36 @@ namespace mschreiber_Software2_c969Project
 
         public void CheckForValidPhoneNumber()
         {
-            string phoneNumber = txt_Time.Text.Trim();
-            string pattern = @"^\d{10}$"; // Regular expression pattern for a 10-digit phone number
-
-            if (!Regex.IsMatch(phoneNumber, pattern))
-            {
-                //lbl_PhoneNumberValidation.Text = "Please enter a valid 10-digit phone number.";
-                //lbl_PhoneNumberValidation.Visible = true;
-            }
-            else
-            {
-                // Phone number is valid. Do something here.
-            }
+          
 
         }
 
         private void dgv_CustomerData_SelectionChanged(object sender, EventArgs e)
         {
-            if (dgv_CustomerData.SelectedRows.Count > 0)
-            {
-                string customerID = dgv_CustomerData.SelectedRows[0].Cells[0].Value.ToString();
-                string customerName = dgv_CustomerData.SelectedRows[0].Cells[1].Value.ToString();
+            //if (dgv_CustomerData.SelectedRows.Count > 0)
+            //{
+            //    string customerID = dgv_CustomerData.SelectedRows[0].Cells[0].Value.ToString();
+            //    string customerName = dgv_CustomerData.SelectedRows[1].Cells[1].Value.ToString();
 
-                lbl_customerID.Text = customerID;
-                txt_CustomerName.Text = customerName;
+            //    lbl_CustomerID.Text = customerID;
+            //    txt_CustomerName.Text = customerName;
 
-            }
+            //}
+
+        }
+
+        private void txt_Date_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AddNewAppointment_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cb_CustomerID_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
     }

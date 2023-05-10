@@ -38,6 +38,14 @@ namespace mschreiber_Software2_c969Project
 
         private void btn_SaveAppointment_Click(object sender, EventArgs e)
         {
+            DateTime inputDate = DT_ScheduleAppointment.Value;
+            DateTime utcDate = TimeZoneInfo.ConvertTimeToUtc(inputDate);
+
+            DateTime endDate = TimeZoneInfo.ConvertTimeToUtc(DT_ScheduleAppointment.Value.AddMinutes(30));
+
+
+
+
             if (true)
             {
                 CheckForValidPhoneNumber();

@@ -107,7 +107,7 @@ namespace mschreiber_Software2_c969Project
             //open the createnewappointment screen
             AddNewAppointment createNewAppointment = new AddNewAppointment();
             createNewAppointment.Show();
-            
+            this.Hide();
             
         }
         private void btn_ModifyAppointment_Click(object sender, EventArgs e)

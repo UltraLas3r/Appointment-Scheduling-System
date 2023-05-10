@@ -28,217 +28,184 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lbl_PhoneNumberValidation = new System.Windows.Forms.Label();
-            this.lbl_CustLastName = new System.Windows.Forms.Label();
-            this.txt_CustLastName = new System.Windows.Forms.TextBox();
-            this.txt_PhoneNumber = new System.Windows.Forms.TextBox();
-            this.txt_Country = new System.Windows.Forms.TextBox();
-            this.txt_City = new System.Windows.Forms.TextBox();
-            this.txt_Address = new System.Windows.Forms.TextBox();
-            this.txt_CustFirstName = new System.Windows.Forms.TextBox();
-            this.lbl_CustFirstName = new System.Windows.Forms.Label();
-            this.lbl_Country = new System.Windows.Forms.Label();
-            this.lbl_City = new System.Windows.Forms.Label();
-            this.lbl_Address = new System.Windows.Forms.Label();
-            this.lbl_PhoneNumber = new System.Windows.Forms.Label();
             this.btn_Cancel = new System.Windows.Forms.Button();
-            this.btn_SaveAppointment = new System.Windows.Forms.Button();
+            this.btn_ModifyAppointment = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.lbl_Type = new System.Windows.Forms.Label();
+            this.txt_Title = new System.Windows.Forms.TextBox();
+            this.lbl_Title = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.lbl_CustomerID = new System.Windows.Forms.Label();
+            this.txt_CustomerName = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dgv_CustomerData = new System.Windows.Forms.DataGridView();
+            this.lbl_UserMeeting = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_CustomerData)).BeginInit();
             this.SuspendLayout();
-            // 
-            // lbl_PhoneNumberValidation
-            // 
-            this.lbl_PhoneNumberValidation.AutoSize = true;
-            this.lbl_PhoneNumberValidation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.lbl_PhoneNumberValidation.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lbl_PhoneNumberValidation.Location = new System.Drawing.Point(125, 340);
-            this.lbl_PhoneNumberValidation.Name = "lbl_PhoneNumberValidation";
-            this.lbl_PhoneNumberValidation.Size = new System.Drawing.Size(334, 34);
-            this.lbl_PhoneNumberValidation.TabIndex = 29;
-            this.lbl_PhoneNumberValidation.Text = "Phone number format shoul must be numbers only. \r\nFor example, 555 555 5555";
-            this.lbl_PhoneNumberValidation.Visible = false;
-            // 
-            // lbl_CustLastName
-            // 
-            this.lbl_CustLastName.AutoSize = true;
-            this.lbl_CustLastName.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.lbl_CustLastName.Location = new System.Drawing.Point(12, 102);
-            this.lbl_CustLastName.Name = "lbl_CustLastName";
-            this.lbl_CustLastName.Size = new System.Drawing.Size(118, 23);
-            this.lbl_CustLastName.TabIndex = 28;
-            this.lbl_CustLastName.Text = "Last Name";
-            // 
-            // txt_CustLastName
-            // 
-            this.txt_CustLastName.Location = new System.Drawing.Point(183, 105);
-            this.txt_CustLastName.Name = "txt_CustLastName";
-            this.txt_CustLastName.Size = new System.Drawing.Size(313, 22);
-            this.txt_CustLastName.TabIndex = 27;
-            // 
-            // txt_PhoneNumber
-            // 
-            this.txt_PhoneNumber.Location = new System.Drawing.Point(183, 315);
-            this.txt_PhoneNumber.Name = "txt_PhoneNumber";
-            this.txt_PhoneNumber.Size = new System.Drawing.Size(313, 22);
-            this.txt_PhoneNumber.TabIndex = 26;
-            // 
-            // txt_Country
-            // 
-            this.txt_Country.Location = new System.Drawing.Point(183, 269);
-            this.txt_Country.Name = "txt_Country";
-            this.txt_Country.Size = new System.Drawing.Size(313, 22);
-            this.txt_Country.TabIndex = 25;
-            // 
-            // txt_City
-            // 
-            this.txt_City.Location = new System.Drawing.Point(183, 215);
-            this.txt_City.Name = "txt_City";
-            this.txt_City.Size = new System.Drawing.Size(313, 22);
-            this.txt_City.TabIndex = 24;
-            // 
-            // txt_Address
-            // 
-            this.txt_Address.Location = new System.Drawing.Point(183, 162);
-            this.txt_Address.Name = "txt_Address";
-            this.txt_Address.Size = new System.Drawing.Size(313, 22);
-            this.txt_Address.TabIndex = 23;
-            // 
-            // txt_CustFirstName
-            // 
-            this.txt_CustFirstName.Location = new System.Drawing.Point(183, 73);
-            this.txt_CustFirstName.Name = "txt_CustFirstName";
-            this.txt_CustFirstName.Size = new System.Drawing.Size(313, 22);
-            this.txt_CustFirstName.TabIndex = 22;
-            // 
-            // lbl_CustFirstName
-            // 
-            this.lbl_CustFirstName.AutoSize = true;
-            this.lbl_CustFirstName.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.lbl_CustFirstName.Location = new System.Drawing.Point(12, 70);
-            this.lbl_CustFirstName.Name = "lbl_CustFirstName";
-            this.lbl_CustFirstName.Size = new System.Drawing.Size(130, 23);
-            this.lbl_CustFirstName.TabIndex = 21;
-            this.lbl_CustFirstName.Text = "First Name";
-            // 
-            // lbl_Country
-            // 
-            this.lbl_Country.AutoSize = true;
-            this.lbl_Country.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.lbl_Country.Location = new System.Drawing.Point(14, 266);
-            this.lbl_Country.Name = "lbl_Country";
-            this.lbl_Country.Size = new System.Drawing.Size(94, 23);
-            this.lbl_Country.TabIndex = 20;
-            this.lbl_Country.Text = "Country";
-            // 
-            // lbl_City
-            // 
-            this.lbl_City.AutoSize = true;
-            this.lbl_City.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.lbl_City.Location = new System.Drawing.Point(14, 212);
-            this.lbl_City.Name = "lbl_City";
-            this.lbl_City.Size = new System.Drawing.Size(58, 23);
-            this.lbl_City.TabIndex = 19;
-            this.lbl_City.Text = "City";
-            // 
-            // lbl_Address
-            // 
-            this.lbl_Address.AutoSize = true;
-            this.lbl_Address.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.lbl_Address.Location = new System.Drawing.Point(14, 159);
-            this.lbl_Address.Name = "lbl_Address";
-            this.lbl_Address.Size = new System.Drawing.Size(94, 23);
-            this.lbl_Address.TabIndex = 18;
-            this.lbl_Address.Text = "Address";
-            // 
-            // lbl_PhoneNumber
-            // 
-            this.lbl_PhoneNumber.AutoSize = true;
-            this.lbl_PhoneNumber.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.lbl_PhoneNumber.Location = new System.Drawing.Point(14, 312);
-            this.lbl_PhoneNumber.Name = "lbl_PhoneNumber";
-            this.lbl_PhoneNumber.Size = new System.Drawing.Size(154, 23);
-            this.lbl_PhoneNumber.TabIndex = 17;
-            this.lbl_PhoneNumber.Text = "Phone Number";
             // 
             // btn_Cancel
             // 
             this.btn_Cancel.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.btn_Cancel.Location = new System.Drawing.Point(272, 405);
+            this.btn_Cancel.Location = new System.Drawing.Point(330, 711);
+            this.btn_Cancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_Cancel.Name = "btn_Cancel";
-            this.btn_Cancel.Size = new System.Drawing.Size(224, 75);
+            this.btn_Cancel.Size = new System.Drawing.Size(252, 94);
             this.btn_Cancel.TabIndex = 16;
             this.btn_Cancel.Text = "Cancel";
             this.btn_Cancel.UseVisualStyleBackColor = true;
             this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
             // 
-            // btn_SaveAppointment
+            // btn_ModifyAppointment
             // 
-            this.btn_SaveAppointment.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.btn_SaveAppointment.Location = new System.Drawing.Point(16, 405);
-            this.btn_SaveAppointment.Name = "btn_SaveAppointment";
-            this.btn_SaveAppointment.Size = new System.Drawing.Size(224, 75);
-            this.btn_SaveAppointment.TabIndex = 15;
-            this.btn_SaveAppointment.Text = "Create New Appointment";
-            this.btn_SaveAppointment.UseVisualStyleBackColor = true;
-            this.btn_SaveAppointment.Click += new System.EventHandler(this.btn_SaveAppointment_Click);
+            this.btn_ModifyAppointment.Font = new System.Drawing.Font("OCR A Extended", 12F);
+            this.btn_ModifyAppointment.Location = new System.Drawing.Point(19, 711);
+            this.btn_ModifyAppointment.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btn_ModifyAppointment.Name = "btn_ModifyAppointment";
+            this.btn_ModifyAppointment.Size = new System.Drawing.Size(252, 94);
+            this.btn_ModifyAppointment.TabIndex = 15;
+            this.btn_ModifyAppointment.Text = "Modify Appointment";
+            this.btn_ModifyAppointment.UseVisualStyleBackColor = true;
+            this.btn_ModifyAppointment.Click += new System.EventHandler(this.btn_SaveAppointment_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("OCR A Extended", 24F);
-            this.label1.Location = new System.Drawing.Point(9, 9);
+            this.label1.Location = new System.Drawing.Point(10, 11);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(563, 51);
+            this.label1.Size = new System.Drawing.Size(544, 50);
             this.label1.TabIndex = 32;
             this.label1.Text = "Modify Appointment";
             // 
+            // lbl_Type
+            // 
+            this.lbl_Type.AutoSize = true;
+            this.lbl_Type.Font = new System.Drawing.Font("OCR A Extended", 12F);
+            this.lbl_Type.Location = new System.Drawing.Point(33, 561);
+            this.lbl_Type.Name = "lbl_Type";
+            this.lbl_Type.Size = new System.Drawing.Size(278, 25);
+            this.lbl_Type.TabIndex = 33;
+            this.lbl_Type.Text = "Type of Appointment";
+            // 
+            // txt_Title
+            // 
+            this.txt_Title.Location = new System.Drawing.Point(19, 146);
+            this.txt_Title.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txt_Title.Name = "txt_Title";
+            this.txt_Title.Size = new System.Drawing.Size(352, 26);
+            this.txt_Title.TabIndex = 35;
+            // 
+            // lbl_Title
+            // 
+            this.lbl_Title.AutoSize = true;
+            this.lbl_Title.Font = new System.Drawing.Font("OCR A Extended", 12F);
+            this.lbl_Title.Location = new System.Drawing.Point(21, 105);
+            this.lbl_Title.Name = "lbl_Title";
+            this.lbl_Title.Size = new System.Drawing.Size(250, 25);
+            this.lbl_Title.TabIndex = 34;
+            this.lbl_Title.Text = "Appointment Title";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(31, 603);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(422, 28);
+            this.comboBox1.TabIndex = 42;
+            // 
+            // lbl_CustomerID
+            // 
+            this.lbl_CustomerID.AutoSize = true;
+            this.lbl_CustomerID.Location = new System.Drawing.Point(27, 460);
+            this.lbl_CustomerID.Name = "lbl_CustomerID";
+            this.lbl_CustomerID.Size = new System.Drawing.Size(121, 20);
+            this.lbl_CustomerID.TabIndex = 47;
+            this.lbl_CustomerID.Text = "CUSTOMER ID";
+            // 
+            // txt_CustomerName
+            // 
+            this.txt_CustomerName.Location = new System.Drawing.Point(185, 460);
+            this.txt_CustomerName.Name = "txt_CustomerName";
+            this.txt_CustomerName.ReadOnly = true;
+            this.txt_CustomerName.Size = new System.Drawing.Size(191, 26);
+            this.txt_CustomerName.TabIndex = 46;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(27, 428);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(195, 20);
+            this.label2.TabIndex = 45;
+            this.label2.Text = "Your appointment is with...";
+            // 
+            // dgv_CustomerData
+            // 
+            this.dgv_CustomerData.AllowUserToAddRows = false;
+            this.dgv_CustomerData.AllowUserToDeleteRows = false;
+            this.dgv_CustomerData.AllowUserToResizeRows = false;
+            this.dgv_CustomerData.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(222)))), ((int)(((byte)(192)))));
+            this.dgv_CustomerData.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
+            this.dgv_CustomerData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_CustomerData.Location = new System.Drawing.Point(19, 264);
+            this.dgv_CustomerData.Name = "dgv_CustomerData";
+            this.dgv_CustomerData.ReadOnly = true;
+            this.dgv_CustomerData.RowHeadersWidth = 62;
+            this.dgv_CustomerData.RowTemplate.Height = 28;
+            this.dgv_CustomerData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv_CustomerData.Size = new System.Drawing.Size(556, 144);
+            this.dgv_CustomerData.TabIndex = 44;
+            // 
+            // lbl_UserMeeting
+            // 
+            this.lbl_UserMeeting.AutoSize = true;
+            this.lbl_UserMeeting.Font = new System.Drawing.Font("OCR A Extended", 12F);
+            this.lbl_UserMeeting.Location = new System.Drawing.Point(26, 236);
+            this.lbl_UserMeeting.Name = "lbl_UserMeeting";
+            this.lbl_UserMeeting.Size = new System.Drawing.Size(404, 25);
+            this.lbl_UserMeeting.TabIndex = 43;
+            this.lbl_UserMeeting.Text = "Who is the appointment with?";
+            // 
             // ModifyAppointment
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ClientSize = new System.Drawing.Size(516, 488);
+            this.ClientSize = new System.Drawing.Size(655, 854);
+            this.Controls.Add(this.lbl_CustomerID);
+            this.Controls.Add(this.txt_CustomerName);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.dgv_CustomerData);
+            this.Controls.Add(this.lbl_UserMeeting);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.txt_Title);
+            this.Controls.Add(this.lbl_Title);
+            this.Controls.Add(this.lbl_Type);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.lbl_PhoneNumberValidation);
-            this.Controls.Add(this.lbl_CustLastName);
-            this.Controls.Add(this.txt_CustLastName);
-            this.Controls.Add(this.txt_PhoneNumber);
-            this.Controls.Add(this.txt_Country);
-            this.Controls.Add(this.txt_City);
-            this.Controls.Add(this.txt_Address);
-            this.Controls.Add(this.txt_CustFirstName);
-            this.Controls.Add(this.lbl_CustFirstName);
-            this.Controls.Add(this.lbl_Country);
-            this.Controls.Add(this.lbl_City);
-            this.Controls.Add(this.lbl_Address);
-            this.Controls.Add(this.lbl_PhoneNumber);
             this.Controls.Add(this.btn_Cancel);
-            this.Controls.Add(this.btn_SaveAppointment);
+            this.Controls.Add(this.btn_ModifyAppointment);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "ModifyAppointment";
             this.Text = "ModifyAppointment";
             this.Load += new System.EventHandler(this.ModifyAppointment_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_CustomerData)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label lbl_PhoneNumberValidation;
-        private System.Windows.Forms.Label lbl_CustLastName;
-        private System.Windows.Forms.TextBox txt_CustLastName;
-        private System.Windows.Forms.TextBox txt_PhoneNumber;
-        private System.Windows.Forms.TextBox txt_Country;
-        private System.Windows.Forms.TextBox txt_City;
-        private System.Windows.Forms.TextBox txt_Address;
-        private System.Windows.Forms.TextBox txt_CustFirstName;
-        private System.Windows.Forms.Label lbl_CustFirstName;
-        private System.Windows.Forms.Label lbl_Country;
-        private System.Windows.Forms.Label lbl_City;
-        private System.Windows.Forms.Label lbl_Address;
-        private System.Windows.Forms.Label lbl_PhoneNumber;
         private System.Windows.Forms.Button btn_Cancel;
-        private System.Windows.Forms.Button btn_SaveAppointment;
+        private System.Windows.Forms.Button btn_ModifyAppointment;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbl_Type;
+        private System.Windows.Forms.TextBox txt_Title;
+        private System.Windows.Forms.Label lbl_Title;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label lbl_CustomerID;
+        private System.Windows.Forms.TextBox txt_CustomerName;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DataGridView dgv_CustomerData;
+        private System.Windows.Forms.Label lbl_UserMeeting;
     }
 }
