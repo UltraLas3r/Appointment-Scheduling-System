@@ -20,7 +20,7 @@ namespace mschreiber_Software2_c969Project
     {
         string connString = "Host=localhost;port=3306;Database=client_schedule;Username=sqlUser;Password=Passw0rd!";
 
-        private int tempCustomerId;
+       
         public AddNewAppointment()
         {
             InitializeComponent();
@@ -40,24 +40,39 @@ namespace mschreiber_Software2_c969Project
 
         private void LoadCustomerComboBox()
         {
-            //select a customer from a dgv with customer and customerID. When you click on a row, it will auto fill the customer ID choice. 
-            //that customer ID choice will be read only,
-
             MySqlConnection conn = new MySqlConnection(connString);
+            
+            string queryForCustID = "SELECT customerID from customer";
 
-            //string query = "SELECT customer.customerId, customer.customerName, appointment.title, appointment.description, appointment.type, appointment.start, appointment.end FROM appointment INNER JOIN customer ON customer.customerId = appointment.customerID";
-            string queryForCustomerOnly = "SELECT customerID from customer";
+            MySqlCommand cmd = new MySqlCommand(queryForCustID, conn);
 
-            using (MySqlCommand cmd = new MySqlCommand(queryForCustomerOnly, conn))
+            try
             {
-                // Create a new MySQL data adapter
-                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                conn.Open();
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
                 {
-                    DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable);
-                    cb_CustomerID.DataSource = dataTable;
+                    string customerID = reader["CustomerID"].ToString();
+                    cb_CustomerID.Items.Add(customerID);
                 }
+
+                reader.Close();
             }
+
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Error: " + ex.Message);
+
+            }
+
+            finally
+            {
+                conn.Close();
+            }
+
         }
 
         private void SaveNewAppointment(object sender, EventArgs e)
@@ -67,9 +82,9 @@ namespace mschreiber_Software2_c969Project
             string selectedChoice = cb_Choices.SelectedItem.ToString();
             string selectedLocation = cb_Location.SelectedItem.ToString();
             DateTime inputDate = DT_ScheduleAppointment.Value;
-            DateTime utcDate = TimeZoneInfo.ConvertTimeToUtc(inputDate);
+            DateTime utcStartDate = TimeZoneInfo.ConvertTimeToUtc(inputDate);
 
-            DateTime endDate = TimeZoneInfo.ConvertTimeToUtc(DT_ScheduleAppointment.Value.AddMinutes(30));
+            DateTime utcEndDate = TimeZoneInfo.ConvertTimeToUtc(DT_ScheduleAppointment.Value.AddMinutes(30));
 
             string connectionString = "server=localhost;user id=sqlUser;password=Passw0rd!;database=client_schedule";
             MySqlConnection connection = new MySqlConnection(connectionString);
@@ -78,7 +93,7 @@ namespace mschreiber_Software2_c969Project
             try
             {
                 //Create new Appointment          
-                string insertAppointment = "INSERT INTO appointment VALUES(null, @customerID, '1', @title, description, @location, @type, 'not needed', url, @dateTime, @dateTime + 10, NOW(), 'user', NOW(), 'user')";
+                string insertAppointment = "INSERT INTO appointment VALUES(null, @customerID, '1', @title, description, @location, @type, @type, url, @startTime, @endTime, NOW(), 'user', NOW(), 'user')";
 
                 //TODO for testing only, remove when functionality is complete.
                 int customerID = 1;
@@ -88,8 +103,8 @@ namespace mschreiber_Software2_c969Project
                 insertAppointmentToTable.Parameters.AddWithValue("@title", title);
                 insertAppointmentToTable.Parameters.AddWithValue("@location", selectedLocation);
                 insertAppointmentToTable.Parameters.AddWithValue("@type", selectedChoice);
-                //insertAppointmentToTable.Parameters.AddWithValue("@dateTime", utcDate);
-
+                insertAppointmentToTable.Parameters.AddWithValue("@startTime", utcStartDate);
+                insertAppointmentToTable.Parameters.AddWithValue("@endTime", utcEndDate);
                 insertAppointmentToTable.ExecuteNonQuery();
             }
 

@@ -45,7 +45,7 @@
             // btn_SaveAppointment
             // 
             this.btn_SaveAppointment.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.btn_SaveAppointment.Location = new System.Drawing.Point(16, 698);
+            this.btn_SaveAppointment.Location = new System.Drawing.Point(12, 513);
             this.btn_SaveAppointment.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_SaveAppointment.Name = "btn_SaveAppointment";
             this.btn_SaveAppointment.Size = new System.Drawing.Size(252, 94);
@@ -57,7 +57,7 @@
             // btn_Cancel
             // 
             this.btn_Cancel.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.btn_Cancel.Location = new System.Drawing.Point(291, 698);
+            this.btn_Cancel.Location = new System.Drawing.Point(297, 513);
             this.btn_Cancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.Size = new System.Drawing.Size(252, 94);
@@ -165,7 +165,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ClientSize = new System.Drawing.Size(603, 825);
+            this.ClientSize = new System.Drawing.Size(603, 626);
             this.Controls.Add(this.cb_CustomerID);
             this.Controls.Add(this.DT_ScheduleAppointment);
             this.Controls.Add(this.lbl_UserMeeting);

@@ -21,27 +21,12 @@ namespace mschreiber_Software2_c969Project
            
         }
 
-        private void ModifyAppointment_Load(object sender, EventArgs e)
-        {
-            txt_PhoneNumber.Text = "ex: 555 555 5555";
-        }
-        private void txt_PhoneNumber_GotFocus(object sender, EventArgs e)
-        {
-            if (txt_PhoneNumber.Text == "ex: 555 555 5555")
-            {
-                txt_PhoneNumber.Text = "";
-                txt_PhoneNumber.ForeColor = SystemColors.WindowText;
-            }
-        }
-
-      
-
         private void btn_SaveAppointment_Click(object sender, EventArgs e)
         {
-            DateTime inputDate = DT_ScheduleAppointment.Value;
-            DateTime utcDate = TimeZoneInfo.ConvertTimeToUtc(inputDate);
+            //DateTime inputDate = DT_ScheduleAppointment.Value;
+           // DateTime utcDate = TimeZoneInfo.ConvertTimeToUtc(inputDate);
 
-            DateTime endDate = TimeZoneInfo.ConvertTimeToUtc(DT_ScheduleAppointment.Value.AddMinutes(30));
+            //DateTime endDate = TimeZoneInfo.ConvertTimeToUtc(DT_ScheduleAppointment.Value.AddMinutes(30));
 
 
 
@@ -57,20 +42,22 @@ namespace mschreiber_Software2_c969Project
             }
         }
 
+        
         public void CheckForValidPhoneNumber()
         {
-            string phoneNumber = txt_PhoneNumber.Text.Trim();
-            string pattern = @"^\d{10}$"; // Regular expression pattern for a 10-digit phone number
+            //todo DELETE THIS OR USE IT FOR MODIFY CUSTOMER
+            //string phoneNumber = txt_PhoneNumber.Text.Trim();
+            //string pattern = @"^\d{10}$"; // Regular expression pattern for a 10-digit phone number
 
-            if (!Regex.IsMatch(phoneNumber, pattern))
-            {
-                lbl_PhoneNumberValidation.Text = "Please enter a valid 10-digit phone number.";
-                lbl_PhoneNumberValidation.Visible = true;
-            }
-            else
-            {
-                // Phone number is valid. Do something here.
-            }
+            //if (!Regex.IsMatch(phoneNumber, pattern))
+            //{
+            //    lbl_PhoneNumberValidation.Text = "Please enter a valid 10-digit phone number.";
+            //    lbl_PhoneNumberValidation.Visible = true;
+            //}
+            //else
+            //{
+            //    // Phone number is valid. Do something here.
+            //}
 
         }
 

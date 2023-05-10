@@ -187,7 +187,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "ModifyAppointment";
             this.Text = "ModifyAppointment";
-            this.Load += new System.EventHandler(this.ModifyAppointment_Load);
+           
             ((System.ComponentModel.ISupportInitialize)(this.dgv_CustomerData)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
