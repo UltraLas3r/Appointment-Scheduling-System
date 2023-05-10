@@ -56,6 +56,7 @@
             this.btn_Close.TabIndex = 3;
             this.btn_Close.Text = "Close Menu";
             this.btn_Close.UseVisualStyleBackColor = true;
+            this.btn_Close.Click += new System.EventHandler(this.btn_Close_Click);
             // 
             // lbl_Header
             // 
@@ -91,7 +92,6 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "UpcomingAlert";
             this.Text = "Upcoming Appointment Reminder";
-           
             ((System.ComponentModel.ISupportInitialize)(this.dgv_warning)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -49,7 +49,7 @@ namespace mschreiber_Software2_c969Project
         public void FirstAppointmentView()
         {
             //todo this isnt loading right?
-            string getAppointment = "SELECT title, location, type, start, end FROM appointment";
+            string getAppointment = "SELECT appointmentID, title, location, type, start, end FROM appointment";
 
             MySqlConnection conn = new MySqlConnection(connString);
 
@@ -123,7 +123,7 @@ namespace mschreiber_Software2_c969Project
 
             else
             {
-                var tempAppointment = (Appointment)dgv_AppointmentGrid.CurrentRow.DataBoundItem;
+                var tempAppointment = (HandleAppointment)dgv_AppointmentGrid.CurrentRow.DataBoundItem;
 
                 //modifyAppointment modifyAppointment = new modifyAppointment(tempAppointment, appointmentID);
                 //modifyAppointment.Show();
@@ -170,19 +170,36 @@ namespace mschreiber_Software2_c969Project
         {
             //Remove entry from the appointment DGV
             DialogResult result = MessageBox.Show("Are you sure you want to delete this item?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
+            if (result == DialogResult.Yes && dgv_AppointmentGrid.SelectedRows.Count > 0)
             {
-                foreach (DataGridViewRow row in dgv_AppointmentGrid.SelectedRows)
-                {
-                    dgv_AppointmentGrid.Rows.RemoveAt(row.Index);
-                }
+                DataGridViewRow selectedRow = dgv_AppointmentGrid.SelectedRows[0];
+                string appointmentID = selectedRow.Cells["appointmentId"].Value.ToString();
+
+                //remove the row from the DGV
+                dgv_AppointmentGrid.Rows.Remove(selectedRow);
+
+                //delete the entry from the database
+                DeleteAppointment(appointmentID);
             }
+        }
+
+        private void DeleteAppointment(string appointmentID)
+        {
+            MySqlConnection conn = new MySqlConnection(connString);
+            string deleteQuery = "DELETE FROM appointment WHERE appointmentID = @appointmentID";
+            conn.Open();
+            MySqlCommand deleteCommand = new MySqlCommand(deleteQuery, conn);
+
+            deleteCommand.Parameters.AddWithValue("@appointmentID", appointmentID);
+            deleteCommand.ExecuteNonQuery();
+            
+
         }
         private void rb_ViewAll_CheckedChanged(object sender, EventArgs e)
         {
             MySqlConnection conn = new MySqlConnection(connString);
 
-            string query = "SELECT title, location, type, start, end FROM appointment";
+            string query = "SELECT appointmentID, title, location, type, start, end FROM appointment";
 
             using (MySqlCommand cmd = new MySqlCommand(query, conn))
             {
@@ -212,7 +229,6 @@ namespace mschreiber_Software2_c969Project
                 }
             }
         }
-
         private void ViewThisMonthRadioButton(object sender, EventArgs e)
         {     
             MySqlConnection conn = new MySqlConnection(connString);
@@ -230,7 +246,6 @@ namespace mschreiber_Software2_c969Project
                 }
             }
         }
-
         public void DGV_CustomerContentLoad()
         {
             MySqlConnection conn = new MySqlConnection(connString);
@@ -264,7 +279,6 @@ namespace mschreiber_Software2_c969Project
             hoverColorChanger.Attach(btn_ModifyAppointment);
             hoverColorChanger.Attach(btn_Exit);
         }
-
         private void btn_DeleteCustomer_Click(object sender, EventArgs e)
         {
             
@@ -278,8 +292,7 @@ namespace mschreiber_Software2_c969Project
                 }
             }
         }
-
-        private void btn_ref_Click(object sender, EventArgs e)
+        private void btn_GetCustomerInfo_Click(object sender, EventArgs e)
         {
             MySqlConnection conn = new MySqlConnection(connString);
 
@@ -296,7 +309,6 @@ namespace mschreiber_Software2_c969Project
                 }
             }
         }
-
         private void btn_AllCustomers_Click(object sender, EventArgs e)
         {
             DGV_CustomerContentLoad();

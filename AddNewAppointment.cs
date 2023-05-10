@@ -30,12 +30,8 @@ namespace mschreiber_Software2_c969Project
             string[] choices = { "Lunch Meeting", "Scrum", "Synch Up" };
             cb_Choices.Items.AddRange(choices);
 
-
             string[] locations = { "Cafteria", "Boardroom A", "Lobby", "Boardroom B", "War Room" };
             cb_Location.Items.AddRange(locations);
-
-
-
         }
 
         private void LoadCustomerComboBox()
@@ -63,7 +59,6 @@ namespace mschreiber_Software2_c969Project
 
             catch (Exception ex)
             {
-
                 MessageBox.Show("Error: " + ex.Message);
 
             }
@@ -72,7 +67,6 @@ namespace mschreiber_Software2_c969Project
             {
                 conn.Close();
             }
-
         }
 
         private void SaveNewAppointment(object sender, EventArgs e)

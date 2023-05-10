@@ -387,7 +387,7 @@
             this.btn_ViewCustomersWithAppointments.TabIndex = 16;
             this.btn_ViewCustomersWithAppointments.Text = "Customers With Appointments";
             this.btn_ViewCustomersWithAppointments.UseVisualStyleBackColor = true;
-            this.btn_ViewCustomersWithAppointments.Click += new System.EventHandler(this.btn_ref_Click);
+            this.btn_ViewCustomersWithAppointments.Click += new System.EventHandler(this.btn_GetCustomerInfo_Click);
             // 
             // btn_AllCustomers
             // 

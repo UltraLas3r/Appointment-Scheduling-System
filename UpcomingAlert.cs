@@ -55,5 +55,10 @@ namespace mschreiber_Software2_c969Project
             //point datagridview to the data source
             dgv_warning.DataSource = dataTable;
         }
+
+        private void btn_Close_Click(object sender, EventArgs e)
+        {
+            //DELETE the dummy appointment 
+        }
     }
 }

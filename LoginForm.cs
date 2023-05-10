@@ -78,6 +78,14 @@ namespace mschreiber_Software2_c969Project
                 this.Hide();
                 mainHomePage.Show();
             }
+
+            CreateDummyUpcomingAppointment();
+        }
+
+        private void CreateDummyUpcomingAppointment()
+        {
+            //create an appointment that exists within 15 minutes of the current local time.
+            //this should trigger the upcomming appointment window 
         }
 
         private void CheckPassword()
