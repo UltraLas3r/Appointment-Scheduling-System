@@ -17,14 +17,14 @@ namespace mschreiber_Software2_c969Project
 {
     public partial class MainHomePage : Form
     {
-        
+        bool upcomingAppointment;
         DataTable appointmentList = new DataTable();
         string connString = "Host=localhost;port=3306;Database=client_schedule;Username=sqlUser;Password=Passw0rd!";
         public MainHomePage()
         {
             InitializeComponent();
             ChangeColorofButtons();
-            CheckForUpcoming();
+            
             DGV_CustomerContentLoad();
             FirstAppointmentView();
           
@@ -37,6 +37,12 @@ namespace mschreiber_Software2_c969Project
 
             string constr = ConfigurationManager.ConnectionStrings["localdb"].ConnectionString;
             this.ActiveControl = txt_AppointmentSearch;
+
+            if (upcomingAppointment = true)
+            {
+                CheckForUpcoming();
+            }
+
 
         }
 
@@ -93,9 +99,8 @@ namespace mschreiber_Software2_c969Project
 
         private void CheckForUpcoming()
         {
-            //check for upcoming appointments in the database, if they exist within 15 minutes of the current time
-            // open the UpcomingAlert window
-
+            
+                //SELECT * FROM appointment WHERE start >= NOW() AND start <= DATE_ADD(NOW(), INTERVAL 15 MINUTE)
         }
         private void ViewAppointmentsButton_Click(object sender, EventArgs e)
         {
@@ -188,12 +193,11 @@ namespace mschreiber_Software2_c969Project
             MySqlConnection conn = new MySqlConnection(connString);
             string deleteQuery = "DELETE FROM appointment WHERE appointmentID = @appointmentID";
             conn.Open();
+
             MySqlCommand deleteCommand = new MySqlCommand(deleteQuery, conn);
 
             deleteCommand.Parameters.AddWithValue("@appointmentID", appointmentID);
             deleteCommand.ExecuteNonQuery();
-            
-
         }
         private void rb_ViewAll_CheckedChanged(object sender, EventArgs e)
         {

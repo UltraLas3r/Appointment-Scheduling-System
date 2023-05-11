@@ -56,9 +56,19 @@ namespace mschreiber_Software2_c969Project
             dgv_warning.DataSource = dataTable;
         }
 
-        private void btn_Close_Click(object sender, EventArgs e)
+        private void btn_Close_Click(string dummyAppointmentID)
         {
             //DELETE the dummy appointment 
+            MySqlConnection conn = new MySqlConnection(connString);
+            string deleteQuery = "DELETE FROM appointment WHERE appointmentID = @appointmentID";
+            conn.Open();
+
+            MySqlCommand deleteCommand = new MySqlCommand(deleteQuery, conn);
+
+            deleteCommand.Parameters.AddWithValue("@appointmentID", dummyAppointmentID);
+            deleteCommand.ExecuteNonQuery();
         }
+
+  
     }
 }

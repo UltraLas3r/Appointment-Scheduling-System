@@ -56,7 +56,7 @@
             this.btn_Close.TabIndex = 3;
             this.btn_Close.Text = "Close Menu";
             this.btn_Close.UseVisualStyleBackColor = true;
-            this.btn_Close.Click += new System.EventHandler(this.btn_Close_Click);
+            
             // 
             // lbl_Header
             // 

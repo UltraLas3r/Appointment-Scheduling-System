@@ -20,7 +20,6 @@ namespace mschreiber_Software2_c969Project
     {
         string connString = "Host=localhost;port=3306;Database=client_schedule;Username=sqlUser;Password=Passw0rd!";
 
-       
         public AddNewAppointment()
         {
             InitializeComponent();
@@ -149,14 +148,6 @@ namespace mschreiber_Software2_c969Project
             }
         }
 
-
-
-        public void CheckForValidPhoneNumber()
-        {
-          
-
-        }
-
         private void dgv_CustomerData_SelectionChanged(object sender, EventArgs e)
         {
             //if (dgv_CustomerData.SelectedRows.Count > 0)
@@ -171,19 +162,6 @@ namespace mschreiber_Software2_c969Project
 
         }
 
-        private void txt_Date_TextChanged(object sender, EventArgs e)
-        {
 
-        }
-
-        private void AddNewAppointment_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cb_CustomerID_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

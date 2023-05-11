@@ -77,6 +77,7 @@ namespace mschreiber_Software2_c969Project
 
                 this.Hide();
                 mainHomePage.Show();
+
             }
 
             CreateDummyUpcomingAppointment();
@@ -84,8 +85,46 @@ namespace mschreiber_Software2_c969Project
 
         private void CreateDummyUpcomingAppointment()
         {
-            //create an appointment that exists within 15 minutes of the current local time.
-            //this should trigger the upcomming appointment window 
+            string connectionString = "server=localhost;user id=sqlUser;password=Passw0rd!;database=client_schedule";
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
+
+            int dummyAppointmentID = 333;
+            int customerID = 444;
+            string title = "not needed";
+            string location = "local db";
+            string choice = "user choice";
+
+
+            //todo fix this date time conversion to make an appointment in 10 mins so the upcoming alert triggers
+            DateTime inputDate = DateTime.Now;
+            DateTime utcStartDate = TimeZoneInfo.ConvertTimeToUtc(inputDate.AddMinutes(5));
+            DateTime utcEndDate = TimeZoneInfo.ConvertTimeToUtc(inputDate.AddMinutes(20));
+
+            try
+            {
+                //Create new Appointment          
+                string insertAppointment = "INSERT INTO appointment VALUES(@dummyAppointmentID, @customerID, '1', @title, description, @location, @type, @type, url, @startTime, @endTime, NOW(), 'user', NOW(), 'user')";
+
+                //TODO for testing only, remove when functionality is complete.
+
+                MySqlCommand insertAppointmentToTable = new MySqlCommand(insertAppointment, connection);
+                insertAppointmentToTable.Parameters.AddWithValue("@dummyAppointmentID", dummyAppointmentID);
+                insertAppointmentToTable.Parameters.AddWithValue("@customerID", customerID);
+                insertAppointmentToTable.Parameters.AddWithValue("@title", title);
+                insertAppointmentToTable.Parameters.AddWithValue("@location", location);
+                insertAppointmentToTable.Parameters.AddWithValue("@type", choice);
+                insertAppointmentToTable.Parameters.AddWithValue("@startTime", utcStartDate);
+                insertAppointmentToTable.Parameters.AddWithValue("@endTime", utcEndDate);
+                insertAppointmentToTable.ExecuteNonQuery();
+            }
+            catch
+            {
+                MessageBox.Show("error");
+                    return;
+            }
+
+
         }
 
         private void CheckPassword()
