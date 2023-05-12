@@ -103,8 +103,6 @@ namespace mschreiber_Software2_c969Project
                     insertAddressToTable.Parameters.AddWithValue("@cityID", cityID);
                     insertAddressToTable.ExecuteNonQuery();
 
-
-
                     ////Create query for adding customer
 
                     int addressID = (int)insertAddressToTable.LastInsertedId;

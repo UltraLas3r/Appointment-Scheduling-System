@@ -158,7 +158,7 @@
             this.cb_CustomerID.Name = "cb_CustomerID";
             this.cb_CustomerID.Size = new System.Drawing.Size(266, 28);
             this.cb_CustomerID.TabIndex = 42;
-            this.cb_CustomerID.SelectedIndexChanged += new System.EventHandler(this.cb_CustomerID_SelectedIndexChanged);
+           // this.cb_CustomerID.SelectedIndexChanged += new System.EventHandler(this.cb_CustomerID_SelectedIndexChanged);
             // 
             // AddNewAppointment
             // 
@@ -181,7 +181,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "AddNewAppointment";
             this.Text = "Create New Appointment";
-            this.Load += new System.EventHandler(this.AddNewAppointment_Load);
+           // this.Load += new System.EventHandler(this.AddNewAppointment_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

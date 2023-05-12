@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Globalization;
 using mschreiber_Software2_c969Project.Model;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace mschreiber_Software2_c969Project
 {
@@ -62,6 +63,7 @@ namespace mschreiber_Software2_c969Project
 
         private void LoginClick(object sender, EventArgs e)
         {
+            bool dummyAppointmentMade = false;
             CheckUserName();
             CheckPassword();
             //get connection string and connect 
@@ -76,18 +78,27 @@ namespace mschreiber_Software2_c969Project
                 LogUserActivity.ActivateLog(userName);
 
                 this.Hide();
-                mainHomePage.Show();
+                CreateDummyUpcomingAppointment();
+                dummyAppointmentMade = true;
 
             }
 
-            CreateDummyUpcomingAppointment();
+            if (dummyAppointmentMade == true)
+            {
+                mainHomePage.Show();
+            }
+
+            if (nameFound == false || passFound == false)
+            {
+                LogUserActivity.ActivateLog("INVALID LOGIN ATTEMPT " + loginName + loginPassword);
+            }
+
+            
         }
 
         private void CreateDummyUpcomingAppointment()
         {
-            string connectionString = "server=localhost;user id=sqlUser;password=Passw0rd!;database=client_schedule";
-            MySqlConnection connection = new MySqlConnection(connectionString);
-            connection.Open();
+           
 
             int dummyAppointmentID = 333;
             int customerID = 444;
@@ -100,6 +111,12 @@ namespace mschreiber_Software2_c969Project
             DateTime inputDate = DateTime.Now;
             DateTime utcStartDate = TimeZoneInfo.ConvertTimeToUtc(inputDate.AddMinutes(5));
             DateTime utcEndDate = TimeZoneInfo.ConvertTimeToUtc(inputDate.AddMinutes(20));
+
+
+            string connectionString = "server=localhost;user id=sqlUser;password=Passw0rd!;database=client_schedule";
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
+
 
             try
             {
