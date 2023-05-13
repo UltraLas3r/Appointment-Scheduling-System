@@ -102,12 +102,14 @@ namespace mschreiber_Software2_c969Project
             DateTime end = DateTime.UtcNow.AddMinutes(15);
             
 
-            string userNameFromTB = txt_LoginName.Text.Trim();
+            string userNameFromLogin = txt_LoginName.Text.Trim();
 
             string getUserId = "SELECT userID FROM user where userName = @userName";
 
             MySqlCommand cmd = new MySqlCommand(getUserId, conn);
-            cmd.Parameters.AddWithValue("@userName", userNameFromTB);
+            conn.Open();
+
+            cmd.Parameters.AddWithValue("@userName", userNameFromLogin);
 
             Object obj = cmd.ExecuteScalar();
             
@@ -128,7 +130,7 @@ namespace mschreiber_Software2_c969Project
 
             if (dataTable.Rows.Count > 0)
             {
-                MessageBox.Show("There is less than 15 minutes until your next appointmentment");
+                MessageBox.Show("There is an appointment within 15 minutes");
             }
 
         }
