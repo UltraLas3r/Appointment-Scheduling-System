@@ -56,7 +56,6 @@
             this.btn_Close.TabIndex = 3;
             this.btn_Close.Text = "Close Menu";
             this.btn_Close.UseVisualStyleBackColor = true;
-            
             // 
             // lbl_Header
             // 
@@ -84,7 +83,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ClientSize = new System.Drawing.Size(900, 562);
+            this.ClientSize = new System.Drawing.Size(976, 562);
             this.Controls.Add(this.lbl_Warning);
             this.Controls.Add(this.lbl_Header);
             this.Controls.Add(this.btn_Close);

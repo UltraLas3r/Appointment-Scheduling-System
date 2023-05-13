@@ -410,7 +410,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "MainHomePage";
             this.Text = "Appointment Tracker Home";
-            this.Load += new System.EventHandler(this.MainHomePage_Load);
+            
             ((System.ComponentModel.ISupportInitialize)(this.dgv_AppointmentGrid)).EndInit();
             this.tab_Appointment.ResumeLayout(false);
             this.Appointments.ResumeLayout(false);

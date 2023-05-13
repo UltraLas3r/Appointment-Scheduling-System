@@ -67,10 +67,9 @@ namespace mschreiber_Software2_c969Project
                 conn.Close();
             }
         }
-
         private void SaveNewAppointment(object sender, EventArgs e)
         {
-
+            string contact = "not needed";
             string title = txt_Title.Text;
             string selectedChoice = cb_Choices.SelectedItem.ToString();
             string selectedLocation = cb_Location.SelectedItem.ToString();
@@ -86,7 +85,7 @@ namespace mschreiber_Software2_c969Project
             try
             {
                 //Create new Appointment          
-                string insertAppointment = "INSERT INTO appointment VALUES(null, @customerID, '1', @title, description, @location, @type, @type, url, @startTime, @endTime, NOW(), 'user', NOW(), 'user')";
+                string insertAppointment = "INSERT INTO appointment VALUES(null, @customerID, '1', @title, description, @location, @contact, @type, url, @startTime, @endTime, NOW(), 'user', NOW(), 'user')";
 
                 //TODO for testing only, remove when functionality is complete.
                 int customerID = 1;
@@ -95,6 +94,7 @@ namespace mschreiber_Software2_c969Project
                 insertAppointmentToTable.Parameters.AddWithValue("@customerID", customerID);
                 insertAppointmentToTable.Parameters.AddWithValue("@title", title);
                 insertAppointmentToTable.Parameters.AddWithValue("@location", selectedLocation);
+                insertAppointmentToTable.Parameters.AddWithValue("@contact", contact);
                 insertAppointmentToTable.Parameters.AddWithValue("@type", selectedChoice);
                 insertAppointmentToTable.Parameters.AddWithValue("@startTime", utcStartDate);
                 insertAppointmentToTable.Parameters.AddWithValue("@endTime", utcEndDate);
