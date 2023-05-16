@@ -49,8 +49,7 @@ namespace mschreiber_Software2_c969Project.Model
                 File.WriteAllText(logFilePath, logMessage + Environment.NewLine);
             }
 
-            //if (logFileExists && LoginError == true ) 
-            //{ File.AppendAllText(logFilePath, ErrorlogMessage + Environment.NewLine); }
+          
         }
     }
 }
