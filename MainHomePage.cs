@@ -17,7 +17,7 @@ namespace mschreiber_Software2_c969Project
 {
     public partial class MainHomePage : Form
     {
-       
+        bool isDataGridEmpty = false;
         DataTable appointmentList = new DataTable();
         string connString = "Host=localhost;port=3306;Database=client_schedule;Username=sqlUser;Password=Passw0rd!";
         public MainHomePage()
@@ -245,8 +245,7 @@ namespace mschreiber_Software2_c969Project
         }
         private void btn_DeleteCustomer_Click(object sender, EventArgs e)
         {
-            
-
+            //TODO - this needs to work CORRECTLY... currently only deleteing the DGV entry. this needs to go and remove the right stuff from the DB
             DialogResult result = MessageBox.Show("Are you sure you want to delete this customer?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
@@ -276,6 +275,97 @@ namespace mschreiber_Software2_c969Project
         private void btn_AllCustomers_Click(object sender, EventArgs e)
         {
             DGV_CustomerContentLoad();
+        }
+
+        private void GenerateMonthlyReport(object sender, EventArgs e)
+        {
+            MySqlConnection conn = new MySqlConnection(connString);
+
+            
+            if (dgv_Reports.RowCount == 0)
+            {
+                //what appointments exist for the next 30 days?
+                string MonthlyReportQuery = "SELECT title, location, type, start, end FROM appointment WHERE start BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 30 DAY);";
+                
+                using (MySqlCommand cmd = new MySqlCommand(MonthlyReportQuery, conn))
+                {
+                    // Create a new MySQL data adapter
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                    {
+                        DataTable dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+                        dgv_Reports.DataSource = dataTable;
+                    }
+                }
+            }
+            else
+            {
+                dgv_Reports.Rows.Clear();
+                dgv_Reports.Columns.Clear();
+            }
+
+            conn.Close();
+        }
+
+        private void GenerateConsultantReport(object sender, EventArgs e)
+        {
+            MySqlConnection conn = new MySqlConnection(connString);
+
+
+            if (dgv_Reports.RowCount == 0)
+            {
+                //this is the users table
+                string ConsultantReport = "";
+
+                using (MySqlCommand cmd = new MySqlCommand(ConsultantReport, conn))
+                {
+                    // Create a new MySQL data adapter
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                    {
+                        DataTable dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+                        dgv_Reports.DataSource = dataTable;
+                    }
+                }
+            }
+            else
+            {
+                dgv_Reports.Rows.Clear();
+                dgv_Reports.Columns.Clear();
+            }
+
+            conn.Close();
+
+        }
+
+        private void GenerateCustomerList(object sender, EventArgs e)
+        {
+            MySqlConnection conn = new MySqlConnection(connString);
+
+
+            if (dgv_Reports.RowCount == 0)
+            {
+                //get customer name, address, phone number
+                string CustomerInformationReport = "";
+
+                using (MySqlCommand cmd = new MySqlCommand(CustomerInformationReport, conn))
+                {
+                    // Create a new MySQL data adapter
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                    {
+                        DataTable dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+                        dgv_Reports.DataSource = dataTable;
+                    }
+                }
+            }
+            else
+            {
+                dgv_Reports.Rows.Clear();
+                dgv_Reports.Columns.Clear();
+            }
+
+            conn.Close();
         }
     }
 }

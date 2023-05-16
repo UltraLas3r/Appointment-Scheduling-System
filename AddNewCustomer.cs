@@ -49,8 +49,10 @@ namespace mschreiber_Software2_c969Project
 
         private void btn_SaveNewCustomer_Click(object sender, EventArgs e)
         {
+
+            
             if (txt_CustomerName.Text.Length >= 1)
-            {                   
+            {             
                 string name = txt_CustomerName.Text;
                 string address =  txt_Address.Text;
                 string addressTwo = "null";
@@ -58,7 +60,7 @@ namespace mschreiber_Software2_c969Project
                 string country = txt_Country.Text;
                 string phoneNumber = txt_PhoneNumber.Text.ToString();
                 string postalCode = txt_PostalCode.Text.ToString();
-
+ 
                 string message = "\nPlease Verify that the following information is accurate: "
                     + "\nName: " + name
                     + "\nAddress: " + address
@@ -71,8 +73,10 @@ namespace mschreiber_Software2_c969Project
                 
                 if (result == DialogResult.Yes)
                 {
+
                     string connectionString = "server=localhost;user id=sqlUser;password=Passw0rd!;database=client_schedule";
                     MySqlConnection connection = new MySqlConnection(connectionString);
+                    
                     connection.Open();
 
                     //Create query for country           
@@ -113,10 +117,8 @@ namespace mschreiber_Software2_c969Project
                     insertCustomerToTable.Parameters.AddWithValue("@addressId", addressID);
                     insertCustomerToTable.ExecuteNonQuery();
 
-
                     connection.Close();
                     this.Hide();
-
                 }
 
                 else
@@ -124,7 +126,6 @@ namespace mschreiber_Software2_c969Project
                     MessageBox.Show("Unverified Data");
                     return;
                 }
-
 
                 //refresh the datagrid
                 MainHomePage mainHomePage = new MainHomePage();
