@@ -60,12 +60,13 @@ namespace mschreiber_Software2_c969Project
 
             this.ActiveControl = txt_LoginName;
         }
-
+                
         private void LoginClick(object sender, EventArgs e)
         {
-            bool dummyAppointmentMade = false;
+           
             CheckUserName();
             CheckPassword();
+            
             //get connection string and connect 
             string loginName = txt_LoginName.Text.Trim();
             string loginPassword = txt_LoginPass.Text;
@@ -78,15 +79,12 @@ namespace mschreiber_Software2_c969Project
                 LogUserActivity.ActivateLog(userName);
 
                 this.Hide();
-                CreateDummyUpcomingAppointment();
-                dummyAppointmentMade = true;
-
-            }
-
-            if (dummyAppointmentMade == true)
-            {
                 mainHomePage.Show();
+                CheckForUpcoming();
+
             }
+
+        
 
             if (nameFound == false || passFound == false)
             {
@@ -96,53 +94,47 @@ namespace mschreiber_Software2_c969Project
             
         }
 
-        private void CreateDummyUpcomingAppointment()
+        private void CheckForUpcoming()
         {
+            MySqlConnection conn = new MySqlConnection(connString);
+
+            DateTime start = DateTime.UtcNow;
+            DateTime end = DateTime.UtcNow.AddMinutes(15);
+            
+
+            string userNameFromLogin = txt_LoginName.Text.Trim();
+
+            string getUserId = "SELECT userID FROM user where userName = @userName";
+
+            MySqlCommand cmd = new MySqlCommand(getUserId, conn);
+            conn.Open();
+
+            cmd.Parameters.AddWithValue("@userName", userNameFromLogin);
+
+            Object obj = cmd.ExecuteScalar();
+            
+
+            int userIdfromSQL = Convert.ToInt32(obj.ToString());
+
+            //fill data table for 15 minutes
+            string getAppointment = "SELECT * FROM appointment WHERE UserId = @userId AND start BETWEEN @start AND @end;";
            
+            MySqlCommand cmdApp15 = new MySqlCommand(getAppointment, conn);
 
-            int dummyAppointmentID = 333;
-            int customerID = 444;
-            string title = "not needed";
-            string location = "local db";
-            string choice = "user choice";
+            DataTable dataTable = new DataTable();
+            cmdApp15.Parameters.AddWithValue("@userId", userIdfromSQL);
+            cmdApp15.Parameters.AddWithValue("@start", start);
+            cmdApp15.Parameters.AddWithValue("@end", end);
 
+            int adapter = new MySqlDataAdapter(cmdApp15).Fill(dataTable);
 
-            //todo fix this date time conversion to make an appointment in 10 mins so the upcoming alert triggers
-            DateTime inputDate = DateTime.Now;
-            DateTime utcStartDate = TimeZoneInfo.ConvertTimeToUtc(inputDate.AddMinutes(5));
-            DateTime utcEndDate = TimeZoneInfo.ConvertTimeToUtc(inputDate.AddMinutes(20));
-
-
-            string connectionString = "server=localhost;user id=sqlUser;password=Passw0rd!;database=client_schedule";
-            MySqlConnection connection = new MySqlConnection(connectionString);
-            connection.Open();
-
-
-            try
+            if (dataTable.Rows.Count > 0)
             {
-                //Create new Appointment          
-                string insertAppointment = "INSERT INTO appointment VALUES(@dummyAppointmentID, @customerID, '1', @title, description, @location, @type, @type, url, @startTime, @endTime, NOW(), 'user', NOW(), 'user')";
-
-                //TODO for testing only, remove when functionality is complete.
-
-                MySqlCommand insertAppointmentToTable = new MySqlCommand(insertAppointment, connection);
-                insertAppointmentToTable.Parameters.AddWithValue("@dummyAppointmentID", dummyAppointmentID);
-                insertAppointmentToTable.Parameters.AddWithValue("@customerID", customerID);
-                insertAppointmentToTable.Parameters.AddWithValue("@title", title);
-                insertAppointmentToTable.Parameters.AddWithValue("@location", location);
-                insertAppointmentToTable.Parameters.AddWithValue("@type", choice);
-                insertAppointmentToTable.Parameters.AddWithValue("@startTime", utcStartDate);
-                insertAppointmentToTable.Parameters.AddWithValue("@endTime", utcEndDate);
-                insertAppointmentToTable.ExecuteNonQuery();
+                MessageBox.Show("There is an appointment within 15 minutes");
             }
-            catch
-            {
-                MessageBox.Show("error");
-                    return;
-            }
-
 
         }
+
 
         private void CheckPassword()
         {
@@ -184,31 +176,6 @@ namespace mschreiber_Software2_c969Project
             }
             //the use of a lambda in the above expression simplifies iterating through
             //the list of passwords in the database. 
-
-
-            //DELETE THE COMMENTED CODE BELOW, AFTER CHECKING IF THE ABOVE LAMBDA WORKS
-
-            //foreach (string password in passwords)
-            //{
-            //    if (txt_LoginPass.Text.Trim() == password)
-            //    {
-            //        passFound = true;
-            //        lbl_InvalidCredentials.Hide();
-            //        lbl_ValidCredentialSpanish.Hide();
-            //    }
-            //    else
-            //    {
-            //        if (currentCulture == "en")
-            //        {
-            //            lbl_InvalidCredentials.Text = "Invalid Password";
-            //            lbl_InvalidCredentials.Show();
-            //        }
-            //        else
-            //        {
-            //            lbl_InvalidCredentials.Text = "Contraseña no válida";
-            //            lbl_ValidCredentialSpanish.Show();
-            //        }
-            //    }
 
             if (currentCulture == "es")
             {
@@ -252,26 +219,6 @@ namespace mschreiber_Software2_c969Project
 
         //the use of a lambda in the above expression simplifies iterating through
         //the list of usernames in the database. 
-
-
-        //DELETE THE COMMENTED CODE BELOW, AFTER CHECKING IF THE ABOVE LAMBDA WORKS
-        //foreach (string name in userNames)
-        //{
-        //    if (txt_LoginName.Text.Trim() == name)
-        //    {
-        //        nameFound = true;
-        //    }
-        //    else
-        //    {
-        //        if (currentCulture == "en")
-        //        {
-        //            lbl_InvalidCredentials.Show();
-        //        }
-        //        else
-        //        {
-        //            lbl_ValidCredentialSpanish.Show();
-        //        }
-        //    }
 
         if (currentCulture == "es")
                 {

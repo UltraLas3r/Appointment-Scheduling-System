@@ -17,7 +17,7 @@ namespace mschreiber_Software2_c969Project
 {
     public partial class MainHomePage : Form
     {
-        bool upcomingAppointment = false;
+       
         DataTable appointmentList = new DataTable();
         string connString = "Host=localhost;port=3306;Database=client_schedule;Username=sqlUser;Password=Passw0rd!";
         public MainHomePage()
@@ -28,18 +28,12 @@ namespace mschreiber_Software2_c969Project
             ChangeColorofButtons();
             DGV_CustomerContentLoad();
             MainAppointmentView();
-            CheckForUpcoming(); //checks for appointment in the next 15 minutes
+            
 
             string userLocation = CultureInfo.CurrentCulture.DisplayName;
             DateTime currentDateTime = DateTime.Now;
  
-            //if there is an upcoming appointment, show the upcoming alert window
-            if (upcomingAppointment == true)
-            {
-                UpcomingAlert upcomingAlert = new UpcomingAlert();
-                upcomingAlert.Show();
-            }
-
+          
             this.ActiveControl = txt_AppointmentSearch;
         }
 
@@ -51,7 +45,7 @@ namespace mschreiber_Software2_c969Project
 
         public void MainAppointmentView()
         {
-            //todo this isnt loading right?
+            
             string getAppointment = "SELECT appointmentID, title, location, type, start, end FROM appointment";
             MySqlConnection conn = new MySqlConnection(connString);
 
@@ -67,21 +61,8 @@ namespace mschreiber_Software2_c969Project
             }
         }
 
-        private void CheckForUpcoming()
-        {
-            MySqlConnection conn = new MySqlConnection(connString);
-            string getAppointment = "SELECT * FROM appointment WHERE start BETWEEN NOW() AND DATE_ADD(NOW(), INTERVAL 15 MINUTE);";
+        
 
-            using (MySqlCommand cmd = new MySqlCommand(getAppointment, conn))
-            {
-                //SELECT * FROM appointment WHERE start >= NOW() AND start <= DATE_ADD(NOW(), INTERVAL 15 MINUTE)
-                //    if (appoinmentExists == true)
-                //        { upcommingAppointment = true;
-                //}
-            }
-
-
-        }
         private void ViewAppointmentsButton_Click(object sender, EventArgs e)
         {
            //this will change the DGV based on the radio button selection
