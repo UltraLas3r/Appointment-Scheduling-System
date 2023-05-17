@@ -281,91 +281,92 @@ namespace mschreiber_Software2_c969Project
         {
             MySqlConnection conn = new MySqlConnection(connString);
 
-            
-            if (dgv_Reports.RowCount == 0)
+            string MonthlyReportQuery = "SELECT title, location, type, start, end FROM appointment WHERE start BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 30 DAY);";
+
+
+            try
             {
-                //what appointments exist for the next 30 days?
-                string MonthlyReportQuery = "SELECT title, location, type, start, end FROM appointment WHERE start BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 30 DAY);";
-                
+                conn.Open();
                 using (MySqlCommand cmd = new MySqlCommand(MonthlyReportQuery, conn))
+                
+                // Create a new MySQL data adapter
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                 {
-                    // Create a new MySQL data adapter
-                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
-                    {
-                        DataTable dataTable = new DataTable();
-                        adapter.Fill(dataTable);
-                        dgv_Reports.DataSource = dataTable;
-                    }
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    dgv_Reports.DataSource = dataTable;
                 }
-            }
-            else
-            {
-                dgv_Reports.Rows.Clear();
-                dgv_Reports.Columns.Clear();
+                
             }
 
-            conn.Close();
+            catch
+            {
+                MessageBox.Show("Error: Restart Program");
+            }
+
+            finally
+            {
+                conn.Close();
+            }
         }
 
         private void GenerateConsultantReport(object sender, EventArgs e)
         {
             MySqlConnection conn = new MySqlConnection(connString);
+            string ConsultantReport = "SELECT * FROM user";
 
-
-            if (dgv_Reports.RowCount == 0)
+             try
             {
-                //this is the users table
-                string ConsultantReport = "";
-
+                conn.Open();
                 using (MySqlCommand cmd = new MySqlCommand(ConsultantReport, conn))
+                // Create a new MySQL data adapter
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                 {
-                    // Create a new MySQL data adapter
-                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
-                    {
-                        DataTable dataTable = new DataTable();
-                        adapter.Fill(dataTable);
-                        dgv_Reports.DataSource = dataTable;
-                    }
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    dgv_Reports.DataSource = dataTable;
                 }
             }
-            else
+
+            catch
             {
-                dgv_Reports.Rows.Clear();
-                dgv_Reports.Columns.Clear();
+                MessageBox.Show("Error: Restart Program");
             }
 
-            conn.Close();
-
+            finally
+            {
+                conn.Close();
+            }
         }
 
         private void GenerateCustomerList(object sender, EventArgs e)
         {
             MySqlConnection conn = new MySqlConnection(connString);
+            
+            string CustomerInformationReport = "SELECT customer.customerName, address.address, address.phone FROM customer INNER JOIN address WHERE customer.addressID = address.addressID;";
 
-
-            if (dgv_Reports.RowCount == 0)
-            {
-                //get customer name, address, phone number
-                string CustomerInformationReport = "";
-
+            try
+            { 
                 using (MySqlCommand cmd = new MySqlCommand(CustomerInformationReport, conn))
+                
+                // Create a new MySQL data adapter
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                 {
-                    // Create a new MySQL data adapter
-                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
-                    {
-                        DataTable dataTable = new DataTable();
-                        adapter.Fill(dataTable);
-                        dgv_Reports.DataSource = dataTable;
-                    }
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    dgv_Reports.DataSource = dataTable;
                 }
+                
             }
-            else
+            catch
             {
-                dgv_Reports.Rows.Clear();
-                dgv_Reports.Columns.Clear();
+                MessageBox.Show("Error: Restart Program");
             }
 
-            conn.Close();
+            finally
+            {
+                conn.Close();
+            }
         }
     }
 }

@@ -36,7 +36,7 @@ namespace mschreiber_Software2_c969Project.Model
             int cityID = (int)insertCityToTable.LastInsertedId;
             string insertAddress = "INSERT INTO address VALUES (null, @address, @addressTwo, @cityID, @postal, @phone, NOW(), 'user', NOW(), 'user')";
 
-            MySqlCommand insertAddressToTable = new MySqlCommand(insertAddress, (MySqlConnection)connection;
+            MySqlCommand insertAddressToTable = new MySqlCommand(insertAddress, (MySqlConnection)connection);
             insertAddressToTable.Parameters.AddWithValue("@address", address);
             insertAddressToTable.Parameters.AddWithValue("@addressTwo", addressTwo);
             insertAddressToTable.Parameters.AddWithValue("@phone", phoneNumber);
