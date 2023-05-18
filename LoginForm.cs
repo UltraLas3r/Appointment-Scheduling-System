@@ -40,7 +40,7 @@ namespace mschreiber_Software2_c969Project
 
         private void CheckLanguageSetting()
         {
-            CultureInfo.CurrentCulture = new CultureInfo("es"); //TODO >> for testing purposes only, REMOVE before submission!!!!!!!
+           // CultureInfo.CurrentCulture = new CultureInfo("es"); //TODO >> for testing purposes only, REMOVE before submission!!!!!!!
            
 
             //the following text handles language changing on this form
@@ -65,8 +65,7 @@ namespace mschreiber_Software2_c969Project
 
         private void LoginClick(object sender, EventArgs e)
         {
-            
-            
+
             //get connection string and connect 
             string loginName = txt_LoginName.Text.Trim();
             string loginPassword = txt_LoginPass.Text;
@@ -101,44 +100,49 @@ namespace mschreiber_Software2_c969Project
             {
                 LogUserActivity.ActivateLog("INVALID LOGIN ATTEMPT: " + loginName + loginPassword);
             }
-
-            
         }
 
         private void CheckForUpcoming()
         {
-            MySqlConnection conn = new MySqlConnection(connString);
-
-            DateTime start = DateTime.UtcNow;
-            DateTime end = DateTime.UtcNow.AddMinutes(15);
-            
-
-            string userNameFromLogin = txt_LoginName.Text.Trim();
-            string getUserId = "SELECT userID FROM user where userName = @userName";
-
-            MySqlCommand cmd = new MySqlCommand(getUserId, conn);
-            conn.Open();
-
-            cmd.Parameters.AddWithValue("@userName", userNameFromLogin);
-
-            Object obj = cmd.ExecuteScalar();
-            int userIdfromSQL = Convert.ToInt32(obj.ToString());
-
-            //fill data table for 15 minutes
-            string getAppointment = "SELECT * FROM appointment WHERE UserId = @userId AND start BETWEEN @start AND @end;";
-           
-            MySqlCommand cmdApp15 = new MySqlCommand(getAppointment, conn);
-
-            DataTable dataTable = new DataTable();
-            cmdApp15.Parameters.AddWithValue("@userId", userIdfromSQL);
-            cmdApp15.Parameters.AddWithValue("@start", start);
-            cmdApp15.Parameters.AddWithValue("@end", end);
-
-            int adapter = new MySqlDataAdapter(cmdApp15).Fill(dataTable);
-
-            if (dataTable.Rows.Count > 0)
+            try
             {
-                MessageBox.Show("There is an appointment within 15 minutes");
+                MySqlConnection conn = new MySqlConnection(connString);
+
+                DateTime start = DateTime.UtcNow;
+                DateTime end = DateTime.UtcNow.AddMinutes(15);
+
+
+                string userNameFromLogin = txt_LoginName.Text.Trim();
+                string getUserId = "SELECT userID FROM user where userName = @userName";
+
+                MySqlCommand cmd = new MySqlCommand(getUserId, conn);
+                conn.Open();
+
+                cmd.Parameters.AddWithValue("@userName", userNameFromLogin);
+
+                Object obj = cmd.ExecuteScalar();
+                int userIdfromSQL = Convert.ToInt32(obj.ToString());
+
+                //fill data table for 15 minutes
+                string getAppointment = "SELECT * FROM appointment WHERE UserId = @userId AND start BETWEEN @start AND @end;";
+
+                MySqlCommand cmdApp15 = new MySqlCommand(getAppointment, conn);
+
+                DataTable dataTable = new DataTable();
+                cmdApp15.Parameters.AddWithValue("@userId", userIdfromSQL);
+                cmdApp15.Parameters.AddWithValue("@start", start);
+                cmdApp15.Parameters.AddWithValue("@end", end);
+
+                int adapter = new MySqlDataAdapter(cmdApp15).Fill(dataTable);
+
+                if (dataTable.Rows.Count > 0)
+                {
+                    MessageBox.Show("There is an appointment within 15 minutes");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Invalid data");
             }
         }
 
@@ -209,10 +213,13 @@ namespace mschreiber_Software2_c969Project
             
             string sortedUserNames = txt_LoginName.Text.Trim();
 
+           
+
+
             if (userNames.Any(name => name == txt_LoginName.Text) && currentCulture == "en")
             {
                 nameFound = true;
-                lbl_InvalidCredentials.Show();
+                
             }
 
             if (nameFound != true && currentCulture == "en")
