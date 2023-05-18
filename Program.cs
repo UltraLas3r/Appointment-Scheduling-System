@@ -18,9 +18,9 @@ namespace mschreiber_Software2_c969Project
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            DBConnection.StartConnection();
+            //DBConnection.StartConnection();
             Application.Run(new LoginForm());
-            DBConnection.CloseConnection();
+            //DBConnection.CloseConnection();
         }
     }
 }

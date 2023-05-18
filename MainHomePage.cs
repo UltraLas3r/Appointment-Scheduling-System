@@ -112,6 +112,7 @@ namespace mschreiber_Software2_c969Project
 
         private void btn_SearchAppointments_Click(object sender, EventArgs e)
         {
+
             string searchContent = txt_AppointmentSearch.Text.Trim();
             if (string.IsNullOrEmpty(txt_AppointmentSearch.Text))
             {
@@ -120,7 +121,7 @@ namespace mschreiber_Software2_c969Project
             }
             else
             {
-                dgv_AppointmentGrid.Rows.Cast<DataGridViewRow>()
+                    dgv_AppointmentGrid.Rows.Cast<DataGridViewRow>()
                     .SelectMany(row => row.Cells.Cast<DataGridViewCell>())
                     .Where(cell => cell.Value != null && cell.Value.ToString().Contains(searchContent))
                     .ToList()
@@ -254,6 +255,8 @@ namespace mschreiber_Software2_c969Project
                     DGV_Customers.Rows.RemoveAt(row.Index);
                 }
             }
+
+
         }
         private void btn_GetCustomerInfo_Click(object sender, EventArgs e)
         {
@@ -282,7 +285,6 @@ namespace mschreiber_Software2_c969Project
             MySqlConnection conn = new MySqlConnection(connString);
 
             string MonthlyReportQuery = "SELECT title, location, type, start, end FROM appointment WHERE start BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 30 DAY);";
-
 
             try
             {
@@ -367,6 +369,11 @@ namespace mschreiber_Software2_c969Project
             {
                 conn.Close();
             }
+        }
+
+        private void btn_CustSearch_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

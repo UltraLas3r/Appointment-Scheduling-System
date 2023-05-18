@@ -39,7 +39,7 @@
             // 
             this.dgv_warning.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgv_warning.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_warning.Location = new System.Drawing.Point(40, 145);
+            this.dgv_warning.Location = new System.Drawing.Point(63, 141);
             this.dgv_warning.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgv_warning.Name = "dgv_warning";
             this.dgv_warning.RowHeadersWidth = 51;
@@ -61,7 +61,7 @@
             // 
             this.lbl_Header.AutoSize = true;
             this.lbl_Header.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.lbl_Header.Location = new System.Drawing.Point(36, 112);
+            this.lbl_Header.Location = new System.Drawing.Point(46, 91);
             this.lbl_Header.Name = "lbl_Header";
             this.lbl_Header.Size = new System.Drawing.Size(628, 25);
             this.lbl_Header.TabIndex = 4;

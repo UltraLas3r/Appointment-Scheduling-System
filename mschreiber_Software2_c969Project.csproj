@@ -106,7 +106,9 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\Appointment.cs" />
     <Compile Include="Model\ButtonHoverClass.cs" />
+    <Compile Include="Model\Customer.cs" />
     <Compile Include="Model\DBQuery.cs" />
     <Compile Include="Model\HandleAppointment.cs" />
     <Compile Include="Model\LogUserActivity.cs" />

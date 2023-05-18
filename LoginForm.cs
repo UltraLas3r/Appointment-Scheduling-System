@@ -31,13 +31,17 @@ namespace mschreiber_Software2_c969Project
         {
             InitializeComponent();
             ChangeColorofButtons();
+            CheckLanguageSetting();
 
-            //get localization data
+          
 
+            this.ActiveControl = txt_LoginName;
+        }
 
-
-            // CultureInfo.CurrentCulture = new CultureInfo("es"); //TODO >> for testing purposes only, REMOVE before submission!!!!!!!
-            //TODO change login form header text to spanish when language is spanish!
+        private void CheckLanguageSetting()
+        {
+            CultureInfo.CurrentCulture = new CultureInfo("es"); //TODO >> for testing purposes only, REMOVE before submission!!!!!!!
+           
 
             //the following text handles language changing on this form
             if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName == "en")
@@ -57,38 +61,45 @@ namespace mschreiber_Software2_c969Project
                 btn_Login.Text = "Iniciar sesión";
                 btn_CancelLogin.Text = "Cancelar";
             }
-
-            this.ActiveControl = txt_LoginName;
         }
-                
+
         private void LoginClick(object sender, EventArgs e)
         {
-           
-            CheckUserName();
-            CheckPassword();
+            
             
             //get connection string and connect 
             string loginName = txt_LoginName.Text.Trim();
             string loginPassword = txt_LoginPass.Text;
 
-            //todo add passfound to this ifstatement
-            if (nameFound == true && passFound == true)
+            CheckUserName();
+            CheckPassword();
+
+            if (nameFound == true && passFound == true && currentCulture == "en")
             {
                 MessageBox.Show("Successful Connection to the Database");
+                
                 string userName = txt_LoginName.Text.Trim();
                 LogUserActivity.ActivateLog(userName);
 
                 this.Hide();
                 mainHomePage.Show();
                 CheckForUpcoming();
-
             }
 
-        
+            if (nameFound == true && passFound == true && currentCulture == "es")
+            {
+                MessageBox.Show("Conexión correcta a la base de datos");
+                string userName = txt_LoginName.Text.Trim();
+                LogUserActivity.ActivateLog(userName);
+
+                this.Hide();
+                mainHomePage.Show();
+                CheckForUpcoming();
+            }
 
             if (nameFound == false || passFound == false)
             {
-                LogUserActivity.ActivateLog("INVALID LOGIN ATTEMPT " + loginName + loginPassword);
+                LogUserActivity.ActivateLog("INVALID LOGIN ATTEMPT: " + loginName + loginPassword);
             }
 
             
@@ -103,7 +114,6 @@ namespace mschreiber_Software2_c969Project
             
 
             string userNameFromLogin = txt_LoginName.Text.Trim();
-
             string getUserId = "SELECT userID FROM user where userName = @userName";
 
             MySqlCommand cmd = new MySqlCommand(getUserId, conn);
@@ -112,8 +122,6 @@ namespace mschreiber_Software2_c969Project
             cmd.Parameters.AddWithValue("@userName", userNameFromLogin);
 
             Object obj = cmd.ExecuteScalar();
-            
-
             int userIdfromSQL = Convert.ToInt32(obj.ToString());
 
             //fill data table for 15 minutes
@@ -132,7 +140,6 @@ namespace mschreiber_Software2_c969Project
             {
                 MessageBox.Show("There is an appointment within 15 minutes");
             }
-
         }
 
 
@@ -155,34 +162,29 @@ namespace mschreiber_Software2_c969Project
             }
 
             string searchPassword = txt_LoginPass.Text.Trim();
-            if (passwords.Any(password => password == searchPassword))
+            if (passwords.Any(password => password == searchPassword) && currentCulture == "en")
             {
                 passFound = true;
                 lbl_InvalidCredentials.Hide();
-                lbl_ValidCredentialSpanish.Hide();
             }
-            else
-            {
-                if (currentCulture == "en")
-                {
+
+            if (passFound != true && currentCulture == "en")
+            {          
                     lbl_InvalidCredentials.Text = "Invalid Password";
-                    lbl_InvalidCredentials.Show();
-                }
-                else
-                {
-                    lbl_InvalidCredentials.Text = "Contraseña no válida";
-                    lbl_ValidCredentialSpanish.Show();
-                }
+                    lbl_InvalidCredentials.Show(); 
             }
+            
+            if (passFound != true && currentCulture == "es")
+            {
+               
+               
+                lbl_InvalidCredentials.Text = "Contraseña no válida";
+                lbl_InvalidCredentials.Show();
+            }
+            
             //the use of a lambda in the above expression simplifies iterating through
             //the list of passwords in the database. 
 
-            if (currentCulture == "es")
-            {
-                MessageBox.Show("Conexión correcta a la base de datos");
-                string userName = txt_LoginName.Text.Trim();
-                LogUserActivity.ActivateLog(userName);
-            }
         }
     
 
@@ -212,21 +214,23 @@ namespace mschreiber_Software2_c969Project
                 nameFound = true;
                 lbl_InvalidCredentials.Show();
             }
-            else
+
+            if (nameFound != true && currentCulture == "en")
             {
-                lbl_ValidCredentialSpanish.Show();
+                
+                lbl_InvalidCredentials.Text = "Invalid name or Password";
+                lbl_InvalidCredentials.Show();
             }
+            else 
+            {
 
-        //the use of a lambda in the above expression simplifies iterating through
-        //the list of usernames in the database. 
+                lbl_InvalidCredentials.Text = "Contraseña o nombre no válida";
+                lbl_InvalidCredentials.Show();
+            }
+            //the use of a lambda in the above expression simplifies iterating through
+            //the list of usernames in the database. 
 
-        if (currentCulture == "es")
-                {
-                    MessageBox.Show("Conexión correcta a la base de datos");
-                    string userName = txt_LoginName.Text.Trim();
-                    LogUserActivity.ActivateLog(userName);
-                }
-            
+     
         }
     
 

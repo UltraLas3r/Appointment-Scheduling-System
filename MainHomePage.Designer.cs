@@ -55,6 +55,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.btn_CustSearch = new System.Windows.Forms.Button();
+            this.tb_CustSearch = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_AppointmentGrid)).BeginInit();
             this.tab_Appointment.SuspendLayout();
             this.Appointments.SuspendLayout();
@@ -144,7 +146,7 @@
             // btn_Exit
             // 
             this.btn_Exit.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.btn_Exit.Location = new System.Drawing.Point(1034, 752);
+            this.btn_Exit.Location = new System.Drawing.Point(1053, 752);
             this.btn_Exit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_Exit.Name = "btn_Exit";
             this.btn_Exit.Size = new System.Drawing.Size(199, 65);
@@ -168,7 +170,7 @@
             // btn_AddCustomer
             // 
             this.btn_AddCustomer.Font = new System.Drawing.Font("OCR A Extended", 11F);
-            this.btn_AddCustomer.Location = new System.Drawing.Point(228, 106);
+            this.btn_AddCustomer.Location = new System.Drawing.Point(409, 57);
             this.btn_AddCustomer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_AddCustomer.Name = "btn_AddCustomer";
             this.btn_AddCustomer.Size = new System.Drawing.Size(219, 68);
@@ -180,7 +182,7 @@
             // btn_ModifyCustomer
             // 
             this.btn_ModifyCustomer.Font = new System.Drawing.Font("OCR A Extended", 11F);
-            this.btn_ModifyCustomer.Location = new System.Drawing.Point(468, 106);
+            this.btn_ModifyCustomer.Location = new System.Drawing.Point(694, 57);
             this.btn_ModifyCustomer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_ModifyCustomer.Name = "btn_ModifyCustomer";
             this.btn_ModifyCustomer.Size = new System.Drawing.Size(219, 68);
@@ -237,7 +239,7 @@
             // txt_AppointmentSearch
             // 
             this.txt_AppointmentSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txt_AppointmentSearch.Location = new System.Drawing.Point(144, 228);
+            this.txt_AppointmentSearch.Location = new System.Drawing.Point(153, 229);
             this.txt_AppointmentSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txt_AppointmentSearch.Name = "txt_AppointmentSearch";
             this.txt_AppointmentSearch.Size = new System.Drawing.Size(588, 35);
@@ -260,6 +262,8 @@
             // Customers
             // 
             this.Customers.BackColor = System.Drawing.Color.Gray;
+            this.Customers.Controls.Add(this.btn_CustSearch);
+            this.Customers.Controls.Add(this.tb_CustSearch);
             this.Customers.Controls.Add(this.btn_AllCustomers);
             this.Customers.Controls.Add(this.btn_ViewCustomersWithAppointments);
             this.Customers.Controls.Add(this.btn_DeleteCustomer);
@@ -300,7 +304,7 @@
             // btn_DeleteCustomer
             // 
             this.btn_DeleteCustomer.Font = new System.Drawing.Font("OCR A Extended", 11F);
-            this.btn_DeleteCustomer.Location = new System.Drawing.Point(713, 106);
+            this.btn_DeleteCustomer.Location = new System.Drawing.Point(971, 57);
             this.btn_DeleteCustomer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_DeleteCustomer.Name = "btn_DeleteCustomer";
             this.btn_DeleteCustomer.Size = new System.Drawing.Size(245, 68);
@@ -386,7 +390,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.button2.Location = new System.Drawing.Point(21, 272);
+            this.button2.Location = new System.Drawing.Point(21, 282);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(200, 65);
@@ -406,6 +410,27 @@
             this.button1.Text = "Monthly Appoinments";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.GenerateMonthlyReport);
+            // 
+            // btn_CustSearch
+            // 
+            this.btn_CustSearch.Font = new System.Drawing.Font("OCR A Extended", 12F);
+            this.btn_CustSearch.Location = new System.Drawing.Point(192, 140);
+            this.btn_CustSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btn_CustSearch.Name = "btn_CustSearch";
+            this.btn_CustSearch.Size = new System.Drawing.Size(123, 36);
+            this.btn_CustSearch.TabIndex = 19;
+            this.btn_CustSearch.Text = "Search";
+            this.btn_CustSearch.UseVisualStyleBackColor = true;
+            this.btn_CustSearch.Click += new System.EventHandler(this.btn_CustSearch_Click);
+            // 
+            // tb_CustSearch
+            // 
+            this.tb_CustSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.tb_CustSearch.Location = new System.Drawing.Point(330, 140);
+            this.tb_CustSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tb_CustSearch.Name = "tb_CustSearch";
+            this.tb_CustSearch.Size = new System.Drawing.Size(588, 35);
+            this.tb_CustSearch.TabIndex = 18;
             // 
             // MainHomePage
             // 
@@ -461,5 +486,7 @@
         private System.Windows.Forms.Button btn_ViewCustomersWithAppointments;
         private System.Windows.Forms.Button btn_AllCustomers;
         private System.Windows.Forms.DataGridView dgv_Reports;
+        private System.Windows.Forms.Button btn_CustSearch;
+        private System.Windows.Forms.TextBox tb_CustSearch;
     }
 }
