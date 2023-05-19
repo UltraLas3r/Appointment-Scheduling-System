@@ -83,8 +83,13 @@ namespace mschreiber_Software2_c969Project
             string selectedUser= cb_CustomerID.SelectedItem.ToString();
             string selectedType = cb_Choices.SelectedItem.ToString();
             string selectedLocation = cb_Location.SelectedItem.ToString();
-            DateTime newStartDateTime = (DateTime)DT_ScheduleAppointment.Value;
-            DateTime newEndDatetime = (DateTime)newStartDateTime.AddMinutes(30);
+
+            //I need to correctly convert these 
+            DateTime newStartDateTime = (DateTime)TimeZoneInfo.ConvertTimeToUtc.DT_ScheduleAppointment.Value;
+            DateTime newEndDatetime = (DateTime)TimeZoneInfo.ConvertTimeToUtc.newStartDateTime.AddMinutes(30);
+
+            //best way to handle appointmentID?
+
 
             //update the database record 
             //update where appointmentId = 'appointmentIdPlaceholder' 
@@ -94,13 +99,18 @@ namespace mschreiber_Software2_c969Project
 
             try
             {
-
                 //Create new Appointment          
-                string updateAppointment = "UPDATE appointment SET customerId = @customerId, title = @title, location = @location, contact = @contact, type = @type, startTime = @newStartTime, endTime = @newEndTime " +
-                    "WHERE appointmentId = " + _appointmentId + " ";
-
-                //TODO for testing only, remove when functionality is complete.
-                int customerID = 1;
+                string updateAppointment = 
+                    "UPDATE appointment " +
+                    "SET customerId = @customerId," +
+                    " title = @title," +
+                    " location = @location," +
+                    " contact = @contact," +
+                    " type = @type, " +
+                    "startTime = @newStartTime," +
+                    " endTime = @newEndTime " +
+                    "WHERE appointmentId = "
+                    + _appointmentId + " ";        
 
                 MySqlCommand insertAppointmentToTable = new MySqlCommand(updateAppointment, connection);
                 insertAppointmentToTable.Parameters.AddWithValue("@customerID", selectedUser);
