@@ -77,7 +77,7 @@ namespace mschreiber_Software2_c969Project
 
         private void btn_ModifyAppointment_Click(object sender, EventArgs e)
         {
-            var _appointmentId = '3';
+            var _appointmentId = '1';
             string modifiedTitle = txt_Title.Text;
             string contact = "not needed";
             string selectedUser= cb_CustomerID.SelectedItem.ToString();
@@ -96,7 +96,8 @@ namespace mschreiber_Software2_c969Project
             {
 
                 //Create new Appointment          
-                string updateAppointment = "UPDATE appointment SET customerId = @customerId, title = @title, location = @location, contact = @contact, type = @type, startTime = @newStartTime, endTime = @newEndTime WHERE appointmentId = " + _appointmentId + " ";
+                string updateAppointment = "UPDATE appointment SET customerId = @customerId, title = @title, location = @location, contact = @contact, type = @type, startTime = @newStartTime, endTime = @newEndTime " +
+                    "WHERE appointmentId = " + _appointmentId + " ";
 
                 //TODO for testing only, remove when functionality is complete.
                 int customerID = 1;
@@ -110,7 +111,6 @@ namespace mschreiber_Software2_c969Project
                 insertAppointmentToTable.Parameters.AddWithValue("@newstartTime", newStartDateTime);
                 insertAppointmentToTable.Parameters.AddWithValue("@NewendTime", newEndDatetime);
                 insertAppointmentToTable.ExecuteNonQuery();
-
             }
 
             catch
