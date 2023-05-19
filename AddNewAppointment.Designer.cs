@@ -40,12 +40,13 @@
             this.lbl_UserMeeting = new System.Windows.Forms.Label();
             this.DT_ScheduleAppointment = new System.Windows.Forms.DateTimePicker();
             this.cb_CustomerID = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn_SaveAppointment
             // 
             this.btn_SaveAppointment.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.btn_SaveAppointment.Location = new System.Drawing.Point(12, 513);
+            this.btn_SaveAppointment.Location = new System.Drawing.Point(12, 562);
             this.btn_SaveAppointment.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_SaveAppointment.Name = "btn_SaveAppointment";
             this.btn_SaveAppointment.Size = new System.Drawing.Size(252, 94);
@@ -57,7 +58,7 @@
             // btn_Cancel
             // 
             this.btn_Cancel.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.btn_Cancel.Location = new System.Drawing.Point(297, 513);
+            this.btn_Cancel.Location = new System.Drawing.Point(289, 562);
             this.btn_Cancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.Size = new System.Drawing.Size(252, 94);
@@ -70,7 +71,7 @@
             // 
             this.lbl_Time.AutoSize = true;
             this.lbl_Time.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.lbl_Time.Location = new System.Drawing.Point(11, 391);
+            this.lbl_Time.Location = new System.Drawing.Point(7, 456);
             this.lbl_Time.Name = "lbl_Time";
             this.lbl_Time.Size = new System.Drawing.Size(404, 25);
             this.lbl_Time.TabIndex = 2;
@@ -80,7 +81,7 @@
             // 
             this.lbl_Type.AutoSize = true;
             this.lbl_Type.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.lbl_Type.Location = new System.Drawing.Point(12, 219);
+            this.lbl_Type.Location = new System.Drawing.Point(8, 284);
             this.lbl_Type.Name = "lbl_Type";
             this.lbl_Type.Size = new System.Drawing.Size(278, 25);
             this.lbl_Type.TabIndex = 3;
@@ -90,7 +91,7 @@
             // 
             this.lbl_Location.AutoSize = true;
             this.lbl_Location.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.lbl_Location.Location = new System.Drawing.Point(16, 309);
+            this.lbl_Location.Location = new System.Drawing.Point(12, 374);
             this.lbl_Location.Name = "lbl_Location";
             this.lbl_Location.Size = new System.Drawing.Size(138, 25);
             this.lbl_Location.TabIndex = 5;
@@ -100,7 +101,7 @@
             // 
             this.lbl_Title.AutoSize = true;
             this.lbl_Title.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.lbl_Title.Location = new System.Drawing.Point(23, 9);
+            this.lbl_Title.Location = new System.Drawing.Point(19, 74);
             this.lbl_Title.Name = "lbl_Title";
             this.lbl_Title.Size = new System.Drawing.Size(250, 25);
             this.lbl_Title.TabIndex = 6;
@@ -108,7 +109,7 @@
             // 
             // txt_Title
             // 
-            this.txt_Title.Location = new System.Drawing.Point(21, 50);
+            this.txt_Title.Location = new System.Drawing.Point(17, 115);
             this.txt_Title.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txt_Title.Name = "txt_Title";
             this.txt_Title.Size = new System.Drawing.Size(352, 26);
@@ -118,7 +119,7 @@
             // 
             this.cb_Choices.AllowDrop = true;
             this.cb_Choices.FormattingEnabled = true;
-            this.cb_Choices.Location = new System.Drawing.Point(17, 264);
+            this.cb_Choices.Location = new System.Drawing.Point(13, 329);
             this.cb_Choices.Name = "cb_Choices";
             this.cb_Choices.Size = new System.Drawing.Size(422, 28);
             this.cb_Choices.TabIndex = 34;
@@ -127,7 +128,7 @@
             // 
             this.cb_Location.AllowDrop = true;
             this.cb_Location.FormattingEnabled = true;
-            this.cb_Location.Location = new System.Drawing.Point(16, 337);
+            this.cb_Location.Location = new System.Drawing.Point(13, 412);
             this.cb_Location.Name = "cb_Location";
             this.cb_Location.Size = new System.Drawing.Size(422, 28);
             this.cb_Location.TabIndex = 35;
@@ -136,7 +137,7 @@
             // 
             this.lbl_UserMeeting.AutoSize = true;
             this.lbl_UserMeeting.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.lbl_UserMeeting.Location = new System.Drawing.Point(23, 94);
+            this.lbl_UserMeeting.Location = new System.Drawing.Point(19, 159);
             this.lbl_UserMeeting.Name = "lbl_UserMeeting";
             this.lbl_UserMeeting.Size = new System.Drawing.Size(404, 25);
             this.lbl_UserMeeting.TabIndex = 36;
@@ -146,7 +147,7 @@
             // 
             this.DT_ScheduleAppointment.CustomFormat = "MM/dd/yyyy hh:mm tt";
             this.DT_ScheduleAppointment.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DT_ScheduleAppointment.Location = new System.Drawing.Point(16, 439);
+            this.DT_ScheduleAppointment.Location = new System.Drawing.Point(12, 504);
             this.DT_ScheduleAppointment.Name = "DT_ScheduleAppointment";
             this.DT_ScheduleAppointment.Size = new System.Drawing.Size(332, 26);
             this.DT_ScheduleAppointment.TabIndex = 41;
@@ -154,18 +155,28 @@
             // cb_CustomerID
             // 
             this.cb_CustomerID.FormattingEnabled = true;
-            this.cb_CustomerID.Location = new System.Drawing.Point(21, 139);
+            this.cb_CustomerID.Location = new System.Drawing.Point(17, 204);
             this.cb_CustomerID.Name = "cb_CustomerID";
             this.cb_CustomerID.Size = new System.Drawing.Size(266, 28);
             this.cb_CustomerID.TabIndex = 42;
-           // this.cb_CustomerID.SelectedIndexChanged += new System.EventHandler(this.cb_CustomerID_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("OCR A Extended", 24F);
+            this.label1.Location = new System.Drawing.Point(15, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(544, 50);
+            this.label1.TabIndex = 43;
+            this.label1.Text = "Modify Appointment";
             // 
             // AddNewAppointment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ClientSize = new System.Drawing.Size(603, 626);
+            this.ClientSize = new System.Drawing.Size(603, 672);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.cb_CustomerID);
             this.Controls.Add(this.DT_ScheduleAppointment);
             this.Controls.Add(this.lbl_UserMeeting);
@@ -181,7 +192,6 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "AddNewAppointment";
             this.Text = "Create New Appointment";
-           // this.Load += new System.EventHandler(this.AddNewAppointment_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -201,5 +211,6 @@
         private System.Windows.Forms.Label lbl_UserMeeting;
         private System.Windows.Forms.DateTimePicker DT_ScheduleAppointment;
         private System.Windows.Forms.ComboBox cb_CustomerID;
+        private System.Windows.Forms.Label label1;
     }
 }

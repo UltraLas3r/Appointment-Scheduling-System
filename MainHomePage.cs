@@ -70,7 +70,7 @@ namespace mschreiber_Software2_c969Project
 
         private void CreateNewAppointment_Click(object sender, EventArgs e)
         {
-            //open the createnewappointment screen
+          
             AddNewAppointment createNewAppointment = new AddNewAppointment();
             createNewAppointment.Show();
             this.Hide();
@@ -78,8 +78,8 @@ namespace mschreiber_Software2_c969Project
         }
         private void btn_ModifyAppointment_Click(object sender, EventArgs e)
         {
-            ModifyAppointment modifyAppointment = new ModifyAppointment();
-
+            
+           
             if (!dgv_AppointmentGrid.CurrentRow.Selected)
             {
                 MessageBox.Show("Nothing selected. Please select an item to modify.");
@@ -88,12 +88,18 @@ namespace mschreiber_Software2_c969Project
 
             else
             {
-                var tempAppointment = (HandleAppointment)dgv_AppointmentGrid.CurrentRow.DataBoundItem;
+                DataGridViewRow selectedRow = dgv_AppointmentGrid.SelectedRows[0];
 
-                //modifyAppointment modifyAppointment = new modifyAppointment(tempAppointment, appointmentID);
-                //modifyAppointment.Show();
+                int appointmentId = (int)selectedRow.Cells["appointmentId"].Value;
+                string title = selectedRow.Cells["title"].Value.ToString();
+                string location = selectedRow.Cells["location"].Value.ToString();
+                string type = selectedRow.Cells["type"].Value.ToString();
+                DateTime start = (DateTime)selectedRow.Cells["start"].Value;
+                //DateTime end = (DateTime)selectedRow.Cells["end"].Value;
+               
 
-                this.Visible = false;
+                ModifyAppointment modifyAppointment = new ModifyAppointment(appointmentId, title, location, type, start);
+                modifyAppointment.Show();
             } 
         }
 

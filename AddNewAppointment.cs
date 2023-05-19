@@ -147,21 +147,5 @@ namespace mschreiber_Software2_c969Project
                 return;
             }
         }
-
-        private void dgv_CustomerData_SelectionChanged(object sender, EventArgs e)
-        {
-            //if (dgv_CustomerData.SelectedRows.Count > 0)
-            //{
-            //    string customerID = dgv_CustomerData.SelectedRows[0].Cells[0].Value.ToString();
-            //    string customerName = dgv_CustomerData.SelectedRows[1].Cells[1].Value.ToString();
-
-            //    lbl_CustomerID.Text = customerID;
-            //    txt_CustomerName.Text = customerName;
-
-            //}
-
-        }
-
-
     }
 }

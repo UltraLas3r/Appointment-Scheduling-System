@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,33 +14,121 @@ namespace mschreiber_Software2_c969Project
 {
     public partial class ModifyAppointment : Form
     {
-
-        public ModifyAppointment()
+        string connString = "Host=localhost;port=3306;Database=client_schedule;Username=sqlUser;Password=Passw0rd!";
+        public ModifyAppointment(int appointmentId, string title, string location, string type, DateTime start)
         {
             InitializeComponent();
-            
-           
+
+            int _appointmentId = appointmentId;
+
+            txt_Title.Text = title;
+            AddLocationsToComboBox();
+            AddCustomerID();
+            AddTypesToComboBox();
+            DT_ScheduleAppointment.Value = start;
+
         }
 
-        private void btn_SaveAppointment_Click(object sender, EventArgs e)
+        private void AddCustomerID()
         {
-            //DateTime inputDate = DT_ScheduleAppointment.Value;
-           // DateTime utcDate = TimeZoneInfo.ConvertTimeToUtc(inputDate);
+            MySqlConnection conn = new MySqlConnection(connString);
 
-            //DateTime endDate = TimeZoneInfo.ConvertTimeToUtc(DT_ScheduleAppointment.Value.AddMinutes(30));
+            string queryForCustID = "SELECT customerID from customer";
 
+            MySqlCommand cmd = new MySqlCommand(queryForCustID, conn);
 
-
-
-            if (true)
+            try
             {
-                CheckForValidPhoneNumber();
+                conn.Open();
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    string customerID = reader["CustomerID"].ToString();
+                    cb_CustomerID.Items.Add(customerID);
+                }
+
+                reader.Close();
             }
 
-            else
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        private void AddTypesToComboBox()
+        {
+            string[] types = { "Lunch Meeting", "Scrum", "Synch Up" };
+            cb_Choices.Items.AddRange(types);
+        }
+
+        private void AddLocationsToComboBox()
+        {
+            string[] locations = { "Cafteria", "Boardroom A", "Lobby", "Boardroom B", "War Room" };
+            cb_Location.Items.AddRange(locations);
+        }
+
+        private void btn_ModifyAppointment_Click(object sender, EventArgs e)
+        {
+            var _appointmentId = '3';
+            string modifiedTitle = txt_Title.Text;
+            string contact = "not needed";
+            string selectedUser= cb_CustomerID.SelectedItem.ToString();
+            string selectedType = cb_Choices.SelectedItem.ToString();
+            string selectedLocation = cb_Location.SelectedItem.ToString();
+            DateTime newStartDateTime = (DateTime)DT_ScheduleAppointment.Value;
+            DateTime newEndDatetime = (DateTime)newStartDateTime.AddMinutes(30);
+
+            //update the database record 
+            //update where appointmentId = 'appointmentIdPlaceholder' 
+            string connectionString = "server=localhost;user id=sqlUser;password=Passw0rd!;database=client_schedule";
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
+
+            try
             {
 
+                //Create new Appointment          
+                string updateAppointment = "UPDATE appointment SET customerId = @customerId, title = @title, location = @location, contact = @contact, type = @type, startTime = @newStartTime, endTime = @newEndTime WHERE appointmentId = " + _appointmentId + " ";
+
+                //TODO for testing only, remove when functionality is complete.
+                int customerID = 1;
+
+                MySqlCommand insertAppointmentToTable = new MySqlCommand(updateAppointment, connection);
+                insertAppointmentToTable.Parameters.AddWithValue("@customerID", selectedUser);
+                insertAppointmentToTable.Parameters.AddWithValue("@title", modifiedTitle);
+                insertAppointmentToTable.Parameters.AddWithValue("@location", selectedLocation);
+                insertAppointmentToTable.Parameters.AddWithValue("@contact", contact);
+                insertAppointmentToTable.Parameters.AddWithValue("@type", selectedType);
+                insertAppointmentToTable.Parameters.AddWithValue("@newstartTime", newStartDateTime);
+                insertAppointmentToTable.Parameters.AddWithValue("@NewendTime", newEndDatetime);
+                insertAppointmentToTable.ExecuteNonQuery();
+
             }
+
+            catch
+            {
+                MessageBox.Show("Unverified Data");
+                return;
+            }
+
+            finally
+            {
+                MainHomePage mainHomePage = new MainHomePage();
+
+                mainHomePage.RefreshCustomerDataGrid();
+                mainHomePage.Show();
+                this.Hide();
+            }
+
+
         }
 
         
