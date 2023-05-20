@@ -14,12 +14,14 @@ namespace mschreiber_Software2_c969Project
 {
     public partial class ModifyAppointment : Form
     {
+        private int _appointmentId;
+
         string connString = "Host=localhost;port=3306;Database=client_schedule;Username=sqlUser;Password=Passw0rd!";
         public ModifyAppointment(int appointmentId, string title, string location, string type, DateTime start)
         {
             InitializeComponent();
 
-            int _appointmentId = appointmentId;
+            _appointmentId = appointmentId;
 
             txt_Title.Text = title;
             AddLocationsToComboBox();
@@ -77,7 +79,11 @@ namespace mschreiber_Software2_c969Project
 
         private void btn_ModifyAppointment_Click(object sender, EventArgs e)
         {
-            var _appointmentId = '1';
+
+
+
+
+            
             string modifiedTitle = txt_Title.Text;
             string contact = "not needed";
             string selectedUser= cb_CustomerID.SelectedItem.ToString();
@@ -85,8 +91,8 @@ namespace mschreiber_Software2_c969Project
             string selectedLocation = cb_Location.SelectedItem.ToString();
 
             //I need to correctly convert these 
-            DateTime newStartDateTime = (DateTime)TimeZoneInfo.ConvertTimeToUtc.DT_ScheduleAppointment.Value;
-            DateTime newEndDatetime = (DateTime)TimeZoneInfo.ConvertTimeToUtc.newStartDateTime.AddMinutes(30);
+            DateTime newStartDateTime = TimeZoneInfo.ConvertTimeToUtc(DT_ScheduleAppointment.Value);
+            DateTime newEndDatetime = TimeZoneInfo.ConvertTimeToUtc(newStartDateTime.AddMinutes(30));
 
             //best way to handle appointmentID?
 
@@ -101,16 +107,15 @@ namespace mschreiber_Software2_c969Project
             {
                 //Create new Appointment          
                 string updateAppointment = 
-                    "UPDATE appointment " +
-                    "SET customerId = @customerId," +
-                    " title = @title," +
-                    " location = @location," +
-                    " contact = @contact," +
-                    " type = @type, " +
-                    "startTime = @newStartTime," +
-                    " endTime = @newEndTime " +
-                    "WHERE appointmentId = "
-                    + _appointmentId + " ";        
+                    @"UPDATE appointment 
+                    SET customerId = @customerId, 
+                        title = @title, 
+                        location = @location, 
+                        contact = @contact, 
+                        type = @type, 
+                        start = @newStartTime, 
+                        end = @newEndTime 
+                    WHERE appointmentId = @appointmentId";
 
                 MySqlCommand insertAppointmentToTable = new MySqlCommand(updateAppointment, connection);
                 insertAppointmentToTable.Parameters.AddWithValue("@customerID", selectedUser);
@@ -120,12 +125,14 @@ namespace mschreiber_Software2_c969Project
                 insertAppointmentToTable.Parameters.AddWithValue("@type", selectedType);
                 insertAppointmentToTable.Parameters.AddWithValue("@newstartTime", newStartDateTime);
                 insertAppointmentToTable.Parameters.AddWithValue("@NewendTime", newEndDatetime);
+                insertAppointmentToTable.Parameters.AddWithValue("@appointmentId", _appointmentId);
                 insertAppointmentToTable.ExecuteNonQuery();
             }
 
-            catch
+            catch(Exception ex)
             {
-                MessageBox.Show("Unverified Data");
+                MessageBox.Show(ex.Message);
+
                 return;
             }
 
