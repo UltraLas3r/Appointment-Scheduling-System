@@ -17,8 +17,6 @@ namespace mschreiber_Software2_c969Project
 {
     public partial class MainHomePage : Form
     {
-        bool isDataGridEmpty = false;
-        DataTable appointmentList = new DataTable();
         string connString = "Host=localhost;port=3306;Database=client_schedule;Username=sqlUser;Password=Passw0rd!";
         public MainHomePage()
         {
@@ -76,10 +74,38 @@ namespace mschreiber_Software2_c969Project
             this.Hide();
             
         }
+
+        private void UpdateCustomerButton_Click(object sender, EventArgs e)
+        {
+           
+
+            if (!DGV_Customers.CurrentRow.Selected)
+            {
+                MessageBox.Show("Nothing selected. Please select an item to modify.");
+                return;
+            }
+
+            else
+            {
+                DataGridViewRow selectedRow = DGV_Customers.SelectedRows[0];
+
+                int customerId = (int)selectedRow.Cells["CustomerId"].Value;
+                string customerName = selectedRow.Cells["CustomerName"].Value.ToString();
+
+                //in address table
+                int addressId = (int)selectedRow.Cells["addressId"].Value;
+                string address = selectedRow.Cells["address"].Value.ToString();
+                string phoneNumber = selectedRow.Cells["phone"].Value.ToString();
+
+                UpdateCustomer updateCustomer = new UpdateCustomer(customerId, customerName, addressId, address, phoneNumber);
+                updateCustomer.Show();
+                this.Hide();
+            }    
+
+        }
+
         private void btn_ModifyAppointment_Click(object sender, EventArgs e)
         {
-            
-           
             if (!dgv_AppointmentGrid.CurrentRow.Selected)
             {
                 MessageBox.Show("Nothing selected. Please select an item to modify.");
@@ -100,6 +126,7 @@ namespace mschreiber_Software2_c969Project
 
                 ModifyAppointment modifyAppointment = new ModifyAppointment(appointmentId, title, location, type, start);
                 modifyAppointment.Show();
+                this.Hide();
             } 
         }
 
@@ -108,12 +135,6 @@ namespace mschreiber_Software2_c969Project
             AddNewCustomer addNewCustomer = new AddNewCustomer();
             addNewCustomer.Show();
             this.Hide();
-        }
-    
-        private void UpdateCustomerButton_Click(object sender, EventArgs e)
-        {
-            UpdateCustomer updateCustomer = new UpdateCustomer();
-            updateCustomer.Show();
         }
 
         private void btn_SearchAppointments_Click(object sender, EventArgs e)
@@ -222,7 +243,7 @@ namespace mschreiber_Software2_c969Project
             MySqlConnection conn = new MySqlConnection(connString);
 
             //string query = "SELECT customer.customerId, customer.customerName, appointment.title, appointment.description, appointment.type, appointment.start, appointment.end FROM appointment INNER JOIN customer ON customer.customerId = appointment.customerID";
-            string queryForCustomerOnly = "SELECT customer.CustomerName, address.address, address.phone From address INNER JOIN customer on Customer.addressId = address.addressID;";
+            string queryForCustomerOnly = "SELECT customer.CustomerId, customer.CustomerName, address.addressId, address.address, address.phone From address INNER JOIN customer on Customer.addressId = address.addressID;";
 
             using (MySqlCommand cmd = new MySqlCommand(queryForCustomerOnly, conn))
             {
@@ -351,7 +372,8 @@ namespace mschreiber_Software2_c969Project
         {
             MySqlConnection conn = new MySqlConnection(connString);
             
-            string CustomerInformationReport = "SELECT customer.customerName, address.address, address.phone FROM customer INNER JOIN address WHERE customer.addressID = address.addressID;";
+            string CustomerInformationReport = 
+                "SELECT customer.customerName, address.address, address.phone FROM customer INNER JOIN address WHERE customer.addressID = address.addressID;";
 
             try
             { 
@@ -363,8 +385,7 @@ namespace mschreiber_Software2_c969Project
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
                     dgv_Reports.DataSource = dataTable;
-                }
-                
+                }  
             }
             catch
             {
@@ -375,11 +396,6 @@ namespace mschreiber_Software2_c969Project
             {
                 conn.Close();
             }
-        }
-
-        private void btn_CustSearch_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -44,6 +44,8 @@
             this.txt_AppointmentSearch = new System.Windows.Forms.TextBox();
             this.rb_ViewAll = new System.Windows.Forms.RadioButton();
             this.Customers = new System.Windows.Forms.TabPage();
+            this.btn_CustSearch = new System.Windows.Forms.Button();
+            this.tb_CustSearch = new System.Windows.Forms.TextBox();
             this.btn_AllCustomers = new System.Windows.Forms.Button();
             this.btn_ViewCustomersWithAppointments = new System.Windows.Forms.Button();
             this.btn_DeleteCustomer = new System.Windows.Forms.Button();
@@ -55,8 +57,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.btn_CustSearch = new System.Windows.Forms.Button();
-            this.tb_CustSearch = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_AppointmentGrid)).BeginInit();
             this.tab_Appointment.SuspendLayout();
             this.Appointments.SuspendLayout();
@@ -279,6 +279,26 @@
             this.Customers.TabIndex = 1;
             this.Customers.Text = "Customers";
             // 
+            // btn_CustSearch
+            // 
+            this.btn_CustSearch.Font = new System.Drawing.Font("OCR A Extended", 12F);
+            this.btn_CustSearch.Location = new System.Drawing.Point(192, 140);
+            this.btn_CustSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btn_CustSearch.Name = "btn_CustSearch";
+            this.btn_CustSearch.Size = new System.Drawing.Size(123, 36);
+            this.btn_CustSearch.TabIndex = 19;
+            this.btn_CustSearch.Text = "Search";
+            this.btn_CustSearch.UseVisualStyleBackColor = true;
+            // 
+            // tb_CustSearch
+            // 
+            this.tb_CustSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.tb_CustSearch.Location = new System.Drawing.Point(330, 140);
+            this.tb_CustSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tb_CustSearch.Name = "tb_CustSearch";
+            this.tb_CustSearch.Size = new System.Drawing.Size(588, 35);
+            this.tb_CustSearch.TabIndex = 18;
+            // 
             // btn_AllCustomers
             // 
             this.btn_AllCustomers.Location = new System.Drawing.Point(15, 572);
@@ -318,14 +338,14 @@
             this.DGV_Customers.AllowUserToResizeColumns = false;
             this.DGV_Customers.BackgroundColor = System.Drawing.Color.White;
             this.DGV_Customers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGV_Customers.Location = new System.Drawing.Point(176, 192);
+            this.DGV_Customers.Location = new System.Drawing.Point(192, 192);
             this.DGV_Customers.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DGV_Customers.Name = "DGV_Customers";
             this.DGV_Customers.ReadOnly = true;
             this.DGV_Customers.RowHeadersWidth = 62;
             this.DGV_Customers.RowTemplate.Height = 28;
             this.DGV_Customers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGV_Customers.Size = new System.Drawing.Size(1040, 435);
+            this.DGV_Customers.Size = new System.Drawing.Size(703, 444);
             this.DGV_Customers.TabIndex = 14;
             // 
             // label2
@@ -410,27 +430,6 @@
             this.button1.Text = "Monthly Appoinments";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.GenerateMonthlyReport);
-            // 
-            // btn_CustSearch
-            // 
-            this.btn_CustSearch.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.btn_CustSearch.Location = new System.Drawing.Point(192, 140);
-            this.btn_CustSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btn_CustSearch.Name = "btn_CustSearch";
-            this.btn_CustSearch.Size = new System.Drawing.Size(123, 36);
-            this.btn_CustSearch.TabIndex = 19;
-            this.btn_CustSearch.Text = "Search";
-            this.btn_CustSearch.UseVisualStyleBackColor = true;
-            this.btn_CustSearch.Click += new System.EventHandler(this.btn_CustSearch_Click);
-            // 
-            // tb_CustSearch
-            // 
-            this.tb_CustSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.tb_CustSearch.Location = new System.Drawing.Point(330, 140);
-            this.tb_CustSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tb_CustSearch.Name = "tb_CustSearch";
-            this.tb_CustSearch.Size = new System.Drawing.Size(588, 35);
-            this.tb_CustSearch.TabIndex = 18;
             // 
             // MainHomePage
             // 

@@ -79,11 +79,6 @@ namespace mschreiber_Software2_c969Project
 
         private void btn_ModifyAppointment_Click(object sender, EventArgs e)
         {
-
-
-
-
-            
             string modifiedTitle = txt_Title.Text;
             string contact = "not needed";
             string selectedUser= cb_CustomerID.SelectedItem.ToString();
@@ -94,11 +89,8 @@ namespace mschreiber_Software2_c969Project
             DateTime newStartDateTime = TimeZoneInfo.ConvertTimeToUtc(DT_ScheduleAppointment.Value);
             DateTime newEndDatetime = TimeZoneInfo.ConvertTimeToUtc(newStartDateTime.AddMinutes(30));
 
-            //best way to handle appointmentID?
 
-
-            //update the database record 
-            //update where appointmentId = 'appointmentIdPlaceholder' 
+            //update record
             string connectionString = "server=localhost;user id=sqlUser;password=Passw0rd!;database=client_schedule";
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
@@ -139,13 +131,9 @@ namespace mschreiber_Software2_c969Project
             finally
             {
                 MainHomePage mainHomePage = new MainHomePage();
-
-                mainHomePage.RefreshCustomerDataGrid();
                 mainHomePage.Show();
                 this.Hide();
             }
-
-
         }
 
         
