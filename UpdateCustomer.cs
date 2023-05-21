@@ -31,7 +31,6 @@ namespace mschreiber_Software2_c969Project
         {
             if (MessageBox.Show("Are you sure you want to cancel? Entries will be lost", "Caption", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-
                 this.Hide();
             }
 
@@ -67,6 +66,7 @@ namespace mschreiber_Software2_c969Project
                     updateAddressTable.Parameters.AddWithValue("@newPhone", modifiedPhoneNumber);
                     updateAddressTable.Parameters.AddWithValue("@newAddressId", _addressId);
                 updateAddressTable.ExecuteNonQuery();
+
                 //sql update statement for customer 
                 string updateCustomer =
                     @"UPDATE customer

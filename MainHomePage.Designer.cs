@@ -312,7 +312,7 @@
             // 
             // btn_ViewCustomersWithAppointments
             // 
-            this.btn_ViewCustomersWithAppointments.Location = new System.Drawing.Point(6, 211);
+            this.btn_ViewCustomersWithAppointments.Location = new System.Drawing.Point(15, 192);
             this.btn_ViewCustomersWithAppointments.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_ViewCustomersWithAppointments.Name = "btn_ViewCustomersWithAppointments";
             this.btn_ViewCustomersWithAppointments.Size = new System.Drawing.Size(155, 56);
@@ -345,7 +345,7 @@
             this.DGV_Customers.RowHeadersWidth = 62;
             this.DGV_Customers.RowTemplate.Height = 28;
             this.DGV_Customers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGV_Customers.Size = new System.Drawing.Size(703, 444);
+            this.DGV_Customers.Size = new System.Drawing.Size(1024, 436);
             this.DGV_Customers.TabIndex = 14;
             // 
             // label2

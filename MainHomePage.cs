@@ -187,6 +187,100 @@ namespace mschreiber_Software2_c969Project
             deleteCommand.Parameters.AddWithValue("@appointmentID", appointmentID);
             deleteCommand.ExecuteNonQuery();
         }
+
+        private void btn_DeleteCustomer_Click(object sender, EventArgs e)
+        {
+            //TODO - this needs to work CORRECTLY... currently only deleteing the DGV entry. this needs to go and remove the right stuff from the DB
+            DialogResult result = MessageBox.Show("Are you sure you want to delete this customer?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes && DGV_Customers.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = DGV_Customers.SelectedRows[0];
+                int customerId = (int)selectedRow.Cells["CustomerId"].Value;
+                //string customerName = selectedRow.Cells["customer"].Value.ToString();
+                int addressId = (int)selectedRow.Cells["addressId"].Value;
+                //countryID
+
+
+                //remove the row from the DGV
+                DGV_Customers.Rows.Remove(selectedRow);
+
+                //remove the associated information from the database
+                DeleteAllCustomerInformation(customerId, addressId);
+            }
+        }
+
+        private void DeleteAllCustomerInformation(int customerId, int addressId)
+        {
+            MySqlConnection conn = new MySqlConnection(connString);
+            conn.Open();
+
+            int customerIdToRemove = customerId;
+            int addressIdToRemove = addressId;
+
+            //GET CITYID
+            string GetTheCityId = "SELECT cityID FROM address WHERE addressID = @addressId;";
+            MySqlCommand cmd = new MySqlCommand(GetTheCityId, conn);
+            cmd.Parameters.AddWithValue("@addressId", addressIdToRemove);
+            Object cityId = cmd.ExecuteScalar();
+
+            int CityIdToRemove = Convert.ToInt32(cityId.ToString());
+
+            //get countryId from cityId that matches the customer to delete
+            string GetCountryID = "SELECT countryId from city where cityId = @cityIdToRemove;";
+            
+            MySqlCommand GetcountryIdCmd = new MySqlCommand(GetCountryID, conn);
+            
+            GetcountryIdCmd.Parameters.AddWithValue("@cityIdToRemove", CityIdToRemove);
+
+            Object countryId = GetcountryIdCmd.ExecuteScalar();
+            int CountryIdToRemove = Convert.ToInt32(countryId.ToString());
+
+            //use executeScalar to get this value, then us it in the countryToRemove query
+
+            string countryToRemove = "DELETE FROM country WHERE countryId = @countryId "; //cityId = cityToRemove
+
+            MySqlCommand FirstDeleteCommand = new MySqlCommand(countryToRemove, conn);
+
+            FirstDeleteCommand.Parameters.AddWithValue("@countryId", CountryIdToRemove);
+            FirstDeleteCommand.ExecuteNonQuery();
+
+
+
+
+
+
+            //if countryRemoved = true then remove city, set cityRemoved = true
+            string cityToRemove = "DELETE FROM city WHERE cityId = @cityId"; //addressIdToRemove
+
+            MySqlCommand SecondDeleteCommand = new MySqlCommand(cityToRemove, conn);
+
+            SecondDeleteCommand.Parameters.AddWithValue("@cityId", CityIdToRemove);
+            SecondDeleteCommand.ExecuteNonQuery();
+
+
+
+
+            //if cityRemoved = remove address, set address removed to true
+
+            string deleteAddressQuery = "DELETE FROM address WHERE addressId = @addressId";
+     
+            MySqlCommand ThirdDeleteCommand = new MySqlCommand(deleteAddressQuery, conn);
+
+            ThirdDeleteCommand.Parameters.AddWithValue("@addressId", addressIdToRemove);
+            ThirdDeleteCommand.ExecuteNonQuery();
+
+            //if countryRemoved, cityRemoved and addressRemoved = true, remove customer 
+
+            string deleteCustomerQuery = "DELETE FROM customer WHERE CustomerId = @customerId";
+
+            MySqlCommand DeleteCustomerCommand = new MySqlCommand(deleteCustomerQuery, conn);
+
+            DeleteCustomerCommand.Parameters.AddWithValue("@customerId", customerIdToRemove);
+            DeleteCustomerCommand.ExecuteNonQuery();
+
+            conn.Close();
+        }
+
         private void rb_ViewAll_CheckedChanged(object sender, EventArgs e)
         {
             MySqlConnection conn = new MySqlConnection(connString);
@@ -256,35 +350,7 @@ namespace mschreiber_Software2_c969Project
                 }
             }
         }
-        private void MainHomePageExit(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-        public void ChangeColorofButtons()
-        {
-            var hoverColorChanger = new ButtonHoverColorChanger(Color.Black, Color.LimeGreen);
-
-            hoverColorChanger.Attach(btn_AddCustomer);
-            hoverColorChanger.Attach(btn_ModifyCustomer);
-            hoverColorChanger.Attach(btn_AddNewAppointment);
-            hoverColorChanger.Attach(btn_DeleteAppointment);
-            hoverColorChanger.Attach(btn_ModifyAppointment);
-            hoverColorChanger.Attach(btn_Exit);
-        }
-        private void btn_DeleteCustomer_Click(object sender, EventArgs e)
-        {
-            //TODO - this needs to work CORRECTLY... currently only deleteing the DGV entry. this needs to go and remove the right stuff from the DB
-            DialogResult result = MessageBox.Show("Are you sure you want to delete this customer?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
-            {
-                foreach (DataGridViewRow row in DGV_Customers.SelectedRows)
-                {
-                    DGV_Customers.Rows.RemoveAt(row.Index);
-                }
-            }
-
-
-        }
+      
         private void btn_GetCustomerInfo_Click(object sender, EventArgs e)
         {
             MySqlConnection conn = new MySqlConnection(connString);
@@ -302,6 +368,7 @@ namespace mschreiber_Software2_c969Project
                 }
             }
         }
+
         private void btn_AllCustomers_Click(object sender, EventArgs e)
         {
             DGV_CustomerContentLoad();
@@ -396,6 +463,23 @@ namespace mschreiber_Software2_c969Project
             {
                 conn.Close();
             }
+        }
+
+        private void MainHomePageExit(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        public void ChangeColorofButtons()
+        {
+            var hoverColorChanger = new ButtonHoverColorChanger(Color.Black, Color.LimeGreen);
+
+            hoverColorChanger.Attach(btn_AddCustomer);
+            hoverColorChanger.Attach(btn_ModifyCustomer);
+            hoverColorChanger.Attach(btn_AddNewAppointment);
+            hoverColorChanger.Attach(btn_DeleteAppointment);
+            hoverColorChanger.Attach(btn_ModifyAppointment);
+            hoverColorChanger.Attach(btn_Exit);
         }
     }
 }
