@@ -216,6 +216,10 @@ namespace mschreiber_Software2_c969Project
 
             int customerIdToRemove = customerId;
             int addressIdToRemove = addressId;
+            bool isCountryDeleted = false;
+            bool isCityDeleted = false;
+            bool isAddressDeleted = false;
+            bool customerRemoved = false;
 
             //GET CITYID
             string GetTheCityId = "SELECT cityID FROM address WHERE addressID = @addressId;";
@@ -225,7 +229,7 @@ namespace mschreiber_Software2_c969Project
 
             int CityIdToRemove = Convert.ToInt32(cityId.ToString());
 
-            //get countryId from cityId that matches the customer to delete
+            //GET COUNTRYID
             string GetCountryID = "SELECT countryId from city where cityId = @cityIdToRemove;";
             
             MySqlCommand GetcountryIdCmd = new MySqlCommand(GetCountryID, conn);
@@ -235,50 +239,61 @@ namespace mschreiber_Software2_c969Project
             Object countryId = GetcountryIdCmd.ExecuteScalar();
             int CountryIdToRemove = Convert.ToInt32(countryId.ToString());
 
-            //use executeScalar to get this value, then us it in the countryToRemove query
-
+            //DELETE COUNTRY FIRST
+            
             string countryToRemove = "DELETE FROM country WHERE countryId = @countryId "; //cityId = cityToRemove
 
             MySqlCommand FirstDeleteCommand = new MySqlCommand(countryToRemove, conn);
 
             FirstDeleteCommand.Parameters.AddWithValue("@countryId", CountryIdToRemove);
             FirstDeleteCommand.ExecuteNonQuery();
+            isCountryDeleted = true;
 
 
+            if (isCountryDeleted == true)
+            {
+                string cityToRemove = "DELETE FROM city WHERE cityId = @cityId"; //addressIdToRemove
 
+                MySqlCommand SecondDeleteCommand = new MySqlCommand(cityToRemove, conn);
 
-
-
-            //if countryRemoved = true then remove city, set cityRemoved = true
-            string cityToRemove = "DELETE FROM city WHERE cityId = @cityId"; //addressIdToRemove
-
-            MySqlCommand SecondDeleteCommand = new MySqlCommand(cityToRemove, conn);
-
-            SecondDeleteCommand.Parameters.AddWithValue("@cityId", CityIdToRemove);
-            SecondDeleteCommand.ExecuteNonQuery();
-
+                SecondDeleteCommand.Parameters.AddWithValue("@cityId", CityIdToRemove);
+                SecondDeleteCommand.ExecuteNonQuery();
+                isCityDeleted = true;
+            }
 
 
 
             //if cityRemoved = remove address, set address removed to true
+            if (isCityDeleted == true)
+            {
+                string deleteAddressQuery = "DELETE FROM address WHERE addressId = @addressId";
 
-            string deleteAddressQuery = "DELETE FROM address WHERE addressId = @addressId";
-     
-            MySqlCommand ThirdDeleteCommand = new MySqlCommand(deleteAddressQuery, conn);
+                MySqlCommand ThirdDeleteCommand = new MySqlCommand(deleteAddressQuery, conn);
 
-            ThirdDeleteCommand.Parameters.AddWithValue("@addressId", addressIdToRemove);
-            ThirdDeleteCommand.ExecuteNonQuery();
+                ThirdDeleteCommand.Parameters.AddWithValue("@addressId", addressIdToRemove);
+                ThirdDeleteCommand.ExecuteNonQuery();
+                isAddressDeleted = true;
+            }
 
             //if countryRemoved, cityRemoved and addressRemoved = true, remove customer 
+            if (isCountryDeleted == true && isCityDeleted == true && isAddressDeleted == true)
+            {
+                string deleteCustomerQuery = "DELETE FROM customer WHERE CustomerId = @customerId";
 
-            string deleteCustomerQuery = "DELETE FROM customer WHERE CustomerId = @customerId";
+                MySqlCommand DeleteCustomerCommand = new MySqlCommand(deleteCustomerQuery, conn);
 
-            MySqlCommand DeleteCustomerCommand = new MySqlCommand(deleteCustomerQuery, conn);
+                DeleteCustomerCommand.Parameters.AddWithValue("@customerId", customerIdToRemove);
+                DeleteCustomerCommand.ExecuteNonQuery();
+                customerRemoved = true;
 
-            DeleteCustomerCommand.Parameters.AddWithValue("@customerId", customerIdToRemove);
-            DeleteCustomerCommand.ExecuteNonQuery();
+                conn.Close();
+            }
 
-            conn.Close();
+            if (customerRemoved == true)
+            {
+                MessageBox.Show("The customer " + customerId + " has been removed and all records scrubbed from the database");
+            }
+
         }
 
         private void rb_ViewAll_CheckedChanged(object sender, EventArgs e)
