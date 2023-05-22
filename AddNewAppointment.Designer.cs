@@ -159,6 +159,7 @@
             this.cb_CustomerID.Name = "cb_CustomerID";
             this.cb_CustomerID.Size = new System.Drawing.Size(266, 28);
             this.cb_CustomerID.TabIndex = 42;
+            //this.cb_CustomerID.SelectedIndexChanged += new System.EventHandler(this.cb_CustomerID_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -166,9 +167,9 @@
             this.label1.Font = new System.Drawing.Font("OCR A Extended", 24F);
             this.label1.Location = new System.Drawing.Point(15, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(544, 50);
+            this.label1.Size = new System.Drawing.Size(573, 50);
             this.label1.TabIndex = 43;
-            this.label1.Text = "Modify Appointment";
+            this.label1.Text = "Add New Appointment";
             // 
             // AddNewAppointment
             // 

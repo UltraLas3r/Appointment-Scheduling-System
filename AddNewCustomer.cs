@@ -74,63 +74,65 @@ namespace mschreiber_Software2_c969Project
 
                     //have user verify the customer information is accurate
                     DialogResult result = MessageBox.Show(message, "Verify Information", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-
-                    if (result == DialogResult.Yes)
+                    try
                     {
+                        if (result == DialogResult.Yes)
+                        {
 
-                        string connectionString = "server=localhost;user id=sqlUser;password=Passw0rd!;database=client_schedule";
-                        MySqlConnection connection = new MySqlConnection(connectionString);
+                            string connectionString = "server=localhost;user id=sqlUser;password=Passw0rd!;database=client_schedule";
+                            MySqlConnection connection = new MySqlConnection(connectionString);
 
-                        connection.Open();
+                            connection.Open();
 
-                        //Create query for country           
-                        string insertCountry = "INSERT INTO country VALUES (null, @country, NOW(), 'user', NOW(), 'user')";
+                            //Create query for country           
+                            string insertCountry = "INSERT INTO country VALUES (null, @country, NOW(), 'user', NOW(), 'user')";
 
-                        MySqlCommand insertCountryToTable = new MySqlCommand(insertCountry, connection);
-                        insertCountryToTable.Parameters.AddWithValue("@country", country);
-                        insertCountryToTable.ExecuteNonQuery();
+                            MySqlCommand insertCountryToTable = new MySqlCommand(insertCountry, connection);
+                            insertCountryToTable.Parameters.AddWithValue("@country", country);
+                            insertCountryToTable.ExecuteNonQuery();
 
-                        //Create query for city
-                        int countryID = (int)insertCountryToTable.LastInsertedId;
-                        string insertCity = "INSERT INTO city VALUES (null, @city, @countryID, NOW(), 'user', NOW(), 'user')";
+                            //Create query for city
+                            int countryID = (int)insertCountryToTable.LastInsertedId;
+                            string insertCity = "INSERT INTO city VALUES (null, @city, @countryID, NOW(), 'user', NOW(), 'user')";
 
-                        MySqlCommand insertCityToTable = new MySqlCommand(insertCity, connection);
-                        insertCityToTable.Parameters.AddWithValue("@city", city);
-                        insertCityToTable.Parameters.AddWithValue("@countryID", countryID);
-                        insertCityToTable.ExecuteNonQuery();
+                            MySqlCommand insertCityToTable = new MySqlCommand(insertCity, connection);
+                            insertCityToTable.Parameters.AddWithValue("@city", city);
+                            insertCityToTable.Parameters.AddWithValue("@countryID", countryID);
+                            insertCityToTable.ExecuteNonQuery();
 
-                        //Create query for address
-                        int cityID = (int)insertCityToTable.LastInsertedId;
-                        string insertAddress = "INSERT INTO address VALUES (null, @address, @addressTwo, @cityID, @postal, @phone, NOW(), 'user', NOW(), 'user')";
+                            //Create query for address
+                            int cityID = (int)insertCityToTable.LastInsertedId;
+                            string insertAddress = "INSERT INTO address VALUES (null, @address, @addressTwo, @cityID, @postal, @phone, NOW(), 'user', NOW(), 'user')";
 
-                        MySqlCommand insertAddressToTable = new MySqlCommand(insertAddress, connection);
-                        insertAddressToTable.Parameters.AddWithValue("@address", address);
-                        insertAddressToTable.Parameters.AddWithValue("@addressTwo", addressTwo);
-                        insertAddressToTable.Parameters.AddWithValue("@phone", phoneNumber);
-                        insertAddressToTable.Parameters.AddWithValue("@postal", postalCode);
-                        insertAddressToTable.Parameters.AddWithValue("@cityID", cityID);
-                        insertAddressToTable.ExecuteNonQuery();
+                            MySqlCommand insertAddressToTable = new MySqlCommand(insertAddress, connection);
+                            insertAddressToTable.Parameters.AddWithValue("@address", address);
+                            insertAddressToTable.Parameters.AddWithValue("@addressTwo", addressTwo);
+                            insertAddressToTable.Parameters.AddWithValue("@phone", phoneNumber);
+                            insertAddressToTable.Parameters.AddWithValue("@postal", postalCode);
+                            insertAddressToTable.Parameters.AddWithValue("@cityID", cityID);
+                            insertAddressToTable.ExecuteNonQuery();
 
-                        ////Create query for adding customer
+                            ////Create query for adding customer
 
-                        int addressID = (int)insertAddressToTable.LastInsertedId;
-                        string insertCustomer = "INSERT INTO customer VALUES (null, @name, @addressId, '1', NOW(), 'user', NOW(), 'user')";
+                            int addressID = (int)insertAddressToTable.LastInsertedId;
+                            string insertCustomer = "INSERT INTO customer VALUES (null, @name, @addressId, '1', NOW(), 'user', NOW(), 'user')";
 
-                        MySqlCommand insertCustomerToTable = new MySqlCommand(insertCustomer, connection);
-                        insertCustomerToTable.Parameters.AddWithValue("@name", name);
-                        insertCustomerToTable.Parameters.AddWithValue("@addressId", addressID);
-                        insertCustomerToTable.ExecuteNonQuery();
+                            MySqlCommand insertCustomerToTable = new MySqlCommand(insertCustomer, connection);
+                            insertCustomerToTable.Parameters.AddWithValue("@name", name);
+                            insertCustomerToTable.Parameters.AddWithValue("@addressId", addressID);
+                            insertCustomerToTable.ExecuteNonQuery();
 
-                        connection.Close();
-                        this.Hide();
+                            connection.Close();
+                            this.Hide();
+                        }
                     }
 
-                    else
+                    catch (Exception ex)
                     {
-                        MessageBox.Show("Unverified Data");
+                        MessageBox.Show("Error: " + ex.Message);
                         return;
+                            
                     }
-
                     //refresh the datagrid
                     MainHomePage mainHomePage = new MainHomePage();
                     mainHomePage.RefreshCustomerDataGrid();

@@ -19,13 +19,13 @@ namespace mschreiber_Software2_c969Project
     public partial class AddNewAppointment : Form
     {
         string connString = "Host=localhost;port=3306;Database=client_schedule;Username=sqlUser;Password=Passw0rd!";
-
+        
         public AddNewAppointment()
         {
             InitializeComponent();
             ChangeColorofButtons();
             LoadCustomerComboBox();
-
+            
             string[] choices = { "Lunch Meeting", "Scrum", "Synch Up" };
             cb_Choices.Items.AddRange(choices);
 
@@ -59,7 +59,6 @@ namespace mschreiber_Software2_c969Project
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
-
             }
 
             finally
@@ -67,12 +66,15 @@ namespace mschreiber_Software2_c969Project
                 conn.Close();
             }
         }
+
         private void SaveNewAppointment(object sender, EventArgs e)
-        {
+        { 
             string contact = "not needed";
             string title = txt_Title.Text;
             string selectedChoice = cb_Choices.SelectedItem.ToString();
             string selectedLocation = cb_Location.SelectedItem.ToString();
+            string selectedCustomerId = cb_CustomerID.SelectedItem.ToString();
+            
             DateTime inputDate = DT_ScheduleAppointment.Value;
             DateTime utcStartDate = TimeZoneInfo.ConvertTimeToUtc(inputDate);
 
@@ -82,16 +84,19 @@ namespace mschreiber_Software2_c969Project
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
 
+            //get customerID
+            string GetCustomerId = "SELECT customerId FROM customer WHERE customerId = @custID;";
+            MySqlCommand cmd = new MySqlCommand(GetCustomerId, connection);
+            cmd.Parameters.AddWithValue("@custID", selectedCustomerId);
+            Object custId = cmd.ExecuteScalar();
+            
             try
             {
                 //Create new Appointment          
                 string insertAppointment = "INSERT INTO appointment VALUES(null, @customerID, '1', @title, description, @location, @contact, @type, url, @startTime, @endTime, NOW(), 'user', NOW(), 'user')";
 
-                //TODO for testing only, remove when functionality is complete.
-                int customerID = 1;
-
                 MySqlCommand insertAppointmentToTable = new MySqlCommand(insertAppointment, connection);
-                insertAppointmentToTable.Parameters.AddWithValue("@customerID", customerID);
+                insertAppointmentToTable.Parameters.AddWithValue("@customerID", custId);
                 insertAppointmentToTable.Parameters.AddWithValue("@title", title);
                 insertAppointmentToTable.Parameters.AddWithValue("@location", selectedLocation);
                 insertAppointmentToTable.Parameters.AddWithValue("@contact", contact);
@@ -101,9 +106,9 @@ namespace mschreiber_Software2_c969Project
                 insertAppointmentToTable.ExecuteNonQuery();
             }
 
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Unverified Data");
+                MessageBox.Show("Error: " + ex.Message);
                 return;
             }
 
@@ -147,5 +152,7 @@ namespace mschreiber_Software2_c969Project
                 return;
             }
         }
+
+        
     }
 }
