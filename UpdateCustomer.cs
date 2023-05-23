@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -84,16 +85,34 @@ namespace mschreiber_Software2_c969Project
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
-
                 return;
             }
 
             finally
             {
-                MainHomePage mainHomePage = new MainHomePage();
-                mainHomePage.Show();
-                this.Hide();
+                if (IsValidPhoneNumber(modifiedPhoneNumber))
+                {
+                    MainHomePage mainHomePage = new MainHomePage();
+                    mainHomePage.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    lbl_PhoneNumberValidation.Visible = true;
+                    this.ActiveControl = txt_PhoneNumber;
+                }
             }
         }
+
+        public bool IsValidPhoneNumber(string phoneNumber)
+        {
+            string pattern = @"^\d{3}-\d{3}-\d{4}$"; 
+            bool isMatch = Regex.IsMatch(phoneNumber, pattern);
+
+            return isMatch;
+        }
+
+
+
     }
 }

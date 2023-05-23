@@ -9,8 +9,10 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace mschreiber_Software2_c969Project
 {
@@ -58,10 +60,10 @@ namespace mschreiber_Software2_c969Project
             string addressTwo = "null";
             string city = txt_City.Text;
             string country = txt_Country.Text;
-            string phoneNumber = txt_PhoneNumber.Text.ToString();
+            string newPhoneNumber = txt_PhoneNumber.Text.ToString();
             string postalCode = txt_PostalCode.Text.ToString();
 
-            if (name.Length > 0 && address.Length > 0 && city.Length > 0 && phoneNumber.Length > 0)
+            if (name.Length > 0 && address.Length > 0 && city.Length > 0 && newPhoneNumber.Length > 0)
             {
                 try
                 {
@@ -72,7 +74,7 @@ namespace mschreiber_Software2_c969Project
                         + "\nAddress: " + address
                         + "\nCity: " + city
                         + "\nCountry: " + country
-                        + "\nPhone Number: " + phoneNumber;
+                        + "\nPhone Number: " + newPhoneNumber;
 
                     //have user verify the customer information is accurate
                     DialogResult result = MessageBox.Show(message, "Verify Information", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
@@ -109,7 +111,7 @@ namespace mschreiber_Software2_c969Project
                             MySqlCommand insertAddressToTable = new MySqlCommand(insertAddress, connection);
                             insertAddressToTable.Parameters.AddWithValue("@address", address);
                             insertAddressToTable.Parameters.AddWithValue("@addressTwo", addressTwo);
-                            insertAddressToTable.Parameters.AddWithValue("@phone", phoneNumber);
+                            insertAddressToTable.Parameters.AddWithValue("@phone", newPhoneNumber);
                             insertAddressToTable.Parameters.AddWithValue("@postal", postalCode);
                             insertAddressToTable.Parameters.AddWithValue("@cityID", cityID);
                             insertAddressToTable.ExecuteNonQuery();
@@ -135,10 +137,15 @@ namespace mschreiber_Software2_c969Project
                         return;
                             
                     }
-                    //refresh the datagrid
-                    MainHomePage mainHomePage = new MainHomePage();
-                    mainHomePage.RefreshCustomerDataGrid();
-                    mainHomePage.Show();
+
+
+                    if (IsValidPhoneNumber(newPhoneNumber))
+                    {
+                        //refresh the datagrid
+                        MainHomePage mainHomePage = new MainHomePage();
+                        mainHomePage.RefreshCustomerDataGrid();
+                        mainHomePage.Show();
+                    } 
                 }
 
                 catch
@@ -146,7 +153,17 @@ namespace mschreiber_Software2_c969Project
                     return;
                 }
             }
+        }
 
+        public bool IsValidPhoneNumber(string phoneNumber)
+        {
+            
+            string pattern = @"^\d{3}-\d{3}-\d{4}$";
+
+            // Use Regex.IsMatch to check if the phoneNumber matches the pattern
+            bool isMatch = Regex.IsMatch(phoneNumber, pattern);
+
+            return isMatch;
         }
 
     }

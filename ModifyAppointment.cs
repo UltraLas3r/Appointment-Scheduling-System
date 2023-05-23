@@ -138,24 +138,14 @@ namespace mschreiber_Software2_c969Project
             }
         }
 
-        
-        public void CheckForValidPhoneNumber()
-        {
-            //todo DELETE THIS OR USE IT FOR MODIFY CUSTOMER
-            //string phoneNumber = txt_PhoneNumber.Text.Trim();
-            //string pattern = @"^\d{10}$"; // Regular expression pattern for a 10-digit phone number
 
-            //if (!Regex.IsMatch(phoneNumber, pattern))
-            //{
-            //    lbl_PhoneNumberValidation.Text = "Please enter a valid 10-digit phone number.";
-            //    lbl_PhoneNumberValidation.Visible = true;
-            //}
-            //else
-            //{
-            //    // Phone number is valid. Do something here.
-            //}
+        //public bool IsValidPhoneNumber(string phoneNumber)
+        //{
+        //    string pattern = @"^\d{3}-\d{3}-\d{4}$"; 
+        //    bool isMatch = Regex.IsMatch(phoneNumber, pattern);
 
-        }
+        //    return isMatch;
+        //}
 
         private void btn_Cancel_Click(object sender, EventArgs e)
         {
