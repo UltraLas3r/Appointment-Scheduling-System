@@ -29,6 +29,8 @@ namespace mschreiber_Software2_c969Project
             AddTypesToComboBox();
             DT_ScheduleAppointment.Value = start;
 
+            this.ActiveControl = txt_Title;
+
         }
 
         private void AddCustomerID()

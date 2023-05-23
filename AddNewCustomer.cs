@@ -21,6 +21,8 @@ namespace mschreiber_Software2_c969Project
         {
             InitializeComponent();
             ChangeColorofButtons();
+
+            this.ActiveControl = txt_CustomerName;
         }
 
        

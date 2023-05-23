@@ -25,6 +25,8 @@ namespace mschreiber_Software2_c969Project
             txt_CustFullName.Text = customerName;
             txt_Address.Text = address;
             txt_PhoneNumber.Text = phoneNumber;
+
+            this.ActiveControl = txt_CustFullName;
         }
 
         private void btn_Cancel_Click(object sender, EventArgs e)

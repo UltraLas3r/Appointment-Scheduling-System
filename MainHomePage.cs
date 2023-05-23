@@ -159,6 +159,19 @@ namespace mschreiber_Software2_c969Project
             //This code is easily read and much simpler in structure.
         }
 
+        private void searchTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                // Pressing Enter key, so programmatically click the search button
+                btn_Search.PerformClick();
+                e.Handled = true; // Handle the key press event to prevent the beep sound
+            }
+        }
+
+
+
+
         private void DeleteAppointment_Click(object sender, EventArgs e)
         {
             //Remove entry from the appointment DGV

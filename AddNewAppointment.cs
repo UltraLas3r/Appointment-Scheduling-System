@@ -31,6 +31,8 @@ namespace mschreiber_Software2_c969Project
 
             string[] locations = { "Cafteria", "Boardroom A", "Lobby", "Boardroom B", "War Room" };
             cb_Location.Items.AddRange(locations);
+
+            this.ActiveControl = txt_Title;
         }
 
         private void LoadCustomerComboBox()
