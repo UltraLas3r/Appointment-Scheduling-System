@@ -32,15 +32,15 @@ namespace mschreiber_Software2_c969Project
             InitializeComponent();
             ChangeColorofButtons();
             CheckLanguageSetting();
+           
 
-          
 
             this.ActiveControl = txt_LoginName;
         }
 
         private void CheckLanguageSetting()
         {
-           // CultureInfo.CurrentCulture = new CultureInfo("es"); //TODO >> for testing purposes only, REMOVE before submission!!!!!!!
+           CultureInfo.CurrentCulture = new CultureInfo("es"); //TODO >> for testing purposes only, REMOVE before submission!!!!!!!
            
 
             //the following text handles language changing on this form
@@ -65,41 +65,119 @@ namespace mschreiber_Software2_c969Project
 
         private void LoginClick(object sender, EventArgs e)
         {
-
-            //get connection string and connect 
             string loginName = txt_LoginName.Text.Trim();
             string loginPassword = txt_LoginPass.Text;
-
             CheckUserName();
             CheckPassword();
 
-            if (nameFound == true && passFound == true && currentCulture == "en")
+
+            if (nameFound != true || passFound != true && currentCulture == "en")
             {
-                MessageBox.Show("Successful Connection to the Database");
-                
-                string userName = txt_LoginName.Text.Trim();
-                LogUserActivity.ActivateLog(userName);
+                    lbl_InvalidCredentials.Text = "Invalid Name or Password";
+                    lbl_InvalidCredentials.Show();
 
-                this.Hide();
-                mainHomePage.Show();
-                CheckForUpcoming();
-            }
+                if (nameFound != true || passFound != true && currentCulture == "es")
+                {
+                    lbl_InvalidCredentials.Text = "Contraseña o nombre no válida";
+                    lbl_InvalidCredentials.Show();
+                }
 
-            if (nameFound == true && passFound == true && currentCulture == "es")
-            {
-                MessageBox.Show("Conexión correcta a la base de datos");
-                string userName = txt_LoginName.Text.Trim();
-                LogUserActivity.ActivateLog(userName);
-
-                this.Hide();
-                mainHomePage.Show();
-                CheckForUpcoming();
-            }
-
-            if (nameFound == false || passFound == false)
-            {
                 LogUserActivity.ActivateLog("INVALID LOGIN ATTEMPT: " + loginName + loginPassword);
             }
+
+          
+
+            if (passFound == true && nameFound == true && currentCulture == "en")
+            {
+                
+                
+                string userName = txt_LoginName.Text.Trim();
+                
+
+                if (nameFound == true || passFound == true && currentCulture == "es")
+                {
+                    MessageBox.Show("Conexión correcta a la base de datos");
+                    string userLoginName = txt_LoginName.Text.Trim();
+                    LogUserActivity.ActivateLog(userLoginName);
+                    this.Hide();
+                    mainHomePage.Show();
+                    CheckForUpcoming();
+                }
+
+                this.Hide();
+                mainHomePage.Show();
+                CheckForUpcoming();
+            }
+        }
+
+        private void CheckUserName()
+        {
+            MySqlConnection conn = new MySqlConnection(connString);
+
+            string getUserName = "SELECT username FROM user";
+            MySqlCommand executeCommand = new MySqlCommand(getUserName, conn);
+
+            //open connection and execute the query 
+            conn.Open();
+            MySqlDataReader reader = executeCommand.ExecuteReader();
+
+            List<string> userNames = new List<string>();
+            while (reader.Read())
+            {
+                string userName = reader["username"].ToString();
+                userNames.Add(userName);
+            }
+
+            string searchUserName = txt_LoginName.Text.Trim();
+
+            if (userNames.Any(userName => userName == searchUserName) && currentCulture == "en")
+            {
+                nameFound = true;
+                lbl_InvalidCredentials.Hide();
+                userNames.Clear();
+            }
+            else
+            { 
+                nameFound = false;
+            }
+            //the use of a lambda in the above expression simplifies iterating through
+            //the list of usernames in the database. 
+
+            conn.Close();
+        }
+
+        private void CheckPassword()
+        {
+            MySqlConnection conn = new MySqlConnection(connString);
+           
+            string getPassword = "SELECT password FROM user";
+            MySqlCommand executeCommand = new MySqlCommand(getPassword, conn);
+
+            conn.Open();
+            MySqlDataReader reader = executeCommand.ExecuteReader();
+
+            List<string> passwords = new List<string>();
+            while (reader.Read())
+            {
+                string password = reader["password"].ToString();
+                passwords.Add(password);
+            }
+
+            string searchPassword = txt_LoginPass.Text.Trim();
+            if (passwords.Any(password => password == searchPassword) && currentCulture == "en")
+            {
+                passFound = true;
+                lbl_InvalidCredentials.Hide();
+                passwords.Clear();
+            }
+            else
+            {
+                passFound = false;
+            }
+            //the use of a lambda in the above expression simplifies iterating through
+            //the list of passwords in the database. 
+            conn.Close();
+         
         }
 
         private void CheckForUpcoming()
@@ -146,101 +224,6 @@ namespace mschreiber_Software2_c969Project
             }
         }
 
-
-        private void CheckPassword()
-        {
-            MySqlConnection conn = new MySqlConnection(connString);
-            //create command to get the usernames from the table
-            string query = "SELECT password FROM user";
-            MySqlCommand executeCommand = new MySqlCommand(query, conn);
-
-            //open connection and execute the query 
-            conn.Open();
-            MySqlDataReader reader = executeCommand.ExecuteReader();
-
-            List<string> passwords = new List<string>();
-            while (reader.Read())
-            {
-                string password = reader["password"].ToString();
-                passwords.Add(password);
-            }
-
-            string searchPassword = txt_LoginPass.Text.Trim();
-            if (passwords.Any(password => password == searchPassword) && currentCulture == "en")
-            {
-                passFound = true;
-                lbl_InvalidCredentials.Hide();
-            }
-
-            if (passFound != true && currentCulture == "en")
-            {          
-                    lbl_InvalidCredentials.Text = "Invalid Password";
-                    lbl_InvalidCredentials.Show(); 
-            }
-            
-            if (passFound != true && currentCulture == "es")
-            {
-               
-               
-                lbl_InvalidCredentials.Text = "Contraseña no válida";
-                lbl_InvalidCredentials.Show();
-            }
-            
-            //the use of a lambda in the above expression simplifies iterating through
-            //the list of passwords in the database. 
-
-        }
-    
-
-
-        private void CheckUserName()
-        {
-            MySqlConnection conn = new MySqlConnection(connString);
-           
-            string query = "SELECT username FROM user";
-            MySqlCommand executeCommand = new MySqlCommand(query, conn);
-
-            //open connection and execute the query 
-            conn.Open();
-            MySqlDataReader reader = executeCommand.ExecuteReader();
-
-            List<string> userNames = new List<string>();
-            while (reader.Read())
-            {
-                string name = reader["username"].ToString();
-                userNames.Add(name);
-            }
-            
-            string sortedUserNames = txt_LoginName.Text.Trim();
-
-           
-
-
-            if (userNames.Any(name => name == txt_LoginName.Text) && currentCulture == "en")
-            {
-                nameFound = true;
-                
-            }
-
-            if (nameFound != true && currentCulture == "en")
-            {
-                
-                lbl_InvalidCredentials.Text = "Invalid name or Password";
-                lbl_InvalidCredentials.Show();
-            }
-            else 
-            {
-
-                lbl_InvalidCredentials.Text = "Contraseña o nombre no válida";
-                lbl_InvalidCredentials.Show();
-            }
-            //the use of a lambda in the above expression simplifies iterating through
-            //the list of usernames in the database. 
-
-     
-        }
-    
-
         private void ChangeColorofButtons()
         {
             var hoverColorChanger = new ButtonHoverColorChanger(Color.Black, Color.LimeGreen);
@@ -252,6 +235,5 @@ namespace mschreiber_Software2_c969Project
         {
             Application.Exit();
         }
-
     }
 }

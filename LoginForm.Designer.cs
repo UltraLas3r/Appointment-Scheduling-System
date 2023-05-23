@@ -53,16 +53,16 @@
             this.lbl_InvalidCredentials.AutoSize = true;
             this.lbl_InvalidCredentials.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.lbl_InvalidCredentials.Font = new System.Drawing.Font("OCR A Extended", 11F);
-            this.lbl_InvalidCredentials.Location = new System.Drawing.Point(84, 285);
+            this.lbl_InvalidCredentials.Location = new System.Drawing.Point(210, 283);
             this.lbl_InvalidCredentials.Name = "lbl_InvalidCredentials";
-            this.lbl_InvalidCredentials.Size = new System.Drawing.Size(400, 24);
+            this.lbl_InvalidCredentials.Size = new System.Drawing.Size(101, 24);
             this.lbl_InvalidCredentials.TabIndex = 1;
-            this.lbl_InvalidCredentials.Text = "Please Enter Valid Credentials";
+            this.lbl_InvalidCredentials.Text = "-------";
             this.lbl_InvalidCredentials.Visible = false;
             // 
             // txt_LoginName
             // 
-            this.txt_LoginName.Location = new System.Drawing.Point(214, 168);
+            this.txt_LoginName.Location = new System.Drawing.Point(214, 115);
             this.txt_LoginName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txt_LoginName.Name = "txt_LoginName";
             this.txt_LoginName.Size = new System.Drawing.Size(566, 26);
@@ -70,7 +70,7 @@
             // 
             // txt_LoginPass
             // 
-            this.txt_LoginPass.Location = new System.Drawing.Point(214, 255);
+            this.txt_LoginPass.Location = new System.Drawing.Point(214, 227);
             this.txt_LoginPass.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txt_LoginPass.Name = "txt_LoginPass";
             this.txt_LoginPass.Size = new System.Drawing.Size(566, 26);
@@ -104,7 +104,7 @@
             // 
             this.lbl_UserName.AutoSize = true;
             this.lbl_UserName.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.lbl_UserName.Location = new System.Drawing.Point(27, 164);
+            this.lbl_UserName.Location = new System.Drawing.Point(12, 113);
             this.lbl_UserName.Name = "lbl_UserName";
             this.lbl_UserName.Size = new System.Drawing.Size(138, 25);
             this.lbl_UserName.TabIndex = 6;
@@ -114,7 +114,7 @@
             // 
             this.lbl_Password.AutoSize = true;
             this.lbl_Password.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.lbl_Password.Location = new System.Drawing.Point(40, 251);
+            this.lbl_Password.Location = new System.Drawing.Point(12, 225);
             this.lbl_Password.Name = "lbl_Password";
             this.lbl_Password.Size = new System.Drawing.Size(124, 25);
             this.lbl_Password.TabIndex = 7;

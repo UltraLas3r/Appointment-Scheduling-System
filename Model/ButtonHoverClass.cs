@@ -25,7 +25,7 @@ namespace mschreiber_Software2_c969Project.Model
             //the lambdas in this public method attach event handlers to the button MouseEnter
             // and MouseLeave events.
             // This lambda helps keep the code cleaner, and allows this class to be used throughout
-            // the program in an elegant mannaer.  
+            // the program in an elegant manner.  
             button.MouseEnter += (sender, e) =>
             {
                 var b = (Button)sender;
