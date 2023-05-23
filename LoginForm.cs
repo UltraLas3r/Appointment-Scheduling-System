@@ -89,10 +89,8 @@ namespace mschreiber_Software2_c969Project
 
             if (passFound == true && nameFound == true && currentCulture == "en")
             {
-                
-                
+
                 string userName = txt_LoginName.Text.Trim();
-                
 
                 if (nameFound == true || passFound == true && currentCulture == "es")
                 {
