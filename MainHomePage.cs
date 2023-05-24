@@ -77,8 +77,6 @@ namespace mschreiber_Software2_c969Project
 
         private void UpdateCustomerButton_Click(object sender, EventArgs e)
         {
-           
-
             if (!DGV_Customers.CurrentRow.Selected)
             {
                 MessageBox.Show("Nothing selected. Please select an item to modify.");
@@ -139,27 +137,33 @@ namespace mschreiber_Software2_c969Project
 
         private void btn_SearchAppointments_Click(object sender, EventArgs e)
         {
-
+            
             string searchContent = txt_AppointmentSearch.Text.Trim();
+            if (dgv_AppointmentGrid.RowCount == 0)
+            {
+                lbl_NoMatch.Visible = true;
+            }
+
             if (string.IsNullOrEmpty(txt_AppointmentSearch.Text))
             {
-                MessageBox.Show("Enter a valid search term");
+                MessageBox.Show("No match found, please enter a valid search term");
                 return;
             }
             else
             {
+                    lbl_NoMatch.Visible = false;
                     dgv_AppointmentGrid.Rows.Cast<DataGridViewRow>()
                     .SelectMany(row => row.Cells.Cast<DataGridViewCell>())
                     .Where(cell => cell.Value != null && cell.Value.ToString().Contains(searchContent))
                     .ToList()
-                    .ForEach(cell => cell.Selected = true);
+                    .ForEach(cell => cell.Selected = true);  
             }
             //The use of lambdas in this expression simplify the code from a
             //clumsy foreach loop to an elegant if-else statement. 
             //This code is easily read and much simpler in structure.
         }
 
-        private void searchTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        private void AppointmentSearchTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
@@ -168,9 +172,6 @@ namespace mschreiber_Software2_c969Project
                 e.Handled = true; // Handle the key press event to prevent the beep sound
             }
         }
-
-
-
 
         private void DeleteAppointment_Click(object sender, EventArgs e)
         {
@@ -211,8 +212,6 @@ namespace mschreiber_Software2_c969Project
                 int customerId = (int)selectedRow.Cells["CustomerId"].Value;
                 //string customerName = selectedRow.Cells["customer"].Value.ToString();
                 int addressId = (int)selectedRow.Cells["addressId"].Value;
-                //countryID
-
 
                 //remove the row from the DGV
                 DGV_Customers.Rows.Remove(selectedRow);
@@ -251,20 +250,8 @@ namespace mschreiber_Software2_c969Project
             GetcountryIdCmd.Parameters.AddWithValue("@cityIdToRemove", CityIdToRemove);
 
             Object countryId = GetcountryIdCmd.ExecuteScalar();
-            int CountryIdToRemove = Convert.ToInt32(countryId.ToString());
-
-            //DELETE COUNTRY FIRST
-
-            //string countryToRemove = "DELETE FROM country WHERE countryId = @countryId "; //cityId = cityToRemove
-
-            //MySqlCommand FirstDeleteCommand = new MySqlCommand(countryToRemove, conn);
-
-            //FirstDeleteCommand.Parameters.AddWithValue("@countryId", CountryIdToRemove);
-            //FirstDeleteCommand.ExecuteNonQuery();
-
+            int countryIdToRemove = Convert.ToInt32(countryId.ToString());
             isReadyToRemove = true;
-
-            //NEW CODE HERE!!
 
             if (isReadyToRemove == true)
             {
@@ -278,8 +265,6 @@ namespace mschreiber_Software2_c969Project
 
             }
 
-         
-
             if (appointmentsRemoved == true)
             {
                 string deleteCustomerQuery = "DELETE FROM customer WHERE CustomerId = @customerId";
@@ -291,7 +276,7 @@ namespace mschreiber_Software2_c969Project
                 customerRemoved = true;
             }
 
-            if (customerRemoved = true)
+            if (customerRemoved == true)
             {
                 string deleteAddressQuery = "DELETE FROM address WHERE addressId = @addressId";
 
@@ -300,7 +285,6 @@ namespace mschreiber_Software2_c969Project
                 SecondDeleteCommand.Parameters.AddWithValue("@addressId", addressIdToRemove);
                 SecondDeleteCommand.ExecuteNonQuery();
                 addressRemoved = true;
-
             }
 
             else if (appointmentsRemoved == true)
@@ -364,6 +348,7 @@ namespace mschreiber_Software2_c969Project
         }
         public void DGV_CustomerContentLoad()
         {
+            DGV_Customers.ClearSelection();
             MySqlConnection conn = new MySqlConnection(connString);
 
             //string query = "SELECT customer.customerId, customer.customerName, appointment.title, appointment.description, appointment.type, appointment.start, appointment.end FROM appointment INNER JOIN customer ON customer.customerId = appointment.customerID";
@@ -422,7 +407,6 @@ namespace mschreiber_Software2_c969Project
                     adapter.Fill(dataTable);
                     dgv_Reports.DataSource = dataTable;
                 }
-                
             }
 
             catch
@@ -495,9 +479,41 @@ namespace mschreiber_Software2_c969Project
             }
         }
 
-        private void MainHomePageExit(object sender, EventArgs e)
+        private void btn_CustSearch_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            DGV_Customers.ClearSelection();
+            string custSearch = tb_CustSearch.Text.Trim();
+
+            if (DGV_Customers.RowCount == 0)
+            {
+                label3.Visible = true;
+            }
+
+            if (string.IsNullOrEmpty(tb_CustSearch.Text))
+            {
+                MessageBox.Show("No match found, please enter a valid search term");
+                return;
+            }
+
+            else
+            {
+                label3.Visible = false;
+                DGV_Customers.Rows.Cast<DataGridViewRow>()
+                .SelectMany(row => row.Cells.Cast<DataGridViewCell>())
+                .Where(cell => cell.Value != null && cell.Value.ToString().Contains(custSearch))
+                .ToList()
+                .ForEach(cell => cell.Selected = true);
+            }
+        }
+
+        private void tb_CustSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                // Pressing Enter key, so programmatically click the search button
+                btn_CustSearch.PerformClick();
+                e.Handled = true; // Handle the key press event to prevent the beep sound
+            }
         }
 
         public void ChangeColorofButtons()
@@ -510,6 +526,10 @@ namespace mschreiber_Software2_c969Project
             hoverColorChanger.Attach(btn_DeleteAppointment);
             hoverColorChanger.Attach(btn_ModifyAppointment);
             hoverColorChanger.Attach(btn_Exit);
+        }
+        private void MainHomePageExit(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

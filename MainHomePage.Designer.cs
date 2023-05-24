@@ -57,6 +57,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.lbl_NoMatch = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_AppointmentGrid)).BeginInit();
             this.tab_Appointment.SuspendLayout();
             this.Appointments.SuspendLayout();
@@ -206,6 +208,7 @@
             // Appointments
             // 
             this.Appointments.BackColor = System.Drawing.Color.Gray;
+            this.Appointments.Controls.Add(this.lbl_NoMatch);
             this.Appointments.Controls.Add(this.btn_Search);
             this.Appointments.Controls.Add(this.txt_AppointmentSearch);
             this.Appointments.Controls.Add(this.rb_ViewAll);
@@ -244,6 +247,7 @@
             this.txt_AppointmentSearch.Name = "txt_AppointmentSearch";
             this.txt_AppointmentSearch.Size = new System.Drawing.Size(588, 35);
             this.txt_AppointmentSearch.TabIndex = 13;
+            this.txt_AppointmentSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AppointmentSearchTextBox_KeyPress);
             // 
             // rb_ViewAll
             // 
@@ -262,6 +266,7 @@
             // Customers
             // 
             this.Customers.BackColor = System.Drawing.Color.Gray;
+            this.Customers.Controls.Add(this.label3);
             this.Customers.Controls.Add(this.btn_CustSearch);
             this.Customers.Controls.Add(this.tb_CustSearch);
             this.Customers.Controls.Add(this.btn_AllCustomers);
@@ -289,6 +294,8 @@
             this.btn_CustSearch.TabIndex = 19;
             this.btn_CustSearch.Text = "Search";
             this.btn_CustSearch.UseVisualStyleBackColor = true;
+            this.btn_CustSearch.Click += new System.EventHandler(this.btn_CustSearch_Click);
+            this.btn_CustSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_CustSearch_KeyPress);
             // 
             // tb_CustSearch
             // 
@@ -298,6 +305,7 @@
             this.tb_CustSearch.Name = "tb_CustSearch";
             this.tb_CustSearch.Size = new System.Drawing.Size(588, 35);
             this.tb_CustSearch.TabIndex = 18;
+            this.tb_CustSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_CustSearch_KeyPress);
             // 
             // btn_AllCustomers
             // 
@@ -431,6 +439,30 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.GenerateMonthlyReport);
             // 
+            // lbl_NoMatch
+            // 
+            this.lbl_NoMatch.AutoSize = true;
+            this.lbl_NoMatch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.lbl_NoMatch.Font = new System.Drawing.Font("OCR A Extended", 14F);
+            this.lbl_NoMatch.Location = new System.Drawing.Point(758, 229);
+            this.lbl_NoMatch.Name = "lbl_NoMatch";
+            this.lbl_NoMatch.Size = new System.Drawing.Size(166, 30);
+            this.lbl_NoMatch.TabIndex = 30;
+            this.lbl_NoMatch.Text = "No Match!\r\n";
+            this.lbl_NoMatch.Visible = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.label3.Font = new System.Drawing.Font("OCR A Extended", 14F);
+            this.label3.Location = new System.Drawing.Point(924, 146);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(166, 30);
+            this.label3.TabIndex = 31;
+            this.label3.Text = "No Match!\r\n";
+            this.label3.Visible = false;
+            // 
             // MainHomePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -487,5 +519,7 @@
         private System.Windows.Forms.DataGridView dgv_Reports;
         private System.Windows.Forms.Button btn_CustSearch;
         private System.Windows.Forms.TextBox tb_CustSearch;
+        private System.Windows.Forms.Label lbl_NoMatch;
+        private System.Windows.Forms.Label label3;
     }
 }
