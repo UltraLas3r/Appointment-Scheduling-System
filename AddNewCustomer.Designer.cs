@@ -65,7 +65,7 @@
             this.txt_PhoneNumber.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txt_PhoneNumber.Name = "txt_PhoneNumber";
             this.txt_PhoneNumber.Size = new System.Drawing.Size(352, 26);
-            this.txt_PhoneNumber.TabIndex = 26;
+            this.txt_PhoneNumber.TabIndex = 27;
             // 
             // txt_Address
             // 
@@ -120,7 +120,7 @@
             this.btn_Cancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.Size = new System.Drawing.Size(252, 94);
-            this.btn_Cancel.TabIndex = 16;
+            this.btn_Cancel.TabIndex = 29;
             this.btn_Cancel.Text = "Cancel";
             this.btn_Cancel.UseVisualStyleBackColor = true;
             this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
@@ -132,7 +132,7 @@
             this.btn_SaveCustomer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_SaveCustomer.Name = "btn_SaveCustomer";
             this.btn_SaveCustomer.Size = new System.Drawing.Size(252, 94);
-            this.btn_SaveCustomer.TabIndex = 15;
+            this.btn_SaveCustomer.TabIndex = 28;
             this.btn_SaveCustomer.Text = "Add New Customer";
             this.btn_SaveCustomer.UseVisualStyleBackColor = true;
             this.btn_SaveCustomer.Click += new System.EventHandler(this.btn_SaveNewCustomer_Click);
@@ -153,7 +153,7 @@
             this.txt_Country.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txt_Country.Name = "txt_Country";
             this.txt_Country.Size = new System.Drawing.Size(352, 26);
-            this.txt_Country.TabIndex = 25;
+            this.txt_Country.TabIndex = 26;
             // 
             // lbl_Country
             // 
@@ -189,7 +189,7 @@
             this.txt_PostalCode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txt_PostalCode.Name = "txt_PostalCode";
             this.txt_PostalCode.Size = new System.Drawing.Size(352, 26);
-            this.txt_PostalCode.TabIndex = 31;
+            this.txt_PostalCode.TabIndex = 25;
             // 
             // lbl_Post
             // 
