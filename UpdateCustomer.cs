@@ -35,6 +35,9 @@ namespace mschreiber_Software2_c969Project
             if (MessageBox.Show("Are you sure you want to cancel? Entries will be lost", "Caption", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 this.Hide();
+                MainHomePage mainHomePage = new MainHomePage();
+                mainHomePage.Show();
+
             }
 
             else

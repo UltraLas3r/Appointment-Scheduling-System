@@ -17,12 +17,12 @@ namespace mschreiber_Software2_c969Project.Model
             DateTime currentTime = DateTime.Now;
             bool LoginError = false;
 
-            // Construct the log message
+            //Construct the log message
 
             string logMessage = $"The User {userName} logged in at {currentTime}";
             string selectQuery = $"SELECT COUNT(*) FROM users WHERE username = '{userName}'";
 
-            //TODO fix this error checking for if the username exists or not
+            
             
             if (selectQuery != userName)
             {

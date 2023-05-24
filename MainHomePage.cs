@@ -328,7 +328,7 @@ namespace mschreiber_Software2_c969Project
                 cityRemoved = true;
             }
 
-            if (cityRemoved == true)
+            if (customerRemoved == true)
             {
                 //delete country input
                 string deleteCountryQuery = "DELETE FROM country WHERE countryId = @countryID ";

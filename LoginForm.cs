@@ -38,9 +38,6 @@ namespace mschreiber_Software2_c969Project
 
         private void CheckLanguageSetting()
         {
-          CultureInfo.CurrentCulture = new CultureInfo("es"); //TODO >> for testing purposes only, REMOVE before submission!!!!!!!
-           
-
             //the following text handles language changing on this form
             if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName == "en")
             {
@@ -94,7 +91,7 @@ namespace mschreiber_Software2_c969Project
 
                 else
                 {
-                    lbl_InvalidCredentials.Text = "Contraseña o nombre no válida"; //TODO FIX THIS TEXT
+                    lbl_InvalidCredentials.Text = "Contraseña no válida"; 
                 }
                 
                 lbl_InvalidCredentials.Show();
@@ -105,18 +102,6 @@ namespace mschreiber_Software2_c969Project
 
             if (passFound == true && nameFound == true)
             {
-               //string userName = txt_LoginName.Text.Trim(); 
-
-               // if (nameFound == true || passFound == true && currentCulture == "es")
-               // {
-               //     MessageBox.Show("Conexión correcta a la base de datos");
-               //     string userLoginName = txt_LoginName.Text.Trim();
-               //     LogUserActivity.ActivateLog(userLoginName);
-               //     this.Hide();
-               //     mainHomePage.Show();
-               //     CheckForUpcoming();
-               // }
-
                 this.Hide();
                 mainHomePage.Show();
                 CheckForUpcoming();
