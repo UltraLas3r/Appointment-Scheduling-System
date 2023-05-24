@@ -305,6 +305,7 @@
             this.tb_CustSearch.Name = "tb_CustSearch";
             this.tb_CustSearch.Size = new System.Drawing.Size(588, 35);
             this.tb_CustSearch.TabIndex = 18;
+           
             this.tb_CustSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_CustSearch_KeyPress);
             // 
             // btn_AllCustomers

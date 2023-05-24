@@ -26,6 +26,9 @@ namespace mschreiber_Software2_c969Project
             ChangeColorofButtons();
             DGV_CustomerContentLoad();
             MainAppointmentView();
+
+            DGV_Customers.MultiSelect = false;
+            dgv_AppointmentGrid.MultiSelect = false;
             
 
             string userLocation = CultureInfo.CurrentCulture.DisplayName;
@@ -139,6 +142,7 @@ namespace mschreiber_Software2_c969Project
         {
             
             string searchContent = txt_AppointmentSearch.Text.Trim();
+
             if (dgv_AppointmentGrid.RowCount == 0)
             {
                 lbl_NoMatch.Visible = true;
@@ -149,18 +153,42 @@ namespace mschreiber_Software2_c969Project
                 MessageBox.Show("No match found, please enter a valid search term");
                 return;
             }
-            else
+           
+            else if (searchContent.Length > 0)
             {
+                 bool cellContainsSearchTerm = false;
+
+                foreach (DataGridViewRow row in dgv_AppointmentGrid.Rows)
+                    {
+                        foreach (DataGridViewCell cell in row.Cells)
+                        {
+                            if (cell.Value != null && cell.Value.ToString().Contains(searchContent))
+                            {
+                                cellContainsSearchTerm = true;
+                                cell.Selected = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (cellContainsSearchTerm == false)
+                        {
+
+                            lbl_NoMatch.Visible = true;
+                            return;
+                        }
+
                     lbl_NoMatch.Visible = false;
                     dgv_AppointmentGrid.Rows.Cast<DataGridViewRow>()
                     .SelectMany(row => row.Cells.Cast<DataGridViewCell>())
                     .Where(cell => cell.Value != null && cell.Value.ToString().Contains(searchContent))
                     .ToList()
-                    .ForEach(cell => cell.Selected = true);  
+                    .ForEach(cell => cell.Selected = true);
+                //The use of lambdas in this expression simplify the code from a
+                //clumsy foreach loop to an elegant if-else statement. 
+                //This code is easily read and much simpler in structure.
             }
-            //The use of lambdas in this expression simplify the code from a
-            //clumsy foreach loop to an elegant if-else statement. 
-            //This code is easily read and much simpler in structure.
+
         }
 
         private void AppointmentSearchTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -308,7 +336,7 @@ namespace mschreiber_Software2_c969Project
                 MySqlCommand DeleteCountryCommand = new MySqlCommand(deleteCountryQuery, conn);
 
                 DeleteCountryCommand.Parameters.AddWithValue("@countryID", countryIdToRemove);
-                DeleteCountryCommand.ExecuteNonQuery();
+                DeleteCountryCommand .ExecuteNonQuery();
                 
             }
 
@@ -506,10 +534,10 @@ namespace mschreiber_Software2_c969Project
 
         private void btn_CustSearch_Click(object sender, EventArgs e)
         {
-            DGV_Customers.ClearSelection();
+            
             string custSearch = tb_CustSearch.Text.Trim();
 
-            if (DGV_Customers.RowCount == 0)
+            if (DGV_Customers.SelectedRows.Count == 0)
             {
                 label3.Visible = true;
             }
@@ -520,14 +548,40 @@ namespace mschreiber_Software2_c969Project
                 return;
             }
 
-            else
+            else if (custSearch.Length > 0)
             {
+                bool cellContainsSearchTerm = false;
+                
+                foreach (DataGridViewRow row in DGV_Customers.Rows)
+                {
+                    foreach (DataGridViewCell cell in row.Cells)
+                    {
+                        if (cell.Value != null && cell.Value.ToString().Contains(custSearch))
+                        {
+                            cellContainsSearchTerm = true;
+                            cell.Selected = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (cellContainsSearchTerm == false)
+                {
+
+                    label3.Visible = true;
+                    return;
+
+                }
+
                 label3.Visible = false;
                 DGV_Customers.Rows.Cast<DataGridViewRow>()
                 .SelectMany(row => row.Cells.Cast<DataGridViewCell>())
                 .Where(cell => cell.Value != null && cell.Value.ToString().Contains(custSearch))
                 .ToList()
                 .ForEach(cell => cell.Selected = true);
+                //The use of lambdas in this expression simplify the code from a
+                //clumsy foreach loop to an elegant if-else statement. 
+                //This code is easily read and much simpler in structure.
             }
         }
 
