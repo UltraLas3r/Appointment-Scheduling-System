@@ -204,7 +204,7 @@ namespace mschreiber_Software2_c969Project
 
         private void btn_DeleteCustomer_Click(object sender, EventArgs e)
         {
-            //TODO - this needs to work CORRECTLY... currently only deleteing the DGV entry. this needs to go and remove the right stuff from the DB
+            
             DialogResult result = MessageBox.Show("Are you sure you want to delete this customer?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes && DGV_Customers.SelectedRows.Count > 0)
             {
@@ -287,7 +287,32 @@ namespace mschreiber_Software2_c969Project
                 addressRemoved = true;
             }
 
-            else if (appointmentsRemoved == true)
+            if (addressRemoved == true)
+            {
+                
+                //delete city
+                string deleteCityQuery = "DELETE FROM city WHERE cityId = @cityID ";
+
+                MySqlCommand DeleteCityCommand = new MySqlCommand(deleteCityQuery, conn);
+
+                DeleteCityCommand.Parameters.AddWithValue("@cityID", CityIdToRemove);
+                DeleteCityCommand.ExecuteNonQuery();
+                cityRemoved = true;
+            }
+
+            if (cityRemoved == true)
+            {
+                //delete country input
+                string deleteCountryQuery = "DELETE FROM country WHERE countryId = @countryID ";
+
+                MySqlCommand DeleteCountryCommand = new MySqlCommand(deleteCountryQuery, conn);
+
+                DeleteCountryCommand.Parameters.AddWithValue("@countryID", countryIdToRemove);
+                DeleteCountryCommand.ExecuteNonQuery();
+                
+            }
+
+            if (appointmentsRemoved == true)
             {
                 MessageBox.Show("The customer " + customerIdToRemove + " has been removed and all records scrubbed from the database");
                 conn.Close();
