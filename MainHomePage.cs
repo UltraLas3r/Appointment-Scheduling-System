@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Google.Protobuf.Reflection.SourceCodeInfo.Types;
 
 namespace mschreiber_Software2_c969Project
 {
@@ -331,8 +332,8 @@ namespace mschreiber_Software2_c969Project
         private void ViewThisWeekRadioButton(object sender, EventArgs e)
         {
             MySqlConnection conn = new MySqlConnection(connString);
-
-            string query = "SELECT title, location, type, start, end FROM appointment WHERE start BETWEEN DATE_sub(CURDATE(), INTERVAL 7 DAY) AND CURDATE()";
+            //TODO verify this is working properly
+            string query = "SELECT title, location, type, start, end FROM appointment WHERE start BETWEEN DATE_ADD(CURDATE(), INTERVAL 7 DAY) AND CURDATE()";
 
             using (MySqlCommand cmd = new MySqlCommand(query, conn))
             {
@@ -346,10 +347,11 @@ namespace mschreiber_Software2_c969Project
             }
         }
         private void ViewThisMonthRadioButton(object sender, EventArgs e)
-        {     
+        {
             MySqlConnection conn = new MySqlConnection(connString);
 
-            string query = "SELECT title, description, location, type, start, end FROM appointment WHERE start >= DATE_SUB(NOW(), INTERVAL 30 DAY);";
+            //TODO Verify that this funcionality is working correctly
+            string query = "SELECT title, description, location, type, start, end FROM appointment WHERE start <= DATE_ADD(CURDATE(), INTERVAL 30 DAY);" ;
 
             using (MySqlCommand cmd = new MySqlCommand(query, conn))
             {
