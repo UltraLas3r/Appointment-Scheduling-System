@@ -38,9 +38,6 @@ namespace mschreiber_Software2_c969Project
 
         private void CheckLanguageSetting()
         {
-           CultureInfo.CurrentCulture = new CultureInfo("es"); //TODO >> for testing purposes only, REMOVE before submission!!!!!!!
-           
-
             //the following text handles language changing on this form
             if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName == "en")
             {
@@ -69,37 +66,42 @@ namespace mschreiber_Software2_c969Project
             CheckPassword();
 
 
-            if (nameFound != true || passFound != true && currentCulture == "en")
+            if (nameFound != true)
             {
-                    lbl_InvalidCredentials.Text = "Invalid Name or Password";
-                    lbl_InvalidCredentials.Show();
-
-                if (nameFound != true || passFound != true && currentCulture == "es")
+                if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName == "en")
+                {
+                    lbl_InvalidCredentials.Text = "Invalid Name";
+                }
+                else
                 {
                     lbl_InvalidCredentials.Text = "Contraseña o nombre no válida";
-                    lbl_InvalidCredentials.Show();
                 }
+
+                lbl_InvalidCredentials.Show();
 
                 LogUserActivity.ActivateLog("INVALID LOGIN ATTEMPT: " + loginName + loginPassword);
             }
 
-          
-
-            if (passFound == true && nameFound == true && currentCulture == "en")
+            if (passFound != true)
             {
-
-                string userName = txt_LoginName.Text.Trim();
-
-                if (nameFound == true || passFound == true && currentCulture == "es")
-                {
-                    MessageBox.Show("Conexión correcta a la base de datos");
-                    string userLoginName = txt_LoginName.Text.Trim();
-                    LogUserActivity.ActivateLog(userLoginName);
-                    this.Hide();
-                    mainHomePage.Show();
-                    CheckForUpcoming();
+                if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName == "en")
+                { 
+                    lbl_InvalidCredentials.Text = "Invalid Password";
                 }
 
+                else
+                {
+                    lbl_InvalidCredentials.Text = "Contraseña no válida"; 
+                }
+                
+                lbl_InvalidCredentials.Show();
+
+                LogUserActivity.ActivateLog("INVALID LOGIN ATTEMPT: " + loginName + loginPassword);
+            }
+
+
+            if (passFound == true && nameFound == true)
+            {
                 this.Hide();
                 mainHomePage.Show();
                 CheckForUpcoming();

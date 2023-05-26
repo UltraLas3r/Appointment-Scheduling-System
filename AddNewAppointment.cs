@@ -19,7 +19,9 @@ namespace mschreiber_Software2_c969Project
     public partial class AddNewAppointment : Form
     {
         string connString = "Host=localhost;port=3306;Database=client_schedule;Username=sqlUser;Password=Passw0rd!";
+
         
+
         public AddNewAppointment()
         {
             InitializeComponent();
@@ -70,59 +72,123 @@ namespace mschreiber_Software2_c969Project
         }
 
         private void SaveNewAppointment(object sender, EventArgs e)
-        { 
+        {
             string contact = "not needed";
             string title = txt_Title.Text;
             string selectedChoice = cb_Choices.SelectedItem.ToString();
             string selectedLocation = cb_Location.SelectedItem.ToString();
             string selectedCustomerId = cb_CustomerID.SelectedItem.ToString();
-            
-            DateTime inputDate = DT_ScheduleAppointment.Value;
-            DateTime utcStartDate = TimeZoneInfo.ConvertTimeToUtc(inputDate);
 
+            DateTime startOfAppointment = DT_ScheduleAppointment.Value;
+            DateTime endOfAppointment = DT_ScheduleAppointment.Value.AddMinutes(29);
+            DateTime utcStartDate = TimeZoneInfo.ConvertTimeToUtc(startOfAppointment);
             DateTime utcEndDate = TimeZoneInfo.ConvertTimeToUtc(DT_ScheduleAppointment.Value.AddMinutes(30));
 
-            string connectionString = "server=localhost;user id=sqlUser;password=Passw0rd!;database=client_schedule";
-            MySqlConnection connection = new MySqlConnection(connectionString);
-            connection.Open();
+            //the below timespans are the start/end times of the "workday"
+            TimeSpan startTime = new TimeSpan(8, 0, 0);  // 8 AM
+            TimeSpan endTime = new TimeSpan(17, 0, 0);  // 5 PM
 
-            //get customerID
-            string GetCustomerId = "SELECT customerId FROM customer WHERE customerId = @custID;";
-            MySqlCommand cmd = new MySqlCommand(GetCustomerId, connection);
-            cmd.Parameters.AddWithValue("@custID", selectedCustomerId);
-            Object custId = cmd.ExecuteScalar();
-            
-            try
+            TimeSpan startTimeOfDay = startOfAppointment.TimeOfDay;
+            TimeSpan endTimeOfDay = endOfAppointment.TimeOfDay;
+
+            bool appointmentExists = CheckIfAppointmentExists(utcStartDate, utcEndDate);
+           
+
+            if (appointmentExists != true)
             {
-                //Create new Appointment          
-                string insertAppointment = "INSERT INTO appointment VALUES(null, @customerID, '1', @title, description, @location, @contact, @type, url, @startTime, @endTime, NOW(), 'user', NOW(), 'user')";
+                if (startTimeOfDay >= startTime && endTimeOfDay <= endTime)
+                {
+                    MySqlConnection connection = new MySqlConnection(connString);
+                    connection.Open();
 
-                MySqlCommand insertAppointmentToTable = new MySqlCommand(insertAppointment, connection);
-                insertAppointmentToTable.Parameters.AddWithValue("@customerID", custId);
-                insertAppointmentToTable.Parameters.AddWithValue("@title", title);
-                insertAppointmentToTable.Parameters.AddWithValue("@location", selectedLocation);
-                insertAppointmentToTable.Parameters.AddWithValue("@contact", contact);
-                insertAppointmentToTable.Parameters.AddWithValue("@type", selectedChoice);
-                insertAppointmentToTable.Parameters.AddWithValue("@startTime", utcStartDate);
-                insertAppointmentToTable.Parameters.AddWithValue("@endTime", utcEndDate);
-                insertAppointmentToTable.ExecuteNonQuery();
-            }
+                    //get customerID
+                    string GetCustomerId = "SELECT customerId FROM customer WHERE customerId = @custID;";
+                    MySqlCommand cmd = new MySqlCommand(GetCustomerId, connection);
+                    cmd.Parameters.AddWithValue("@custID", selectedCustomerId);
+                    Object custId = cmd.ExecuteScalar();
 
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-                return;
-            }
+                    try
+                    {
+                        //Create new Appointment          
+                        string insertAppointment = "INSERT INTO appointment VALUES(null, @customerID, '1', @title, description, @location, @contact, @type, url, @startTime, @endTime, NOW(), 'user', NOW(), 'user')";
 
-            finally
-            {
-                MainHomePage mainHomePage = new MainHomePage();
-                
-                mainHomePage.RefreshCustomerDataGrid();
-                mainHomePage.Show();
-                this.Hide();
+                        MySqlCommand insertAppointmentToTable = new MySqlCommand(insertAppointment, connection);
+                        insertAppointmentToTable.Parameters.AddWithValue("@customerID", custId);
+                        insertAppointmentToTable.Parameters.AddWithValue("@title", title);
+                        insertAppointmentToTable.Parameters.AddWithValue("@location", selectedLocation);
+                        insertAppointmentToTable.Parameters.AddWithValue("@contact", contact);
+                        insertAppointmentToTable.Parameters.AddWithValue("@type", selectedChoice);
+                        insertAppointmentToTable.Parameters.AddWithValue("@startTime", utcStartDate);
+                        insertAppointmentToTable.Parameters.AddWithValue("@endTime", utcEndDate);
+                        insertAppointmentToTable.ExecuteNonQuery();
+                    }
+
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message);
+                        return;
+                    }
+
+                    finally
+                    {
+                        MainHomePage mainHomePage = new MainHomePage();
+
+                        mainHomePage.RefreshCustomerDataGrid();
+                        mainHomePage.Show();
+                        this.Hide();
+                    }
+                }
+
+                else
+                {
+                    MessageBox.Show("Appointments must be scheduled between 8:00 AM and 4:30 PM");
+                }
             }
         }
+
+        public bool CheckIfAppointmentExists(DateTime startOfAppointment, DateTime endOfAppointment)
+        {
+            bool AppointmentExistence = false;
+
+            using (MySqlConnection connection = new MySqlConnection(connString))
+            {
+                // Open the database connection
+                connection.Open();
+
+                // Create a MySqlCommand to execute the SQL query
+                string query = "SELECT * FROM appointment WHERE start >= @start - INTERVAL 5 MINUTE " +
+                               "AND start <= @start + INTERVAL 5 MINUTE " +
+                               "AND end >= @end - INTERVAL 5 MINUTE " +
+                               "AND end <= @end + INTERVAL 5 MINUTE";
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    // Set the parameter values for start and end
+                    command.Parameters.AddWithValue("@start", startOfAppointment);
+                    command.Parameters.AddWithValue("@end", endOfAppointment);
+                    
+
+                    // Execute the SQL query
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        // Check if any rows are returned
+                        if (reader.HasRows)
+                        {
+                            // An appointment with the same start and end time already exists
+                            MessageBox.Show("Unable to schedule an appointment during this time. There are no available consultants.", "Error");
+                            AppointmentExistence = true;
+                        }
+                        else
+                        {
+                            AppointmentExistence = false;
+                        }
+                    }
+                }
+            }
+
+                return AppointmentExistence;
+        }
+
+
         public DateTime ConvertToUtc(string inputDate)
         {
             DateTime date = DateTime.Parse(inputDate);

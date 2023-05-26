@@ -45,11 +45,13 @@
             this.lbl_PhoneNumberValidation.AutoSize = true;
             this.lbl_PhoneNumberValidation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.lbl_PhoneNumberValidation.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lbl_PhoneNumberValidation.Location = new System.Drawing.Point(74, 359);
+            this.lbl_PhoneNumberValidation.Location = new System.Drawing.Point(16, 334);
             this.lbl_PhoneNumberValidation.Name = "lbl_PhoneNumberValidation";
-            this.lbl_PhoneNumberValidation.Size = new System.Drawing.Size(394, 40);
+            this.lbl_PhoneNumberValidation.Size = new System.Drawing.Size(465, 40);
             this.lbl_PhoneNumberValidation.TabIndex = 27;
-            this.lbl_PhoneNumberValidation.Text = "Phone number format shoul must be numbers only. \r\nFor example, 555 555 5555";
+            this.lbl_PhoneNumberValidation.Text = "Phone number format shoul must follow the following format. \r\nFor example 555-555" +
+    "-5555 (include dashes)\r\n";
+            this.lbl_PhoneNumberValidation.Visible = false;
             // 
             // txt_PhoneNumber
             // 
@@ -89,7 +91,7 @@
             // 
             this.lbl_Address.AutoSize = true;
             this.lbl_Address.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.lbl_Address.Location = new System.Drawing.Point(15, 172);
+            this.lbl_Address.Location = new System.Drawing.Point(15, 173);
             this.lbl_Address.Name = "lbl_Address";
             this.lbl_Address.Size = new System.Drawing.Size(110, 25);
             this.lbl_Address.TabIndex = 18;

@@ -18,23 +18,12 @@ namespace mschreiber_Software2_c969Project
 {
     public partial class AddNewCustomer : Form
     {
-
         public AddNewCustomer()
         {
             InitializeComponent();
             ChangeColorofButtons();
 
             this.ActiveControl = txt_CustomerName;
-        }
-
-       
-        private void ChangeColorofButtons()
-        {
-            //use to change the color of any button on hover
-            var hoverColorChanger = new ButtonHoverColorChanger(Color.Black, Color.LimeGreen);
-
-            hoverColorChanger.Attach(btn_Cancel);
-            hoverColorChanger.Attach(btn_SaveCustomer);
         }
 
         private void btn_Cancel_Click(object sender, EventArgs e)
@@ -54,7 +43,6 @@ namespace mschreiber_Software2_c969Project
 
         private void btn_SaveNewCustomer_Click(object sender, EventArgs e)
         {
-           
             string name = txt_CustomerName.Text;
             string address = txt_Address.Text;
             string addressTwo = "null";
@@ -63,12 +51,10 @@ namespace mschreiber_Software2_c969Project
             string newPhoneNumber = txt_PhoneNumber.Text.ToString();
             string postalCode = txt_PostalCode.Text.ToString();
 
-            if (name.Length > 0 && address.Length > 0 && city.Length > 0 && newPhoneNumber.Length > 0)
+            if (name.Length > 0 && address.Length > 0 && city.Length > 0 && newPhoneNumber.Length > 0 && IsValidPhoneNumber(newPhoneNumber))
             {
                 try
                 {
-                    
-
                     string message = "\nPlease Verify that the following information is accurate: "
                         + "\nName: " + name
                         + "\nAddress: " + address
@@ -78,11 +64,11 @@ namespace mschreiber_Software2_c969Project
 
                     //have user verify the customer information is accurate
                     DialogResult result = MessageBox.Show(message, "Verify Information", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+
                     try
                     {
                         if (result == DialogResult.Yes)
                         {
-
                             string connectionString = "server=localhost;user id=sqlUser;password=Passw0rd!;database=client_schedule";
                             MySqlConnection connection = new MySqlConnection(connectionString);
 
@@ -127,25 +113,17 @@ namespace mschreiber_Software2_c969Project
                             insertCustomerToTable.ExecuteNonQuery();
 
                             connection.Close();
-                            this.Hide();
+
+                            MainHomePage mainHomePage = new MainHomePage();
+                            mainHomePage.RefreshCustomerDataGrid();
+                            mainHomePage.Show();
+                            this.Hide(); 
                         }
                     }
-
-                    catch (Exception ex)
+                    catch
                     {
-                        MessageBox.Show("Error: " + ex.Message);
                         return;
-                            
                     }
-
-
-                    if (IsValidPhoneNumber(newPhoneNumber))
-                    {
-                        //refresh the datagrid
-                        MainHomePage mainHomePage = new MainHomePage();
-                        mainHomePage.RefreshCustomerDataGrid();
-                        mainHomePage.Show();
-                    } 
                 }
 
                 catch
@@ -153,8 +131,21 @@ namespace mschreiber_Software2_c969Project
                     return;
                 }
             }
+            else
+            {
+                lbl_PhoneNumberValidation.Visible = true;
+                this.ActiveControl = txt_PhoneNumber;
+            }
         }
 
+        private void ChangeColorofButtons()
+        {
+            //use to change the color of any button on hover
+            var hoverColorChanger = new ButtonHoverColorChanger(Color.Black, Color.LimeGreen);
+
+            hoverColorChanger.Attach(btn_Cancel);
+            hoverColorChanger.Attach(btn_SaveCustomer);
+        }
         public bool IsValidPhoneNumber(string phoneNumber)
         {
             
@@ -165,6 +156,5 @@ namespace mschreiber_Software2_c969Project
 
             return isMatch;
         }
-
     }
 }
