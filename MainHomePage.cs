@@ -370,7 +370,7 @@ namespace mschreiber_Software2_c969Project
         {
             MySqlConnection conn = new MySqlConnection(connString);
             //TODO verify this is working properly
-            string query = "SELECT title, location, type, start, end FROM appointment WHERE start BETWEEN DATE_ADD(CURDATE(), INTERVAL 7 DAY) AND CURDATE()";
+            string query = "SELECT title, location, type, start, end FROM appointment WHERE start >= curdate() AND start <= curdate() + INTERVAL 7 DAY;";
 
             using (MySqlCommand cmd = new MySqlCommand(query, conn))
             {
@@ -478,7 +478,7 @@ namespace mschreiber_Software2_c969Project
         private void GenerateConsultantReport(object sender, EventArgs e)
         {
             MySqlConnection conn = new MySqlConnection(connString);
-            string ConsultantReport = "SELECT * FROM user";
+            string ConsultantReport = "SELECT user.userid, user.username, appointment.title, appointment.start, appointment.end FROM appointment INNER JOIN user WHERE user.userid = appointment.userid;";
 
              try
             {

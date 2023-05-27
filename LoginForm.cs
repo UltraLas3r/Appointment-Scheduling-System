@@ -79,7 +79,7 @@ namespace mschreiber_Software2_c969Project
 
                 lbl_InvalidCredentials.Show();
 
-                LogUserActivity.ActivateLog("INVALID LOGIN ATTEMPT: " + loginName + loginPassword);
+                LogUserActivity.ActivateLog("INVALID LOGIN ATTEMPT: " + loginName + " " + loginPassword);
             }
 
             if (passFound != true)
@@ -96,12 +96,13 @@ namespace mschreiber_Software2_c969Project
                 
                 lbl_InvalidCredentials.Show();
 
-                LogUserActivity.ActivateLog("INVALID LOGIN ATTEMPT: " + loginName + loginPassword);
+                LogUserActivity.ActivateLog("INVALID LOGIN ATTEMPT: " + loginName + " " + loginPassword);
             }
 
 
             if (passFound == true && nameFound == true)
             {
+                LogUserActivity.ActivateLog("SUCCESS!!!! " + loginName + " " + loginPassword);
                 this.Hide();
                 mainHomePage.Show();
                 CheckForUpcoming();

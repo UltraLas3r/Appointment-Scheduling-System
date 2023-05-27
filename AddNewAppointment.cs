@@ -75,9 +75,9 @@ namespace mschreiber_Software2_c969Project
         {
             string contact = "not needed";
             string title = txt_Title.Text;
-            string selectedChoice = cb_Choices.SelectedItem.ToString();
-            string selectedLocation = cb_Location.SelectedItem.ToString();
-            string selectedCustomerId = cb_CustomerID.SelectedItem.ToString();
+            string selectedChoice = cb_Choices.SelectedItem?.ToString();
+            string selectedLocation = cb_Location.SelectedItem?.ToString();
+            string selectedCustomerId = cb_CustomerID.SelectedItem?.ToString();
 
             DateTime startOfAppointment = DT_ScheduleAppointment.Value;
             DateTime endOfAppointment = DT_ScheduleAppointment.Value.AddMinutes(29);
@@ -92,7 +92,16 @@ namespace mschreiber_Software2_c969Project
             TimeSpan endTimeOfDay = endOfAppointment.TimeOfDay;
 
             bool appointmentExists = CheckIfAppointmentExists(utcStartDate, utcEndDate);
-           
+
+            if (string.IsNullOrEmpty(selectedChoice) || string.IsNullOrEmpty(selectedLocation) || string.IsNullOrEmpty(selectedCustomerId))
+            {
+                cb_Choices.BackColor = Color.Salmon;
+                cb_Location.BackColor = Color.Salmon;
+                cb_CustomerID.BackColor = Color.Salmon;
+
+                MessageBox.Show("You must make a selection from the dropdown menu(s)");
+            }
+
 
             if (appointmentExists != true)
             {
@@ -221,6 +230,19 @@ namespace mschreiber_Software2_c969Project
             }
         }
 
-        
+        private void cb_Choices_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cb_Choices.BackColor = Color.White;
+        }
+
+        private void cb_CustomerID_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cb_CustomerID.BackColor = Color.White;
+        }
+
+        private void cb_Location_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cb_Location.BackColor = Color.White;
+        }
     }
 }

@@ -123,6 +123,7 @@
             this.cb_Choices.Name = "cb_Choices";
             this.cb_Choices.Size = new System.Drawing.Size(422, 28);
             this.cb_Choices.TabIndex = 34;
+            this.cb_Choices.SelectedIndexChanged += new System.EventHandler(this.cb_Choices_SelectedIndexChanged);
             // 
             // cb_Location
             // 
@@ -132,6 +133,7 @@
             this.cb_Location.Name = "cb_Location";
             this.cb_Location.Size = new System.Drawing.Size(422, 28);
             this.cb_Location.TabIndex = 35;
+            this.cb_Location.SelectedIndexChanged += new System.EventHandler(this.cb_Location_SelectedIndexChanged);
             // 
             // lbl_UserMeeting
             // 
@@ -159,7 +161,7 @@
             this.cb_CustomerID.Name = "cb_CustomerID";
             this.cb_CustomerID.Size = new System.Drawing.Size(266, 28);
             this.cb_CustomerID.TabIndex = 42;
-            //this.cb_CustomerID.SelectedIndexChanged += new System.EventHandler(this.cb_CustomerID_SelectedIndexChanged);
+            this.cb_CustomerID.SelectedIndexChanged += new System.EventHandler(this.cb_CustomerID_SelectedIndexChanged);
             // 
             // label1
             // 

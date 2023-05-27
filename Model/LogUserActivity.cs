@@ -10,7 +10,6 @@ namespace mschreiber_Software2_c969Project.Model
 {
     internal class LogUserActivity
     {
-
         public static void ActivateLog(string userName)
         {
             // Get the current date and time
@@ -22,12 +21,16 @@ namespace mschreiber_Software2_c969Project.Model
             string logMessage = $"The User {userName} logged in at {currentTime}";
             string selectQuery = $"SELECT COUNT(*) FROM users WHERE username = '{userName}'";
 
-            
-            
             if (selectQuery != userName)
             {
                 string ErrorLogMessage = $"Failed Attempt using login {userName}.\nAt {currentTime}";
                 LoginError = true;
+            }
+
+            else
+            {
+                string ErrorLogMessage = $"SUCCESSFUL LOGIN USING {userName}.\nAt {currentTime}";
+                LoginError = false;
             }
 
             // Define the file path for the log file
