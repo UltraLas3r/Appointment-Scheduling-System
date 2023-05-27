@@ -80,9 +80,10 @@ namespace mschreiber_Software2_c969Project
             string selectedCustomerId = cb_CustomerID.SelectedItem?.ToString();
 
             DateTime startOfAppointment = DT_ScheduleAppointment.Value;
-            DateTime endOfAppointment = DT_ScheduleAppointment.Value.AddMinutes(29);
+            DateTime endOfAppointment = DT_ScheduleAppointment.Value.AddMinutes(30);
+
             DateTime utcStartDate = TimeZoneInfo.ConvertTimeToUtc(startOfAppointment);
-            DateTime utcEndDate = TimeZoneInfo.ConvertTimeToUtc(DT_ScheduleAppointment.Value.AddMinutes(30));
+            DateTime utcEndDate = TimeZoneInfo.ConvertTimeToUtc(endOfAppointment);
 
             //the below timespans are the start/end times of the "workday"
             TimeSpan startTime = new TimeSpan(8, 0, 0);  // 8 AM
