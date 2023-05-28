@@ -26,6 +26,7 @@ namespace mschreiber_Software2_c969Project
             this.ActiveControl = txt_CustomerName;
         }
 
+
         private void btn_Cancel_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are you sure you want to cancel? Entries will be lost", "Caption", MessageBoxButtons.OKCancel) == DialogResult.OK)
@@ -51,6 +52,7 @@ namespace mschreiber_Software2_c969Project
             string newPhoneNumber = txt_PhoneNumber.Text.ToString();
             string postalCode = txt_PostalCode.Text.ToString();
 
+            
             if (name.Length > 0 && address.Length > 0 && city.Length > 0 && newPhoneNumber.Length > 0 && IsValidPhoneNumber(newPhoneNumber))
             {
                 try

@@ -22,7 +22,7 @@ namespace mschreiber_Software2_c969Project
         public MainHomePage()
         {
             string constr = ConfigurationManager.ConnectionStrings["localdb"].ConnectionString;
-            
+
             InitializeComponent();
             ChangeColorofButtons();
             DGV_CustomerContentLoad();
@@ -30,12 +30,12 @@ namespace mschreiber_Software2_c969Project
 
             DGV_Customers.MultiSelect = false;
             dgv_AppointmentGrid.MultiSelect = false;
-            
+
 
             string userLocation = CultureInfo.CurrentCulture.DisplayName;
             DateTime currentDateTime = DateTime.Now;
- 
-          
+
+
             this.ActiveControl = txt_AppointmentSearch;
         }
 
@@ -47,36 +47,46 @@ namespace mschreiber_Software2_c969Project
 
         public void MainAppointmentView()
         {
-            
             string getAppointment = "SELECT appointmentID, title, location, type, start, end FROM appointment";
             MySqlConnection conn = new MySqlConnection(connString);
 
             using (MySqlCommand cmd = new MySqlCommand(getAppointment, conn))
             {
-                //Create a new MySQL data adapter
                 using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                 {
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
+
+                    // Convert UTC datetime values to local time
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        DateTime startUtc = (DateTime)row["start"];
+                        DateTime endUtc = (DateTime)row["end"];
+
+                        DateTime startLocal = startUtc.ToLocalTime();
+                        DateTime endLocal = endUtc.ToLocalTime();
+
+                        row["start"] = startLocal;
+                        row["end"] = endLocal;
+                    }
+
                     dgv_AppointmentGrid.DataSource = dataTable;
                 }
             }
         }
 
-        
-
         private void ViewAppointmentsButton_Click(object sender, EventArgs e)
         {
-           //this will change the DGV based on the radio button selection
+            //this will change the DGV based on the radio button selection
         }
 
         private void CreateNewAppointment_Click(object sender, EventArgs e)
         {
-          
+
             AddNewAppointment createNewAppointment = new AddNewAppointment();
             createNewAppointment.Show();
             this.Hide();
-            
+
         }
 
         private void UpdateCustomerButton_Click(object sender, EventArgs e)
@@ -102,7 +112,7 @@ namespace mschreiber_Software2_c969Project
                 UpdateCustomer updateCustomer = new UpdateCustomer(customerId, customerName, addressId, address, phoneNumber);
                 updateCustomer.Show();
                 this.Hide();
-            }    
+            }
 
         }
 
@@ -124,12 +134,12 @@ namespace mschreiber_Software2_c969Project
                 string type = selectedRow.Cells["type"].Value.ToString();
                 DateTime start = (DateTime)selectedRow.Cells["start"].Value;
                 //DateTime end = (DateTime)selectedRow.Cells["end"].Value;
-               
+
 
                 ModifyAppointment modifyAppointment = new ModifyAppointment(appointmentId, title, location, type, start);
                 modifyAppointment.Show();
                 this.Hide();
-            } 
+            }
         }
 
         private void AddCustomerButton_Click(object sender, EventArgs e)
@@ -141,7 +151,7 @@ namespace mschreiber_Software2_c969Project
 
         private void btn_SearchAppointments_Click(object sender, EventArgs e)
         {
-            
+
             string searchContent = txt_AppointmentSearch.Text.Trim();
 
             if (dgv_AppointmentGrid.RowCount == 0)
@@ -154,37 +164,37 @@ namespace mschreiber_Software2_c969Project
                 MessageBox.Show("No match found, please enter a valid search term");
                 return;
             }
-           
+
             else if (searchContent.Length > 0)
             {
-                 bool cellContainsSearchTerm = false;
+                bool cellContainsSearchTerm = false;
 
                 foreach (DataGridViewRow row in dgv_AppointmentGrid.Rows)
+                {
+                    foreach (DataGridViewCell cell in row.Cells)
                     {
-                        foreach (DataGridViewCell cell in row.Cells)
+                        if (cell.Value != null && cell.Value.ToString().Contains(searchContent))
                         {
-                            if (cell.Value != null && cell.Value.ToString().Contains(searchContent))
-                            {
-                                cellContainsSearchTerm = true;
-                                cell.Selected = true;
-                                break;
-                            }
+                            cellContainsSearchTerm = true;
+                            cell.Selected = true;
+                            break;
                         }
                     }
+                }
 
-                    if (cellContainsSearchTerm == false)
-                        {
+                if (cellContainsSearchTerm == false)
+                {
 
-                            lbl_NoMatch.Visible = true;
-                            return;
-                        }
+                    lbl_NoMatch.Visible = true;
+                    return;
+                }
 
-                    lbl_NoMatch.Visible = false;
-                    dgv_AppointmentGrid.Rows.Cast<DataGridViewRow>()
-                    .SelectMany(row => row.Cells.Cast<DataGridViewCell>())
-                    .Where(cell => cell.Value != null && cell.Value.ToString().Contains(searchContent))
-                    .ToList()
-                    .ForEach(cell => cell.Selected = true);
+                lbl_NoMatch.Visible = false;
+                dgv_AppointmentGrid.Rows.Cast<DataGridViewRow>()
+                .SelectMany(row => row.Cells.Cast<DataGridViewCell>())
+                .Where(cell => cell.Value != null && cell.Value.ToString().Contains(searchContent))
+                .ToList()
+                .ForEach(cell => cell.Selected = true);
                 //The use of lambdas in this expression simplify the code from a
                 //clumsy foreach loop to an elegant if-else statement. 
                 //This code is easily read and much simpler in structure.
@@ -219,6 +229,9 @@ namespace mschreiber_Software2_c969Project
             }
         }
 
+       
+
+
         private void DeleteAppointment(string appointmentID)
         {
             MySqlConnection conn = new MySqlConnection(connString);
@@ -233,7 +246,7 @@ namespace mschreiber_Software2_c969Project
 
         private void btn_DeleteCustomer_Click(object sender, EventArgs e)
         {
-            
+
             DialogResult result = MessageBox.Show("Are you sure you want to delete this customer?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes && DGV_Customers.SelectedRows.Count > 0)
             {

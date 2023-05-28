@@ -92,7 +92,7 @@ namespace mschreiber_Software2_c969Project
             TimeSpan startTimeOfDay = startOfAppointment.TimeOfDay;
             TimeSpan endTimeOfDay = endOfAppointment.TimeOfDay;
 
-            bool appointmentExists = CheckIfAppointmentExists(utcStartDate, utcEndDate);
+            bool appointmentExists = CheckIfAppointmentExists(utcStartDate, utcEndDate, selectedCustomerId);
 
             if (string.IsNullOrEmpty(selectedChoice) || string.IsNullOrEmpty(selectedLocation) || string.IsNullOrEmpty(selectedCustomerId))
             {
@@ -156,7 +156,7 @@ namespace mschreiber_Software2_c969Project
             }
         }
 
-        public bool CheckIfAppointmentExists(DateTime startOfAppointment, DateTime endOfAppointment)
+        public bool CheckIfAppointmentExists(DateTime startOfAppointment, DateTime endOfAppointment, string selectedCustomerId)
         {
             bool AppointmentExistence = false;
 
@@ -169,13 +169,16 @@ namespace mschreiber_Software2_c969Project
                 string query = "SELECT * FROM appointment WHERE start >= @start - INTERVAL 5 MINUTE " +
                                "AND start <= @start + INTERVAL 5 MINUTE " +
                                "AND end >= @end - INTERVAL 5 MINUTE " +
-                               "AND end <= @end + INTERVAL 5 MINUTE";
+                               "AND end <= @end + INTERVAL 5 MINUTE " +
+                               "AND customerId = @customerId";
+
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
                     // Set the parameter values for start and end
                     command.Parameters.AddWithValue("@start", startOfAppointment);
                     command.Parameters.AddWithValue("@end", endOfAppointment);
-                    
+                    command.Parameters.AddWithValue("@customerId", selectedCustomerId);
+
 
                     // Execute the SQL query
                     using (MySqlDataReader reader = command.ExecuteReader())

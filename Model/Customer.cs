@@ -6,14 +6,32 @@ using System.Threading.Tasks;
 
 namespace mschreiber_Software2_c969Project.Model
 {
-   public class Customer
+    public abstract class Customer
     {
-        public int CustomerId { get; set; }
-        public string CustomerName { get; set; }
-        public string AddressID { get; set; }
-        public int CityID { get; set; }
-        public bool active { get; set; }
-        public string CreatedBy { get; set; }
+        public string Name { get; set; }
+        public string Address { get; set; }
+        public string AddressTwo { get; set; }
+        public string City { get; set; }
+        public string Country { get; set; }
+        public string PhoneNumber { get; set; }
+        public string PostalCode { get; set; }
 
+        
     }
+
+    public class MyCustomer : Customer
+    {
+        
+        public MyCustomer(string name, string address, string addressTwo, string city, string country, string phoneNumber, string postalCode)
+        {
+            Name = name;
+            Address = address;
+            AddressTwo = addressTwo;
+            City = city;
+            Country = country;
+            PhoneNumber = phoneNumber;
+            PostalCode = postalCode;
+        }
+    }
+
 }

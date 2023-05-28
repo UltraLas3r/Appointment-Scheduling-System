@@ -40,10 +40,12 @@
             this.btn_ModifyCustomer = new System.Windows.Forms.Button();
             this.tab_Appointment = new System.Windows.Forms.TabControl();
             this.Appointments = new System.Windows.Forms.TabPage();
+            this.lbl_NoMatch = new System.Windows.Forms.Label();
             this.btn_Search = new System.Windows.Forms.Button();
             this.txt_AppointmentSearch = new System.Windows.Forms.TextBox();
             this.rb_ViewAll = new System.Windows.Forms.RadioButton();
             this.Customers = new System.Windows.Forms.TabPage();
+            this.label3 = new System.Windows.Forms.Label();
             this.btn_CustSearch = new System.Windows.Forms.Button();
             this.tb_CustSearch = new System.Windows.Forms.TextBox();
             this.btn_AllCustomers = new System.Windows.Forms.Button();
@@ -57,8 +59,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.lbl_NoMatch = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_AppointmentGrid)).BeginInit();
             this.tab_Appointment.SuspendLayout();
             this.Appointments.SuspendLayout();
@@ -227,6 +227,18 @@
             this.Appointments.TabIndex = 0;
             this.Appointments.Text = "Appointments";
             // 
+            // lbl_NoMatch
+            // 
+            this.lbl_NoMatch.AutoSize = true;
+            this.lbl_NoMatch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.lbl_NoMatch.Font = new System.Drawing.Font("OCR A Extended", 14F);
+            this.lbl_NoMatch.Location = new System.Drawing.Point(758, 229);
+            this.lbl_NoMatch.Name = "lbl_NoMatch";
+            this.lbl_NoMatch.Size = new System.Drawing.Size(166, 30);
+            this.lbl_NoMatch.TabIndex = 30;
+            this.lbl_NoMatch.Text = "No Match!\r\n";
+            this.lbl_NoMatch.Visible = false;
+            // 
             // btn_Search
             // 
             this.btn_Search.Font = new System.Drawing.Font("OCR A Extended", 12F);
@@ -284,6 +296,18 @@
             this.Customers.TabIndex = 1;
             this.Customers.Text = "Customers";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.label3.Font = new System.Drawing.Font("OCR A Extended", 14F);
+            this.label3.Location = new System.Drawing.Point(924, 146);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(166, 30);
+            this.label3.TabIndex = 31;
+            this.label3.Text = "No Match!\r\n";
+            this.label3.Visible = false;
+            // 
             // btn_CustSearch
             // 
             this.btn_CustSearch.Font = new System.Drawing.Font("OCR A Extended", 12F);
@@ -305,7 +329,6 @@
             this.tb_CustSearch.Name = "tb_CustSearch";
             this.tb_CustSearch.Size = new System.Drawing.Size(588, 35);
             this.tb_CustSearch.TabIndex = 18;
-           
             this.tb_CustSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_CustSearch_KeyPress);
             // 
             // btn_AllCustomers
@@ -344,7 +367,6 @@
             // 
             // DGV_Customers
             // 
-            this.DGV_Customers.AllowUserToResizeColumns = false;
             this.DGV_Customers.BackgroundColor = System.Drawing.Color.White;
             this.DGV_Customers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGV_Customers.Location = new System.Drawing.Point(192, 192);
@@ -439,30 +461,6 @@
             this.button1.Text = "Monthly Appoinments";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.GenerateMonthlyReport);
-            // 
-            // lbl_NoMatch
-            // 
-            this.lbl_NoMatch.AutoSize = true;
-            this.lbl_NoMatch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.lbl_NoMatch.Font = new System.Drawing.Font("OCR A Extended", 14F);
-            this.lbl_NoMatch.Location = new System.Drawing.Point(758, 229);
-            this.lbl_NoMatch.Name = "lbl_NoMatch";
-            this.lbl_NoMatch.Size = new System.Drawing.Size(166, 30);
-            this.lbl_NoMatch.TabIndex = 30;
-            this.lbl_NoMatch.Text = "No Match!\r\n";
-            this.lbl_NoMatch.Visible = false;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.label3.Font = new System.Drawing.Font("OCR A Extended", 14F);
-            this.label3.Location = new System.Drawing.Point(924, 146);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(166, 30);
-            this.label3.TabIndex = 31;
-            this.label3.Text = "No Match!\r\n";
-            this.label3.Visible = false;
             // 
             // MainHomePage
             // 

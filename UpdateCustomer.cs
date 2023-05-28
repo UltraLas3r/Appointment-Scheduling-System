@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using mschreiber_Software2_c969Project.Model;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,7 +19,7 @@ namespace mschreiber_Software2_c969Project
         private int _addressId;
 
         string connString = "Host=localhost;port=3306;Database=client_schedule;Username=sqlUser;Password=Passw0rd!";
-        public UpdateCustomer(int customerId, string customerName, int addressId, string address, string phoneNumber)
+        public UpdateCustomer(int customerId, string customerName, int addressId, string address, string phoneNumber) 
         {
             InitializeComponent();
             _addressId = addressId;
@@ -46,11 +47,12 @@ namespace mschreiber_Software2_c969Project
             }
         }
 
-        private void btn_UpdateCustomer_Click(object sender, EventArgs e)
+        private void btn_UpdateCustomer_Click(object sender, EventArgs e) 
         {
             string modifiedCustomerName = txt_CustFullName.Text;
             string modifiedAddress = txt_Address.Text;
             string modifiedPhoneNumber = txt_PhoneNumber.Text;
+
 
             //update records in the DB
             string connectionString = "server=localhost;user id=sqlUser;password=Passw0rd!;database=client_schedule";
