@@ -10,14 +10,24 @@ namespace mschreiber_Software2_c969Project.Model
     {
         public int AppointmentID { get; set; }
         public string AppointmentTitle { get; set; }
-        public string title { get; set; }
         public string type { get; set; }
-        public DateTime start { get; set; }
-        public DateTime end { get; set; }
+        public DateTime Start { get; set; }
+        public DateTime End { get; set; }
 
 
 
+        public class MyAppointment : Appointment
+        {
 
+            public MyAppointment(int appointmentId, string appointmentTitle, string type, DateTime start, DateTime end)
+            {
+                AppointmentID = appointmentId;
+                AppointmentTitle = appointmentTitle;
+                Start = start;
+                End = end;
+
+            }
+        }
 
 
 

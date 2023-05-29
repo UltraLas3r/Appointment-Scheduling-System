@@ -457,6 +457,12 @@ namespace mschreiber_Software2_c969Project
             DGV_CustomerContentLoad();
         }
 
+        public class MyAppointment : Appointment
+        {
+
+
+        }
+
         private void GenerateMonthlyReport(object sender, EventArgs e)
         {
             MySqlConnection conn = new MySqlConnection(connString);
@@ -473,7 +479,32 @@ namespace mschreiber_Software2_c969Project
                 {
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
-                    dgv_Reports.DataSource = dataTable;
+
+                    List<Appointment> appointmentList = new List<Appointment>();
+
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        Appointment appointment = new MyAppointment();
+
+                        //appointment.AppointmentID = (int)row["appointmentId"];
+                        appointment.AppointmentTitle = row["title"].ToString();
+                        appointment.Start = (DateTime)row["start"];
+                        appointment.End= (DateTime)row["end"];
+
+                        appointmentList.Add(appointment);
+                    }
+
+                    // Clear existing label text
+                    lbl_1.Text = "";
+                    lbl_2.Text = "";
+                    lbl_3.Text = "";
+
+                    foreach (Appointment appointment in appointmentList)
+                    {
+                       // lbl_1.Text += appointment.AppointmentID + "\n";
+                        lbl_2.Text += appointment.AppointmentTitle + "\n";
+                        lbl_3.Text += appointment.Start + " end " + appointment.End;
+                    }
                 }
             }
 
@@ -554,16 +585,15 @@ namespace mschreiber_Software2_c969Project
                     }
 
                     // Clear existing label text
-                    lbl_CustomerName.Text = "";
-                    lbl_CustomerAddress.Text = "";
-                    lbl_CustomerPhoneNumber.Text = "";
+                    lbl_1.Text = "";
+                    lbl_2.Text = "";
+                    lbl_3.Text = "";
 
-                    // Display customer information in label objects
                     foreach (Customer customer in customerList)
                     {
-                        lbl_CustomerName.Text += customer.Name + "\n";
-                        lbl_CustomerAddress.Text += customer.Address + "\n";
-                        lbl_CustomerPhoneNumber.Text += customer.PhoneNumber + "\n";
+                        lbl_1.Text += customer.Name + "\n";
+                        lbl_2.Text += customer.Address + "\n";
+                        lbl_3.Text += customer.PhoneNumber + "\n";
                     }
 
                 }  
