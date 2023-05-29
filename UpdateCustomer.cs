@@ -53,7 +53,6 @@ namespace mschreiber_Software2_c969Project
             string modifiedAddress = txt_Address.Text;
             string modifiedPhoneNumber = txt_PhoneNumber.Text;
 
-
             //update records in the DB
             string connectionString = "server=localhost;user id=sqlUser;password=Passw0rd!;database=client_schedule";
             MySqlConnection conn = new MySqlConnection(connectionString);

@@ -18,7 +18,7 @@ namespace mschreiber_Software2_c969Project.Model
 
             //Construct the log message
 
-            string logMessage = $"The User {userName} logged in at {currentTime}";
+            string logMessage = $"User {userName} logged in at {currentTime}";
             string selectQuery = $"SELECT COUNT(*) FROM users WHERE username = '{userName}'";
 
             if (selectQuery != userName)

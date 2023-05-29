@@ -33,5 +33,4 @@ namespace mschreiber_Software2_c969Project.Model
             PostalCode = postalCode;
         }
     }
-
 }

@@ -108,6 +108,7 @@
     </Compile>
     <Compile Include="Model\Appointment.cs" />
     <Compile Include="Model\ButtonHoverClass.cs" />
+    <Compile Include="Model\Consultant.cs" />
     <Compile Include="Model\Customer.cs" />
     <Compile Include="Model\HandleAppointment.cs" />
     <Compile Include="Model\LogUserActivity.cs" />

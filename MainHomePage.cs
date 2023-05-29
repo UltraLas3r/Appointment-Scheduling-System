@@ -517,6 +517,12 @@ namespace mschreiber_Software2_c969Project
             }
         }
 
+        public class MyCustomer : Customer
+        {
+           
+
+        }
+
         private void GenerateCustomerList(object sender, EventArgs e)
         {
             MySqlConnection conn = new MySqlConnection(connString);
@@ -527,13 +533,39 @@ namespace mschreiber_Software2_c969Project
             try
             { 
                 using (MySqlCommand cmd = new MySqlCommand(CustomerInformationReport, conn))
-                
+
                 // Create a new MySQL data adapter
                 using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                 {
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
-                    dgv_Reports.DataSource = dataTable;
+
+                    List<Customer> customerList = new List<Customer>();
+
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        Customer customer = new MyCustomer();
+                        
+                        customer.Name = row["customerName"].ToString();
+                        customer.Address = row["address"].ToString();
+                        customer.PhoneNumber = row["phone"].ToString();
+
+                        customerList.Add(customer);
+                    }
+
+                    // Clear existing label text
+                    lbl_CustomerName.Text = "";
+                    lbl_CustomerAddress.Text = "";
+                    lbl_CustomerPhoneNumber.Text = "";
+
+                    // Display customer information in label objects
+                    foreach (Customer customer in customerList)
+                    {
+                        lbl_CustomerName.Text += customer.Name + "\n";
+                        lbl_CustomerAddress.Text += customer.Address + "\n";
+                        lbl_CustomerPhoneNumber.Text += customer.PhoneNumber + "\n";
+                    }
+
                 }  
             }
             catch
