@@ -139,14 +139,6 @@ namespace mschreiber_Software2_c969Project
         }
 
 
-        //public bool IsValidPhoneNumber(string phoneNumber)
-        //{
-        //    string pattern = @"^\d{3}-\d{3}-\d{4}$"; 
-        //    bool isMatch = Regex.IsMatch(phoneNumber, pattern);
-
-        //    return isMatch;
-        //}
-
         private void btn_Cancel_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are you sure you want to cancel? Entries will be lost", "Caption", MessageBoxButtons.OKCancel) == DialogResult.OK)

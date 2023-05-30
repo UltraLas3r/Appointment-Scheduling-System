@@ -229,9 +229,6 @@ namespace mschreiber_Software2_c969Project
             }
         }
 
-       
-
-
         private void DeleteAppointment(string appointmentID)
         {
             MySqlConnection conn = new MySqlConnection(connString);
@@ -304,7 +301,6 @@ namespace mschreiber_Software2_c969Project
                 SecondDeleteCommand.Parameters.AddWithValue("@custId", customerIdToRemove);
                 SecondDeleteCommand.ExecuteNonQuery();
                 appointmentsRemoved = true;
-
             }
 
             if (appointmentsRemoved == true)
@@ -330,8 +326,7 @@ namespace mschreiber_Software2_c969Project
             }
 
             if (addressRemoved == true)
-            {
-                
+            { 
                 //delete city
                 string deleteCityQuery = "DELETE FROM city WHERE cityId = @cityID ";
 
@@ -351,7 +346,6 @@ namespace mschreiber_Software2_c969Project
 
                 DeleteCountryCommand.Parameters.AddWithValue("@countryID", countryIdToRemove);
                 DeleteCountryCommand .ExecuteNonQuery();
-                
             }
 
             if (appointmentsRemoved == true)
@@ -359,7 +353,6 @@ namespace mschreiber_Software2_c969Project
                 MessageBox.Show("The customer " + customerIdToRemove + " has been removed and all records scrubbed from the database");
                 conn.Close();
             }
-
         }
 
         private void rb_ViewAll_CheckedChanged(object sender, EventArgs e)
@@ -457,17 +450,28 @@ namespace mschreiber_Software2_c969Project
             DGV_CustomerContentLoad();
         }
 
-        public class MyAppointment : Appointment
+        public class RepairAppointment : Appointment
         {
+            public string ComputerMake { get; set; }
+            public string ComputerModel { get; set; }
 
-
+            public RepairAppointment(int appointmentId, string appointmentTitle, string type, DateTime start, DateTime end, string computerMake, string computerModel)
+            {
+                AppointmentID = appointmentId;
+                AppointmentTitle = appointmentTitle;
+                Type = type;
+                Start = start;
+                End = end;
+                ComputerMake = computerMake;
+                ComputerModel = computerModel;
+            }
         }
 
         private void GenerateMonthlyReport(object sender, EventArgs e)
         {
             MySqlConnection conn = new MySqlConnection(connString);
 
-            string MonthlyReportQuery = "SELECT appointmentId, title, location, type, start, end FROM appointment WHERE start BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 30 DAY);";
+            string MonthlyReportQuery = "SELECT title, location, type, start, end FROM appointment WHERE start BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 30 DAY);";
 
             try
             {
@@ -486,7 +490,7 @@ namespace mschreiber_Software2_c969Project
                     {
                         Appointment appointment = new MyAppointment();
 
-                        appointment.AppointmentID = (int)row["appointmentId"];
+                        //appointment.AppointmentID = (int)row["appointmentId"];
                         appointment.AppointmentTitle = row["title"].ToString();
                         appointment.Start = (DateTime)row["start"];
                         appointment.End= (DateTime)row["end"];
@@ -498,17 +502,12 @@ namespace mschreiber_Software2_c969Project
                     lbl_1.Text = "";
                     lbl_2.Text = "";
                     lbl_3.Text = "";
-                    lbl_4.Text = "";
-                    lbl_CustName.Text = "";
-                    lbl_CustAddress.Text = "";
-                    lbl_CustPhoneNumber.Text = "";
 
                     foreach (Appointment appointment in appointmentList)
                     {
-                        lbl_1.Text += "ID NUM: " + appointment.AppointmentID + "\n";
-                        lbl_2.Text += "TITLE: "+ appointment.AppointmentTitle + "\n";
-                        lbl_3.Text += "START: " + appointment.Start + "\n";
-                        lbl_4.Text += "END: " + appointment.End;
+                        lbl_1.Text += appointment.AppointmentID + "\n";
+                        lbl_2.Text += appointment.AppointmentTitle + "\n";
+                        lbl_3.Text += appointment.Start + " end " + appointment.End;
                     }
                 }
             }
@@ -528,8 +527,6 @@ namespace mschreiber_Software2_c969Project
         {
             MySqlConnection conn = new MySqlConnection(connString);
             string ConsultantReport = "SELECT user.userid, user.username, appointment.title, appointment.start, appointment.end FROM appointment INNER JOIN user WHERE user.userid = appointment.userid;";
-
-            DGV_Customers.Visible = true;
 
              try
             {
@@ -557,11 +554,12 @@ namespace mschreiber_Software2_c969Project
 
         public class MyCustomer : Customer
         {
-           
+            List<Customer> customerList = new List<Customer>();
+
 
         }
 
-        private void GenerateCustomerList(object sender, EventArgs e)
+        private void GenerateCustomerList(object sender, EventArgs e) 
         {
             MySqlConnection conn = new MySqlConnection(connString);
             
@@ -591,21 +589,16 @@ namespace mschreiber_Software2_c969Project
                         customerList.Add(customer);
                     }
 
-                    // Clear existing label text and hide DGV
-                    lbl_CustName.Text = "";
-                    lbl_CustAddress.Text = "";
-                    lbl_CustPhoneNumber.Text = "";
+                    // Clear existing label text
                     lbl_1.Text = "";
                     lbl_2.Text = "";
                     lbl_3.Text = "";
-                    lbl_4.Text = "";
-                    DGV_Customers.Visible = false;
 
                     foreach (Customer customer in customerList)
                     {
-                        lbl_CustName.Text += "NAME: " + customer.Name + "\n";
-                        lbl_CustAddress.Text += "ADDRESS: " + customer.Address + "\n";
-                        lbl_CustPhoneNumber.Text += "PHONE: " + customer.PhoneNumber + "\n";
+                        lbl_1.Text += customer.Name + "\n";
+                        lbl_2.Text += customer.Address + "\n";
+                        lbl_3.Text += customer.PhoneNumber + "\n";
                     }
 
                 }  
