@@ -37,6 +37,12 @@ namespace mschreiber_Software2_c969Project
 
 
             this.ActiveControl = txt_AppointmentSearch;
+
+            //TODO: Make sure the grid refreshes and always opens on the view all appointments view.
+            
+            rb_ViewAll.Checked = true;
+            dgv_AppointmentGrid.Update();
+            dgv_AppointmentGrid.Refresh();
         }
 
         public void RefreshCustomerDataGrid()
