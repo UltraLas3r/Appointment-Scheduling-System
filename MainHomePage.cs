@@ -505,7 +505,7 @@ namespace mschreiber_Software2_c969Project
 
                     foreach (Appointment appointment in appointmentList)
                     {
-                       // lbl_1.Text += appointment.AppointmentID + "\n";
+                        lbl_1.Text += appointment.AppointmentID + "\n";
                         lbl_2.Text += appointment.AppointmentTitle + "\n";
                         lbl_3.Text += appointment.Start + " end " + appointment.End;
                     }
