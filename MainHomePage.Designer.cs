@@ -54,14 +54,18 @@
             this.DGV_Customers = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.Reports = new System.Windows.Forms.TabPage();
+            this.lbl_3 = new System.Windows.Forms.Label();
+            this.lbl_2 = new System.Windows.Forms.Label();
+            this.lbl_1 = new System.Windows.Forms.Label();
             this.dgv_Reports = new System.Windows.Forms.DataGridView();
             this.button3 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.lbl_1 = new System.Windows.Forms.Label();
-            this.lbl_2 = new System.Windows.Forms.Label();
-            this.lbl_3 = new System.Windows.Forms.Label();
+            this.lbl_CustPhoneNumber = new System.Windows.Forms.Label();
+            this.lbl_CustAddress = new System.Windows.Forms.Label();
+            this.lbl_CustName = new System.Windows.Forms.Label();
+            this.lbl_4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_AppointmentGrid)).BeginInit();
             this.tab_Appointment.SuspendLayout();
             this.Appointments.SuspendLayout();
@@ -395,6 +399,10 @@
             // Reports
             // 
             this.Reports.BackColor = System.Drawing.Color.Gray;
+            this.Reports.Controls.Add(this.lbl_4);
+            this.Reports.Controls.Add(this.lbl_CustPhoneNumber);
+            this.Reports.Controls.Add(this.lbl_CustAddress);
+            this.Reports.Controls.Add(this.lbl_CustName);
             this.Reports.Controls.Add(this.lbl_3);
             this.Reports.Controls.Add(this.lbl_2);
             this.Reports.Controls.Add(this.lbl_1);
@@ -411,10 +419,40 @@
             this.Reports.TabIndex = 2;
             this.Reports.Text = "Reports";
             // 
+            // lbl_3
+            // 
+            this.lbl_3.AutoSize = true;
+            this.lbl_3.Font = new System.Drawing.Font("OCR A Extended", 12F);
+            this.lbl_3.Location = new System.Drawing.Point(819, 308);
+            this.lbl_3.Name = "lbl_3";
+            this.lbl_3.Size = new System.Drawing.Size(110, 25);
+            this.lbl_3.TabIndex = 23;
+            this.lbl_3.Text = "Label 3";
+            // 
+            // lbl_2
+            // 
+            this.lbl_2.AutoSize = true;
+            this.lbl_2.Font = new System.Drawing.Font("OCR A Extended", 12F);
+            this.lbl_2.Location = new System.Drawing.Point(521, 308);
+            this.lbl_2.Name = "lbl_2";
+            this.lbl_2.Size = new System.Drawing.Size(110, 25);
+            this.lbl_2.TabIndex = 22;
+            this.lbl_2.Text = "Lable 2";
+            // 
+            // lbl_1
+            // 
+            this.lbl_1.AutoSize = true;
+            this.lbl_1.Font = new System.Drawing.Font("OCR A Extended", 12F);
+            this.lbl_1.Location = new System.Drawing.Point(278, 308);
+            this.lbl_1.Name = "lbl_1";
+            this.lbl_1.Size = new System.Drawing.Size(110, 25);
+            this.lbl_1.TabIndex = 21;
+            this.lbl_1.Text = "Label 1";
+            // 
             // dgv_Reports
             // 
             this.dgv_Reports.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_Reports.Location = new System.Drawing.Point(262, 92);
+            this.dgv_Reports.Location = new System.Drawing.Point(245, 58);
             this.dgv_Reports.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgv_Reports.Name = "dgv_Reports";
             this.dgv_Reports.RowHeadersWidth = 51;
@@ -425,10 +463,10 @@
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.button3.Location = new System.Drawing.Point(21, 480);
+            this.button3.Location = new System.Drawing.Point(21, 416);
             this.button3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(200, 65);
+            this.button3.Size = new System.Drawing.Size(200, 63);
             this.button3.TabIndex = 18;
             this.button3.Text = "Customer List";
             this.button3.UseVisualStyleBackColor = true;
@@ -438,7 +476,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("OCR A Extended", 24F);
-            this.label1.Location = new System.Drawing.Point(26, 28);
+            this.label1.Location = new System.Drawing.Point(12, 4);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(457, 50);
             this.label1.TabIndex = 19;
@@ -447,7 +485,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.button2.Location = new System.Drawing.Point(21, 248);
+            this.button2.Location = new System.Drawing.Point(21, 58);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(200, 65);
@@ -459,7 +497,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.button1.Location = new System.Drawing.Point(21, 92);
+            this.button1.Location = new System.Drawing.Point(21, 308);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(200, 65);
@@ -468,35 +506,45 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.GenerateMonthlyReport);
             // 
-            // lbl_1
+            // lbl_CustPhoneNumber
             // 
-            this.lbl_1.AutoSize = true;
-            this.lbl_1.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.lbl_1.Location = new System.Drawing.Point(338, 385);
-            this.lbl_1.Name = "lbl_1";
-            this.lbl_1.Size = new System.Drawing.Size(124, 25);
-            this.lbl_1.TabIndex = 21;
-            this.lbl_1.Text = "CustName";
+            this.lbl_CustPhoneNumber.AutoSize = true;
+            this.lbl_CustPhoneNumber.Font = new System.Drawing.Font("OCR A Extended", 12F);
+            this.lbl_CustPhoneNumber.Location = new System.Drawing.Point(278, 523);
+            this.lbl_CustPhoneNumber.Name = "lbl_CustPhoneNumber";
+            this.lbl_CustPhoneNumber.Size = new System.Drawing.Size(138, 25);
+            this.lbl_CustPhoneNumber.TabIndex = 26;
+            this.lbl_CustPhoneNumber.Text = "CustPhone";
             // 
-            // lbl_2
+            // lbl_CustAddress
             // 
-            this.lbl_2.AutoSize = true;
-            this.lbl_2.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.lbl_2.Location = new System.Drawing.Point(534, 385);
-            this.lbl_2.Name = "lbl_2";
-            this.lbl_2.Size = new System.Drawing.Size(166, 25);
-            this.lbl_2.TabIndex = 22;
-            this.lbl_2.Text = "CustAddress";
+            this.lbl_CustAddress.AutoSize = true;
+            this.lbl_CustAddress.Font = new System.Drawing.Font("OCR A Extended", 12F);
+            this.lbl_CustAddress.Location = new System.Drawing.Point(278, 435);
+            this.lbl_CustAddress.Name = "lbl_CustAddress";
+            this.lbl_CustAddress.Size = new System.Drawing.Size(166, 25);
+            this.lbl_CustAddress.TabIndex = 25;
+            this.lbl_CustAddress.Text = "custAddress";
             // 
-            // lbl_3
+            // lbl_CustName
             // 
-            this.lbl_3.AutoSize = true;
-            this.lbl_3.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.lbl_3.Location = new System.Drawing.Point(752, 385);
-            this.lbl_3.Name = "lbl_3";
-            this.lbl_3.Size = new System.Drawing.Size(222, 25);
-            this.lbl_3.TabIndex = 23;
-            this.lbl_3.Text = "CustPhoneNumber";
+            this.lbl_CustName.AutoSize = true;
+            this.lbl_CustName.Font = new System.Drawing.Font("OCR A Extended", 12F);
+            this.lbl_CustName.Location = new System.Drawing.Point(278, 367);
+            this.lbl_CustName.Name = "lbl_CustName";
+            this.lbl_CustName.Size = new System.Drawing.Size(124, 25);
+            this.lbl_CustName.TabIndex = 24;
+            this.lbl_CustName.Text = "custName";
+            // 
+            // lbl_4
+            // 
+            this.lbl_4.AutoSize = true;
+            this.lbl_4.Font = new System.Drawing.Font("OCR A Extended", 12F);
+            this.lbl_4.Location = new System.Drawing.Point(1030, 308);
+            this.lbl_4.Name = "lbl_4";
+            this.lbl_4.Size = new System.Drawing.Size(96, 25);
+            this.lbl_4.TabIndex = 27;
+            this.lbl_4.Text = "Label4";
             // 
             // MainHomePage
             // 
@@ -559,5 +607,9 @@
         private System.Windows.Forms.Label lbl_3;
         private System.Windows.Forms.Label lbl_2;
         private System.Windows.Forms.Label lbl_1;
+        private System.Windows.Forms.Label lbl_CustPhoneNumber;
+        private System.Windows.Forms.Label lbl_CustAddress;
+        private System.Windows.Forms.Label lbl_CustName;
+        private System.Windows.Forms.Label lbl_4;
     }
 }

@@ -467,7 +467,7 @@ namespace mschreiber_Software2_c969Project
         {
             MySqlConnection conn = new MySqlConnection(connString);
 
-            string MonthlyReportQuery = "SELECT title, location, type, start, end FROM appointment WHERE start BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 30 DAY);";
+            string MonthlyReportQuery = "SELECT appointmentId, title, location, type, start, end FROM appointment WHERE start BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 30 DAY);";
 
             try
             {
@@ -486,7 +486,7 @@ namespace mschreiber_Software2_c969Project
                     {
                         Appointment appointment = new MyAppointment();
 
-                        //appointment.AppointmentID = (int)row["appointmentId"];
+                        appointment.AppointmentID = (int)row["appointmentId"];
                         appointment.AppointmentTitle = row["title"].ToString();
                         appointment.Start = (DateTime)row["start"];
                         appointment.End= (DateTime)row["end"];
@@ -498,12 +498,17 @@ namespace mschreiber_Software2_c969Project
                     lbl_1.Text = "";
                     lbl_2.Text = "";
                     lbl_3.Text = "";
+                    lbl_4.Text = "";
+                    lbl_CustName.Text = "";
+                    lbl_CustAddress.Text = "";
+                    lbl_CustPhoneNumber.Text = "";
 
                     foreach (Appointment appointment in appointmentList)
                     {
-                       // lbl_1.Text += appointment.AppointmentID + "\n";
-                        lbl_2.Text += appointment.AppointmentTitle + "\n";
-                        lbl_3.Text += appointment.Start + " end " + appointment.End;
+                        lbl_1.Text += "ID NUM: " + appointment.AppointmentID + "\n";
+                        lbl_2.Text += "TITLE: "+ appointment.AppointmentTitle + "\n";
+                        lbl_3.Text += "START: " + appointment.Start + "\n";
+                        lbl_4.Text += "END: " + appointment.End;
                     }
                 }
             }
@@ -523,6 +528,8 @@ namespace mschreiber_Software2_c969Project
         {
             MySqlConnection conn = new MySqlConnection(connString);
             string ConsultantReport = "SELECT user.userid, user.username, appointment.title, appointment.start, appointment.end FROM appointment INNER JOIN user WHERE user.userid = appointment.userid;";
+
+            DGV_Customers.Visible = true;
 
              try
             {
@@ -584,16 +591,21 @@ namespace mschreiber_Software2_c969Project
                         customerList.Add(customer);
                     }
 
-                    // Clear existing label text
+                    // Clear existing label text and hide DGV
+                    lbl_CustName.Text = "";
+                    lbl_CustAddress.Text = "";
+                    lbl_CustPhoneNumber.Text = "";
                     lbl_1.Text = "";
                     lbl_2.Text = "";
                     lbl_3.Text = "";
+                    lbl_4.Text = "";
+                    DGV_Customers.Visible = false;
 
                     foreach (Customer customer in customerList)
                     {
-                        lbl_1.Text += customer.Name + "\n";
-                        lbl_2.Text += customer.Address + "\n";
-                        lbl_3.Text += customer.PhoneNumber + "\n";
+                        lbl_CustName.Text += "NAME: " + customer.Name + "\n";
+                        lbl_CustAddress.Text += "ADDRESS: " + customer.Address + "\n";
+                        lbl_CustPhoneNumber.Text += "PHONE: " + customer.PhoneNumber + "\n";
                     }
 
                 }  
