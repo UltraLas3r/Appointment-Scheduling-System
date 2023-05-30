@@ -118,6 +118,8 @@ namespace mschreiber_Software2_c969Project
 
         private void btn_ModifyAppointment_Click(object sender, EventArgs e)
         {
+            //TODO: FIX THIS SO THAT I CAN UPDATE AN APPOINTMENT
+
             if (!dgv_AppointmentGrid.CurrentRow.Selected)
             {
                 MessageBox.Show("Nothing selected. Please select an item to modify.");
@@ -229,9 +231,6 @@ namespace mschreiber_Software2_c969Project
             }
         }
 
-       
-
-
         private void DeleteAppointment(string appointmentID)
         {
             MySqlConnection conn = new MySqlConnection(connString);
@@ -304,7 +303,6 @@ namespace mschreiber_Software2_c969Project
                 SecondDeleteCommand.Parameters.AddWithValue("@custId", customerIdToRemove);
                 SecondDeleteCommand.ExecuteNonQuery();
                 appointmentsRemoved = true;
-
             }
 
             if (appointmentsRemoved == true)
@@ -330,8 +328,7 @@ namespace mschreiber_Software2_c969Project
             }
 
             if (addressRemoved == true)
-            {
-                
+            { 
                 //delete city
                 string deleteCityQuery = "DELETE FROM city WHERE cityId = @cityID ";
 
@@ -351,7 +348,6 @@ namespace mschreiber_Software2_c969Project
 
                 DeleteCountryCommand.Parameters.AddWithValue("@countryID", countryIdToRemove);
                 DeleteCountryCommand .ExecuteNonQuery();
-                
             }
 
             if (appointmentsRemoved == true)
@@ -359,7 +355,6 @@ namespace mschreiber_Software2_c969Project
                 MessageBox.Show("The customer " + customerIdToRemove + " has been removed and all records scrubbed from the database");
                 conn.Close();
             }
-
         }
 
         private void rb_ViewAll_CheckedChanged(object sender, EventArgs e)
@@ -457,10 +452,21 @@ namespace mschreiber_Software2_c969Project
             DGV_CustomerContentLoad();
         }
 
-        public class MyAppointment : Appointment
+        public class RepairAppointment : Appointment
         {
+            public string ComputerMake { get; set; }
+            public string ComputerModel { get; set; }
 
-
+            public RepairAppointment(int appointmentId, string appointmentTitle, string type, DateTime start, DateTime end, string computerMake, string computerModel)
+            {
+                AppointmentID = appointmentId;
+                AppointmentTitle = appointmentTitle;
+                Type = type;
+                Start = start;
+                End = end;
+                ComputerMake = computerMake;
+                ComputerModel = computerModel;
+            }
         }
 
         private void GenerateMonthlyReport(object sender, EventArgs e)
@@ -550,11 +556,12 @@ namespace mschreiber_Software2_c969Project
 
         public class MyCustomer : Customer
         {
-           
+            List<Customer> customerList = new List<Customer>();
+
 
         }
 
-        private void GenerateCustomerList(object sender, EventArgs e)
+        private void GenerateCustomerList(object sender, EventArgs e) 
         {
             MySqlConnection conn = new MySqlConnection(connString);
             

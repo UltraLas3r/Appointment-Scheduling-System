@@ -20,8 +20,7 @@ namespace mschreiber_Software2_c969Project.Model
     }
 
     public class MyCustomer : Customer
-    {
-        
+    { 
         public MyCustomer(string name, string address, string addressTwo, string city, string country, string phoneNumber, string postalCode)
         {
             Name = name;

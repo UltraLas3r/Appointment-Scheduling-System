@@ -164,12 +164,12 @@ namespace mschreiber_Software2_c969Project
             {
                 // Open the database connection
                 connection.Open();
-
+                //TODO FIX THIS SO THAT I CANT SCHEDULE A MEETING DURING A CURRENT MEETING
                 // Create a MySqlCommand to execute the SQL query
-                string query = "SELECT * FROM appointment WHERE start >= @start - INTERVAL 5 MINUTE " +
-                               "AND start <= @start + INTERVAL 5 MINUTE " +
+                string query = "SELECT * FROM appointment WHERE start >= @start - INTERVAL 30 MINUTE " +
+                               "AND start <= @start + INTERVAL 30 MINUTE " +
                                "AND end >= @end - INTERVAL 5 MINUTE " +
-                               "AND end <= @end + INTERVAL 5 MINUTE " +
+                               "AND end <= @end + INTERVAL 30 MINUTE " +
                                "AND customerId = @customerId";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
