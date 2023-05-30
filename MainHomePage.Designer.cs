@@ -135,11 +135,11 @@
             // btn_ModifyAppointment
             // 
             this.btn_ModifyAppointment.Font = new System.Drawing.Font("OCR A Extended", 11F);
-            this.btn_ModifyAppointment.Location = new System.Drawing.Point(209, 75);
+            this.btn_ModifyAppointment.Location = new System.Drawing.Point(209, 76);
             this.btn_ModifyAppointment.Name = "btn_ModifyAppointment";
             this.btn_ModifyAppointment.Size = new System.Drawing.Size(190, 89);
             this.btn_ModifyAppointment.TabIndex = 8;
-            this.btn_ModifyAppointment.Text = "Update Appointment";
+            this.btn_ModifyAppointment.Text = "Modify Appointment";
             this.btn_ModifyAppointment.UseVisualStyleBackColor = true;
             this.btn_ModifyAppointment.Click += new System.EventHandler(this.btn_ModifyAppointment_Click);
             // 
@@ -183,7 +183,7 @@
             this.btn_ModifyCustomer.Name = "btn_ModifyCustomer";
             this.btn_ModifyCustomer.Size = new System.Drawing.Size(195, 54);
             this.btn_ModifyCustomer.TabIndex = 12;
-            this.btn_ModifyCustomer.Text = "Update Customer";
+            this.btn_ModifyCustomer.Text = "Modify Customer";
             this.btn_ModifyCustomer.UseVisualStyleBackColor = true;
             this.btn_ModifyCustomer.Click += new System.EventHandler(this.UpdateCustomerButton_Click);
             // 
@@ -214,7 +214,7 @@
             this.Appointments.Controls.Add(this.radioButton2);
             this.Appointments.Location = new System.Drawing.Point(4, 25);
             this.Appointments.Name = "Appointments";
-            this.Appointments.Padding = new System.Windows.Forms.Padding(3);
+            this.Appointments.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.Appointments.Size = new System.Drawing.Size(1096, 520);
             this.Appointments.TabIndex = 0;
             this.Appointments.Text = "Appointments";
@@ -280,7 +280,7 @@
             this.Customers.Controls.Add(this.btn_ModifyCustomer);
             this.Customers.Location = new System.Drawing.Point(4, 25);
             this.Customers.Name = "Customers";
-            this.Customers.Padding = new System.Windows.Forms.Padding(3);
+            this.Customers.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.Customers.Size = new System.Drawing.Size(1096, 520);
             this.Customers.TabIndex = 1;
             this.Customers.Text = "Customers";
@@ -388,7 +388,7 @@
             this.Reports.Controls.Add(this.button1);
             this.Reports.Location = new System.Drawing.Point(4, 25);
             this.Reports.Name = "Reports";
-            this.Reports.Padding = new System.Windows.Forms.Padding(3);
+            this.Reports.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.Reports.Size = new System.Drawing.Size(1096, 520);
             this.Reports.TabIndex = 2;
             this.Reports.Text = "Reports";
@@ -397,7 +397,7 @@
             // 
             this.lbl_3.AutoSize = true;
             this.lbl_3.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.lbl_3.Location = new System.Drawing.Point(756, 343);
+            this.lbl_3.Location = new System.Drawing.Point(668, 308);
             this.lbl_3.Name = "lbl_3";
             this.lbl_3.Size = new System.Drawing.Size(190, 23);
             this.lbl_3.TabIndex = 23;
@@ -407,7 +407,7 @@
             // 
             this.lbl_2.AutoSize = true;
             this.lbl_2.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.lbl_2.Location = new System.Drawing.Point(387, 343);
+            this.lbl_2.Location = new System.Drawing.Point(475, 308);
             this.lbl_2.Name = "lbl_2";
             this.lbl_2.Size = new System.Drawing.Size(142, 23);
             this.lbl_2.TabIndex = 22;
@@ -417,7 +417,7 @@
             // 
             this.lbl_1.AutoSize = true;
             this.lbl_1.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.lbl_1.Location = new System.Drawing.Point(45, 343);
+            this.lbl_1.Location = new System.Drawing.Point(300, 308);
             this.lbl_1.Name = "lbl_1";
             this.lbl_1.Size = new System.Drawing.Size(106, 23);
             this.lbl_1.TabIndex = 21;
@@ -426,17 +426,17 @@
             // dgv_Reports
             // 
             this.dgv_Reports.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_Reports.Location = new System.Drawing.Point(19, 116);
+            this.dgv_Reports.Location = new System.Drawing.Point(233, 74);
             this.dgv_Reports.Name = "dgv_Reports";
             this.dgv_Reports.RowHeadersWidth = 51;
             this.dgv_Reports.RowTemplate.Height = 24;
-            this.dgv_Reports.Size = new System.Drawing.Size(714, 177);
+            this.dgv_Reports.Size = new System.Drawing.Size(807, 177);
             this.dgv_Reports.TabIndex = 20;
             // 
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.button3.Location = new System.Drawing.Point(843, 241);
+            this.button3.Location = new System.Drawing.Point(19, 384);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(178, 52);
             this.button3.TabIndex = 18;
@@ -448,7 +448,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("OCR A Extended", 24F);
-            this.label1.Location = new System.Drawing.Point(12, 3);
+            this.label1.Location = new System.Drawing.Point(23, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(378, 41);
             this.label1.TabIndex = 19;
@@ -457,7 +457,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.button2.Location = new System.Drawing.Point(843, 153);
+            this.button2.Location = new System.Drawing.Point(19, 198);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(178, 52);
             this.button2.TabIndex = 17;
@@ -468,7 +468,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.button1.Location = new System.Drawing.Point(304, 58);
+            this.button1.Location = new System.Drawing.Point(19, 74);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(178, 52);
             this.button1.TabIndex = 16;

@@ -37,12 +37,6 @@ namespace mschreiber_Software2_c969Project
 
 
             this.ActiveControl = txt_AppointmentSearch;
-
-            //TODO: Make sure the grid refreshes and always opens on the view all appointments view.
-            
-            rb_ViewAll.Checked = true;
-            dgv_AppointmentGrid.Update();
-            dgv_AppointmentGrid.Refresh();
         }
 
         public void RefreshCustomerDataGrid()
@@ -124,8 +118,6 @@ namespace mschreiber_Software2_c969Project
 
         private void btn_ModifyAppointment_Click(object sender, EventArgs e)
         {
-            //TODO: FIX THIS SO THAT I CAN UPDATE AN APPOINTMENT
-
             if (!dgv_AppointmentGrid.CurrentRow.Selected)
             {
                 MessageBox.Show("Nothing selected. Please select an item to modify.");

@@ -16,6 +16,10 @@ namespace mschreiber_Software2_c969Project.Model
 
         public class MyAppointment : Appointment
         {
+            public MyAppointment()
+            {
+
+            }
 
             public MyAppointment(int appointmentId, string appointmentTitle, string Type, DateTime start, DateTime end)
             {
@@ -23,7 +27,6 @@ namespace mschreiber_Software2_c969Project.Model
                 AppointmentTitle = appointmentTitle;
                 Start = start;
                 End = end;
-
             }
         }
     }
