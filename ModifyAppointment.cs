@@ -87,21 +87,27 @@ namespace mschreiber_Software2_c969Project
             string selectedType = cb_Choices.SelectedItem.ToString();
             string selectedLocation = cb_Location.SelectedItem.ToString();
 
-            //I need to correctly convert these 
+            
             DateTime newStartDateTime = TimeZoneInfo.ConvertTimeToUtc(DT_ScheduleAppointment.Value);
             DateTime newEndDatetime = TimeZoneInfo.ConvertTimeToUtc(newStartDateTime.AddMinutes(30));
 
+            DateTime utcStartDate = TimeZoneInfo.ConvertTimeToUtc(newStartDateTime);
+            DateTime utcEndDate = TimeZoneInfo.ConvertTimeToUtc(newEndDatetime);
 
             //update record
             string connectionString = "server=localhost;user id=sqlUser;password=Passw0rd!;database=client_schedule";
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
 
-            try
+            bool appointmentExists = CheckIfAppointmentExists(utcStartDate, utcEndDate, selectedUser);
+
+            if (appointmentExists != true)
             {
-                //Create new Appointment          
-                string updateAppointment = 
-                    @"UPDATE appointment 
+                try
+                {
+                    //Create new Appointment          
+                    string updateAppointment =
+                        @"UPDATE appointment 
                     SET customerId = @customerId, 
                         title = @title, 
                         location = @location, 
@@ -111,40 +117,87 @@ namespace mschreiber_Software2_c969Project
                         end = @newEndTime 
                     WHERE appointmentId = @appointmentId";
 
-                MySqlCommand insertAppointmentToTable = new MySqlCommand(updateAppointment, connection);
-                insertAppointmentToTable.Parameters.AddWithValue("@customerID", selectedUser);
-                insertAppointmentToTable.Parameters.AddWithValue("@title", modifiedTitle);
-                insertAppointmentToTable.Parameters.AddWithValue("@location", selectedLocation);
-                insertAppointmentToTable.Parameters.AddWithValue("@contact", contact);
-                insertAppointmentToTable.Parameters.AddWithValue("@type", selectedType);
-                insertAppointmentToTable.Parameters.AddWithValue("@newstartTime", newStartDateTime);
-                insertAppointmentToTable.Parameters.AddWithValue("@NewendTime", newEndDatetime);
-                insertAppointmentToTable.Parameters.AddWithValue("@appointmentId", _appointmentId);
-                insertAppointmentToTable.ExecuteNonQuery();
-            }
+                    MySqlCommand insertAppointmentToTable = new MySqlCommand(updateAppointment, connection);
+                    insertAppointmentToTable.Parameters.AddWithValue("@customerID", selectedUser);
+                    insertAppointmentToTable.Parameters.AddWithValue("@title", modifiedTitle);
+                    insertAppointmentToTable.Parameters.AddWithValue("@location", selectedLocation);
+                    insertAppointmentToTable.Parameters.AddWithValue("@contact", contact);
+                    insertAppointmentToTable.Parameters.AddWithValue("@type", selectedType);
+                    insertAppointmentToTable.Parameters.AddWithValue("@newstartTime", newStartDateTime);
+                    insertAppointmentToTable.Parameters.AddWithValue("@NewendTime", newEndDatetime);
+                    insertAppointmentToTable.Parameters.AddWithValue("@appointmentId", _appointmentId);
+                    insertAppointmentToTable.ExecuteNonQuery();
+                }
 
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
 
-                return;
-            }
+                    return;
+                }
 
-            finally
-            {
-                MainHomePage mainHomePage = new MainHomePage();
-                mainHomePage.Show();
-                this.Hide();
+                finally
+                {
+                    MainHomePage mainHomePage = new MainHomePage();
+                    mainHomePage.Show();
+                    this.Hide();
+                }
             }
         }
 
+        public bool CheckIfAppointmentExists(DateTime startOfAppointment, DateTime endOfAppointment, string selectedUser)
+        {
+            bool AppointmentExistence = false;
 
+            using (MySqlConnection connection = new MySqlConnection(connString))
+            {
+                // Open the database connection
+                connection.Open();
+               
+                // Create a MySqlCommand to execute the SQL query
+                string query = "SELECT * FROM appointment WHERE start >= @start - INTERVAL 30 MINUTE " +
+                               "AND start <= @start + INTERVAL 30 MINUTE " +
+                               "AND end >= @end - INTERVAL 30 MINUTE " +
+                               "AND end <= @end + INTERVAL 30 MINUTE " +
+                               "AND customerId = @customerId";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    // Set the parameter values for start and end
+                    command.Parameters.AddWithValue("@start", startOfAppointment);
+                    command.Parameters.AddWithValue("@end", endOfAppointment);
+                    command.Parameters.AddWithValue("@customerId", selectedUser);
+
+
+                    // Execute the SQL query
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        // Check if any rows are returned
+                        if (reader.HasRows)
+                        {
+                            // An appointment with the same start and end time already exists
+                            MessageBox.Show("Unable to schedule an appointment during this time. There are no available consultants.", "Error");
+                            AppointmentExistence = true;
+                        }
+                        else
+                        {
+                            AppointmentExistence = false;
+                        }
+                    }
+                }
+            }
+
+            return AppointmentExistence;
+        }
         private void btn_Cancel_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are you sure you want to cancel? Entries will be lost", "Caption", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 
                 this.Hide();
+
+                MainHomePage mainhomepage = new MainHomePage();
+                mainhomepage.Show();
             }
 
             else

@@ -23,9 +23,9 @@ namespace mschreiber_Software2_c969Project.Model
         {
         }
 
-        public MyAppointment(int appointmentId, string appointmentTitle, DateTime start, DateTime end)
+        public MyAppointment(int appointmentID, string appointmentTitle, DateTime start, DateTime end)
         {
-            AppointmentID = appointmentId;
+            AppointmentID = appointmentID;
             AppointmentTitle = appointmentTitle;
             Start = start;
             End = end;

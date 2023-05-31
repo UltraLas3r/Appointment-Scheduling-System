@@ -35,7 +35,8 @@ namespace mschreiber_Software2_c969Project
             string userLocation = CultureInfo.CurrentCulture.DisplayName;
             DateTime currentDateTime = DateTime.Now;
 
-
+            
+            rb_ViewAll.Checked = true;
             this.ActiveControl = txt_AppointmentSearch;
         }
 
@@ -45,9 +46,16 @@ namespace mschreiber_Software2_c969Project
             DGV_Customers.Refresh();
         }
 
+        //public void RefreshAppointment()
+        //{
+        //    dgv_AppointmentGrid.Update();
+        //    dgv_AppointmentGrid.Refresh();
+        //}
+
         public void MainAppointmentView()
         {
-            string getAppointment = "SELECT appointmentID, title, location, type, start, end FROM appointment";
+
+            string getAppointment = "SELECT appointmentId, title, location, type, start, end FROM appointment";
             MySqlConnection conn = new MySqlConnection(connString);
 
             using (MySqlCommand cmd = new MySqlCommand(getAppointment, conn))
@@ -71,6 +79,7 @@ namespace mschreiber_Software2_c969Project
                     }
 
                     dgv_AppointmentGrid.DataSource = dataTable;
+                    
                 }
             }
         }
@@ -219,25 +228,25 @@ namespace mschreiber_Software2_c969Project
             if (result == DialogResult.Yes && dgv_AppointmentGrid.SelectedRows.Count > 0)
             {
                 DataGridViewRow selectedRow = dgv_AppointmentGrid.SelectedRows[0];
-                string appointmentID = selectedRow.Cells["appointmentId"].Value.ToString();
+                string appointmentId = selectedRow.Cells["appointmentId"].Value.ToString();
 
                 //remove the row from the DGV
                 dgv_AppointmentGrid.Rows.Remove(selectedRow);
 
                 //delete the entry from the database
-                DeleteAppointment(appointmentID);
+                DeleteAppointment(appointmentId);
             }
         }
 
         private void DeleteAppointment(string appointmentID)
         {
             MySqlConnection conn = new MySqlConnection(connString);
-            string deleteQuery = "DELETE FROM appointment WHERE appointmentID = @appointmentID";
+            string deleteQuery = "DELETE FROM appointment WHERE appointmentId = @appointmentID";
             conn.Open();
 
             MySqlCommand deleteCommand = new MySqlCommand(deleteQuery, conn);
 
-            deleteCommand.Parameters.AddWithValue("@appointmentID", appointmentID);
+            deleteCommand.Parameters.AddWithValue("@appointmentid", appointmentID);
             deleteCommand.ExecuteNonQuery();
         }
 
@@ -357,6 +366,7 @@ namespace mschreiber_Software2_c969Project
 
         private void rb_ViewAll_CheckedChanged(object sender, EventArgs e)
         {
+            MainAppointmentView();
             MySqlConnection conn = new MySqlConnection(connString);
 
             string query = "SELECT appointmentID, title, location, type, start, end FROM appointment";
@@ -368,15 +378,30 @@ namespace mschreiber_Software2_c969Project
                 {
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
+
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        DateTime startUtc = (DateTime)row["start"];
+                        DateTime endUtc = (DateTime)row["end"];
+
+                        DateTime startLocal = startUtc.ToLocalTime();
+                        DateTime endLocal = endUtc.ToLocalTime();
+
+                        row["start"] = startLocal;
+                        row["end"] = endLocal;
+                    }
+
                     dgv_AppointmentGrid.DataSource = dataTable;
+                    
                 }
             }
         }
         private void ViewThisWeekRadioButton(object sender, EventArgs e)
         {
+            MainAppointmentView();
             MySqlConnection conn = new MySqlConnection(connString);
             //TODO verify this is working properly
-            string query = "SELECT title, location, type, start, end FROM appointment WHERE start >= curdate() AND start <= curdate() + INTERVAL 7 DAY;";
+            string query = "SELECT appointmentID, title, location, type, start, end FROM appointment WHERE start >= curdate() AND start <= curdate() + INTERVAL 7 DAY;";
 
             using (MySqlCommand cmd = new MySqlCommand(query, conn))
             {
@@ -385,16 +410,30 @@ namespace mschreiber_Software2_c969Project
                 {
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
+
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        DateTime startUtc = (DateTime)row["start"];
+                        DateTime endUtc = (DateTime)row["end"];
+
+                        DateTime startLocal = startUtc.ToLocalTime();
+                        DateTime endLocal = endUtc.ToLocalTime();
+
+                        row["start"] = startLocal;
+                        row["end"] = endLocal;
+                    }
+
                     dgv_AppointmentGrid.DataSource = dataTable;
                 }
             }
         }
         private void ViewThisMonthRadioButton(object sender, EventArgs e)
         {
+            MainAppointmentView();
             MySqlConnection conn = new MySqlConnection(connString);
 
             //TODO Verify that this funcionality is working correctly
-            string query = "SELECT title, description, location, type, start, end FROM appointment WHERE start <= DATE_ADD(CURDATE(), INTERVAL 30 DAY);" ;
+            string query = "SELECT appointmentID, title, description, location, type, start, end FROM appointment WHERE start >= CURDATE() AND start <= DATE_ADD(CURDATE(), INTERVAL 30 DAY);";
 
             using (MySqlCommand cmd = new MySqlCommand(query, conn))
             {
@@ -403,6 +442,19 @@ namespace mschreiber_Software2_c969Project
                 {
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
+
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        DateTime startUtc = (DateTime)row["start"];
+                        DateTime endUtc = (DateTime)row["end"];
+
+                        DateTime startLocal = startUtc.ToLocalTime();
+                        DateTime endLocal = endUtc.ToLocalTime();
+
+                        row["start"] = startLocal;
+                        row["end"] = endLocal;
+                    }
+
                     dgv_AppointmentGrid.DataSource = dataTable;
                 }
             }
@@ -450,22 +502,7 @@ namespace mschreiber_Software2_c969Project
             DGV_CustomerContentLoad();
         }
 
-        public class RepairAppointment : Appointment
-        {
-            public string ComputerMake { get; set; }
-            public string ComputerModel { get; set; }
-
-            public RepairAppointment(int appointmentId, string appointmentTitle, string type, DateTime start, DateTime end, string computerMake, string computerModel)
-            {
-                AppointmentID = appointmentId;
-                AppointmentTitle = appointmentTitle;
-                Type = type;
-                Start = start;
-                End = end;
-                ComputerMake = computerMake;
-                ComputerModel = computerModel;
-            }
-        }
+        
 
         private void GenerateMonthlyReport(object sender, EventArgs e)
         {
@@ -490,10 +527,11 @@ namespace mschreiber_Software2_c969Project
                     {
                         Appointment appointment = new MyAppointment();
 
-                        //appointment.AppointmentID = (int)row["appointmentId"];
+                        
                         appointment.AppointmentTitle = row["title"].ToString();
                         appointment.Start = (DateTime)row["start"];
-                        appointment.End= (DateTime)row["end"];
+                        appointment.End = (DateTime)row["end"];
+
 
                         appointmentList.Add(appointment);
                     }
@@ -502,12 +540,13 @@ namespace mschreiber_Software2_c969Project
                     lbl_1.Text = "";
                     lbl_2.Text = "";
                     lbl_3.Text = "";
+                    lbl_4.Text = "";
 
                     foreach (Appointment appointment in appointmentList)
                     {
-                        lbl_1.Text += appointment.AppointmentID + "\n";
-                        lbl_2.Text += appointment.AppointmentTitle + "\n";
-                        lbl_3.Text += appointment.Start + " end " + appointment.End;
+                        lbl_2.Text += "Title: " + appointment.AppointmentTitle + "\n";
+                        lbl_3.Text += "Start: " + appointment.Start + "\n";
+                        lbl_4.Text += "End: " + appointment.End;
                     }
                 }
             }
@@ -526,7 +565,7 @@ namespace mschreiber_Software2_c969Project
         private void GenerateConsultantReport(object sender, EventArgs e)
         {
             MySqlConnection conn = new MySqlConnection(connString);
-            string ConsultantReport = "SELECT user.userid, user.username, appointment.title, appointment.start, appointment.end FROM appointment INNER JOIN user WHERE user.userid = appointment.userid;";
+            string ConsultantReport = "SELECT user.username, appointment.title, appointment.start, appointment.end FROM appointment INNER JOIN user WHERE user.userid = appointment.userid;";
 
              try
             {
@@ -596,9 +635,9 @@ namespace mschreiber_Software2_c969Project
 
                     foreach (Customer customer in customerList)
                     {
-                        lbl_1.Text += customer.Name + "\n";
-                        lbl_2.Text += customer.Address + "\n";
-                        lbl_3.Text += customer.PhoneNumber + "\n";
+                        lbl_1.Text += "Name: " + customer.Name + "\n";
+                        lbl_2.Text += "Address: " + customer.Address + "\n";
+                        lbl_3.Text += "Phone: " + customer.PhoneNumber + "\n";
                     }
 
                 }  
