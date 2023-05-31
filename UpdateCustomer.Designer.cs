@@ -47,10 +47,10 @@
             this.lbl_PhoneNumberValidation.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.lbl_PhoneNumberValidation.Location = new System.Drawing.Point(16, 334);
             this.lbl_PhoneNumberValidation.Name = "lbl_PhoneNumberValidation";
-            this.lbl_PhoneNumberValidation.Size = new System.Drawing.Size(465, 40);
+            this.lbl_PhoneNumberValidation.Size = new System.Drawing.Size(420, 40);
             this.lbl_PhoneNumberValidation.TabIndex = 27;
-            this.lbl_PhoneNumberValidation.Text = "Phone number format shoul must follow the following format. \r\nFor example 555-555" +
-    "-5555 (include dashes)\r\n";
+            this.lbl_PhoneNumberValidation.Text = "Phone number format must follow the following format. \r\nFor example 555-555-5555 " +
+    "(include dashes)\r\n";
             this.lbl_PhoneNumberValidation.Visible = false;
             // 
             // txt_PhoneNumber

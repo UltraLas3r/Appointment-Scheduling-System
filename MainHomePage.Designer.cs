@@ -145,7 +145,7 @@
             this.btn_ModifyAppointment.Name = "btn_ModifyAppointment";
             this.btn_ModifyAppointment.Size = new System.Drawing.Size(214, 111);
             this.btn_ModifyAppointment.TabIndex = 8;
-            this.btn_ModifyAppointment.Text = "Modify Appointment";
+            this.btn_ModifyAppointment.Text = "Update Appointment";
             this.btn_ModifyAppointment.UseVisualStyleBackColor = true;
             this.btn_ModifyAppointment.Click += new System.EventHandler(this.btn_ModifyAppointment_Click);
             // 
@@ -193,7 +193,7 @@
             this.btn_ModifyCustomer.Name = "btn_ModifyCustomer";
             this.btn_ModifyCustomer.Size = new System.Drawing.Size(219, 68);
             this.btn_ModifyCustomer.TabIndex = 12;
-            this.btn_ModifyCustomer.Text = "Modify Customer";
+            this.btn_ModifyCustomer.Text = "Update Customer";
             this.btn_ModifyCustomer.UseVisualStyleBackColor = true;
             this.btn_ModifyCustomer.Click += new System.EventHandler(this.UpdateCustomerButton_Click);
             // 

@@ -63,7 +63,7 @@
             this.btn_ModifyAppointment.Name = "btn_ModifyAppointment";
             this.btn_ModifyAppointment.Size = new System.Drawing.Size(252, 94);
             this.btn_ModifyAppointment.TabIndex = 15;
-            this.btn_ModifyAppointment.Text = "Modify Appointment";
+            this.btn_ModifyAppointment.Text = "Update Appointment";
             this.btn_ModifyAppointment.UseVisualStyleBackColor = true;
             this.btn_ModifyAppointment.Click += new System.EventHandler(this.btn_ModifyAppointment_Click);
             // 
@@ -75,7 +75,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(544, 50);
             this.label1.TabIndex = 32;
-            this.label1.Text = "Modify Appointment";
+            this.label1.Text = "Update Appointment";
             // 
             // cb_CustomerID
             // 
@@ -191,7 +191,7 @@
             this.Controls.Add(this.btn_ModifyAppointment);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "ModifyAppointment";
-            this.Text = "ModifyAppointment";
+            this.Text = "Update Appointment";
             this.ResumeLayout(false);
             this.PerformLayout();
 
