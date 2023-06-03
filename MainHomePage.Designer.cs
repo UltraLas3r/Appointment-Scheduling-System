@@ -54,6 +54,7 @@
             this.DGV_Customers = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.Reports = new System.Windows.Forms.TabPage();
+            this.lbl_4 = new System.Windows.Forms.Label();
             this.lbl_3 = new System.Windows.Forms.Label();
             this.lbl_2 = new System.Windows.Forms.Label();
             this.lbl_1 = new System.Windows.Forms.Label();
@@ -62,7 +63,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.lbl_4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_AppointmentGrid)).BeginInit();
             this.tab_Appointment.SuspendLayout();
             this.Appointments.SuspendLayout();
@@ -413,15 +413,26 @@
             this.Reports.TabIndex = 2;
             this.Reports.Text = "Reports";
             // 
+            // lbl_4
+            // 
+            this.lbl_4.AutoSize = true;
+            this.lbl_4.Font = new System.Drawing.Font("OCR A Extended", 12F);
+            this.lbl_4.Location = new System.Drawing.Point(635, 537);
+            this.lbl_4.Name = "lbl_4";
+            this.lbl_4.Size = new System.Drawing.Size(68, 25);
+            this.lbl_4.TabIndex = 24;
+            this.lbl_4.Text = "----";
+            this.lbl_4.Visible = false;
+            // 
             // lbl_3
             // 
             this.lbl_3.AutoSize = true;
             this.lbl_3.Font = new System.Drawing.Font("OCR A Extended", 12F);
             this.lbl_3.Location = new System.Drawing.Point(631, 427);
             this.lbl_3.Name = "lbl_3";
-            this.lbl_3.Size = new System.Drawing.Size(222, 25);
+            this.lbl_3.Size = new System.Drawing.Size(68, 25);
             this.lbl_3.TabIndex = 23;
-            this.lbl_3.Text = "CustPhoneNumber";
+            this.lbl_3.Text = "----";
             // 
             // lbl_2
             // 
@@ -429,9 +440,9 @@
             this.lbl_2.Font = new System.Drawing.Font("OCR A Extended", 12F);
             this.lbl_2.Location = new System.Drawing.Point(631, 303);
             this.lbl_2.Name = "lbl_2";
-            this.lbl_2.Size = new System.Drawing.Size(166, 25);
+            this.lbl_2.Size = new System.Drawing.Size(68, 25);
             this.lbl_2.TabIndex = 22;
-            this.lbl_2.Text = "CustAddress";
+            this.lbl_2.Text = "----";
             // 
             // lbl_1
             // 
@@ -439,9 +450,9 @@
             this.lbl_1.Font = new System.Drawing.Font("OCR A Extended", 12F);
             this.lbl_1.Location = new System.Drawing.Point(631, 190);
             this.lbl_1.Name = "lbl_1";
-            this.lbl_1.Size = new System.Drawing.Size(124, 25);
+            this.lbl_1.Size = new System.Drawing.Size(68, 25);
             this.lbl_1.TabIndex = 21;
-            this.lbl_1.Text = "CustName";
+            this.lbl_1.Text = "----";
             // 
             // dgv_Reports
             // 
@@ -499,17 +510,6 @@
             this.button1.Text = "Monthly Appoinments";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.GenerateMonthlyReport);
-            // 
-            // lbl_4
-            // 
-            this.lbl_4.AutoSize = true;
-            this.lbl_4.Font = new System.Drawing.Font("OCR A Extended", 12F);
-            this.lbl_4.Location = new System.Drawing.Point(635, 537);
-            this.lbl_4.Name = "lbl_4";
-            this.lbl_4.Size = new System.Drawing.Size(82, 25);
-            this.lbl_4.TabIndex = 24;
-            this.lbl_4.Text = "-----";
-            this.lbl_4.Visible = false;
             // 
             // MainHomePage
             // 

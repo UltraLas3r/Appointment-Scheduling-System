@@ -46,12 +46,6 @@ namespace mschreiber_Software2_c969Project
             DGV_Customers.Refresh();
         }
 
-        //public void RefreshAppointment()
-        //{
-        //    dgv_AppointmentGrid.Update();
-        //    dgv_AppointmentGrid.Refresh();
-        //}
-
         public void MainAppointmentView()
         {
 
@@ -144,8 +138,25 @@ namespace mschreiber_Software2_c969Project
                 DateTime start = (DateTime)selectedRow.Cells["start"].Value;
                 //DateTime end = (DateTime)selectedRow.Cells["end"].Value;
 
+                int customerId = 0;
+                string getCustomerIdQuery = "SELECT customerId FROM appointment WHERE appointmentId = @appointmentId";
 
-                ModifyAppointment modifyAppointment = new ModifyAppointment(appointmentId, title, location, type, start);
+                using (MySqlConnection conn = new MySqlConnection(connString))
+                {
+                    conn.Open();
+
+                    using (MySqlCommand cmd = new MySqlCommand(getCustomerIdQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@appointmentId", appointmentId);
+                        object result = cmd.ExecuteScalar();
+                        if (result != null)
+                        {
+                            customerId = Convert.ToInt32(result);
+                        }
+                    }
+                }
+
+                ModifyAppointment modifyAppointment = new ModifyAppointment(appointmentId, title, location, type, start, customerId);
                 modifyAppointment.Show();
                 this.Hide();
             }
@@ -655,7 +666,6 @@ namespace mschreiber_Software2_c969Project
 
         private void btn_CustSearch_Click(object sender, EventArgs e)
         {
-            
             string custSearch = tb_CustSearch.Text.Trim();
 
             if (DGV_Customers.SelectedRows.Count == 0)
